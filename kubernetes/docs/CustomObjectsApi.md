@@ -25,7 +25,7 @@ Method | HTTP request | Description
 
 Creates a cluster scoped Custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -47,7 +47,7 @@ plural = 'plural_example' # str | The custom resource's plural name. For TPRs th
 body = NULL # object | The JSON schema of the Resource to create.
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_cluster_custom_object(group, version, plural, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 Creates a namespace scoped Custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -109,7 +109,7 @@ plural = 'plural_example' # str | The custom resource's plural name. For TPRs th
 body = NULL # object | The JSON schema of the Resource to create.
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_custom_object(group, version, namespace, plural, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 Deletes the specified cluster scoped custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -174,7 +174,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_cluster_custom_object(group, version, plural, name, body, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 Deletes the specified namespace scoped custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -242,7 +242,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_custom_object(group, version, namespace, plural, name, body, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -285,7 +285,7 @@ Name | Type | Description  | Notes
 
 Returns a cluster scoped custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -306,7 +306,7 @@ version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom object's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 
-try: 
+try:
     api_response = api_instance.get_cluster_custom_object(group, version, plural, name)
     pprint(api_response)
 except ApiException as e:
@@ -344,7 +344,7 @@ Name | Type | Description  | Notes
 
 Returns a namespace scoped custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -366,7 +366,7 @@ namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 
-try: 
+try:
     api_response = api_instance.get_namespaced_custom_object(group, version, namespace, plural, name)
     pprint(api_response)
 except ApiException as e:
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 list or watch cluster scoped custom objects
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -429,7 +429,7 @@ label_selector = 'label_selector_example' # str | A selector to restrict the lis
 resource_version = 'resource_version_example' # str | When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. (optional)
 
-try: 
+try:
     api_response = api_instance.list_cluster_custom_object(group, version, plural, pretty=pretty, label_selector=label_selector, resource_version=resource_version, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -470,7 +470,7 @@ Name | Type | Description  | Notes
 
 list or watch namespace scoped custom objects
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -495,7 +495,7 @@ label_selector = 'label_selector_example' # str | A selector to restrict the lis
 resource_version = 'resource_version_example' # str | When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_custom_object(group, version, namespace, plural, pretty=pretty, label_selector=label_selector, resource_version=resource_version, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -537,7 +537,7 @@ Name | Type | Description  | Notes
 
 patch the specified cluster scoped custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -559,7 +559,7 @@ plural = 'plural_example' # str | the custom object's plural name. For TPRs this
 name = 'name_example' # str | the custom object's name
 body = NULL # object | The JSON schema of the Resource to patch.
 
-try: 
+try:
     api_response = api_instance.patch_cluster_custom_object(group, version, plural, name, body)
     pprint(api_response)
 except ApiException as e:
@@ -598,7 +598,7 @@ Name | Type | Description  | Notes
 
 patch the specified namespace scoped custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -621,7 +621,7 @@ plural = 'plural_example' # str | the custom resource's plural name. For TPRs th
 name = 'name_example' # str | the custom object's name
 body = NULL # object | The JSON schema of the Resource to patch.
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_custom_object(group, version, namespace, plural, name, body)
     pprint(api_response)
 except ApiException as e:
@@ -661,7 +661,7 @@ Name | Type | Description  | Notes
 
 replace the specified cluster scoped custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -683,7 +683,7 @@ plural = 'plural_example' # str | the custom object's plural name. For TPRs this
 name = 'name_example' # str | the custom object's name
 body = NULL # object | The JSON schema of the Resource to replace.
 
-try: 
+try:
     api_response = api_instance.replace_cluster_custom_object(group, version, plural, name, body)
     pprint(api_response)
 except ApiException as e:
@@ -722,7 +722,7 @@ Name | Type | Description  | Notes
 
 replace the specified namespace scoped custom object
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -745,7 +745,7 @@ plural = 'plural_example' # str | the custom resource's plural name. For TPRs th
 name = 'name_example' # str | the custom object's name
 body = NULL # object | The JSON schema of the Resource to replace.
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_custom_object(group, version, namespace, plural, name, body)
     pprint(api_response)
 except ApiException as e:

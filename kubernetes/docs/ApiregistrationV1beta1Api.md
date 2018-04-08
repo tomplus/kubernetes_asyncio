@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 create an APIService
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -41,7 +41,7 @@ api_instance = kubernetes.client.ApiregistrationV1beta1Api(kubernetes.client.Api
 body = kubernetes.client.V1beta1APIService() # V1beta1APIService | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_api_service(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 delete an APIService
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -100,7 +100,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_api_service(name, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 delete collection of APIService
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -166,7 +166,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_api_service(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -209,7 +209,7 @@ Name | Type | Description  | Notes
 
 get available resources
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -226,7 +226,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.ApiregistrationV1beta1Api(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_api_resources()
     pprint(api_response)
 except ApiException as e:
@@ -258,7 +258,7 @@ This endpoint does not need any parameter.
 
 list or watch objects of kind APIService
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -284,7 +284,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_api_service(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 partially update the specified APIService
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -347,7 +347,7 @@ name = 'name_example' # str | name of the APIService
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_api_service(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -384,7 +384,7 @@ Name | Type | Description  | Notes
 
 read the specified APIService
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -405,7 +405,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_api_service(name, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -443,7 +443,7 @@ Name | Type | Description  | Notes
 
 replace the specified APIService
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -463,7 +463,7 @@ name = 'name_example' # str | name of the APIService
 body = kubernetes.client.V1beta1APIService() # V1beta1APIService | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_api_service(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -500,7 +500,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified APIService
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -520,7 +520,7 @@ name = 'name_example' # str | name of the APIService
 body = kubernetes.client.V1beta1APIService() # V1beta1APIService | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_api_service_status(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:

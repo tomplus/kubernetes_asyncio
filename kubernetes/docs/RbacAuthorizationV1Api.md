@@ -44,7 +44,7 @@ Method | HTTP request | Description
 
 create a ClusterRole
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -63,7 +63,7 @@ api_instance = kubernetes.client.RbacAuthorizationV1Api(kubernetes.client.ApiCli
 body = kubernetes.client.V1ClusterRole() # V1ClusterRole | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_cluster_role(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 create a ClusterRoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -118,7 +118,7 @@ api_instance = kubernetes.client.RbacAuthorizationV1Api(kubernetes.client.ApiCli
 body = kubernetes.client.V1ClusterRoleBinding() # V1ClusterRoleBinding | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_cluster_role_binding(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -154,7 +154,7 @@ Name | Type | Description  | Notes
 
 create a Role
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -174,7 +174,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Role() # V1Role | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_role(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -211,7 +211,7 @@ Name | Type | Description  | Notes
 
 create a RoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -231,7 +231,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1RoleBinding() # V1RoleBinding | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_role_binding(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 delete a ClusterRole
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -291,7 +291,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_cluster_role(name, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 
 delete a ClusterRoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -354,7 +354,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_cluster_role_binding(name, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -394,7 +394,7 @@ Name | Type | Description  | Notes
 
 delete collection of ClusterRole
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -420,7 +420,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_cluster_role(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -463,7 +463,7 @@ Name | Type | Description  | Notes
 
 delete collection of ClusterRoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -489,7 +489,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_cluster_role_binding(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -532,7 +532,7 @@ Name | Type | Description  | Notes
 
 delete collection of Role
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -559,7 +559,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_role(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -603,7 +603,7 @@ Name | Type | Description  | Notes
 
 delete collection of RoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -630,7 +630,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_role_binding(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -674,7 +674,7 @@ Name | Type | Description  | Notes
 
 delete a Role
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -698,7 +698,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_role(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -739,7 +739,7 @@ Name | Type | Description  | Notes
 
 delete a RoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -763,7 +763,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_role_binding(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -804,7 +804,7 @@ Name | Type | Description  | Notes
 
 get available resources
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -821,7 +821,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.RbacAuthorizationV1Api(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_api_resources()
     pprint(api_response)
 except ApiException as e:
@@ -853,7 +853,7 @@ This endpoint does not need any parameter.
 
 list or watch objects of kind ClusterRole
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -879,7 +879,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_cluster_role(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -922,7 +922,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ClusterRoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -948,7 +948,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_cluster_role_binding(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -991,7 +991,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Role
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1018,7 +1018,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_role(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1062,7 +1062,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind RoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1089,7 +1089,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_role_binding(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1133,7 +1133,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind RoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1159,7 +1159,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_role_binding_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1202,7 +1202,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Role
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1228,7 +1228,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_role_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1271,7 +1271,7 @@ Name | Type | Description  | Notes
 
 partially update the specified ClusterRole
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1291,7 +1291,7 @@ name = 'name_example' # str | name of the ClusterRole
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_cluster_role(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1328,7 +1328,7 @@ Name | Type | Description  | Notes
 
 partially update the specified ClusterRoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1348,7 +1348,7 @@ name = 'name_example' # str | name of the ClusterRoleBinding
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_cluster_role_binding(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1385,7 +1385,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Role
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1406,7 +1406,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_role(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1444,7 +1444,7 @@ Name | Type | Description  | Notes
 
 partially update the specified RoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1465,7 +1465,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_role_binding(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1503,7 +1503,7 @@ Name | Type | Description  | Notes
 
 read the specified ClusterRole
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1522,7 +1522,7 @@ api_instance = kubernetes.client.RbacAuthorizationV1Api(kubernetes.client.ApiCli
 name = 'name_example' # str | name of the ClusterRole
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_cluster_role(name, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1558,7 +1558,7 @@ Name | Type | Description  | Notes
 
 read the specified ClusterRoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1577,7 +1577,7 @@ api_instance = kubernetes.client.RbacAuthorizationV1Api(kubernetes.client.ApiCli
 name = 'name_example' # str | name of the ClusterRoleBinding
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_cluster_role_binding(name, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1613,7 +1613,7 @@ Name | Type | Description  | Notes
 
 read the specified Role
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1633,7 +1633,7 @@ name = 'name_example' # str | name of the Role
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_role(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1670,7 +1670,7 @@ Name | Type | Description  | Notes
 
 read the specified RoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1690,7 +1690,7 @@ name = 'name_example' # str | name of the RoleBinding
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_role_binding(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1727,7 +1727,7 @@ Name | Type | Description  | Notes
 
 replace the specified ClusterRole
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1747,7 +1747,7 @@ name = 'name_example' # str | name of the ClusterRole
 body = kubernetes.client.V1ClusterRole() # V1ClusterRole | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_cluster_role(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1784,7 +1784,7 @@ Name | Type | Description  | Notes
 
 replace the specified ClusterRoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1804,7 +1804,7 @@ name = 'name_example' # str | name of the ClusterRoleBinding
 body = kubernetes.client.V1ClusterRoleBinding() # V1ClusterRoleBinding | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_cluster_role_binding(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1841,7 +1841,7 @@ Name | Type | Description  | Notes
 
 replace the specified Role
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1862,7 +1862,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Role() # V1Role | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_role(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1900,7 +1900,7 @@ Name | Type | Description  | Notes
 
 replace the specified RoleBinding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1921,7 +1921,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1RoleBinding() # V1RoleBinding | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_role_binding(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:

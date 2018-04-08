@@ -51,7 +51,7 @@ Method | HTTP request | Description
 
 create a ControllerRevision
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -71,7 +71,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1ControllerRevision() # V1beta1ControllerRevision | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_controller_revision(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -108,7 +108,7 @@ Name | Type | Description  | Notes
 
 create a Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -128,7 +128,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.AppsV1beta1Deployment() # AppsV1beta1Deployment | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_deployment(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 
 create rollback of a Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -186,7 +186,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.AppsV1beta1DeploymentRollback() # AppsV1beta1DeploymentRollback | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_deployment_rollback(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -224,7 +224,7 @@ Name | Type | Description  | Notes
 
 create a StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -244,7 +244,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1StatefulSet() # V1beta1StatefulSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_stateful_set(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 delete collection of ControllerRevision
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -308,7 +308,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_controller_revision(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -352,7 +352,7 @@ Name | Type | Description  | Notes
 
 delete collection of Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -379,7 +379,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_deployment(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -423,7 +423,7 @@ Name | Type | Description  | Notes
 
 delete collection of StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -450,7 +450,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_stateful_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 
 delete a ControllerRevision
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -518,7 +518,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_controller_revision(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -559,7 +559,7 @@ Name | Type | Description  | Notes
 
 delete a Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -583,7 +583,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_deployment(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -624,7 +624,7 @@ Name | Type | Description  | Notes
 
 delete a StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -648,7 +648,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_stateful_set(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -689,7 +689,7 @@ Name | Type | Description  | Notes
 
 get available resources
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -706,7 +706,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.AppsV1beta1Api(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_api_resources()
     pprint(api_response)
 except ApiException as e:
@@ -738,7 +738,7 @@ This endpoint does not need any parameter.
 
 list or watch objects of kind ControllerRevision
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -764,7 +764,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_controller_revision_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -807,7 +807,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -833,7 +833,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_deployment_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -876,7 +876,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ControllerRevision
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -903,7 +903,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_controller_revision(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -947,7 +947,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -974,7 +974,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_deployment(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1018,7 +1018,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1045,7 +1045,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_stateful_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1089,7 +1089,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1115,7 +1115,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_stateful_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1158,7 +1158,7 @@ Name | Type | Description  | Notes
 
 partially update the specified ControllerRevision
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1179,7 +1179,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_controller_revision(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1217,7 +1217,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1238,7 +1238,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_deployment(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1276,7 +1276,7 @@ Name | Type | Description  | Notes
 
 partially update scale of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1297,7 +1297,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_deployment_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1335,7 +1335,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1356,7 +1356,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_deployment_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1394,7 +1394,7 @@ Name | Type | Description  | Notes
 
 partially update the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1415,7 +1415,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_stateful_set(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1453,7 +1453,7 @@ Name | Type | Description  | Notes
 
 partially update scale of the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1474,7 +1474,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_stateful_set_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1512,7 +1512,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1533,7 +1533,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_stateful_set_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1571,7 +1571,7 @@ Name | Type | Description  | Notes
 
 read the specified ControllerRevision
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1593,7 +1593,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_controller_revision(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -1632,7 +1632,7 @@ Name | Type | Description  | Notes
 
 read the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1654,7 +1654,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_deployment(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -1693,7 +1693,7 @@ Name | Type | Description  | Notes
 
 read scale of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1713,7 +1713,7 @@ name = 'name_example' # str | name of the Scale
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_deployment_scale(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1750,7 +1750,7 @@ Name | Type | Description  | Notes
 
 read status of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1770,7 +1770,7 @@ name = 'name_example' # str | name of the Deployment
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_deployment_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1807,7 +1807,7 @@ Name | Type | Description  | Notes
 
 read the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1829,7 +1829,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_stateful_set(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -1868,7 +1868,7 @@ Name | Type | Description  | Notes
 
 read scale of the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1888,7 +1888,7 @@ name = 'name_example' # str | name of the Scale
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_stateful_set_scale(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1925,7 +1925,7 @@ Name | Type | Description  | Notes
 
 read status of the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1945,7 +1945,7 @@ name = 'name_example' # str | name of the StatefulSet
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_stateful_set_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -1982,7 +1982,7 @@ Name | Type | Description  | Notes
 
 replace the specified ControllerRevision
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2003,7 +2003,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1ControllerRevision() # V1beta1ControllerRevision | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_controller_revision(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2041,7 +2041,7 @@ Name | Type | Description  | Notes
 
 replace the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2062,7 +2062,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.AppsV1beta1Deployment() # AppsV1beta1Deployment | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_deployment(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2100,7 +2100,7 @@ Name | Type | Description  | Notes
 
 replace scale of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2121,7 +2121,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.AppsV1beta1Scale() # AppsV1beta1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_deployment_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2159,7 +2159,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2180,7 +2180,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.AppsV1beta1Deployment() # AppsV1beta1Deployment | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_deployment_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2218,7 +2218,7 @@ Name | Type | Description  | Notes
 
 replace the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2239,7 +2239,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1StatefulSet() # V1beta1StatefulSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_stateful_set(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2277,7 +2277,7 @@ Name | Type | Description  | Notes
 
 replace scale of the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2298,7 +2298,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.AppsV1beta1Scale() # AppsV1beta1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_stateful_set_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2336,7 +2336,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified StatefulSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2357,7 +2357,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1StatefulSet() # V1beta1StatefulSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_stateful_set_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:

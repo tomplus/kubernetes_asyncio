@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -31,7 +31,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes.client.LogsApi(kubernetes.client.ApiClient(configuration))
 logpath = 'logpath_example' # str | path to the log
 
-try: 
+try:
     api_instance.log_file_handler(logpath)
 except ApiException as e:
     print("Exception when calling LogsApi->log_file_handler: %s\n" % e)
@@ -63,7 +63,7 @@ void (empty response body)
 
 
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -80,7 +80,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.LogsApi(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_instance.log_file_list_handler()
 except ApiException as e:
     print("Exception when calling LogsApi->log_file_list_handler: %s\n" % e)

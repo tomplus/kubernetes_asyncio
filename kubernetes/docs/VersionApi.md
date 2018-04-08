@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 get the code version
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -31,7 +31,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.VersionApi(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_code()
     pprint(api_response)
 except ApiException as e:

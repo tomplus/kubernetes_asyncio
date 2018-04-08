@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 get information of a group
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -31,7 +31,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.ExtensionsApi(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_api_group()
     pprint(api_response)
 except ApiException as e:

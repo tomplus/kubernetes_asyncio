@@ -83,7 +83,7 @@ Method | HTTP request | Description
 
 create a DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -103,7 +103,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1DaemonSet() # V1beta1DaemonSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_daemon_set(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 create a Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -160,7 +160,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.ExtensionsV1beta1Deployment() # ExtensionsV1beta1Deployment | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_deployment(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 
 create rollback of a Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -218,7 +218,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.ExtensionsV1beta1DeploymentRollback() # ExtensionsV1beta1DeploymentRollback | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_deployment_rollback(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -256,7 +256,7 @@ Name | Type | Description  | Notes
 
 create an Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -276,7 +276,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1Ingress() # V1beta1Ingress | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_ingress(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 create a NetworkPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -333,7 +333,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1NetworkPolicy() # V1beta1NetworkPolicy | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_network_policy(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -370,7 +370,7 @@ Name | Type | Description  | Notes
 
 create a ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -390,7 +390,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1ReplicaSet() # V1beta1ReplicaSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_replica_set(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -427,7 +427,7 @@ Name | Type | Description  | Notes
 
 create a PodSecurityPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -446,7 +446,7 @@ api_instance = kubernetes.client.ExtensionsV1beta1Api(kubernetes.client.ApiClien
 body = kubernetes.client.ExtensionsV1beta1PodSecurityPolicy() # ExtensionsV1beta1PodSecurityPolicy | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_pod_security_policy(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -482,7 +482,7 @@ Name | Type | Description  | Notes
 
 delete collection of DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -509,7 +509,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_daemon_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -553,7 +553,7 @@ Name | Type | Description  | Notes
 
 delete collection of Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -580,7 +580,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_deployment(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -624,7 +624,7 @@ Name | Type | Description  | Notes
 
 delete collection of Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -651,7 +651,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_ingress(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -695,7 +695,7 @@ Name | Type | Description  | Notes
 
 delete collection of NetworkPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -722,7 +722,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_network_policy(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -766,7 +766,7 @@ Name | Type | Description  | Notes
 
 delete collection of ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -793,7 +793,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_replica_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -837,7 +837,7 @@ Name | Type | Description  | Notes
 
 delete collection of PodSecurityPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -863,7 +863,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_pod_security_policy(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -906,7 +906,7 @@ Name | Type | Description  | Notes
 
 delete a DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -930,7 +930,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_daemon_set(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -971,7 +971,7 @@ Name | Type | Description  | Notes
 
 delete a Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -995,7 +995,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_deployment(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -1036,7 +1036,7 @@ Name | Type | Description  | Notes
 
 delete an Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1060,7 +1060,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_ingress(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -1101,7 +1101,7 @@ Name | Type | Description  | Notes
 
 delete a NetworkPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1125,7 +1125,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_network_policy(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -1166,7 +1166,7 @@ Name | Type | Description  | Notes
 
 delete a ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1190,7 +1190,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_replica_set(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -1231,7 +1231,7 @@ Name | Type | Description  | Notes
 
 delete a PodSecurityPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1254,7 +1254,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_pod_security_policy(name, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -1294,7 +1294,7 @@ Name | Type | Description  | Notes
 
 get available resources
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1311,7 +1311,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.ExtensionsV1beta1Api(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_api_resources()
     pprint(api_response)
 except ApiException as e:
@@ -1343,7 +1343,7 @@ This endpoint does not need any parameter.
 
 list or watch objects of kind DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1369,7 +1369,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_daemon_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1412,7 +1412,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1438,7 +1438,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_deployment_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1481,7 +1481,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1507,7 +1507,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_ingress_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1550,7 +1550,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1577,7 +1577,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_daemon_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1621,7 +1621,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1648,7 +1648,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_deployment(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1692,7 +1692,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1719,7 +1719,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_ingress(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1763,7 +1763,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind NetworkPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1790,7 +1790,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_network_policy(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1834,7 +1834,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1861,7 +1861,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_replica_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1905,7 +1905,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind NetworkPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1931,7 +1931,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_network_policy_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -1974,7 +1974,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind PodSecurityPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2000,7 +2000,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_pod_security_policy(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -2043,7 +2043,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2069,7 +2069,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_replica_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -2112,7 +2112,7 @@ Name | Type | Description  | Notes
 
 partially update the specified DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2133,7 +2133,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_daemon_set(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2171,7 +2171,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2192,7 +2192,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_daemon_set_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2230,7 +2230,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2251,7 +2251,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_deployment(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2289,7 +2289,7 @@ Name | Type | Description  | Notes
 
 partially update scale of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2310,7 +2310,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_deployment_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2348,7 +2348,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2369,7 +2369,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_deployment_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2407,7 +2407,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2428,7 +2428,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_ingress(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2466,7 +2466,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2487,7 +2487,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_ingress_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2525,7 +2525,7 @@ Name | Type | Description  | Notes
 
 partially update the specified NetworkPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2546,7 +2546,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_network_policy(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2584,7 +2584,7 @@ Name | Type | Description  | Notes
 
 partially update the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2605,7 +2605,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_replica_set(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2643,7 +2643,7 @@ Name | Type | Description  | Notes
 
 partially update scale of the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2664,7 +2664,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_replica_set_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2702,7 +2702,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2723,7 +2723,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_replica_set_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2761,7 +2761,7 @@ Name | Type | Description  | Notes
 
 partially update scale of the specified ReplicationControllerDummy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2782,7 +2782,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2820,7 +2820,7 @@ Name | Type | Description  | Notes
 
 partially update the specified PodSecurityPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2840,7 +2840,7 @@ name = 'name_example' # str | name of the PodSecurityPolicy
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_pod_security_policy(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2877,7 +2877,7 @@ Name | Type | Description  | Notes
 
 read the specified DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2899,7 +2899,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_daemon_set(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -2938,7 +2938,7 @@ Name | Type | Description  | Notes
 
 read status of the specified DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2958,7 +2958,7 @@ name = 'name_example' # str | name of the DaemonSet
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_daemon_set_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -2995,7 +2995,7 @@ Name | Type | Description  | Notes
 
 read the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3017,7 +3017,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_deployment(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -3056,7 +3056,7 @@ Name | Type | Description  | Notes
 
 read scale of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3076,7 +3076,7 @@ name = 'name_example' # str | name of the Scale
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_deployment_scale(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3113,7 +3113,7 @@ Name | Type | Description  | Notes
 
 read status of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3133,7 +3133,7 @@ name = 'name_example' # str | name of the Deployment
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_deployment_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3170,7 +3170,7 @@ Name | Type | Description  | Notes
 
 read the specified Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3192,7 +3192,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_ingress(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -3231,7 +3231,7 @@ Name | Type | Description  | Notes
 
 read status of the specified Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3251,7 +3251,7 @@ name = 'name_example' # str | name of the Ingress
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_ingress_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3288,7 +3288,7 @@ Name | Type | Description  | Notes
 
 read the specified NetworkPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3310,7 +3310,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_network_policy(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -3349,7 +3349,7 @@ Name | Type | Description  | Notes
 
 read the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3371,7 +3371,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_replica_set(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -3410,7 +3410,7 @@ Name | Type | Description  | Notes
 
 read scale of the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3430,7 +3430,7 @@ name = 'name_example' # str | name of the Scale
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_replica_set_scale(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3467,7 +3467,7 @@ Name | Type | Description  | Notes
 
 read status of the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3487,7 +3487,7 @@ name = 'name_example' # str | name of the ReplicaSet
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_replica_set_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3524,7 +3524,7 @@ Name | Type | Description  | Notes
 
 read scale of the specified ReplicationControllerDummy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3544,7 +3544,7 @@ name = 'name_example' # str | name of the Scale
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_replication_controller_dummy_scale(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3581,7 +3581,7 @@ Name | Type | Description  | Notes
 
 read the specified PodSecurityPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3602,7 +3602,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_pod_security_policy(name, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -3640,7 +3640,7 @@ Name | Type | Description  | Notes
 
 replace the specified DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3661,7 +3661,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1DaemonSet() # V1beta1DaemonSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_daemon_set(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3699,7 +3699,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified DaemonSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3720,7 +3720,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1DaemonSet() # V1beta1DaemonSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_daemon_set_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3758,7 +3758,7 @@ Name | Type | Description  | Notes
 
 replace the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3779,7 +3779,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.ExtensionsV1beta1Deployment() # ExtensionsV1beta1Deployment | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_deployment(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3817,7 +3817,7 @@ Name | Type | Description  | Notes
 
 replace scale of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3838,7 +3838,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.ExtensionsV1beta1Scale() # ExtensionsV1beta1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_deployment_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3876,7 +3876,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified Deployment
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3897,7 +3897,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.ExtensionsV1beta1Deployment() # ExtensionsV1beta1Deployment | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_deployment_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3935,7 +3935,7 @@ Name | Type | Description  | Notes
 
 replace the specified Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3956,7 +3956,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1Ingress() # V1beta1Ingress | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_ingress(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3994,7 +3994,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified Ingress
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4015,7 +4015,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1Ingress() # V1beta1Ingress | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_ingress_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -4053,7 +4053,7 @@ Name | Type | Description  | Notes
 
 replace the specified NetworkPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4074,7 +4074,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1NetworkPolicy() # V1beta1NetworkPolicy | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_network_policy(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -4112,7 +4112,7 @@ Name | Type | Description  | Notes
 
 replace the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4133,7 +4133,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1ReplicaSet() # V1beta1ReplicaSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_replica_set(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -4171,7 +4171,7 @@ Name | Type | Description  | Notes
 
 replace scale of the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4192,7 +4192,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.ExtensionsV1beta1Scale() # ExtensionsV1beta1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_replica_set_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -4230,7 +4230,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified ReplicaSet
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4251,7 +4251,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1ReplicaSet() # V1beta1ReplicaSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_replica_set_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -4289,7 +4289,7 @@ Name | Type | Description  | Notes
 
 replace scale of the specified ReplicationControllerDummy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4310,7 +4310,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.ExtensionsV1beta1Scale() # ExtensionsV1beta1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -4348,7 +4348,7 @@ Name | Type | Description  | Notes
 
 replace the specified PodSecurityPolicy
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4368,7 +4368,7 @@ name = 'name_example' # str | name of the PodSecurityPolicy
 body = kubernetes.client.ExtensionsV1beta1PodSecurityPolicy() # ExtensionsV1beta1PodSecurityPolicy | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_pod_security_policy(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:

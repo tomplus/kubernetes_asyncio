@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 create a LocalSubjectAccessReview
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -38,7 +38,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1LocalSubjectAccessReview() # V1beta1LocalSubjectAccessReview | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_local_subject_access_review(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 
 create a SelfSubjectAccessReview
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -94,7 +94,7 @@ api_instance = kubernetes.client.AuthorizationV1beta1Api(kubernetes.client.ApiCl
 body = kubernetes.client.V1beta1SelfSubjectAccessReview() # V1beta1SelfSubjectAccessReview | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_self_subject_access_review(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 
 create a SelfSubjectRulesReview
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -149,7 +149,7 @@ api_instance = kubernetes.client.AuthorizationV1beta1Api(kubernetes.client.ApiCl
 body = kubernetes.client.V1beta1SelfSubjectRulesReview() # V1beta1SelfSubjectRulesReview | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_self_subject_rules_review(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -185,7 +185,7 @@ Name | Type | Description  | Notes
 
 create a SubjectAccessReview
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -204,7 +204,7 @@ api_instance = kubernetes.client.AuthorizationV1beta1Api(kubernetes.client.ApiCl
 body = kubernetes.client.V1beta1SubjectAccessReview() # V1beta1SubjectAccessReview | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_subject_access_review(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 get available resources
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -257,7 +257,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.AuthorizationV1beta1Api(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_api_resources()
     pprint(api_response)
 except ApiException as e:

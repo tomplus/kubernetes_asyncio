@@ -211,7 +211,7 @@ Method | HTTP request | Description
 
 connect DELETE requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -231,7 +231,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_delete_namespaced_pod_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 
 connect DELETE requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -289,7 +289,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_delete_namespaced_pod_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -327,7 +327,7 @@ Name | Type | Description  | Notes
 
 connect DELETE requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -347,7 +347,7 @@ name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_delete_namespaced_service_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -384,7 +384,7 @@ Name | Type | Description  | Notes
 
 connect DELETE requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -405,7 +405,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_delete_namespaced_service_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -443,7 +443,7 @@ Name | Type | Description  | Notes
 
 connect DELETE requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -462,7 +462,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Node
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_delete_node_proxy(name, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -498,7 +498,7 @@ Name | Type | Description  | Notes
 
 connect DELETE requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -518,7 +518,7 @@ name = 'name_example' # str | name of the Node
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_delete_node_proxy_with_path(name, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -555,7 +555,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to attach of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -579,7 +579,7 @@ stdin = true # bool | Stdin if true, redirects the standard input stream of the 
 stdout = true # bool | Stdout if true indicates that stdout is to be redirected for the attach call. Defaults to true. (optional)
 tty = true # bool | TTY if true indicates that a tty will be allocated for the attach call. This is passed through the container runtime so the tty is allocated on the worker node by the container runtime. Defaults to false. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_namespaced_pod_attach(name, namespace, container=container, stderr=stderr, stdin=stdin, stdout=stdout, tty=tty)
     pprint(api_response)
 except ApiException as e:
@@ -620,7 +620,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to exec of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -645,7 +645,7 @@ stdin = true # bool | Redirect the standard input stream of the pod for this cal
 stdout = true # bool | Redirect the standard output stream of the pod for this call. Defaults to true. (optional)
 tty = true # bool | TTY if true indicates that a tty will be allocated for the exec call. Defaults to false. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_namespaced_pod_exec(name, namespace, command=command, container=container, stderr=stderr, stdin=stdin, stdout=stdout, tty=tty)
     pprint(api_response)
 except ApiException as e:
@@ -687,7 +687,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to portforward of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -707,7 +707,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 ports = 56 # int | List of ports to forward Required when using WebSockets (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_namespaced_pod_portforward(name, namespace, ports=ports)
     pprint(api_response)
 except ApiException as e:
@@ -744,7 +744,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -764,7 +764,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_namespaced_pod_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -801,7 +801,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -822,7 +822,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_namespaced_pod_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -860,7 +860,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -880,7 +880,7 @@ name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_namespaced_service_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -917,7 +917,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -938,7 +938,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_namespaced_service_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -976,7 +976,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -995,7 +995,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Node
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_node_proxy(name, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1031,7 +1031,7 @@ Name | Type | Description  | Notes
 
 connect GET requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1051,7 +1051,7 @@ name = 'name_example' # str | name of the Node
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_get_node_proxy_with_path(name, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -1088,7 +1088,7 @@ Name | Type | Description  | Notes
 
 connect HEAD requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1108,7 +1108,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_head_namespaced_pod_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1145,7 +1145,7 @@ Name | Type | Description  | Notes
 
 connect HEAD requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1166,7 +1166,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_head_namespaced_pod_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -1204,7 +1204,7 @@ Name | Type | Description  | Notes
 
 connect HEAD requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1224,7 +1224,7 @@ name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_head_namespaced_service_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1261,7 +1261,7 @@ Name | Type | Description  | Notes
 
 connect HEAD requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1282,7 +1282,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_head_namespaced_service_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -1320,7 +1320,7 @@ Name | Type | Description  | Notes
 
 connect HEAD requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1339,7 +1339,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Node
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_head_node_proxy(name, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1375,7 +1375,7 @@ Name | Type | Description  | Notes
 
 connect HEAD requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1395,7 +1395,7 @@ name = 'name_example' # str | name of the Node
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_head_node_proxy_with_path(name, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -1432,7 +1432,7 @@ Name | Type | Description  | Notes
 
 connect OPTIONS requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1452,7 +1452,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_options_namespaced_pod_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1489,7 +1489,7 @@ Name | Type | Description  | Notes
 
 connect OPTIONS requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1510,7 +1510,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_options_namespaced_pod_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -1548,7 +1548,7 @@ Name | Type | Description  | Notes
 
 connect OPTIONS requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1568,7 +1568,7 @@ name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_options_namespaced_service_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1605,7 +1605,7 @@ Name | Type | Description  | Notes
 
 connect OPTIONS requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1626,7 +1626,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_options_namespaced_service_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -1664,7 +1664,7 @@ Name | Type | Description  | Notes
 
 connect OPTIONS requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1683,7 +1683,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Node
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_options_node_proxy(name, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1719,7 +1719,7 @@ Name | Type | Description  | Notes
 
 connect OPTIONS requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1739,7 +1739,7 @@ name = 'name_example' # str | name of the Node
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_options_node_proxy_with_path(name, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -1776,7 +1776,7 @@ Name | Type | Description  | Notes
 
 connect PATCH requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1796,7 +1796,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_patch_namespaced_pod_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1833,7 +1833,7 @@ Name | Type | Description  | Notes
 
 connect PATCH requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1854,7 +1854,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_patch_namespaced_pod_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -1892,7 +1892,7 @@ Name | Type | Description  | Notes
 
 connect PATCH requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1912,7 +1912,7 @@ name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_patch_namespaced_service_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -1949,7 +1949,7 @@ Name | Type | Description  | Notes
 
 connect PATCH requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -1970,7 +1970,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_patch_namespaced_service_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -2008,7 +2008,7 @@ Name | Type | Description  | Notes
 
 connect PATCH requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2027,7 +2027,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Node
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_patch_node_proxy(name, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -2063,7 +2063,7 @@ Name | Type | Description  | Notes
 
 connect PATCH requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2083,7 +2083,7 @@ name = 'name_example' # str | name of the Node
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_patch_node_proxy_with_path(name, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -2120,7 +2120,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to attach of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2144,7 +2144,7 @@ stdin = true # bool | Stdin if true, redirects the standard input stream of the 
 stdout = true # bool | Stdout if true indicates that stdout is to be redirected for the attach call. Defaults to true. (optional)
 tty = true # bool | TTY if true indicates that a tty will be allocated for the attach call. This is passed through the container runtime so the tty is allocated on the worker node by the container runtime. Defaults to false. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_namespaced_pod_attach(name, namespace, container=container, stderr=stderr, stdin=stdin, stdout=stdout, tty=tty)
     pprint(api_response)
 except ApiException as e:
@@ -2185,7 +2185,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to exec of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2210,7 +2210,7 @@ stdin = true # bool | Redirect the standard input stream of the pod for this cal
 stdout = true # bool | Redirect the standard output stream of the pod for this call. Defaults to true. (optional)
 tty = true # bool | TTY if true indicates that a tty will be allocated for the exec call. Defaults to false. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_namespaced_pod_exec(name, namespace, command=command, container=container, stderr=stderr, stdin=stdin, stdout=stdout, tty=tty)
     pprint(api_response)
 except ApiException as e:
@@ -2252,7 +2252,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to portforward of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2272,7 +2272,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 ports = 56 # int | List of ports to forward Required when using WebSockets (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_namespaced_pod_portforward(name, namespace, ports=ports)
     pprint(api_response)
 except ApiException as e:
@@ -2309,7 +2309,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2329,7 +2329,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_namespaced_pod_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -2366,7 +2366,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2387,7 +2387,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_namespaced_pod_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -2425,7 +2425,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2445,7 +2445,7 @@ name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_namespaced_service_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -2482,7 +2482,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2503,7 +2503,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_namespaced_service_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -2541,7 +2541,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2560,7 +2560,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Node
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_node_proxy(name, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -2596,7 +2596,7 @@ Name | Type | Description  | Notes
 
 connect POST requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2616,7 +2616,7 @@ name = 'name_example' # str | name of the Node
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_post_node_proxy_with_path(name, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -2653,7 +2653,7 @@ Name | Type | Description  | Notes
 
 connect PUT requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2673,7 +2673,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_put_namespaced_pod_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -2710,7 +2710,7 @@ Name | Type | Description  | Notes
 
 connect PUT requests to proxy of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2731,7 +2731,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to pod. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_put_namespaced_pod_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -2769,7 +2769,7 @@ Name | Type | Description  | Notes
 
 connect PUT requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2789,7 +2789,7 @@ name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 path = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_put_namespaced_service_proxy(name, namespace, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -2826,7 +2826,7 @@ Name | Type | Description  | Notes
 
 connect PUT requests to proxy of Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2847,7 +2847,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_put_namespaced_service_proxy_with_path(name, namespace, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -2885,7 +2885,7 @@ Name | Type | Description  | Notes
 
 connect PUT requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2904,7 +2904,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Node
 path = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_put_node_proxy(name, path=path)
     pprint(api_response)
 except ApiException as e:
@@ -2940,7 +2940,7 @@ Name | Type | Description  | Notes
 
 connect PUT requests to proxy of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -2960,7 +2960,7 @@ name = 'name_example' # str | name of the Node
 path = 'path_example' # str | path to the resource
 path2 = 'path_example' # str | Path is the URL path to use for the current proxy request to node. (optional)
 
-try: 
+try:
     api_response = api_instance.connect_put_node_proxy_with_path(name, path, path2=path2)
     pprint(api_response)
 except ApiException as e:
@@ -2997,7 +2997,7 @@ Name | Type | Description  | Notes
 
 create a Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3016,7 +3016,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 body = kubernetes.client.V1Namespace() # V1Namespace | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespace(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3052,7 +3052,7 @@ Name | Type | Description  | Notes
 
 create a Binding
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3072,7 +3072,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Binding() # V1Binding | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_binding(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3109,7 +3109,7 @@ Name | Type | Description  | Notes
 
 create a ConfigMap
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3129,7 +3129,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ConfigMap() # V1ConfigMap | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_config_map(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3166,7 +3166,7 @@ Name | Type | Description  | Notes
 
 create Endpoints
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3186,7 +3186,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Endpoints() # V1Endpoints | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_endpoints(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3223,7 +3223,7 @@ Name | Type | Description  | Notes
 
 create an Event
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3243,7 +3243,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Event() # V1Event | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_event(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3280,7 +3280,7 @@ Name | Type | Description  | Notes
 
 create a LimitRange
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3300,7 +3300,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1LimitRange() # V1LimitRange | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_limit_range(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3337,7 +3337,7 @@ Name | Type | Description  | Notes
 
 create a PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3357,7 +3357,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_persistent_volume_claim(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3394,7 +3394,7 @@ Name | Type | Description  | Notes
 
 create a Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3414,7 +3414,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Pod() # V1Pod | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_pod(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3451,7 +3451,7 @@ Name | Type | Description  | Notes
 
 create binding of a Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3472,7 +3472,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Binding() # V1Binding | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_pod_binding(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3510,7 +3510,7 @@ Name | Type | Description  | Notes
 
 create eviction of a Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3531,7 +3531,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1beta1Eviction() # V1beta1Eviction | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_pod_eviction(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3569,7 +3569,7 @@ Name | Type | Description  | Notes
 
 create a PodTemplate
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3589,7 +3589,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1PodTemplate() # V1PodTemplate | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_pod_template(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3626,7 +3626,7 @@ Name | Type | Description  | Notes
 
 create a ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3646,7 +3646,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ReplicationController() # V1ReplicationController | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_replication_controller(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3683,7 +3683,7 @@ Name | Type | Description  | Notes
 
 create a ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3703,7 +3703,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ResourceQuota() # V1ResourceQuota | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_resource_quota(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3740,7 +3740,7 @@ Name | Type | Description  | Notes
 
 create a Secret
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3760,7 +3760,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Secret() # V1Secret | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_secret(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3797,7 +3797,7 @@ Name | Type | Description  | Notes
 
 create a Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3817,7 +3817,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Service() # V1Service | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_service(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3854,7 +3854,7 @@ Name | Type | Description  | Notes
 
 create a ServiceAccount
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3874,7 +3874,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ServiceAccount() # V1ServiceAccount | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_namespaced_service_account(namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3911,7 +3911,7 @@ Name | Type | Description  | Notes
 
 create a Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3930,7 +3930,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 body = kubernetes.client.V1Node() # V1Node | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_node(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -3966,7 +3966,7 @@ Name | Type | Description  | Notes
 
 create a PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -3985,7 +3985,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 body = kubernetes.client.V1PersistentVolume() # V1PersistentVolume | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.create_persistent_volume(body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -4021,7 +4021,7 @@ Name | Type | Description  | Notes
 
 delete collection of ConfigMap
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4048,7 +4048,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_config_map(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4092,7 +4092,7 @@ Name | Type | Description  | Notes
 
 delete collection of Endpoints
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4119,7 +4119,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_endpoints(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4163,7 +4163,7 @@ Name | Type | Description  | Notes
 
 delete collection of Event
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4190,7 +4190,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_event(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4234,7 +4234,7 @@ Name | Type | Description  | Notes
 
 delete collection of LimitRange
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4261,7 +4261,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_limit_range(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4305,7 +4305,7 @@ Name | Type | Description  | Notes
 
 delete collection of PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4332,7 +4332,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_persistent_volume_claim(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4376,7 +4376,7 @@ Name | Type | Description  | Notes
 
 delete collection of Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4403,7 +4403,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_pod(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4447,7 +4447,7 @@ Name | Type | Description  | Notes
 
 delete collection of PodTemplate
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4474,7 +4474,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_pod_template(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4518,7 +4518,7 @@ Name | Type | Description  | Notes
 
 delete collection of ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4545,7 +4545,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_replication_controller(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4589,7 +4589,7 @@ Name | Type | Description  | Notes
 
 delete collection of ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4616,7 +4616,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_resource_quota(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4660,7 +4660,7 @@ Name | Type | Description  | Notes
 
 delete collection of Secret
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4687,7 +4687,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_secret(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4731,7 +4731,7 @@ Name | Type | Description  | Notes
 
 delete collection of ServiceAccount
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4758,7 +4758,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_namespaced_service_account(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4802,7 +4802,7 @@ Name | Type | Description  | Notes
 
 delete collection of Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4828,7 +4828,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_node(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4871,7 +4871,7 @@ Name | Type | Description  | Notes
 
 delete collection of PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4897,7 +4897,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_collection_persistent_volume(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -4940,7 +4940,7 @@ Name | Type | Description  | Notes
 
 delete a Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -4963,7 +4963,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespace(name, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5003,7 +5003,7 @@ Name | Type | Description  | Notes
 
 delete a ConfigMap
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5027,7 +5027,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_config_map(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5068,7 +5068,7 @@ Name | Type | Description  | Notes
 
 delete Endpoints
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5092,7 +5092,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_endpoints(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5133,7 +5133,7 @@ Name | Type | Description  | Notes
 
 delete an Event
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5157,7 +5157,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_event(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5198,7 +5198,7 @@ Name | Type | Description  | Notes
 
 delete a LimitRange
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5222,7 +5222,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_limit_range(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5263,7 +5263,7 @@ Name | Type | Description  | Notes
 
 delete a PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5287,7 +5287,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5328,7 +5328,7 @@ Name | Type | Description  | Notes
 
 delete a Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5352,7 +5352,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_pod(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5393,7 +5393,7 @@ Name | Type | Description  | Notes
 
 delete a PodTemplate
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5417,7 +5417,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_pod_template(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5458,7 +5458,7 @@ Name | Type | Description  | Notes
 
 delete a ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5482,7 +5482,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_replication_controller(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5523,7 +5523,7 @@ Name | Type | Description  | Notes
 
 delete a ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5547,7 +5547,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_resource_quota(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5588,7 +5588,7 @@ Name | Type | Description  | Notes
 
 delete a Secret
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5612,7 +5612,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_secret(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5653,7 +5653,7 @@ Name | Type | Description  | Notes
 
 delete a Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5677,7 +5677,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_service(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5718,7 +5718,7 @@ Name | Type | Description  | Notes
 
 delete a ServiceAccount
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5742,7 +5742,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_namespaced_service_account(name, namespace, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5783,7 +5783,7 @@ Name | Type | Description  | Notes
 
 delete a Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5806,7 +5806,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_node(name, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5846,7 +5846,7 @@ Name | Type | Description  | Notes
 
 delete a PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5869,7 +5869,7 @@ grace_period_seconds = 56 # int | The duration in seconds before the object shou
 orphan_dependents = true # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
-try: 
+try:
     api_response = api_instance.delete_persistent_volume(name, body, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
@@ -5909,7 +5909,7 @@ Name | Type | Description  | Notes
 
 get available resources
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5926,7 +5926,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.get_api_resources()
     pprint(api_response)
 except ApiException as e:
@@ -5958,7 +5958,7 @@ This endpoint does not need any parameter.
 
 list objects of kind ComponentStatus
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -5984,7 +5984,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_component_status(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6027,7 +6027,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ConfigMap
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6053,7 +6053,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_config_map_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6096,7 +6096,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Endpoints
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6122,7 +6122,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_endpoints_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6165,7 +6165,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Event
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6191,7 +6191,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_event_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6234,7 +6234,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind LimitRange
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6260,7 +6260,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_limit_range_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6303,7 +6303,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6329,7 +6329,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespace(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6372,7 +6372,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ConfigMap
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6399,7 +6399,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_config_map(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6443,7 +6443,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Endpoints
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6470,7 +6470,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_endpoints(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6514,7 +6514,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Event
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6541,7 +6541,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_event(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6585,7 +6585,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind LimitRange
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6612,7 +6612,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_limit_range(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6656,7 +6656,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6683,7 +6683,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_persistent_volume_claim(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6727,7 +6727,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6754,7 +6754,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_pod(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6798,7 +6798,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind PodTemplate
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6825,7 +6825,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_pod_template(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6869,7 +6869,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6896,7 +6896,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_replication_controller(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -6940,7 +6940,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -6967,7 +6967,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_resource_quota(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7011,7 +7011,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Secret
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7038,7 +7038,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_secret(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7082,7 +7082,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7109,7 +7109,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_service(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7153,7 +7153,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ServiceAccount
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7180,7 +7180,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_namespaced_service_account(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7224,7 +7224,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7250,7 +7250,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_node(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7293,7 +7293,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7319,7 +7319,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_persistent_volume(pretty=pretty, _continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7362,7 +7362,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7388,7 +7388,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_persistent_volume_claim_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7431,7 +7431,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7457,7 +7457,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_pod_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7500,7 +7500,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind PodTemplate
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7526,7 +7526,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_pod_template_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7569,7 +7569,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7595,7 +7595,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_replication_controller_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7638,7 +7638,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7664,7 +7664,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_resource_quota_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7707,7 +7707,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Secret
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7733,7 +7733,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_secret_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7776,7 +7776,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind ServiceAccount
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7802,7 +7802,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_service_account_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7845,7 +7845,7 @@ Name | Type | Description  | Notes
 
 list or watch objects of kind Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7871,7 +7871,7 @@ resource_version = 'resource_version_example' # str | When specified with a watc
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
 watch = true # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
-try: 
+try:
     api_response = api_instance.list_service_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
@@ -7914,7 +7914,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7934,7 +7934,7 @@ name = 'name_example' # str | name of the Namespace
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespace(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -7971,7 +7971,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -7991,7 +7991,7 @@ name = 'name_example' # str | name of the Namespace
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespace_status(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8028,7 +8028,7 @@ Name | Type | Description  | Notes
 
 partially update the specified ConfigMap
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8049,7 +8049,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_config_map(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8087,7 +8087,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Endpoints
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8108,7 +8108,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_endpoints(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8146,7 +8146,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Event
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8167,7 +8167,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_event(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8205,7 +8205,7 @@ Name | Type | Description  | Notes
 
 partially update the specified LimitRange
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8226,7 +8226,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_limit_range(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8264,7 +8264,7 @@ Name | Type | Description  | Notes
 
 partially update the specified PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8285,7 +8285,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8323,7 +8323,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8344,7 +8344,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_persistent_volume_claim_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8382,7 +8382,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8403,7 +8403,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_pod(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8441,7 +8441,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8462,7 +8462,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_pod_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8500,7 +8500,7 @@ Name | Type | Description  | Notes
 
 partially update the specified PodTemplate
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8521,7 +8521,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_pod_template(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8559,7 +8559,7 @@ Name | Type | Description  | Notes
 
 partially update the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8580,7 +8580,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_replication_controller(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8618,7 +8618,7 @@ Name | Type | Description  | Notes
 
 partially update scale of the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8639,7 +8639,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_replication_controller_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8677,7 +8677,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8698,7 +8698,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_replication_controller_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8736,7 +8736,7 @@ Name | Type | Description  | Notes
 
 partially update the specified ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8757,7 +8757,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_resource_quota(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8795,7 +8795,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8816,7 +8816,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_resource_quota_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8854,7 +8854,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Secret
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8875,7 +8875,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_secret(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8913,7 +8913,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8934,7 +8934,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_service(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -8972,7 +8972,7 @@ Name | Type | Description  | Notes
 
 partially update the specified ServiceAccount
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -8993,7 +8993,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_service_account(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9031,7 +9031,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9052,7 +9052,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_namespaced_service_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9090,7 +9090,7 @@ Name | Type | Description  | Notes
 
 partially update the specified Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9110,7 +9110,7 @@ name = 'name_example' # str | name of the Node
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_node(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9147,7 +9147,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9167,7 +9167,7 @@ name = 'name_example' # str | name of the Node
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_node_status(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9204,7 +9204,7 @@ Name | Type | Description  | Notes
 
 partially update the specified PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9224,7 +9224,7 @@ name = 'name_example' # str | name of the PersistentVolume
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_persistent_volume(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9261,7 +9261,7 @@ Name | Type | Description  | Notes
 
 partially update status of the specified PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9281,7 +9281,7 @@ name = 'name_example' # str | name of the PersistentVolume
 body = NULL # object | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.patch_persistent_volume_status(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9318,7 +9318,7 @@ Name | Type | Description  | Notes
 
 read the specified ComponentStatus
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9337,7 +9337,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the ComponentStatus
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_component_status(name, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9373,7 +9373,7 @@ Name | Type | Description  | Notes
 
 read the specified Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9394,7 +9394,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespace(name, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -9432,7 +9432,7 @@ Name | Type | Description  | Notes
 
 read status of the specified Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9451,7 +9451,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Namespace
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespace_status(name, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9487,7 +9487,7 @@ Name | Type | Description  | Notes
 
 read the specified ConfigMap
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9509,7 +9509,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_config_map(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -9548,7 +9548,7 @@ Name | Type | Description  | Notes
 
 read the specified Endpoints
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9570,7 +9570,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_endpoints(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -9609,7 +9609,7 @@ Name | Type | Description  | Notes
 
 read the specified Event
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9631,7 +9631,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_event(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -9670,7 +9670,7 @@ Name | Type | Description  | Notes
 
 read the specified LimitRange
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9692,7 +9692,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_limit_range(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -9731,7 +9731,7 @@ Name | Type | Description  | Notes
 
 read the specified PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9753,7 +9753,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_persistent_volume_claim(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -9792,7 +9792,7 @@ Name | Type | Description  | Notes
 
 read status of the specified PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9812,7 +9812,7 @@ name = 'name_example' # str | name of the PersistentVolumeClaim
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_persistent_volume_claim_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -9849,7 +9849,7 @@ Name | Type | Description  | Notes
 
 read the specified Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9871,7 +9871,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_pod(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -9910,7 +9910,7 @@ Name | Type | Description  | Notes
 
 read log of the specified Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -9937,7 +9937,7 @@ since_seconds = 56 # int | A relative time in seconds before the current time fr
 tail_lines = 56 # int | If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime (optional)
 timestamps = true # bool | If true, add an RFC3339 or RFC3339Nano timestamp at the beginning of every line of log output. Defaults to false. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_pod_log(name, namespace, container=container, follow=follow, limit_bytes=limit_bytes, pretty=pretty, previous=previous, since_seconds=since_seconds, tail_lines=tail_lines, timestamps=timestamps)
     pprint(api_response)
 except ApiException as e:
@@ -9981,7 +9981,7 @@ Name | Type | Description  | Notes
 
 read status of the specified Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10001,7 +10001,7 @@ name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_pod_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10038,7 +10038,7 @@ Name | Type | Description  | Notes
 
 read the specified PodTemplate
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10060,7 +10060,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_pod_template(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -10099,7 +10099,7 @@ Name | Type | Description  | Notes
 
 read the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10121,7 +10121,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_replication_controller(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -10160,7 +10160,7 @@ Name | Type | Description  | Notes
 
 read scale of the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10180,7 +10180,7 @@ name = 'name_example' # str | name of the Scale
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_replication_controller_scale(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10217,7 +10217,7 @@ Name | Type | Description  | Notes
 
 read status of the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10237,7 +10237,7 @@ name = 'name_example' # str | name of the ReplicationController
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_replication_controller_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10274,7 +10274,7 @@ Name | Type | Description  | Notes
 
 read the specified ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10296,7 +10296,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_resource_quota(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -10335,7 +10335,7 @@ Name | Type | Description  | Notes
 
 read status of the specified ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10355,7 +10355,7 @@ name = 'name_example' # str | name of the ResourceQuota
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_resource_quota_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10392,7 +10392,7 @@ Name | Type | Description  | Notes
 
 read the specified Secret
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10414,7 +10414,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_secret(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -10453,7 +10453,7 @@ Name | Type | Description  | Notes
 
 read the specified Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10475,7 +10475,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_service(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -10514,7 +10514,7 @@ Name | Type | Description  | Notes
 
 read the specified ServiceAccount
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10536,7 +10536,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_service_account(name, namespace, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -10575,7 +10575,7 @@ Name | Type | Description  | Notes
 
 read status of the specified Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10595,7 +10595,7 @@ name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_namespaced_service_status(name, namespace, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10632,7 +10632,7 @@ Name | Type | Description  | Notes
 
 read the specified Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10653,7 +10653,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_node(name, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -10691,7 +10691,7 @@ Name | Type | Description  | Notes
 
 read status of the specified Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10710,7 +10710,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the Node
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_node_status(name, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10746,7 +10746,7 @@ Name | Type | Description  | Notes
 
 read the specified PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10767,7 +10767,7 @@ pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. 
 exact = true # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
 export = true # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
 
-try: 
+try:
     api_response = api_instance.read_persistent_volume(name, pretty=pretty, exact=exact, export=export)
     pprint(api_response)
 except ApiException as e:
@@ -10805,7 +10805,7 @@ Name | Type | Description  | Notes
 
 read status of the specified PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10824,7 +10824,7 @@ api_instance = kubernetes.client.CoreV1Api(kubernetes.client.ApiClient(configura
 name = 'name_example' # str | name of the PersistentVolume
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.read_persistent_volume_status(name, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10860,7 +10860,7 @@ Name | Type | Description  | Notes
 
 replace the specified Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10880,7 +10880,7 @@ name = 'name_example' # str | name of the Namespace
 body = kubernetes.client.V1Namespace() # V1Namespace | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespace(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10917,7 +10917,7 @@ Name | Type | Description  | Notes
 
 replace finalize of the specified Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10937,7 +10937,7 @@ name = 'name_example' # str | name of the Namespace
 body = kubernetes.client.V1Namespace() # V1Namespace | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespace_finalize(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -10974,7 +10974,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified Namespace
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -10994,7 +10994,7 @@ name = 'name_example' # str | name of the Namespace
 body = kubernetes.client.V1Namespace() # V1Namespace | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespace_status(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11031,7 +11031,7 @@ Name | Type | Description  | Notes
 
 replace the specified ConfigMap
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11052,7 +11052,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ConfigMap() # V1ConfigMap | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_config_map(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11090,7 +11090,7 @@ Name | Type | Description  | Notes
 
 replace the specified Endpoints
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11111,7 +11111,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Endpoints() # V1Endpoints | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_endpoints(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11149,7 +11149,7 @@ Name | Type | Description  | Notes
 
 replace the specified Event
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11170,7 +11170,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Event() # V1Event | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_event(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11208,7 +11208,7 @@ Name | Type | Description  | Notes
 
 replace the specified LimitRange
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11229,7 +11229,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1LimitRange() # V1LimitRange | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_limit_range(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11267,7 +11267,7 @@ Name | Type | Description  | Notes
 
 replace the specified PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11288,7 +11288,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11326,7 +11326,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified PersistentVolumeClaim
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11347,7 +11347,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_persistent_volume_claim_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11385,7 +11385,7 @@ Name | Type | Description  | Notes
 
 replace the specified Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11406,7 +11406,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Pod() # V1Pod | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_pod(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11444,7 +11444,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified Pod
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11465,7 +11465,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Pod() # V1Pod | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_pod_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11503,7 +11503,7 @@ Name | Type | Description  | Notes
 
 replace the specified PodTemplate
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11524,7 +11524,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1PodTemplate() # V1PodTemplate | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_pod_template(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11562,7 +11562,7 @@ Name | Type | Description  | Notes
 
 replace the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11583,7 +11583,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ReplicationController() # V1ReplicationController | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_replication_controller(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11621,7 +11621,7 @@ Name | Type | Description  | Notes
 
 replace scale of the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11642,7 +11642,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Scale() # V1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_replication_controller_scale(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11680,7 +11680,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified ReplicationController
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11701,7 +11701,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ReplicationController() # V1ReplicationController | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_replication_controller_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11739,7 +11739,7 @@ Name | Type | Description  | Notes
 
 replace the specified ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11760,7 +11760,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ResourceQuota() # V1ResourceQuota | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_resource_quota(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11798,7 +11798,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified ResourceQuota
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11819,7 +11819,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ResourceQuota() # V1ResourceQuota | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_resource_quota_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11857,7 +11857,7 @@ Name | Type | Description  | Notes
 
 replace the specified Secret
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11878,7 +11878,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Secret() # V1Secret | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_secret(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11916,7 +11916,7 @@ Name | Type | Description  | Notes
 
 replace the specified Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11937,7 +11937,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Service() # V1Service | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_service(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -11975,7 +11975,7 @@ Name | Type | Description  | Notes
 
 replace the specified ServiceAccount
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -11996,7 +11996,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1ServiceAccount() # V1ServiceAccount | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_service_account(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -12034,7 +12034,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified Service
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -12055,7 +12055,7 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes.client.V1Service() # V1Service | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_namespaced_service_status(name, namespace, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -12093,7 +12093,7 @@ Name | Type | Description  | Notes
 
 replace the specified Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -12113,7 +12113,7 @@ name = 'name_example' # str | name of the Node
 body = kubernetes.client.V1Node() # V1Node | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_node(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -12150,7 +12150,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified Node
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -12170,7 +12170,7 @@ name = 'name_example' # str | name of the Node
 body = kubernetes.client.V1Node() # V1Node | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_node_status(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -12207,7 +12207,7 @@ Name | Type | Description  | Notes
 
 replace the specified PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -12227,7 +12227,7 @@ name = 'name_example' # str | name of the PersistentVolume
 body = kubernetes.client.V1PersistentVolume() # V1PersistentVolume | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_persistent_volume(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
@@ -12264,7 +12264,7 @@ Name | Type | Description  | Notes
 
 replace status of the specified PersistentVolume
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -12284,7 +12284,7 @@ name = 'name_example' # str | name of the PersistentVolume
 body = kubernetes.client.V1PersistentVolume() # V1PersistentVolume | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
-try: 
+try:
     api_response = api_instance.replace_persistent_volume_status(name, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
