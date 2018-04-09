@@ -1,4 +1,4 @@
-# kubernetes.client.AuthorizationV1Api
+# kubernetes_asyncio.client.AuthorizationV1Api
 
 All URIs are relative to *https://localhost*
 
@@ -22,20 +22,20 @@ create a LocalSubjectAccessReview
 ```python
 from __future__ import print_function
 import time
-import kubernetes.client
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: BearerToken
-configuration = kubernetes.client.Configuration()
+configuration = kubernetes_asyncio.client.Configuration()
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = kubernetes.client.AuthorizationV1Api(kubernetes.client.ApiClient(configuration))
+api_instance = kubernetes_asyncio.client.AuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-body = kubernetes.client.V1LocalSubjectAccessReview() # V1LocalSubjectAccessReview | 
+body = kubernetes_asyncio.client.V1LocalSubjectAccessReview() # V1LocalSubjectAccessReview | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
@@ -79,19 +79,19 @@ create a SelfSubjectAccessReview
 ```python
 from __future__ import print_function
 import time
-import kubernetes.client
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: BearerToken
-configuration = kubernetes.client.Configuration()
+configuration = kubernetes_asyncio.client.Configuration()
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = kubernetes.client.AuthorizationV1Api(kubernetes.client.ApiClient(configuration))
-body = kubernetes.client.V1SelfSubjectAccessReview() # V1SelfSubjectAccessReview | 
+api_instance = kubernetes_asyncio.client.AuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
+body = kubernetes_asyncio.client.V1SelfSubjectAccessReview() # V1SelfSubjectAccessReview | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
@@ -134,19 +134,19 @@ create a SelfSubjectRulesReview
 ```python
 from __future__ import print_function
 import time
-import kubernetes.client
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: BearerToken
-configuration = kubernetes.client.Configuration()
+configuration = kubernetes_asyncio.client.Configuration()
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = kubernetes.client.AuthorizationV1Api(kubernetes.client.ApiClient(configuration))
-body = kubernetes.client.V1SelfSubjectRulesReview() # V1SelfSubjectRulesReview | 
+api_instance = kubernetes_asyncio.client.AuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
+body = kubernetes_asyncio.client.V1SelfSubjectRulesReview() # V1SelfSubjectRulesReview | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
@@ -189,19 +189,19 @@ create a SubjectAccessReview
 ```python
 from __future__ import print_function
 import time
-import kubernetes.client
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: BearerToken
-configuration = kubernetes.client.Configuration()
+configuration = kubernetes_asyncio.client.Configuration()
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = kubernetes.client.AuthorizationV1Api(kubernetes.client.ApiClient(configuration))
-body = kubernetes.client.V1SubjectAccessReview() # V1SubjectAccessReview | 
+api_instance = kubernetes_asyncio.client.AuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
+body = kubernetes_asyncio.client.V1SubjectAccessReview() # V1SubjectAccessReview | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
@@ -244,18 +244,18 @@ get available resources
 ```python
 from __future__ import print_function
 import time
-import kubernetes.client
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: BearerToken
-configuration = kubernetes.client.Configuration()
+configuration = kubernetes_asyncio.client.Configuration()
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = kubernetes.client.AuthorizationV1Api(kubernetes.client.ApiClient(configuration))
+api_instance = kubernetes_asyncio.client.AuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_api_resources()

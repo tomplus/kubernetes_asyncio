@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1_stateful_set_update_strategy import V1StatefulSetUpdateStrategy  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1_stateful_set_update_strategy import V1StatefulSetUpdateStrategy  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1StatefulSetUpdateStrategy(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1StatefulSetUpdateStrategy(unittest.TestCase):
     def testV1StatefulSetUpdateStrategy(self):
         """Test V1StatefulSetUpdateStrategy"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1_stateful_set_update_strategy.V1StatefulSetUpdateStrategy()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1_stateful_set_update_strategy.V1StatefulSetUpdateStrategy()  # noqa: E501
         pass
 
 

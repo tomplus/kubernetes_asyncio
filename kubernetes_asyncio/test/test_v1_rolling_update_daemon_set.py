@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1_rolling_update_daemon_set import V1RollingUpdateDaemonSet  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1_rolling_update_daemon_set import V1RollingUpdateDaemonSet  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1RollingUpdateDaemonSet(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1RollingUpdateDaemonSet(unittest.TestCase):
     def testV1RollingUpdateDaemonSet(self):
         """Test V1RollingUpdateDaemonSet"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1_rolling_update_daemon_set.V1RollingUpdateDaemonSet()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1_rolling_update_daemon_set.V1RollingUpdateDaemonSet()  # noqa: E501
         pass
 
 

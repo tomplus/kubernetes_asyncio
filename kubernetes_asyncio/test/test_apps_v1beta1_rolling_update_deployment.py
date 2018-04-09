@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.apps_v1beta1_rolling_update_deployment import AppsV1beta1RollingUpdateDeployment  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.apps_v1beta1_rolling_update_deployment import AppsV1beta1RollingUpdateDeployment  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestAppsV1beta1RollingUpdateDeployment(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestAppsV1beta1RollingUpdateDeployment(unittest.TestCase):
     def testAppsV1beta1RollingUpdateDeployment(self):
         """Test AppsV1beta1RollingUpdateDeployment"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.apps_v1beta1_rolling_update_deployment.AppsV1beta1RollingUpdateDeployment()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.apps_v1beta1_rolling_update_deployment.AppsV1beta1RollingUpdateDeployment()  # noqa: E501
         pass
 
 

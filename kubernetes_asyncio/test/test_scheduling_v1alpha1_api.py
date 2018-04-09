@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.api.scheduling_v1alpha1_api import SchedulingV1alpha1Api  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.api.scheduling_v1alpha1_api import SchedulingV1alpha1Api  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestSchedulingV1alpha1Api(unittest.TestCase):
     """SchedulingV1alpha1Api unit test stubs"""
 
     def setUp(self):
-        self.api = kubernetes.client.api.scheduling_v1alpha1_api.SchedulingV1alpha1Api()  # noqa: E501
+        self.api = kubernetes_asyncio.client.api.scheduling_v1alpha1_api.SchedulingV1alpha1Api()  # noqa: E501
 
     def tearDown(self):
         pass

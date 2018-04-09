@@ -10,7 +10,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from kubernetes.client.rest import ApiException
+from kubernetes_asyncio.client.rest import ApiException
 
 import select
 import certifi

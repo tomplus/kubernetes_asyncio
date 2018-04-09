@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.api.certificates_api import CertificatesApi  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.api.certificates_api import CertificatesApi  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestCertificatesApi(unittest.TestCase):
     """CertificatesApi unit test stubs"""
 
     def setUp(self):
-        self.api = kubernetes.client.api.certificates_api.CertificatesApi()  # noqa: E501
+        self.api = kubernetes_asyncio.client.api.certificates_api.CertificatesApi()  # noqa: E501
 
     def tearDown(self):
         pass

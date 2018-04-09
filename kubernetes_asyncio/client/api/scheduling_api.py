@@ -18,7 +18,7 @@ import re  # noqa: F401
 # python 2 and python 3 compatibility library
 import six
 
-from kubernetes.client.api_client import ApiClient
+from kubernetes_asyncio.client.api_client import ApiClient
 
 
 class SchedulingApi(object):

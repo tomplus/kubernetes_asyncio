@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta2_replica_set_spec import V1beta2ReplicaSetSpec  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta2_replica_set_spec import V1beta2ReplicaSetSpec  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta2ReplicaSetSpec(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta2ReplicaSetSpec(unittest.TestCase):
     def testV1beta2ReplicaSetSpec(self):
         """Test V1beta2ReplicaSetSpec"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta2_replica_set_spec.V1beta2ReplicaSetSpec()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta2_replica_set_spec.V1beta2ReplicaSetSpec()  # noqa: E501
         pass
 
 

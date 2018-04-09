@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1alpha1_initializer_configuration import V1alpha1InitializerConfiguration  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1alpha1_initializer_configuration import V1alpha1InitializerConfiguration  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1alpha1InitializerConfiguration(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1alpha1InitializerConfiguration(unittest.TestCase):
     def testV1alpha1InitializerConfiguration(self):
         """Test V1alpha1InitializerConfiguration"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1alpha1_initializer_configuration.V1alpha1InitializerConfiguration()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1alpha1_initializer_configuration.V1alpha1InitializerConfiguration()  # noqa: E501
         pass
 
 

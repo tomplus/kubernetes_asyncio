@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta1_storage_class_list import V1beta1StorageClassList  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta1_storage_class_list import V1beta1StorageClassList  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta1StorageClassList(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta1StorageClassList(unittest.TestCase):
     def testV1beta1StorageClassList(self):
         """Test V1beta1StorageClassList"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta1_storage_class_list.V1beta1StorageClassList()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta1_storage_class_list.V1beta1StorageClassList()  # noqa: E501
         pass
 
 

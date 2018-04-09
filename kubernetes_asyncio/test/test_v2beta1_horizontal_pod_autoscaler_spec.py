@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v2beta1_horizontal_pod_autoscaler_spec import V2beta1HorizontalPodAutoscalerSpec  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v2beta1_horizontal_pod_autoscaler_spec import V2beta1HorizontalPodAutoscalerSpec  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV2beta1HorizontalPodAutoscalerSpec(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV2beta1HorizontalPodAutoscalerSpec(unittest.TestCase):
     def testV2beta1HorizontalPodAutoscalerSpec(self):
         """Test V2beta1HorizontalPodAutoscalerSpec"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v2beta1_horizontal_pod_autoscaler_spec.V2beta1HorizontalPodAutoscalerSpec()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v2beta1_horizontal_pod_autoscaler_spec.V2beta1HorizontalPodAutoscalerSpec()  # noqa: E501
         pass
 
 

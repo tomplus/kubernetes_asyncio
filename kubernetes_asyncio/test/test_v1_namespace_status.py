@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1_namespace_status import V1NamespaceStatus  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1_namespace_status import V1NamespaceStatus  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1NamespaceStatus(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1NamespaceStatus(unittest.TestCase):
     def testV1NamespaceStatus(self):
         """Test V1NamespaceStatus"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1_namespace_status.V1NamespaceStatus()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1_namespace_status.V1NamespaceStatus()  # noqa: E501
         pass
 
 

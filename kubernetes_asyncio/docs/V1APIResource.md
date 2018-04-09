@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | **str** | name is the plural name of the resource. | 
 **namespaced** | **bool** | namespaced indicates if a resource is namespaced or not. | 
 **short_names** | **list[str]** | shortNames is a list of suggested short names of the resource. | [optional] 
-**singular_name** | **str** | singularName is the singular name of the resource.  This allows kubernetes.clients to handle plural and singular opaquely. The singularName is more correct for reporting status on a single item and both singular and plural are allowed from the kubectl CLI interface. | 
+**singular_name** | **str** | singularName is the singular name of the resource.  This allows kubernetes_asyncio.clients to handle plural and singular opaquely. The singularName is more correct for reporting status on a single item and both singular and plural are allowed from the kubectl CLI interface. | 
 **verbs** | **list[str]** | verbs is a list of supported kube verbs (this includes get, list, watch, create, update, patch, delete, deletecollection, and proxy) | 
 **version** | **str** | version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource&#39;s group)\&quot;. | [optional] 
 

@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1_exec_action import V1ExecAction  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1_exec_action import V1ExecAction  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1ExecAction(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1ExecAction(unittest.TestCase):
     def testV1ExecAction(self):
         """Test V1ExecAction"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1_exec_action.V1ExecAction()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1_exec_action.V1ExecAction()  # noqa: E501
         pass
 
 

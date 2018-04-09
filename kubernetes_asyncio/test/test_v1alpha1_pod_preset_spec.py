@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1alpha1_pod_preset_spec import V1alpha1PodPresetSpec  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1alpha1_pod_preset_spec import V1alpha1PodPresetSpec  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1alpha1PodPresetSpec(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1alpha1PodPresetSpec(unittest.TestCase):
     def testV1alpha1PodPresetSpec(self):
         """Test V1alpha1PodPresetSpec"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1alpha1_pod_preset_spec.V1alpha1PodPresetSpec()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1alpha1_pod_preset_spec.V1alpha1PodPresetSpec()  # noqa: E501
         pass
 
 
