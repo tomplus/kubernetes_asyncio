@@ -21,10 +21,10 @@ KUBERNETES_BRANCH = "release-1.10"
 CLIENT_VERSION = "6.0.0-snapshot"
 
 # Name of the release package
-PACKAGE_NAME = "kubernetes-asyncio"
+PACKAGE_NAME = "kubernetes_asyncio"
 
 # Stage of development, mainly used in setup.py's classifiers.
-DEVELOPMENT_STATUS = "4 - Beta"
+DEVELOPMENT_STATUS = "2 - Pre-Alpha"
 
 
 # If called directly, return the constant value given
