@@ -45,7 +45,7 @@ setup(
     install_requires=REQUIRES,
     tests_require=TESTS_REQUIRES,
     packages=['kubernetes_asyncio', 'kubernetes_asyncio.client', 'kubernetes_asyncio.config',
-              'kubernetes_asyncio.watch', 'kubernetes_asyncio.client.apis',
+              'kubernetes_asyncio.watch', 'kubernetes_asyncio.client.api',
               'kubernetes_asyncio.stream', 'kubernetes_asyncio.client.models'],
     include_package_data=True,
     long_description="""\

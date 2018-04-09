@@ -17,11 +17,11 @@ import time
 import unittest
 import uuid
 
-from kubernetes.client import api_client
-from kubernetes.client.apis import core_v1_api
-from kubernetes.e2e_test import base
-from kubernetes.stream import stream
-from kubernetes.stream.ws_client import ERROR_CHANNEL
+from kubernetes_asyncio.client import api_client
+from kubernetes_asyncio.client.api import core_v1_api
+from kubernetes_asyncio.e2e_test import base
+from kubernetes_asyncio.stream import stream
+from kubernetes_asyncio.stream.ws_client import ERROR_CHANNEL
 
 
 def short_uuid():

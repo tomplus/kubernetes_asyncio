@@ -14,8 +14,8 @@ import os
 import unittest
 import urllib3
 
-from kubernetes.client.configuration import Configuration
-from kubernetes.config import kube_config
+from kubernetes_asyncio.client.configuration import Configuration
+from kubernetes_asyncio.config import kube_config
 
 DEFAULT_E2E_HOST = '127.0.0.1'
 
