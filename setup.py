@@ -17,8 +17,8 @@ from setuptools import find_packages, setup
 # Do not edit these constants. They will be updated automatically
 # by scripts/update-client.sh.
 CLIENT_VERSION = "6.0.0-snapshot"
-PACKAGE_NAME = "kubernetes-asyncio"
-DEVELOPMENT_STATUS = "4 - Beta"
+PACKAGE_NAME = "kubernetes_asyncio"
+DEVELOPMENT_STATUS = "2 - Pre-Alpha"
 
 # To install the library, run the following
 #
@@ -44,9 +44,9 @@ setup(
     keywords=["Swagger", "OpenAPI", "Kubernetes"],
     install_requires=REQUIRES,
     tests_require=TESTS_REQUIRES,
-    packages=['kubernetes', 'kubernetes.client', 'kubernetes.config',
-              'kubernetes.watch', 'kubernetes.client.apis',
-              'kubernetes.stream', 'kubernetes.client.models'],
+    packages=['kubernetes_asyncio', 'kubernetes_asyncio.client', 'kubernetes_asyncio.config',
+              'kubernetes_asyncio.watch', 'kubernetes_asyncio.client.apis',
+              'kubernetes_asyncio.stream', 'kubernetes_asyncio.client.models'],
     include_package_data=True,
     long_description="""\
     Python client for kubernetes http://kubernetes.io/
@@ -59,10 +59,7 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.4",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
     ],

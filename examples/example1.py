@@ -1,4 +1,4 @@
-from kubernetes import client, config
+from kubernetes_asyncio import client, config
 import asyncio
 
 

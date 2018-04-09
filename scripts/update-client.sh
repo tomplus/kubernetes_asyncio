@@ -21,13 +21,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-if ! which mvn > /dev/null 2>&1; then
-  echo "Maven is not installed."
-  exit
-fi
-
 SCRIPT_ROOT=$(dirname "${BASH_SOURCE}")
-CLIENT_ROOT="${SCRIPT_ROOT}/../kubernetes"
+CLIENT_ROOT="${SCRIPT_ROOT}/../kubernetes_asyncio"
 CLIENT_VERSION=$(python "${SCRIPT_ROOT}/constants.py" CLIENT_VERSION)
 PACKAGE_NAME=$(python "${SCRIPT_ROOT}/constants.py" PACKAGE_NAME)
 DEVELOPMENT_STATUS=$(python "${SCRIPT_ROOT}/constants.py" DEVELOPMENT_STATUS)
@@ -57,7 +52,7 @@ else
 fi
 
 echo ">>> Running python generator from the gen repo"
-"${GEN_ROOT}/openapi/python.sh" "${CLIENT_ROOT}" "${SETTING_FILE}" 
+"${GEN_ROOT}/openapi/python-asyncio.sh" "${CLIENT_ROOT}" "${SETTING_FILE}"
 mv "${CLIENT_ROOT}/swagger.json" "${SCRIPT_ROOT}/swagger.json"
 
 echo ">>> updating version information..."
@@ -66,9 +61,10 @@ sed -i'' "s/^__version__ = .*/__version__ = \\\"${CLIENT_VERSION}\\\"/" "${CLIEN
 sed -i'' "s/^PACKAGE_NAME = .*/PACKAGE_NAME = \\\"${PACKAGE_NAME}\\\"/" "${SCRIPT_ROOT}/../setup.py"
 sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STATUS}\\\"," "${SCRIPT_ROOT}/../setup.py"
 
+## TODO/asyncio: verification needed
 # This is a terrible hack:
 # first, this must be in gen repo not here
 # second, this should be ported to swagger-codegen
-echo ">>> patching client..."
-git apply "${SCRIPT_ROOT}/rest_client_patch.diff"
-echo ">>> Done."
+# echo ">>> patching client..."
+# git apply "${SCRIPT_ROOT}/rest_client_patch.diff"
+# echo ">>> Done."
