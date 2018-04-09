@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1_weighted_pod_affinity_term import V1WeightedPodAffinityTerm  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1_weighted_pod_affinity_term import V1WeightedPodAffinityTerm  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1WeightedPodAffinityTerm(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1WeightedPodAffinityTerm(unittest.TestCase):
     def testV1WeightedPodAffinityTerm(self):
         """Test V1WeightedPodAffinityTerm"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1_weighted_pod_affinity_term.V1WeightedPodAffinityTerm()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1_weighted_pod_affinity_term.V1WeightedPodAffinityTerm()  # noqa: E501
         pass
 
 

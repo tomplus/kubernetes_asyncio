@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.extensions_v1beta1_deployment_condition import ExtensionsV1beta1DeploymentCondition  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.extensions_v1beta1_deployment_condition import ExtensionsV1beta1DeploymentCondition  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestExtensionsV1beta1DeploymentCondition(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestExtensionsV1beta1DeploymentCondition(unittest.TestCase):
     def testExtensionsV1beta1DeploymentCondition(self):
         """Test ExtensionsV1beta1DeploymentCondition"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.extensions_v1beta1_deployment_condition.ExtensionsV1beta1DeploymentCondition()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.extensions_v1beta1_deployment_condition.ExtensionsV1beta1DeploymentCondition()  # noqa: E501
         pass
 
 

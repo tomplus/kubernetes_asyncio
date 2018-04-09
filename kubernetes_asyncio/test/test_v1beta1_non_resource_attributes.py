@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta1_non_resource_attributes import V1beta1NonResourceAttributes  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta1_non_resource_attributes import V1beta1NonResourceAttributes  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta1NonResourceAttributes(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta1NonResourceAttributes(unittest.TestCase):
     def testV1beta1NonResourceAttributes(self):
         """Test V1beta1NonResourceAttributes"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta1_non_resource_attributes.V1beta1NonResourceAttributes()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta1_non_resource_attributes.V1beta1NonResourceAttributes()  # noqa: E501
         pass
 
 

@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.apiregistration_v1beta1_service_reference import ApiregistrationV1beta1ServiceReference  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.apiregistration_v1beta1_service_reference import ApiregistrationV1beta1ServiceReference  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestApiregistrationV1beta1ServiceReference(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestApiregistrationV1beta1ServiceReference(unittest.TestCase):
     def testApiregistrationV1beta1ServiceReference(self):
         """Test ApiregistrationV1beta1ServiceReference"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.apiregistration_v1beta1_service_reference.ApiregistrationV1beta1ServiceReference()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.apiregistration_v1beta1_service_reference.ApiregistrationV1beta1ServiceReference()  # noqa: E501
         pass
 
 

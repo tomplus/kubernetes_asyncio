@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1_config_map_env_source import V1ConfigMapEnvSource  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1_config_map_env_source import V1ConfigMapEnvSource  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1ConfigMapEnvSource(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1ConfigMapEnvSource(unittest.TestCase):
     def testV1ConfigMapEnvSource(self):
         """Test V1ConfigMapEnvSource"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1_config_map_env_source.V1ConfigMapEnvSource()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1_config_map_env_source.V1ConfigMapEnvSource()  # noqa: E501
         pass
 
 

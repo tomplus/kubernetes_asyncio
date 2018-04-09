@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.policy_v1beta1_allowed_flex_volume import PolicyV1beta1AllowedFlexVolume  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.policy_v1beta1_allowed_flex_volume import PolicyV1beta1AllowedFlexVolume  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestPolicyV1beta1AllowedFlexVolume(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestPolicyV1beta1AllowedFlexVolume(unittest.TestCase):
     def testPolicyV1beta1AllowedFlexVolume(self):
         """Test PolicyV1beta1AllowedFlexVolume"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.policy_v1beta1_allowed_flex_volume.PolicyV1beta1AllowedFlexVolume()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.policy_v1beta1_allowed_flex_volume.PolicyV1beta1AllowedFlexVolume()  # noqa: E501
         pass
 
 

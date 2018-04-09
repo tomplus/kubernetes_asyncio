@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta1_http_ingress_path import V1beta1HTTPIngressPath  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta1_http_ingress_path import V1beta1HTTPIngressPath  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta1HTTPIngressPath(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta1HTTPIngressPath(unittest.TestCase):
     def testV1beta1HTTPIngressPath(self):
         """Test V1beta1HTTPIngressPath"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta1_http_ingress_path.V1beta1HTTPIngressPath()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta1_http_ingress_path.V1beta1HTTPIngressPath()  # noqa: E501
         pass
 
 

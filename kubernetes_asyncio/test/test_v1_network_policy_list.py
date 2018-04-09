@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1_network_policy_list import V1NetworkPolicyList  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1_network_policy_list import V1NetworkPolicyList  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1NetworkPolicyList(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1NetworkPolicyList(unittest.TestCase):
     def testV1NetworkPolicyList(self):
         """Test V1NetworkPolicyList"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1_network_policy_list.V1NetworkPolicyList()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1_network_policy_list.V1NetworkPolicyList()  # noqa: E501
         pass
 
 

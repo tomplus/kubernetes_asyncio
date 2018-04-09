@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.policy_v1beta1_host_port_range import PolicyV1beta1HostPortRange  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.policy_v1beta1_host_port_range import PolicyV1beta1HostPortRange  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestPolicyV1beta1HostPortRange(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestPolicyV1beta1HostPortRange(unittest.TestCase):
     def testPolicyV1beta1HostPortRange(self):
         """Test PolicyV1beta1HostPortRange"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.policy_v1beta1_host_port_range.PolicyV1beta1HostPortRange()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.policy_v1beta1_host_port_range.PolicyV1beta1HostPortRange()  # noqa: E501
         pass
 
 

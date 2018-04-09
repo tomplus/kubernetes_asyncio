@@ -15,7 +15,7 @@
 import json
 import pydoc
 
-from kubernetes import client
+from kubernetes_asyncio import client
 
 PYDOC_RETURN_LABEL = ":return:"
 

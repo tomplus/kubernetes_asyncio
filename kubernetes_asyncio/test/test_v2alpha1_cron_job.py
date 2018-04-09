@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v2alpha1_cron_job import V2alpha1CronJob  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v2alpha1_cron_job import V2alpha1CronJob  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV2alpha1CronJob(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV2alpha1CronJob(unittest.TestCase):
     def testV2alpha1CronJob(self):
         """Test V2alpha1CronJob"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v2alpha1_cron_job.V2alpha1CronJob()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v2alpha1_cron_job.V2alpha1CronJob()  # noqa: E501
         pass
 
 

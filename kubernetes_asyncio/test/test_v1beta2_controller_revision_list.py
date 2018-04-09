@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta2_controller_revision_list import V1beta2ControllerRevisionList  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta2_controller_revision_list import V1beta2ControllerRevisionList  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta2ControllerRevisionList(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta2ControllerRevisionList(unittest.TestCase):
     def testV1beta2ControllerRevisionList(self):
         """Test V1beta2ControllerRevisionList"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta2_controller_revision_list.V1beta2ControllerRevisionList()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta2_controller_revision_list.V1beta2ControllerRevisionList()  # noqa: E501
         pass
 
 

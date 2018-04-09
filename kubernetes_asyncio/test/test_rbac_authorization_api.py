@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.api.rbac_authorization_api import RbacAuthorizationApi  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.api.rbac_authorization_api import RbacAuthorizationApi  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestRbacAuthorizationApi(unittest.TestCase):
     """RbacAuthorizationApi unit test stubs"""
 
     def setUp(self):
-        self.api = kubernetes.client.api.rbac_authorization_api.RbacAuthorizationApi()  # noqa: E501
+        self.api = kubernetes_asyncio.client.api.rbac_authorization_api.RbacAuthorizationApi()  # noqa: E501
 
     def tearDown(self):
         pass

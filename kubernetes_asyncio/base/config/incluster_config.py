@@ -14,7 +14,7 @@
 
 import os
 
-from kubernetes.client import Configuration
+from kubernetes_asyncio.client import Configuration
 
 from .config_exception import ConfigException
 

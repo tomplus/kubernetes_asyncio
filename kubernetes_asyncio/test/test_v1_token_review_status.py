@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1_token_review_status import V1TokenReviewStatus  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1_token_review_status import V1TokenReviewStatus  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1TokenReviewStatus(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1TokenReviewStatus(unittest.TestCase):
     def testV1TokenReviewStatus(self):
         """Test V1TokenReviewStatus"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1_token_review_status.V1TokenReviewStatus()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1_token_review_status.V1TokenReviewStatus()  # noqa: E501
         pass
 
 

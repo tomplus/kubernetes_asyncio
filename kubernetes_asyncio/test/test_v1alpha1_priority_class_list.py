@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1alpha1_priority_class_list import V1alpha1PriorityClassList  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1alpha1_priority_class_list import V1alpha1PriorityClassList  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1alpha1PriorityClassList(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1alpha1PriorityClassList(unittest.TestCase):
     def testV1alpha1PriorityClassList(self):
         """Test V1alpha1PriorityClassList"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1alpha1_priority_class_list.V1alpha1PriorityClassList()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1alpha1_priority_class_list.V1alpha1PriorityClassList()  # noqa: E501
         pass
 
 

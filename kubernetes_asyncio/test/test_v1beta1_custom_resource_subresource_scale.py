@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta1_custom_resource_subresource_scale import V1beta1CustomResourceSubresourceScale  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta1_custom_resource_subresource_scale import V1beta1CustomResourceSubresourceScale  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta1CustomResourceSubresourceScale(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta1CustomResourceSubresourceScale(unittest.TestCase):
     def testV1beta1CustomResourceSubresourceScale(self):
         """Test V1beta1CustomResourceSubresourceScale"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta1_custom_resource_subresource_scale.V1beta1CustomResourceSubresourceScale()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta1_custom_resource_subresource_scale.V1beta1CustomResourceSubresourceScale()  # noqa: E501
         pass
 
 

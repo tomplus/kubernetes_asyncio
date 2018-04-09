@@ -23,7 +23,7 @@ import google.auth.transport.requests
 import urllib3
 import yaml
 
-from kubernetes.client import ApiClient, Configuration
+from kubernetes_asyncio.client import ApiClient, Configuration
 
 from .config_exception import ConfigException
 from .dateutil import UTC, format_rfc3339, parse_rfc3339

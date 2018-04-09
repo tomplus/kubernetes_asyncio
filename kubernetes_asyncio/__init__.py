@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__project__ = 'kubernetes'
+__project__ = 'kubernetes_asyncio'
 # The version is auto-updated. Please do not edit.
 __version__ = "6.0.0-snapshot"
 
-import kubernetes.client
-import kubernetes.config
-import kubernetes.watch
-import kubernetes.stream
+import kubernetes_asyncio.client
+import kubernetes_asyncio.config
+import kubernetes_asyncio.watch
+import kubernetes_asyncio.stream

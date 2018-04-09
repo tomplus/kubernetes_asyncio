@@ -1,4 +1,4 @@
-# kubernetes.client.ApiextensionsApi
+# kubernetes_asyncio.client.ApiextensionsApi
 
 All URIs are relative to *https://localhost*
 
@@ -18,18 +18,18 @@ get information of a group
 ```python
 from __future__ import print_function
 import time
-import kubernetes.client
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: BearerToken
-configuration = kubernetes.client.Configuration()
+configuration = kubernetes_asyncio.client.Configuration()
 configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = kubernetes.client.ApiextensionsApi(kubernetes.client.ApiClient(configuration))
+api_instance = kubernetes_asyncio.client.ApiextensionsApi(kubernetes_asyncio.client.ApiClient(configuration))
 
 try:
     api_response = api_instance.get_api_group()

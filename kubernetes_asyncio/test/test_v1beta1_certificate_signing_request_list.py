@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta1_certificate_signing_request_list import V1beta1CertificateSigningRequestList  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta1_certificate_signing_request_list import V1beta1CertificateSigningRequestList  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta1CertificateSigningRequestList(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta1CertificateSigningRequestList(unittest.TestCase):
     def testV1beta1CertificateSigningRequestList(self):
         """Test V1beta1CertificateSigningRequestList"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta1_certificate_signing_request_list.V1beta1CertificateSigningRequestList()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta1_certificate_signing_request_list.V1beta1CertificateSigningRequestList()  # noqa: E501
         pass
 
 

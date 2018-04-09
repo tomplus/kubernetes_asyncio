@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta1_external_documentation import V1beta1ExternalDocumentation  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta1_external_documentation import V1beta1ExternalDocumentation  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta1ExternalDocumentation(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta1ExternalDocumentation(unittest.TestCase):
     def testV1beta1ExternalDocumentation(self):
         """Test V1beta1ExternalDocumentation"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta1_external_documentation.V1beta1ExternalDocumentation()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta1_external_documentation.V1beta1ExternalDocumentation()  # noqa: E501
         pass
 
 

@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v2alpha1_job_template_spec import V2alpha1JobTemplateSpec  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v2alpha1_job_template_spec import V2alpha1JobTemplateSpec  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV2alpha1JobTemplateSpec(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV2alpha1JobTemplateSpec(unittest.TestCase):
     def testV2alpha1JobTemplateSpec(self):
         """Test V2alpha1JobTemplateSpec"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v2alpha1_job_template_spec.V2alpha1JobTemplateSpec()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v2alpha1_job_template_spec.V2alpha1JobTemplateSpec()  # noqa: E501
         pass
 
 

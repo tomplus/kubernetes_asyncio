@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.models.v1beta1_ip_block import V1beta1IPBlock  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.models.v1beta1_ip_block import V1beta1IPBlock  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestV1beta1IPBlock(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestV1beta1IPBlock(unittest.TestCase):
     def testV1beta1IPBlock(self):
         """Test V1beta1IPBlock"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kubernetes.client.models.v1beta1_ip_block.V1beta1IPBlock()  # noqa: E501
+        # model = kubernetes_asyncio.client.models.v1beta1_ip_block.V1beta1IPBlock()  # noqa: E501
         pass
 
 

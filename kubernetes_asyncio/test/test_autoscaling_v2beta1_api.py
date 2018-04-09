@@ -15,16 +15,16 @@ from __future__ import absolute_import
 
 import unittest
 
-import kubernetes.client
-from kubernetes.client.api.autoscaling_v2beta1_api import AutoscalingV2beta1Api  # noqa: E501
-from kubernetes.client.rest import ApiException
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.api.autoscaling_v2beta1_api import AutoscalingV2beta1Api  # noqa: E501
+from kubernetes_asyncio.client.rest import ApiException
 
 
 class TestAutoscalingV2beta1Api(unittest.TestCase):
     """AutoscalingV2beta1Api unit test stubs"""
 
     def setUp(self):
-        self.api = kubernetes.client.api.autoscaling_v2beta1_api.AutoscalingV2beta1Api()  # noqa: E501
+        self.api = kubernetes_asyncio.client.api.autoscaling_v2beta1_api.AutoscalingV2beta1Api()  # noqa: E501
 
     def tearDown(self):
         pass
