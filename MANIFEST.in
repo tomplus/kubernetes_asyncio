@@ -1,5 +1,4 @@
 include LICENSE
-include OWNERS
 include *.md
 include *.txt
 include *.ini
