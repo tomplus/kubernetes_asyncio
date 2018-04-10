@@ -19,6 +19,8 @@ import ssl
 
 import aiohttp
 import certifi
+import asyncio
+
 # python 2 and python 3 compatibility library
 from six.moves.urllib.parse import urlencode
 
@@ -78,6 +80,9 @@ class RESTClientObject(object):
             self.pool_manager = aiohttp.ClientSession(
                 connector=connector
             )
+
+    def __del__(self):
+        asyncio.ensure_future(self.pool_manager.close())
 
     async def request(self, method, url, query_params=None, headers=None,
                       body=None, post_params=None, _preload_content=True,
