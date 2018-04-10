@@ -16,10 +16,10 @@ import unittest
 import uuid
 import yaml
 
-from kubernetes.client import api_client
-from kubernetes.client.apis import extensions_v1beta1_api
-from kubernetes.client.models import v1_delete_options
-from kubernetes.e2e_test import base
+from kubernetes_asyncio.client import api_client
+from kubernetes_asyncio.client.api import extensions_v1beta1_api
+from kubernetes_asyncio.client.models import v1_delete_options
+from kubernetes_asyncio.e2e_test import base
 
 
 class TestClientExtensions(unittest.TestCase):

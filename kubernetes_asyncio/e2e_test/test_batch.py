@@ -15,9 +15,9 @@
 import unittest
 import uuid
 
-from kubernetes.client import api_client
-from kubernetes.client.apis import batch_v1_api
-from kubernetes.e2e_test import base
+from kubernetes_asyncio.client import api_client
+from kubernetes_asyncio.client.api import batch_v1_api
+from kubernetes_asyncio.e2e_test import base
 
 
 class TestClientBatch(unittest.TestCase):
