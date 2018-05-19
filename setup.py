@@ -16,7 +16,7 @@ from setuptools import find_packages, setup
 
 # Do not edit these constants. They will be updated automatically
 # by scripts/update-client.sh.
-CLIENT_VERSION = "6.0.0-snapshot"
+CLIENT_VERSION = "1.0.0-alpha1"
 PACKAGE_NAME = "kubernetes_asyncio"
 DEVELOPMENT_STATUS = "2 - Pre-Alpha"
 

@@ -44,4 +44,4 @@ if __name__ == '__main__':
     loop.close()
 ```
 
-More examples you can find in `example/` folder.
+More examples you can find in `examples/` folder.

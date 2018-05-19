@@ -5,5 +5,6 @@ setuptools>=21.0.0  # PSF/ZPL
 urllib3>=1.19.1,!=1.21  # MIT
 pyyaml>=3.12  # MIT
 google-auth>=1.0.1  # Apache-2.0
-ipaddress>=1.0.17  # PSF
+requests # Apache-2.0
+requests-oauthlib # ISC
 aiohttp>=2.3.10 # # Apache-2.0
