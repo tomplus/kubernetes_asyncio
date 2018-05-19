@@ -4,3 +4,4 @@
 
 Asynchronous (AsyncIO) client library for Kubernetes. This library is not production-ready yet.
 
+This library is created in the same way as official https://github.com/kubernetes-client/python but uses asynchronous version of swagger-codegen.
