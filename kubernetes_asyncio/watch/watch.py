@@ -14,6 +14,7 @@
 
 import json
 import pydoc
+from functools import partial
 
 from kubernetes_asyncio import client
 
@@ -40,21 +41,17 @@ def _find_return_type(func):
     return ""
 
 
-def iter_resp_lines(resp):
-    prev = ""
-    for seg in resp.read_chunked(decode_content=False):
-        if isinstance(seg, bytes):
-            seg = seg.decode('utf8')
-        seg = prev + seg
-        lines = seg.split("\n")
-        if not seg.endswith("\n"):
-            prev = lines[-1]
-            lines = lines[:-1]
-        else:
-            prev = ""
-        for line in lines:
-            if line:
-                yield line
+async def iter_resp_lines(resp):
+    line = await resp.content.readline()
+    if isinstance(line, bytes):
+        line = line.decode('utf8')
+    return line
+
+
+class Stream(object):
+
+    def __init__(self, func, *args, **kwargs):
+        pass
 
 
 class Watch(object):
@@ -86,6 +83,21 @@ class Watch(object):
                 self.resource_version = js['object'].metadata.resource_version
         return js
 
+    def __aiter__(self):
+        return self
+
+    async def __anext__(self):
+        return await self.next()
+
+    async def next(self):
+        if self.resp is None:
+            self.resp = await self.func()
+
+        ret = await iter_resp_lines(self.resp)
+        ret = self.unmarshal_event(ret, self.return_type)
+        print(ret)
+        return ret
+
     def stream(self, func, *args, **kwargs):
         """Watch an API resource and stream the result back via a generator.
 
@@ -111,24 +123,13 @@ class Watch(object):
                 if should_stop:
                     watch.stop()
         """
-
         self._stop = False
-        return_type = self.get_return_type(func)
+        self.return_type = self.get_return_type(func)
         kwargs['watch'] = True
         kwargs['_preload_content'] = False
-
         timeouts = ('timeout_seconds' in kwargs)
-        while True:
-            resp = func(*args, **kwargs)
-            try:
-                for line in iter_resp_lines(resp):
-                    yield self.unmarshal_event(line, return_type)
-                    if self._stop:
-                        break
-            finally:
-                kwargs['resource_version'] = self.resource_version
-                resp.close()
-                resp.release_conn()
 
-            if timeouts or self._stop:
-                break
+        self.func = partial(func, *args, **kwargs)
+        self.resp = None
+
+        return self

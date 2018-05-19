@@ -1,4 +1,4 @@
-from kubernetes_asyncio import client, config
+from kubernetes_asyncio import client, config, watch
 import asyncio
 
 
@@ -9,12 +9,16 @@ async def main():
     config.load_kube_config()
 
     v1 = client.CoreV1Api()
-    print("Listing pods with their IPs:")
-    ret = await v1.list_pod_for_all_namespaces()
+    count = 10
+    w = watch.Watch()
 
-    for i in ret.items:
-        print("%s\t%s\t%s" %
-              (i.status.pod_ip, i.metadata.namespace, i.metadata.name))
+    async for event in w.stream(v1.list_namespace, timeout_seconds=10):
+        print("Event: %s %s" % (event['type'], event['object'].metadata.name))
+        count -= 1
+        if not count:
+            w.stop()
+
+    print("Ended.")
 
 
 if __name__ == '__main__':
