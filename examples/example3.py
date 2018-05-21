@@ -1,6 +1,7 @@
+import asyncio
+
 from kubernetes_asyncio import client, config
 from kubernetes_asyncio.stream import WsApiClient
-import asyncio
 
 
 async def main():
@@ -32,9 +33,9 @@ async def main():
         'echo This message goes to stderr >&2; echo This message goes to stdout']
 
     resp = v1_ws.connect_get_namespaced_pod_exec(pod, namespace,
-                  command=exec_command,
-                  stderr=True, stdin=False,
-                  stdout=True, tty=False)
+                                                 command=exec_command,
+                                                 stderr=True, stdin=False,
+                                                 stdout=True, tty=False)
 
     ret = await resp
 

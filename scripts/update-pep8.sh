@@ -14,9 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Script to fetch latest swagger spec.
-# Puts the updated spec at api/swagger-spec/
-
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -31,7 +28,7 @@ if [[ -z ${ENV} ]]; then
 fi
 
 SCRIPT_ROOT=$(dirname "${BASH_SOURCE}")
-CLIENT_ROOT="${SCRIPT_ROOT}/../kubernetes"
+CLIENT_ROOT="${SCRIPT_ROOT}/../kubernetes_asyncio"
 
 pushd "${SCRIPT_ROOT}" > /dev/null
 SCRIPT_ROOT=`pwd`

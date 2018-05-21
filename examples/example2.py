@@ -1,5 +1,6 @@
-from kubernetes_asyncio import client, config, watch
 import asyncio
+
+from kubernetes_asyncio import client, config, watch
 
 
 async def main():

@@ -41,18 +41,27 @@ setup(
     author="Kubernetes",
     license="Apache License Version 2.0",
     url="https://github.com/kubernetes-client/python",
-    keywords=["Swagger", "OpenAPI", "Kubernetes"],
+    keywords=[
+        "Swagger",
+        "OpenAPI",
+        "Kubernetes"],
     install_requires=REQUIRES,
     tests_require=TESTS_REQUIRES,
-    packages=['kubernetes_asyncio', 'kubernetes_asyncio.client', 'kubernetes_asyncio.config',
-              'kubernetes_asyncio.watch', 'kubernetes_asyncio.client.api',
-              'kubernetes_asyncio.stream', 'kubernetes_asyncio.client.models'],
+    packages=[
+        'kubernetes_asyncio',
+        'kubernetes_asyncio.client',
+        'kubernetes_asyncio.config',
+        'kubernetes_asyncio.watch',
+        'kubernetes_asyncio.client.api',
+        'kubernetes_asyncio.stream',
+        'kubernetes_asyncio.client.models'],
     include_package_data=True,
     long_description="""\
     Python client for kubernetes http://kubernetes.io/
     """,
     classifiers=[
-        "Development Status :: %s" % DEVELOPMENT_STATUS,
+        "Development Status :: %s" %
+        DEVELOPMENT_STATUS,
         "Topic :: Utilities",
         "Intended Audience :: Developers",
         "Intended Audience :: Information Technology",
