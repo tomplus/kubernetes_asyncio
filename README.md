@@ -1,6 +1,10 @@
 # Kubernetes Python Client
 
 ![Status - under heavy development](https://img.shields.io/badge/status-%20under%20heavy%20development-red.svg)
+[![Build Status](https://travis-ci.org/tomplus/kubernetes_asyncio.svg?branch=master)](https://travis-ci.org/tomplus/kubernetes_asyncio)
+[![PyPI version](https://badge.fury.io/py/kubernetes_asyncio.svg)](https://badge.fury.io/py/kubernetes)
+[![codecov](https://codecov.io/gh/tomplus/kubernetes_asyncio/branch/master/graph/badge.svg)](https://codecov.io/gh/tomplus/kubernetes_asyncio)
+[![pypi supported versions](https://img.shields.io/pypi/pyversions/kubernetes_asyncio.svg)](https://pypi.python.org/pypi/kubernetes_asyncio)
 
 Asynchronous (AsyncIO) client library for the [Kubernetes](http://kubernetes.io/) API.
 
