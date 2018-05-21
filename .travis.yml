@@ -11,7 +11,12 @@ matrix:
        env: TOXENV=py35
      - python: 3.6
        env: TOXENV=py36
-
+     - python: 3.6
+       env: TOXENV=update-pep8
+     - python: 3.6
+       env: TOXENV=docs
+     - python: 3.6
+       env: TOXENV=coverage,codecov
 install:
   - pip install tox
 
