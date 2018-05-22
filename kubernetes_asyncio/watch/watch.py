@@ -115,7 +115,7 @@ class Watch(object):
         Example:
             v1 = kubernetes.client.CoreV1Api()
             watch = kubernetes.watch.Watch()
-            for e in watch.stream(v1.list_namespace, resource_version=1127):
+            async for e in watch.stream(v1.list_namespace, timeout_seconds=10):
                 type = e['type']
                 object = e['object']  # object is one of type return_type
                 raw_object = e['raw_object']  # raw_object is a dict
