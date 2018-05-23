@@ -11,3 +11,4 @@ codecov>=1.4.0
 pep8
 autopep8
 isort
+asynctest
