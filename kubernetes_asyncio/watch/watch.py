@@ -93,9 +93,11 @@ class Watch(object):
         if self.resp is None:
             self.resp = await self.func()
 
+        if self._stop:
+            raise StopAsyncIteration
+
         ret = await iter_resp_lines(self.resp)
         ret = self.unmarshal_event(ret, self.return_type)
-        print(ret)
         return ret
 
     def stream(self, func, *args, **kwargs):
@@ -113,8 +115,8 @@ class Watch(object):
                              'object' value will be the same as 'raw_object'.
 
         Example:
-            v1 = kubernetes.client.CoreV1Api()
-            watch = kubernetes.watch.Watch()
+            v1 = kubernetes_asyncio.client.CoreV1Api()
+            watch = kubernetes_asyncio.watch.Watch()
             async for e in watch.stream(v1.list_namespace, timeout_seconds=10):
                 type = e['type']
                 object = e['object']  # object is one of type return_type
