@@ -63,10 +63,12 @@ class WsApiClient(ApiClient):
         if query_params:
             url += '?' + urlencode(query_params)
 
+        url = get_websocket_url(url)
+
         if _preload_content:
 
             resp_all = ''
-            async with self.rest_client.pool_manager.ws_connect(url) as ws:
+            async with self.rest_client.pool_manager.ws_connect(url, headers=headers) as ws:
                 async for msg in ws:
                     msg = msg.data.decode('utf-8')[1:]
                     resp_all += msg
