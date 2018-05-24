@@ -13,12 +13,12 @@
 # limitations under the License.
 
 import unittest
-from asynctest import TestCase, patch, Mock, CoroutineMock
+
 import asynctest
+from asynctest import CoroutineMock, Mock, TestCase, patch
 
 import kubernetes_asyncio
 from kubernetes_asyncio.watch import Watch
-import asyncio
 
 
 class WatchTest(TestCase):
