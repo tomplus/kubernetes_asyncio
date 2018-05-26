@@ -79,7 +79,7 @@ apiVersion: v1
 clusters:
 - cluster:
     certificate-authority: /var/lib/localkube/certs/ca.crt
-    server: https://localhost:8443
+    server: https://127.0.0.1:8443
   name: local
 contexts:
 - context:
