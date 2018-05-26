@@ -78,8 +78,8 @@ cat <<EOF > ~/.kube/config
 apiVersion: v1
 clusters:
 - cluster:
-    insecure-skip-tls-verify: true
-    server: https://localhost:8443
+    certificate-authority: /var/lib/localkube/certs/ca.crt
+    server: https://127.0.0.1:8443
   name: local
 contexts:
 - context:
