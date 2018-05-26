@@ -9,8 +9,12 @@ matrix:
     include:
      - python: 3.5
        env: TOXENV=py35
+     - python: 3.5
+       env: TOXENV=py35-functional
      - python: 3.6
        env: TOXENV=py36
+     - python: 3.6
+       env: TOXENV=py36-functional
      - python: 3.6
        env: TOXENV=update-pep8
      - python: 3.6

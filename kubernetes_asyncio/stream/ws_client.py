@@ -12,7 +12,7 @@
 
 from kubernetes_asyncio.client import ApiClient
 from six.moves.urllib.parse import urlencode, quote_plus, urlparse, urlunparse
-from kubernetes_asyncio.client.rest import RESTResponse 
+from kubernetes_asyncio.client.rest import RESTResponse
 
 
 STDIN_CHANNEL = 0
@@ -41,9 +41,9 @@ class WsResponse(RESTResponse):
 class WsApiClient(ApiClient):
 
     async def request(self, method, url, query_params=None, headers=None,
-                post_params=None, body=None, _preload_content=True,
-                _request_timeout=None):
- 
+                      post_params=None, body=None, _preload_content=True,
+                      _request_timeout=None):
+
         # Expand command parameter list to indivitual command params
         if query_params:
             new_query_params = []
@@ -70,8 +70,15 @@ class WsApiClient(ApiClient):
             resp_all = ''
             async with self.rest_client.pool_manager.ws_connect(url, headers=headers) as ws:
                 async for msg in ws:
-                    msg = msg.data.decode('utf-8')[1:]
-                    resp_all += msg
+                    msg = msg.data.decode('utf-8')
+                    if len(msg) > 1:
+                        channel = ord(msg[0])
+                        data = msg[1:]
+
+                        if data:
+                            if channel in [STDOUT_CHANNEL, STDERR_CHANNEL]:
+                                resp_all += data
+
             return WsResponse(resp_all)
 
         else:
