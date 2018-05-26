@@ -53,7 +53,7 @@ class WSClientTest(TestCase):
                 self.iter += 1
                 if self.iter > 5:
                     raise StopAsyncIteration
-                return WsResponse('0mock'.encode('utf-8'))
+                return WsResponse((chr(1)+'mock').encode('utf-8'))
 
         mock = CoroutineMock()
         mock.RESTClientObject.return_value.pool_manager = mock
