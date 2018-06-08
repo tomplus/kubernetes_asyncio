@@ -2,9 +2,9 @@ certifi>=14.05.14 # MPL
 six>=1.9.0  # MIT
 python-dateutil>=2.5.3  # BSD
 setuptools>=21.0.0  # PSF/ZPL
-urllib3>=1.19.1,!=1.21  # MIT
+urllib3>=1.19.1,!=1.21,<1.23  # MIT
 pyyaml>=3.12  # MIT
 google-auth>=1.0.1  # Apache-2.0
-requests # Apache-2.0
+requests<=2.18.4 # Apache-2.0
 requests-oauthlib # ISC
 aiohttp>=2.3.10 # # Apache-2.0
