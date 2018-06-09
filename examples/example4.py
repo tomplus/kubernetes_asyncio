@@ -1,5 +1,6 @@
 """Watch multiple K8s event streams without threads."""
 import asyncio
+
 from kubernetes_asyncio import client, config, watch
 
 
