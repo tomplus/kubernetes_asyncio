@@ -36,11 +36,11 @@ with open('test-requirements.txt') as f:
 setup(
     name=PACKAGE_NAME,
     version=CLIENT_VERSION,
-    description="Kubernetes python client",
+    description="Kubernetes asynchronous python client",
     author_email="",
     author="Kubernetes",
     license="Apache License Version 2.0",
-    url="https://github.com/kubernetes-client/python",
+    url="https://github.com/tomplus/kubernetes_asyncio",
     keywords=[
         "Swagger",
         "OpenAPI",
