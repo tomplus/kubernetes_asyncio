@@ -1,6 +1,5 @@
 # Kubernetes Python Client
 
-![Status - under heavy development](https://img.shields.io/badge/status-%20under%20heavy%20development-red.svg)
 [![Build Status](https://travis-ci.org/tomplus/kubernetes_asyncio.svg?branch=master)](https://travis-ci.org/tomplus/kubernetes_asyncio)
 [![PyPI version](https://badge.fury.io/py/kubernetes_asyncio.svg)](https://badge.fury.io/py/kubernetes_asyncio)
 [![codecov](https://codecov.io/gh/tomplus/kubernetes_asyncio/branch/master/graph/badge.svg)](https://codecov.io/gh/tomplus/kubernetes_asyncio)
@@ -9,6 +8,8 @@
 Asynchronous (AsyncIO) client library for the [Kubernetes](http://kubernetes.io/) API.
 
 This library is created in the same way as official https://github.com/kubernetes-client/python but uses asynchronous version of swagger-codegen.
+
+My motivation: https://github.com/kubernetes-client/python/pull/324
 
 ## Installation
 
@@ -48,4 +49,5 @@ if __name__ == '__main__':
     loop.close()
 ```
 
-More examples you can find in `examples/` folder.
+More complicated examples, like asynchronous multiple watch or tail logs from pods,
+you can find in `examples/` folder.
