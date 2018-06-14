@@ -10,9 +10,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import http.client
 import os
 import unittest
-import urllib3
 
 from kubernetes_asyncio.client.configuration import Configuration
 from kubernetes_asyncio.config import kube_config
@@ -29,16 +29,17 @@ def get_e2e_configuration():
     else:
         print('Unable to load config from %s' %
               kube_config.KUBE_CONFIG_DEFAULT_LOCATION)
-        for url in ['https://%s:8443' % DEFAULT_E2E_HOST,
-                    'http://%s:8080' % DEFAULT_E2E_HOST]:
+        for proto, host, port in [('https', DEFAULT_E2E_HOST, '8443'),
+                                  ('http', DEFAULT_E2E_HOST, '8080')]:
             try:
-                urllib3.PoolManager().request('GET', url)
-                config.host = url
+                print('Testing:', proto, host, port)
+                http.client.HTTPConnection(host, port).request('GET', '/')
+                config.host = "{}://{}:{}".format(proto, host, port)
                 config.verify_ssl = False
-                urllib3.disable_warnings()
                 break
-            except urllib3.exceptions.HTTPError:
+            except ConnectionRefusedError:
                 pass
+
     if config.host is None:
         raise unittest.SkipTest('Unable to find a running Kubernetes instance')
     print('Running test against : %s' % config.host)
