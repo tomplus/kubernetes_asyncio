@@ -5,7 +5,7 @@
 #       python tail.py <namespace> <prefix for pods' name> [-n LINES] [-f]
 #
 # Example:
-#       python tail.py kube-system kube-dns -f 
+#       python tail.py kube-system kube-dns -f
 #
 #       It will be streaming logs from all containers from PODs which name ~ "^kube-dns.*"
 #
@@ -21,8 +21,10 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Tail for pods')
     parser.add_argument('namespace', help="k8s namespace")
     parser.add_argument('pod', help="pod name or prefix")
-    parser.add_argument('-f', '--follow', action='store_true', help="output appended data as the file grows")
-    parser.add_argument('-n', '--lines', default=10, help='show the last LINES lines')
+    parser.add_argument('-f', '--follow', action='store_true',
+                        help="output appended data as the file grows")
+    parser.add_argument('-n', '--lines', default=10,
+                        help='show the last LINES lines')
     return parser.parse_args()
 
 
