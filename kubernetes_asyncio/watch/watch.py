@@ -60,7 +60,6 @@ class Watch(object):
         self._raw_return_type = return_type
         self._stop = False
         self._api_client = client.ApiClient()
-        self.resource_version = 0
 
     def stop(self):
         self._stop = True
@@ -69,6 +68,7 @@ class Watch(object):
         if self._raw_return_type:
             return self._raw_return_type
         return_type = _find_return_type(func)
+
         if return_type.endswith(TYPE_LIST_SUFFIX):
             return return_type[:-len(TYPE_LIST_SUFFIX)]
         return return_type
@@ -79,8 +79,7 @@ class Watch(object):
         if return_type:
             obj = SimpleNamespace(data=json.dumps(js['raw_object']))
             js['object'] = self._api_client.deserialize(obj, return_type)
-            if hasattr(js['object'], 'metadata'):
-                self.resource_version = js['object'].metadata.resource_version
+
         return js
 
     def __aiter__(self):
@@ -129,7 +128,6 @@ class Watch(object):
         self.return_type = self.get_return_type(func)
         kwargs['watch'] = True
         kwargs['_preload_content'] = False
-        timeouts = ('timeout_seconds' in kwargs)
 
         self.func = partial(func, *args, **kwargs)
         self.resp = None
