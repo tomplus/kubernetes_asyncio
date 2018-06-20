@@ -36,13 +36,6 @@ def _find_return_type(func):
     return ""
 
 
-async def iter_resp_lines(resp):
-    line = await resp.content.readline()
-    if isinstance(line, bytes):
-        line = line.decode('utf8')
-    return line
-
-
 class Stream(object):
 
     def __init__(self, func, *args, **kwargs):
@@ -102,15 +95,26 @@ class Watch(object):
         return await self.next()
 
     async def next(self):
+        # Set the response object to the user supplied function (eg
+        # `list_namespaced_pods`) if this is the first iteration.
         if self.resp is None:
             self.resp = await self.func()
 
+        # Abort at the current iteration if the user has called `stop` on this
+        # stream instance.
         if self._stop:
             raise StopAsyncIteration
 
-        ret = await iter_resp_lines(self.resp)
-        ret = self.unmarshal_event(ret, self.return_type)
-        return ret
+        # Fetch the next K8s response.
+        line = await self.resp.content.readline()
+        line = line.decode('utf8')
+
+        # Stop the iterator if K8s sends an empty response. This happens when
+        # eg the supplied timeout has expired.
+        if line == '':
+            raise StopAsyncIteration
+
+        return self.unmarshal_event(line, self.return_type)
 
     def stream(self, func, *args, **kwargs):
         """Watch an API resource and stream the result back via a generator.
