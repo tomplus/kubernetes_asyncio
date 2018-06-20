@@ -14,8 +14,9 @@
 
 import json
 import pydoc
-from functools import partial
 
+from functools import partial
+from types import SimpleNamespace
 from kubernetes_asyncio import client
 
 PYDOC_RETURN_LABEL = ":return:"
@@ -26,12 +27,6 @@ PYDOC_RETURN_LABEL = ":return:"
 # of type "Namespace". In case this assumption is not true, user should
 # provide return_type to Watch class's __init__.
 TYPE_LIST_SUFFIX = "List"
-
-
-class SimpleNamespace:
-
-    def __init__(self, **kwargs):
-        self.__dict__.update(kwargs)
 
 
 def _find_return_type(func):
@@ -73,13 +68,31 @@ class Watch(object):
             return return_type[:-len(TYPE_LIST_SUFFIX)]
         return return_type
 
-    def unmarshal_event(self, data, return_type):
-        js = json.loads(data)
-        js['raw_object'] = js['object']
-        if return_type:
-            obj = SimpleNamespace(data=json.dumps(js['raw_object']))
-            js['object'] = self._api_client.deserialize(obj, return_type)
+    def unmarshal_event(self, data: str, response_type):
+        """Return the K8s response `data` in JSON format.
 
+        """
+        js = json.loads(data)
+
+        # Make a copy of the original object and save it under the
+        # `raw_object` key because we will replace the data under `object` with
+        # a Python native type shortly.
+        js['raw_object'] = js['object']
+
+        # Something went wrong. A typical example would be that the user
+        # supplied a resource version that was too old. In that case K8s would
+        # not send a conventional ADDED/DELETED/... event but an error. Turn
+        # this error into a Python exception to save the user the hassle.
+        if js['type'].lower() == 'error':
+            return js
+
+        # If possible, compile the JSON response into a Python native response
+        # type, eg `V1Namespace` or `V1Pod`,`ExtensionsV1beta1Deployment`, ...
+        if response_type is not None:
+            js['object'] = self._api_client.deserialize(
+                response=SimpleNamespace(data=json.dumps(js['raw_object'])),
+                response_type=response_type
+            )
         return js
 
     def __aiter__(self):

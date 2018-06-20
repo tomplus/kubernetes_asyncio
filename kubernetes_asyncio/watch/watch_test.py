@@ -64,6 +64,28 @@ class WatchTest(TestCase):
         self.assertEqual(["test1"], event['object'])
         self.assertEqual(["test1"], event['raw_object'])
 
+    async def test_unmarshall_k8s_error_response(self):
+        """Never parse messages of type ERROR.
+
+        This test uses an actually recorded error, in this case for an outdated
+        resource version.
+
+        """
+        # An actual error response sent by K8s during testing.
+        k8s_err = {
+            'type': 'ERROR',
+            'object': {
+                'kind': 'Status', 'apiVersion': 'v1', 'metadata': {},
+                'status': 'Failure',
+                'message': 'too old resource version: 1 (8146471)',
+                'reason': 'Gone', 'code': 410
+            }
+        }
+
+        ret = Watch().unmarshal_event(json.dumps(k8s_err), None)
+        assert ret['type'] == k8s_err['type']
+        assert ret['object'] == ret['raw_object'] == k8s_err['object']
+
     async def test_watch_with_exception(self):
         fake_resp = CoroutineMock()
         fake_resp.content.readline = CoroutineMock()
