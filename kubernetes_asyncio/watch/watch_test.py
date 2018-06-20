@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from asynctest import CoroutineMock, Mock, TestCase, patch
+from asynctest import CoroutineMock, Mock, TestCase
 
 import json
 import kubernetes_asyncio
