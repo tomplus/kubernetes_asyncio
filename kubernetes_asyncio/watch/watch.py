@@ -14,9 +14,9 @@
 
 import json
 import pydoc
-
 from functools import partial
 from types import SimpleNamespace
+
 from kubernetes_asyncio import client
 
 PYDOC_RETURN_LABEL = ":return:"

@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
+
 from asynctest import CoroutineMock, Mock, TestCase
 
-import json
 import kubernetes_asyncio
 from kubernetes_asyncio.watch import Watch
 
@@ -25,12 +26,17 @@ class WatchTest(TestCase):
         fake_resp = CoroutineMock()
         fake_resp.content.readline = CoroutineMock()
         side_effects = [
-            {"type": "ADDED", "object": {"metadata": {"name": "test0"}, "spec": {}, "status": {}}},
-            {"type": "ADDED", "object": {"metadata": {"name": "test1"}, "spec": {}, "status": {}}},
-            {"type": "ADDED", "object": {"metadata": {"name": "test2"}, "spec": {}, "status": {}}},
+            {
+                "type": "ADDED",
+                "object": {
+                    "metadata": {"name": "test{}".format(uid)},
+                    "spec": {}, "status": {}
+                }
+            }
+            for uid in range(3)
         ]
         side_effects = [json.dumps(_).encode('utf8') for _ in side_effects]
-        side_effects = side_effects + [AssertionError('Should not have been called')]
+        side_effects.extend([AssertionError('Should not have been called')])
         fake_resp.content.readline.side_effect = side_effects
 
         fake_api = Mock()
@@ -77,8 +83,10 @@ class WatchTest(TestCase):
 
         # Iteration must cease after all valid responses were received.
         watch = kubernetes_asyncio.watch.Watch()
-        responses = [_ async for _ in watch.stream(fake_api.get_namespaces)]
-        assert len(responses) == len(side_effects)
+        cnt = 0
+        async for _ in watch.stream(fake_api.get_namespaces):
+            cnt += 1
+        assert cnt == len(side_effects)
 
     def test_unmarshal_with_float_object(self):
         w = Watch()
