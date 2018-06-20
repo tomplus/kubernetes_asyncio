@@ -51,7 +51,8 @@ class WatchTest(TestCase):
                 watch.stop()
 
         fake_api.get_namespaces.assert_called_once_with(
-            _preload_content=False, watch=True)
+            _preload_content=False, watch=True, resource_version='123')
+
     async def test_watch_k8s_empty_response(self):
         """Stop the iterator when the response is empty.
 
