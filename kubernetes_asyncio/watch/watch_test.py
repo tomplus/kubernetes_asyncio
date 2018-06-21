@@ -86,7 +86,7 @@ class WatchTest(TestCase):
         cnt = 0
         async for _ in watch.stream(fake_api.get_namespaces):
             cnt += 1
-        assert cnt == len(side_effects)
+        self.assertEqual(cnt, len(side_effects))
 
     def test_unmarshal_with_float_object(self):
         w = Watch()
@@ -123,8 +123,9 @@ class WatchTest(TestCase):
         }
 
         ret = Watch().unmarshal_event(json.dumps(k8s_err), None)
-        assert ret['type'] == k8s_err['type']
-        assert ret['object'] == ret['raw_object'] == k8s_err['object']
+        self.assertEqual(ret['type'], k8s_err['type'])
+        self.assertEqual(ret['object'], k8s_err['object'])
+        self.assertEqual(ret['object'], k8s_err['object'])
 
     async def test_watch_with_exception(self):
         fake_resp = CoroutineMock()
