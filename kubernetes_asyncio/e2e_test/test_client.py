@@ -60,14 +60,12 @@ class TestClient(asynctest.TestCase):
             }
         }
 
-        resp = await api.create_namespaced_pod(body=pod_manifest,
-                                         namespace='default')
+        resp = await api.create_namespaced_pod(body=pod_manifest, namespace='default')
         self.assertEqual(name, resp.metadata.name)
         self.assertTrue(resp.status.phase)
 
         while True:
-            resp = await api.read_namespaced_pod(name=name,
-                                           namespace='default')
+            resp = await api.read_namespaced_pod(name=name, namespace='default')
             self.assertEqual(name, resp.metadata.name)
             self.assertTrue(resp.status.phase)
             if resp.status.phase != 'Pending':
@@ -77,18 +75,18 @@ class TestClient(asynctest.TestCase):
         exec_command = ['/bin/sh',
                         '-c',
                         'for i in $(seq 1 3); do date; done']
-        resp = await api_ws.connect_get_namespaced_pod_exec(name, 'default',
-                                                   command=exec_command,
-                                                   stderr=False, stdin=False,
-                                                   stdout=True, tty=False)
+        resp = await api_ws.connect_get_namespaced_pod_exec(
+            name, 'default', command=exec_command,
+            stderr=False, stdin=False, stdout=True, tty=False
+        )
         print('EXEC response : %s' % resp)
         self.assertEqual(3, len(resp.splitlines()))
 
         exec_command = 'uptime'
-        resp = await api_ws.connect_post_namespaced_pod_exec(name, 'default',
-                                                    command=exec_command,
-                                                    stderr=False, stdin=False,
-                                                    stdout=True, tty=False)
+        resp = await api_ws.connect_post_namespaced_pod_exec(
+            name, 'default', command=exec_command,
+            stderr=False, stdin=False, stdout=True, tty=False
+        )
         print('EXEC response : %s' % resp)
         self.assertEqual(1, len(resp.splitlines()))
 
@@ -96,8 +94,7 @@ class TestClient(asynctest.TestCase):
         number_of_pods = len(resp.items)
         self.assertTrue(number_of_pods > 0)
 
-        resp = await api.delete_namespaced_pod(name=name, body={},
-                                         namespace='default')
+        resp = await api.delete_namespaced_pod(name=name, body={}, namespace='default')
 
     async def test_service_apis(self):
         client = api_client.ApiClient(configuration=self.config)
@@ -115,28 +112,29 @@ class TestClient(asynctest.TestCase):
                                                 'targetPort': 80}],
                                      'selector': {'name': name}}}
 
-        resp = await api.create_namespaced_service(body=service_manifest,
-                                             namespace='default')
+        resp = await api.create_namespaced_service(body=service_manifest, namespace='default')
         self.assertEqual(name, resp.metadata.name)
         self.assertTrue(resp.status)
 
-        resp = await api.read_namespaced_service(name=name,
-                                           namespace='default')
+        resp = await api.read_namespaced_service(name=name, namespace='default')
         self.assertEqual(name, resp.metadata.name)
         self.assertTrue(resp.status)
 
-        service_manifest['spec']['ports'] = [{'name': 'new',
-                                              'port': 8080,
-                                              'protocol': 'TCP',
-                                              'targetPort': 8080}]
-        resp = await api.patch_namespaced_service(body=service_manifest,
-                                            name=name,
-                                            namespace='default')
+        service_manifest['spec']['ports'] = [
+            {'name': 'new',
+             'port': 8080,
+             'protocol': 'TCP',
+             'targetPort': 8080}
+        ]
+        resp = await api.patch_namespaced_service(
+            body=service_manifest,
+            name=name,
+            namespace='default'
+        )
         self.assertEqual(2, len(resp.spec.ports))
         self.assertTrue(resp.status)
 
-        resp = await api.delete_namespaced_service(name=name, body={},
-                                             namespace='default')
+        resp = await api.delete_namespaced_service(name=name, body={}, namespace='default')
 
     async def test_replication_controller_apis(self):
         client = api_client.ApiClient(configuration=self.config)
@@ -146,17 +144,29 @@ class TestClient(asynctest.TestCase):
         rc_manifest = {
             'apiVersion': 'v1',
             'kind': 'ReplicationController',
-            'metadata': {'labels': {'name': name},
-                         'name': name},
-            'spec': {'replicas': 2,
-                     'selector': {'name': name},
-                     'template': {'metadata': {
-                         'labels': {'name': name}},
-                         'spec': {'containers': [{
-                             'image': 'nginx',
-                             'name': 'nginx',
-                             'ports': [{'containerPort': 80,
-                                        'protocol': 'TCP'}]}]}}}}
+            'metadata': {
+                'labels': {'name': name},
+                'name': name
+            },
+            'spec': {
+                'replicas': 2,
+                'selector': {
+                    'name': name
+                },
+                'template': {
+                    'metadata': {'labels': {'name': name}},
+                    'spec': {
+                        'containers': [
+                            {
+                                'image': 'nginx',
+                                'name': 'nginx',
+                                'ports': [{'containerPort': 80, 'protocol': 'TCP'}]
+                            }
+                        ]
+                    }
+                }
+            }
+        }
 
         resp = await api.create_namespaced_replication_controller(
             body=rc_manifest, namespace='default')

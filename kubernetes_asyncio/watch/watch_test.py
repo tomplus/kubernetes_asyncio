@@ -84,7 +84,7 @@ class WatchTest(TestCase):
         # Iteration must cease after all valid responses were received.
         watch = kubernetes_asyncio.watch.Watch()
         cnt = 0
-        async for _ in watch.stream(fake_api.get_namespaces):
+        async for _ in watch.stream(fake_api.get_namespaces): # noqa
             cnt += 1
         self.assertEqual(cnt, len(side_effects))
 
@@ -137,7 +137,7 @@ class WatchTest(TestCase):
 
         with self.assertRaises(KeyError):
             watch = kubernetes_asyncio.watch.Watch()
-            async for e in watch.stream(fake_api.get_namespaces, timeout_seconds=10):
+            async for e in watch.stream(fake_api.get_namespaces, timeout_seconds=10): # noqa
                 pass
 
 

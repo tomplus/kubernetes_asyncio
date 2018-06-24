@@ -11,7 +11,7 @@
 # under the License.
 
 from kubernetes_asyncio.client import ApiClient
-from six.moves.urllib.parse import urlencode, quote_plus, urlparse, urlunparse
+from six.moves.urllib.parse import urlencode, urlparse, urlunparse
 from kubernetes_asyncio.client.rest import RESTResponse
 
 
