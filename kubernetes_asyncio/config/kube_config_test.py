@@ -21,9 +21,9 @@ import unittest
 
 import yaml
 from six import PY3
+from types import SimpleNamespace
 
 from .config_exception import ConfigException
-from .dateutil import parse_rfc3339
 from .kube_config import (ConfigNode, FileOrData, KubeConfigLoader,
                           _cleanup_temp_files, _create_temp_file_with_content,
                           list_kube_config_contexts, load_kube_config,
