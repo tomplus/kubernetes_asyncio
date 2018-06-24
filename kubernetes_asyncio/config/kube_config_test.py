@@ -18,16 +18,17 @@ import os
 import shutil
 import tempfile
 import unittest
+from types import SimpleNamespace
 
 import yaml
 from six import PY3
-from types import SimpleNamespace
 
 from .config_exception import ConfigException
-from .kube_config import (ConfigNode, FileOrData, KubeConfigLoader,
-                          _cleanup_temp_files, _create_temp_file_with_content,
-                          list_kube_config_contexts, load_kube_config,
-                          new_client_from_config)
+from .kube_config import (
+    ConfigNode, FileOrData, KubeConfigLoader, _cleanup_temp_files,
+    _create_temp_file_with_content, list_kube_config_contexts,
+    load_kube_config, new_client_from_config,
+)
 
 BEARER_TOKEN_FORMAT = "Bearer %s"
 

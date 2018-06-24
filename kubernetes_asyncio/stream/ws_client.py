@@ -10,10 +10,10 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-from kubernetes_asyncio.client import ApiClient
 from six.moves.urllib.parse import urlencode, urlparse, urlunparse
-from kubernetes_asyncio.client.rest import RESTResponse
 
+from kubernetes_asyncio.client import ApiClient
+from kubernetes_asyncio.client.rest import RESTResponse
 
 STDIN_CHANNEL = 0
 STDOUT_CHANNEL = 1

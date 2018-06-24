@@ -12,8 +12,9 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import asynctest
 import uuid
+
+import asynctest
 import yaml
 
 from kubernetes_asyncio.client import api_client

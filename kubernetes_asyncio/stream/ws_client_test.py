@@ -14,9 +14,9 @@
 
 from asynctest import CoroutineMock, TestCase, patch
 
-from kubernetes_asyncio.stream.ws_client import get_websocket_url, WsResponse
 from kubernetes_asyncio import client
 from kubernetes_asyncio.stream import WsApiClient
+from kubernetes_asyncio.stream.ws_client import WsResponse, get_websocket_url
 
 
 class WSClientTest(TestCase):
