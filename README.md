@@ -19,6 +19,21 @@ From [PyPi](https://pypi.python.org/pypi/kubernetes_asyncio/) directly:
 pip install kubernetes_asyncio
 ```
 
+## Development
+Install the development packages:
+
+```bash
+pip install -r requirements.txt
+pip install -r test-requirements.txt
+```
+
+You can run the style checks and tests with
+
+```bash
+flake8 && isort -c
+nosetests
+```
+
 ## Example
 
 To list all pods:

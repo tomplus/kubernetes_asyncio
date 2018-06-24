@@ -13,6 +13,7 @@
 # under the License.
 
 import uuid
+
 import asynctest
 
 from kubernetes_asyncio.client import api_client
@@ -25,7 +26,6 @@ class TestClientBatch(asynctest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.config = base.get_e2e_configuration()
-
 
     async def test_job_apis(self):
         client = api_client.ApiClient(configuration=self.config)

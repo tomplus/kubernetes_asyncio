@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from asynctest import CoroutineMock, Mock, TestCase, patch
+from asynctest import CoroutineMock, TestCase, patch
 
-from kubernetes_asyncio.stream.ws_client import get_websocket_url, WsResponse
-from kubernetes_asyncio import client, config
+from kubernetes_asyncio import client
 from kubernetes_asyncio.stream import WsApiClient
+from kubernetes_asyncio.stream.ws_client import WsResponse, get_websocket_url
 
 
 class WSClientTest(TestCase):
@@ -53,7 +53,7 @@ class WSClientTest(TestCase):
                 self.iter += 1
                 if self.iter > 5:
                     raise StopAsyncIteration
-                return WsResponse((chr(1)+'mock').encode('utf-8'))
+                return WsResponse((chr(1) + 'mock').encode('utf-8'))
 
         mock = CoroutineMock()
         mock.RESTClientObject.return_value.pool_manager = mock
@@ -67,10 +67,17 @@ class WSClientTest(TestCase):
                                                       stdout=True, tty=False)
 
             ret = await resp
-            self.assertEqual(ret, 'mock'*5)
-            mock.ws_connect.assert_called_once_with('wss://localhost/api/v1/namespaces/namespace/pods/pod/exec?command=mock-command&stderr=True&stdin=False&stdout=True&tty=False',
-                                                    headers={'sec-websocket-protocol': 'v4.channel.k8s.io', 'Accept': '*/*', 'User-Agent':
-                                                             'Swagger-Codegen/6.0.0-snapshot/python', 'Content-Type': 'application/json'})
+            self.assertEqual(ret, 'mock' * 5)
+            mock.ws_connect.assert_called_once_with(
+                'wss://localhost/api/v1/namespaces/namespace/pods/pod/exec?'
+                'command=mock-command&stderr=True&stdin=False&stdout=True&tty=False',
+                headers={
+                    'sec-websocket-protocol': 'v4.channel.k8s.io',
+                    'Accept': '*/*',
+                    'User-Agent': 'Swagger-Codegen/6.0.0-snapshot/python',
+                    'Content-Type': 'application/json'
+                }
+            )
 
 
 if __name__ == '__main__':

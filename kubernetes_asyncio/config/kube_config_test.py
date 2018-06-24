@@ -18,16 +18,17 @@ import os
 import shutil
 import tempfile
 import unittest
+from types import SimpleNamespace
 
 import yaml
 from six import PY3
 
 from .config_exception import ConfigException
-from .dateutil import parse_rfc3339
-from .kube_config import (ConfigNode, FileOrData, KubeConfigLoader,
-                          _cleanup_temp_files, _create_temp_file_with_content,
-                          list_kube_config_contexts, load_kube_config,
-                          new_client_from_config)
+from .kube_config import (
+    ConfigNode, FileOrData, KubeConfigLoader, _cleanup_temp_files,
+    _create_temp_file_with_content, list_kube_config_contexts,
+    load_kube_config, new_client_from_config,
+)
 
 BEARER_TOKEN_FORMAT = "Bearer %s"
 
@@ -525,9 +526,10 @@ class TestKubeConfigLoader(BaseTestCase):
 
     def test_load_gcp_token_with_refresh(self):
 
-        def cred(): return None
-        cred.token = TEST_ANOTHER_DATA_BASE64
-        cred.expiry = datetime.datetime.now()
+        cred = SimpleNamespace(
+            token=TEST_ANOTHER_DATA_BASE64,
+            expiry=datetime.datetime.now(),
+        )
 
         loader = KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,

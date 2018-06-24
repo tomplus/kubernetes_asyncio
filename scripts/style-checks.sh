@@ -28,16 +28,10 @@ if [[ -z ${ENV} ]]; then
 fi
 
 SCRIPT_ROOT=$(dirname "${BASH_SOURCE}")
-CLIENT_ROOT="${SCRIPT_ROOT}/../kubernetes_asyncio"
+REPO_ROOT="${SCRIPT_ROOT}/../"
+CLIENT_ROOT="${REPO_ROOT}/kubernetes_asyncio"
 
 pushd "${SCRIPT_ROOT}" > /dev/null
-SCRIPT_ROOT=`pwd`
-popd > /dev/null
-
-pushd "${CLIENT_ROOT}" > /dev/null
-CLIENT_ROOT=`pwd`
-popd > /dev/null
-
 if [[ -z ${ENV} ]]; then
     echo "--- Creating virtualenv"
     virtualenv "${SCRIPT_ROOT}/.py"
@@ -46,39 +40,12 @@ if [[ -z ${ENV} ]]; then
     trap "deactivate" EXIT SIGINT
 
     echo "--- Updating tools"
-    pip install --upgrade pep8
-    pip install --upgrade autopep8
-    pip install --upgrade isort
+    pip install --upgrade flake8 isort
 fi
 
-SAVEIFS=$IFS
-trap "IFS=$SAVEIFS" EXIT SIGINT
-IFS=,
-
-SOURCES="${SCRIPT_ROOT}/../setup.py,${CLIENT_ROOT}/config/*.py,${CLIENT_ROOT}/watch/*.py,${SCRIPT_ROOT}/*.py,${CLIENT_ROOT}/../examples/*.py"
-
-echo "--- applying autopep8"
-for SOURCE in $SOURCES; do
-    autopep8 -i -a -a $SOURCE
-done
-
-echo "--- applying isort"
-for SOURCE in $SOURCES; do
-    isort -y $SOURCE
-done
-
-echo "--- check pep8 (all need to be fixed manually)"
-set +o errexit
-for SOURCE in $SOURCES; do
-    pep8 $SOURCE
-done
-
-if [[ ! -z ${ENV} ]]; then
-    if [[ $(git status --porcelain) != "" ]]; then
-        cd "${SCRIPT_ROOT}/.."
-        git --no-pager diff
-        exit 1
-    fi
-fi
+# Style checks.
+flake8
+isort -c
+popd
 
 echo "---Done."
