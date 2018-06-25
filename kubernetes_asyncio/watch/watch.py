@@ -41,7 +41,8 @@ class Watch(object):
     def __init__(self, func, *args, **kwargs):
         """Watch an API resource and stream the result back via a generator.
 
-        :param func: The API function pointer. Any parameter to the function
+        :param func: The API function pointer, for instance,
+                     CoreV1Api().list_namespace`. Any parameter to the function
                      can be passed after this parameter.
 
         :return: Event object with these keys:
@@ -62,6 +63,7 @@ class Watch(object):
                 ...
                 if should_stop:
                     watch.stop()
+
         """
         self._api_client = client.ApiClient()
         self._raw_return_type = None
@@ -72,7 +74,7 @@ class Watch(object):
         kwargs['watch'] = True
         kwargs['_preload_content'] = False
 
-        self.func = partial(func, *args, **kwargs)
+        self.api_func = partial(func, *args, **kwargs)
         self.resp = None
 
     def stop(self):
@@ -124,7 +126,7 @@ class Watch(object):
         # Set the response object to the user supplied function (eg
         # `list_namespaced_pods`) if this is the first iteration.
         if self.resp is None:
-            self.resp = await self.func()
+            self.resp = await self.api_func()
 
         # Abort at the current iteration if the user has called `stop` on this
         # stream instance.
