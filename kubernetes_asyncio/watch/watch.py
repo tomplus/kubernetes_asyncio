@@ -38,10 +38,42 @@ def _find_return_type(func):
 
 class Watch(object):
 
-    def __init__(self, return_type=None):
-        self._raw_return_type = return_type
-        self._stop = False
+    def __init__(self, func, *args, **kwargs):
+        """Watch an API resource and stream the result back via a generator.
+
+        :param func: The API function pointer. Any parameter to the function
+                     can be passed after this parameter.
+
+        :return: Event object with these keys:
+                   'type': The type of event such as "ADDED", "DELETED", etc.
+                   'raw_object': a dict representing the watched object.
+                   'object': A model representation of raw_object. The name of
+                             model will be determined based on
+                             the func's doc string. If it cannot be determined,
+                             'object' value will be the same as 'raw_object'.
+
+        Example:
+            v1 = kubernetes_asyncio.client.CoreV1Api()
+            watch = kubernetes_asyncio.watch.Watch()
+            async for e in watch.stream(v1.list_namespace, timeout_seconds=10):
+                type = e['type']
+                object = e['object']  # object is one of type return_type
+                raw_object = e['raw_object']  # raw_object is a dict
+                ...
+                if should_stop:
+                    watch.stop()
+        """
         self._api_client = client.ApiClient()
+        self._raw_return_type = None
+        self._stop = False
+
+        # Make this more explicit and cover with a test.
+        self.return_type = self.get_return_type(func)
+        kwargs['watch'] = True
+        kwargs['_preload_content'] = False
+
+        self.func = partial(func, *args, **kwargs)
+        self.resp = None
 
     def stop(self):
         self._stop = True
@@ -109,38 +141,3 @@ class Watch(object):
             raise StopAsyncIteration
 
         return self.unmarshal_event(line, self.return_type)
-
-    def stream(self, func, *args, **kwargs):
-        """Watch an API resource and stream the result back via a generator.
-
-        :param func: The API function pointer. Any parameter to the function
-                     can be passed after this parameter.
-
-        :return: Event object with these keys:
-                   'type': The type of event such as "ADDED", "DELETED", etc.
-                   'raw_object': a dict representing the watched object.
-                   'object': A model representation of raw_object. The name of
-                             model will be determined based on
-                             the func's doc string. If it cannot be determined,
-                             'object' value will be the same as 'raw_object'.
-
-        Example:
-            v1 = kubernetes_asyncio.client.CoreV1Api()
-            watch = kubernetes_asyncio.watch.Watch()
-            async for e in watch.stream(v1.list_namespace, timeout_seconds=10):
-                type = e['type']
-                object = e['object']  # object is one of type return_type
-                raw_object = e['raw_object']  # raw_object is a dict
-                ...
-                if should_stop:
-                    watch.stop()
-        """
-        self._stop = False
-        self.return_type = self.get_return_type(func)
-        kwargs['watch'] = True
-        kwargs['_preload_content'] = False
-
-        self.func = partial(func, *args, **kwargs)
-        self.resp = None
-
-        return self
