@@ -19,47 +19,78 @@ from types import SimpleNamespace
 
 from kubernetes_asyncio import client
 
-PYDOC_RETURN_LABEL = ":return:"
-
-# Removing this suffix from return type name should give us event's object
-# type. e.g., if list_namespaces() returns "NamespaceList" type,
-# then list_namespaces(watch=true) returns a stream of events with objects
-# of type "Namespace". In case this assumption is not true, user should
-# provide return_type to Watch class's __init__.
-TYPE_LIST_SUFFIX = "List"
-
 
 def _find_return_type(func):
-    for line in pydoc.getdoc(func).splitlines():
-        if line.startswith(PYDOC_RETURN_LABEL):
-            return line[len(PYDOC_RETURN_LABEL):].strip()
-    return ""
+    """Return the K8s return type as a string, eg `V1Namespace`.
 
+    Return None if the return type was not in the doc string of `func`.
 
-class Stream(object):
+    Raise `AssertionError` if the doc string was ambiguous.
 
-    def __init__(self, func, *args, **kwargs):
-        pass
+    NOTE: this function makes _assumes_ the doc strings have a certain type.
+    """
+    # Find all the lines that mention the return type.
+    lines = [_ for _ in pydoc.getdoc(func).splitlines() if _.startswith(":return:")]
+
+    # Return None if the doc string does not mention a return type (user
+    # probably specified an invalid function; would be good to catch at some
+    # point).
+    if len(lines) == 0:
+        return None
+
+    # Raise an exception if we could not unambiguously determine the return type.
+    assert len(lines) == 1, 'Unable to determine return type for {}'.format(func)
+
+    # Strip the leading ':return:' and trailing 'List' string to extract the
+    # correct type name.
+    line = lines[0]
+    rtype = line.partition(":return:")[2].strip()
+    rtype = rtype.rpartition("List")[0].strip()
+    return rtype
 
 
 class Watch(object):
 
-    def __init__(self, return_type=None):
-        self._raw_return_type = return_type
-        self._stop = False
+    def __init__(self, func, *args, **kwargs):
+        """Watch an API resource and stream the result back via a generator.
+
+        :param func: The API function pointer, for instance,
+                     CoreV1Api().list_namespace`. Any parameter to the function
+                     can be passed after this parameter.
+
+        :return: Event object with these keys:
+                   'type': The type of event such as "ADDED", "DELETED", etc.
+                   'raw_object': a dict representing the watched object.
+                   'object': A model representation of raw_object. The name of
+                             model will be determined based on
+                             the func's doc string. If it cannot be determined,
+                             'object' value will be the same as 'raw_object'.
+
+        Example:
+            v1 = kubernetes_asyncio.client.CoreV1Api()
+            watch = kubernetes_asyncio.watch.Watch()
+            async for e in watch.stream(v1.list_namespace, timeout_seconds=10):
+                type = e['type']
+                object = e['object']  # object is one of type return_type
+                raw_object = e['raw_object']  # raw_object is a dict
+                ...
+                if should_stop:
+                    watch.stop()
+
+        """
         self._api_client = client.ApiClient()
+        self._stop = False
+
+        # Make this more explicit and cover with a test.
+        self.return_type = _find_return_type(func)
+        kwargs['watch'] = True
+        kwargs['_preload_content'] = False
+
+        self.api_func = partial(func, *args, **kwargs)
+        self.resp = None
 
     def stop(self):
         self._stop = True
-
-    def get_return_type(self, func):
-        if self._raw_return_type:
-            return self._raw_return_type
-        return_type = _find_return_type(func)
-
-        if return_type.endswith(TYPE_LIST_SUFFIX):
-            return return_type[:-len(TYPE_LIST_SUFFIX)]
-        return return_type
 
     def unmarshal_event(self, data: str, response_type):
         """Return the K8s response `data` in JSON format.
@@ -98,7 +129,7 @@ class Watch(object):
         # Set the response object to the user supplied function (eg
         # `list_namespaced_pods`) if this is the first iteration.
         if self.resp is None:
-            self.resp = await self.func()
+            self.resp = await self.api_func()
 
         # Abort at the current iteration if the user has called `stop` on this
         # stream instance.
@@ -115,38 +146,3 @@ class Watch(object):
             raise StopAsyncIteration
 
         return self.unmarshal_event(line, self.return_type)
-
-    def stream(self, func, *args, **kwargs):
-        """Watch an API resource and stream the result back via a generator.
-
-        :param func: The API function pointer. Any parameter to the function
-                     can be passed after this parameter.
-
-        :return: Event object with these keys:
-                   'type': The type of event such as "ADDED", "DELETED", etc.
-                   'raw_object': a dict representing the watched object.
-                   'object': A model representation of raw_object. The name of
-                             model will be determined based on
-                             the func's doc string. If it cannot be determined,
-                             'object' value will be the same as 'raw_object'.
-
-        Example:
-            v1 = kubernetes_asyncio.client.CoreV1Api()
-            watch = kubernetes_asyncio.watch.Watch()
-            async for e in watch.stream(v1.list_namespace, timeout_seconds=10):
-                type = e['type']
-                object = e['object']  # object is one of type return_type
-                raw_object = e['raw_object']  # raw_object is a dict
-                ...
-                if should_stop:
-                    watch.stop()
-        """
-        self._stop = False
-        self.return_type = self.get_return_type(func)
-        kwargs['watch'] = True
-        kwargs['_preload_content'] = False
-
-        self.func = partial(func, *args, **kwargs)
-        self.resp = None
-
-        return self
