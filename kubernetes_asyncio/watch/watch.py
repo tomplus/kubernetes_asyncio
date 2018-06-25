@@ -19,20 +19,13 @@ from types import SimpleNamespace
 
 from kubernetes_asyncio import client
 
-PYDOC_RETURN_LABEL = ":return:"
-
-# Removing this suffix from return type name should give us event's object
-# type. e.g., if list_namespaces() returns "NamespaceList" type,
-# then list_namespaces(watch=true) returns a stream of events with objects
-# of type "Namespace". In case this assumption is not true, user should
-# provide return_type to Watch class's __init__.
-TYPE_LIST_SUFFIX = "List"
-
 
 def _find_return_type(func):
     for line in pydoc.getdoc(func).splitlines():
-        if line.startswith(PYDOC_RETURN_LABEL):
-            return line[len(PYDOC_RETURN_LABEL):].strip()
+        if line.startswith(":return:"):
+            rtype = line[len(":return:"):].strip()
+            rtype = rtype.rpartition("List")[0]
+            return rtype
     return None
 
 
@@ -66,11 +59,10 @@ class Watch(object):
 
         """
         self._api_client = client.ApiClient()
-        self._raw_return_type = None
         self._stop = False
 
         # Make this more explicit and cover with a test.
-        self.return_type = self.get_return_type(func)
+        self.return_type = _find_return_type(func)
         kwargs['watch'] = True
         kwargs['_preload_content'] = False
 
@@ -79,15 +71,6 @@ class Watch(object):
 
     def stop(self):
         self._stop = True
-
-    def get_return_type(self, func):
-        if self._raw_return_type:
-            return self._raw_return_type
-        return_type = _find_return_type(func)
-
-        if return_type.endswith(TYPE_LIST_SUFFIX):
-            return return_type[:-len(TYPE_LIST_SUFFIX)]
-        return return_type
 
     def unmarshal_event(self, data: str, response_type):
         """Return the K8s response `data` in JSON format.

@@ -36,7 +36,7 @@ class WatchTest(TestCase):
         assert fun(object) is None
 
         resource = kubernetes_asyncio.client.CoreV1Api().list_namespace
-        assert fun(resource) == 'V1NamespaceList'
+        assert fun(resource) == 'V1Namespace'
 
     async def test_watch_with_decode(self):
         fake_resp = CoroutineMock()
