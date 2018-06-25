@@ -35,8 +35,24 @@ class WatchTest(TestCase):
         assert fun('') is None
         assert fun(object) is None
 
-        resource = kubernetes_asyncio.client.CoreV1Api().list_namespace
-        assert fun(resource) == 'V1Namespace'
+        class ClassWithValidDocString():
+            """This has a valid doc string.
+            :return: V1NamespaceList
+            """
+            pass
+
+        assert fun(ClassWithValidDocString()) == 'V1Namespace'
+
+        class ClassWithInvalidDocString():
+            """Multiple :return: strings.
+            :return: foo
+            blah
+            :return: bar
+            """
+            pass
+
+        with self.assertRaises(AssertionError):
+            fun(ClassWithInvalidDocString())
 
     async def test_watch_with_decode(self):
         fake_resp = CoroutineMock()

@@ -21,12 +21,32 @@ from kubernetes_asyncio import client
 
 
 def _find_return_type(func):
-    for line in pydoc.getdoc(func).splitlines():
-        if line.startswith(":return:"):
-            rtype = line[len(":return:"):].strip()
-            rtype = rtype.rpartition("List")[0]
-            return rtype
-    return None
+    """Return the K8s return type as a string, eg `V1Namespace`.
+
+    Return None if the return type was not in the doc string of `func`.
+
+    Raise `AssertionError` if the doc string was ambiguous.
+
+    NOTE: this function makes _assumes_ the doc strings have a certain type.
+    """
+    # Find all the lines that mention the return type.
+    lines = [_ for _ in pydoc.getdoc(func).splitlines() if _.startswith(":return:")]
+
+    # Return None if the doc string does not mention a return type (user
+    # probably specified an invalid function; would be good to catch at some
+    # point).
+    if len(lines) == 0:
+        return None
+
+    # Raise an exception if we could not unambiguously determine the return type.
+    assert len(lines) == 1, 'Unable to determine return type for {}'.format(func)
+
+    # Strip the leading ':return:' and trailing 'List' string to extract the
+    # correct type name.
+    line = lines[0]
+    rtype = line.partition(":return:")[2].strip()
+    rtype = rtype.rpartition("List")[0].strip()
+    return rtype
 
 
 class Watch(object):
