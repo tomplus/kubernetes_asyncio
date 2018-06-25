@@ -36,12 +36,6 @@ def _find_return_type(func):
     return ""
 
 
-class Stream(object):
-
-    def __init__(self, func, *args, **kwargs):
-        pass
-
-
 class Watch(object):
 
     def __init__(self, return_type=None):
