@@ -22,6 +22,22 @@ from kubernetes_asyncio.watch import Watch
 
 class WatchTest(TestCase):
 
+    def test_find_return_type(self):
+        """A few basic test cases to ensure it does what it says."""
+        fun = kubernetes_asyncio.watch.watch._find_return_type
+
+        # Must return None because the `None` object has an empty doc string
+        # and is not a K8s type.
+        assert fun(None) is None
+
+        # These have non-empty doc strings but are not a K8s types. The
+        # function must therefore return None for them.
+        assert fun('') is None
+        assert fun(object) is None
+
+        resource = kubernetes_asyncio.client.CoreV1Api().list_namespace
+        assert fun(resource) == 'V1NamespaceList'
+
     async def test_watch_with_decode(self):
         fake_resp = CoroutineMock()
         fake_resp.content.readline = CoroutineMock()
