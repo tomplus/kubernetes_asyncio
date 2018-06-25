@@ -6,14 +6,14 @@ from kubernetes_asyncio import client, config, watch
 
 async def watch_namespaces():
     v1 = client.CoreV1Api()
-    async for event in watch.Watch().stream(v1.list_namespace):
+    async for event in watch.Watch(v1.list_namespace):
         etype, obj = event['type'], event['object']
         print(f"{etype} namespace {obj.metadata.name}")
 
 
 async def watch_pods():
     v1 = client.CoreV1Api()
-    async for event in watch.Watch().stream(v1.list_pod_for_all_namespaces):
+    async for event in watch.Watch(v1.list_pod_for_all_namespaces):
         evt, obj = event['type'], event['object']
         print(f"{evt} pod {obj.metadata.name} in NS {obj.metadata.namespace}")
 

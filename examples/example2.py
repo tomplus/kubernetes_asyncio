@@ -11,13 +11,13 @@ async def main():
 
     v1 = client.CoreV1Api()
     count = 10
-    w = watch.Watch()
+    stream = watch.Watch(v1.list_namespace, timeout_seconds=10)
 
-    async for event in w.stream(v1.list_namespace, timeout_seconds=10):
+    async for event in stream:
         print("Event: %s %s" % (event['type'], event['object'].metadata.name))
         count -= 1
         if not count:
-            w.stop()
+            stream.stop()
 
     print("Ended.")
 
