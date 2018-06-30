@@ -20,14 +20,14 @@ import tempfile
 from types import SimpleNamespace
 
 import yaml
-from asynctest import TestCase
+from asynctest import Mock, TestCase, main, patch
 from six import PY3
 
 from .config_exception import ConfigException
 from .kube_config import (
     ConfigNode, FileOrData, KubeConfigLoader, _cleanup_temp_files,
     _create_temp_file_with_content, list_kube_config_contexts,
-    load_kube_config, new_client_from_config,
+    load_kube_config, new_client_from_config, refresh_token,
 )
 
 BEARER_TOKEN_FORMAT = "Bearer %s"
@@ -76,6 +76,7 @@ class BaseTestCase(TestCase):
     def tearDown(self):
         for f in self._temp_files:
             os.remove(f)
+        patch.stopall()
 
     def _create_temp_file(self, content=""):
         handler, name = tempfile.mkstemp()
@@ -715,7 +716,24 @@ class TestKubeConfigLoader(BaseTestCase):
             active_context="non_existing_user").load_and_set(actual)
         self.assertEqual(expected, actual)
 
+    async def test_refresh_token(self):
+        loader = KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="gcp",
+            get_google_credentials=lambda: _raise_exception(
+                "SHOULD NOT BE CALLED"))
+        mock_sleep = patch('asyncio.sleep').start()
+        mock_sleep.side_effect = [0, AssertionError]
+
+        mock_config = Mock()
+        mock_config.api_key = {}
+
+        with self.assertRaises(AssertionError):
+            await refresh_token(loader, mock_config)
+
+        self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
+                         loader.token)
+
 
 if __name__ == '__main__':
-    import asynctest
-    asynctest.main()
+    main()

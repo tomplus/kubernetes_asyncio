@@ -124,6 +124,7 @@ class KubeConfigLoader(object):
         self._current_context = None
         self._user = None
         self._cluster = None
+        self.provider = None
         self.set_active_context(active_context)
         self._config_base_path = config_base_path
         self._config_persister = config_persister
@@ -131,7 +132,6 @@ class KubeConfigLoader(object):
             self._get_google_credentials = get_google_credentials
         else:
             self._get_google_credentials = None
-        self.provider = None
 
     def set_active_context(self, context_name=None):
         if context_name is None:
@@ -150,6 +150,8 @@ class KubeConfigLoader(object):
             self._user = None
         self._cluster = self._config['clusters'].get_with_name(
             self._current_context['context']['cluster'])['cluster']
+        if self._user is not None and 'auth-provider' in self._user and 'name' in self._user['auth-provider']:
+            self.provider = self._user['auth-provider']['name']
 
     async def _load_authentication(self):
         """Read authentication from kube-config user section if exists.
@@ -165,9 +167,6 @@ class KubeConfigLoader(object):
         """
         if not self._user:
             return
-
-        if 'auth-provider' in self._user and 'name' in self._user['auth-provider']:
-            self.provider = self._user['auth-provider']['name']
 
         if self.provider == 'gcp':
             await self.load_gcp_token()
