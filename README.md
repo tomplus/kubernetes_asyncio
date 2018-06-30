@@ -51,13 +51,16 @@ More complicated examples, like asynchronous multiple watch or tail logs from po
 you can find in `examples/` folder.
 
 
-## Comparison with synchronous library
+## Comparison with official synchronous library
 
-|  | [synchronous library](https://github.com/kubernetes-client/python) | [this libray](https://github.com/tomplus/kubernetes_asyncio/) |
+This library is generated in the same way as the official Kubernetes Python Library. It uses swagger-codegen and the same concepts
+like streaming, watching or reading configuration. Because of an early stage of this library some differences still exist:
+
+|  | [synchronous library kubernetes-client/python](https://github.com/kubernetes-client/python) | [this libray](https://github.com/tomplus/kubernetes_asyncio/) |
 |--|--------------------------------------------------------------------|---------------------------------------------------------------|
 | authentication method | gcp-token, user-token, oid-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, user-password, in-cluster |
 | refesh token | no | yes, optional |
-| integration with K8s' repositories | [python-base](https://github.com/kubernetes-client/python-base) & [gen](https://github.com/kubernetes-client/gen) | [gen](https://github.com/kubernetes-client/gen) only, python-base required a lot of changes and finally classes like watch, stream, config were incorporated |
+| integration with K8s' repositories | [python-base as sub-repo](https://github.com/kubernetes-client/python-base) & [gen](https://github.com/kubernetes-client/gen) | [gen](https://github.com/kubernetes-client/gen) only, python-base required a lot of changes and finally classes like watch, stream, config were incorporated here |
 | python | 2.7 3.4 3.5 3.6 | 3.5 3.6 |
 | streaming data via websocket from PODs | bidirectonal | read-only is already implemented |
 
