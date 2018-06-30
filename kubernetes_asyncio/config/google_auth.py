@@ -17,8 +17,8 @@ async def google_auth_credentials(provider):
     proc = await cmd_exec
 
     data = await proc.stdout.read()
-    line = data.decode('ascii').rstrip()
-    data = json.loads(line)
+    data = data.decode('ascii').rstrip()
+    data = json.loads(data)
 
     await proc.wait()
     return SimpleNamespace(
