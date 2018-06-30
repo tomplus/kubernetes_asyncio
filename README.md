@@ -8,8 +8,7 @@
 Asynchronous (AsyncIO) client library for the [Kubernetes](http://kubernetes.io/) API.
 
 This library is created in the same way as official https://github.com/kubernetes-client/python but uses asynchronous version of swagger-codegen.
-
-My motivation: https://github.com/kubernetes-client/python/pull/324
+My motivation is described here: https://github.com/kubernetes-client/python/pull/324
 
 ## Installation
 
@@ -17,21 +16,6 @@ From [PyPi](https://pypi.python.org/pypi/kubernetes_asyncio/) directly:
 
 ```
 pip install kubernetes_asyncio
-```
-
-## Development
-Install the development packages:
-
-```bash
-pip install -r requirements.txt
-pip install -r test-requirements.txt
-```
-
-You can run the style checks and tests with
-
-```bash
-flake8 && isort -c
-nosetests
 ```
 
 ## Example
@@ -47,15 +31,14 @@ async def main():
     # Configs can be set in Configuration class directly or using helper
     # utility. If no argument provided, the config will be loaded from
     # default location.
-    config.load_kube_config()
+    await config.load_kube_config()
 
     v1 = client.CoreV1Api()
     print("Listing pods with their IPs:")
     ret = await v1.list_pod_for_all_namespaces()
 
     for i in ret.items:
-        print("%s\t%s\t%s" %
-              (i.status.pod_ip, i.metadata.namespace, i.metadata.name))
+        print(i.status.pod_ip, i.metadata.namespace, i.metadata.name)
 
 
 if __name__ == '__main__':
@@ -66,3 +49,30 @@ if __name__ == '__main__':
 
 More complicated examples, like asynchronous multiple watch or tail logs from pods,
 you can find in `examples/` folder.
+
+
+## Comparison with synchronous library
+
+|  | [synchronous library](https://github.com/kubernetes-client/python) | [this libray](https://github.com/tomplus/kubernetes_asyncio/) |
+|--|--------------------------------------------------------------------|---------------------------------------------------------------|
+| authentication method | gcp-token, user-token, oid-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, user-password, in-cluster |
+| refesh token | no | yes, optional |
+| integration with K8s' repositories | [python-base](https://github.com/kubernetes-client/python-base) & [gen](https://github.com/kubernetes-client/gen) | [gen](https://github.com/kubernetes-client/gen) only, python-base required a lot of changes and finally classes like watch, stream, config were incorporated |
+| python | 2.7 3.4 3.5 3.6 | 3.5 3.6 |
+| streaming data via websocket from PODs | bidirectonal | read-only is already implemented |
+
+
+## Development
+Install the development packages:
+
+```bash
+pip install -r requirements.txt
+pip install -r test-requirements.txt
+```
+
+You can run the style checks and tests with
+
+```bash
+flake8 && isort -c
+nosetests
+```
