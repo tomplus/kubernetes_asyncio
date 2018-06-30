@@ -17,10 +17,10 @@ import datetime
 import os
 import shutil
 import tempfile
-import unittest
 from types import SimpleNamespace
 
 import yaml
+from asynctest import TestCase
 from six import PY3
 
 from .config_exception import ConfigException
@@ -68,7 +68,7 @@ TEST_CLIENT_CERT = "client-cert"
 TEST_CLIENT_CERT_BASE64 = _base64(TEST_CLIENT_CERT)
 
 
-class BaseTestCase(unittest.TestCase):
+class BaseTestCase(TestCase):
 
     def setUp(self):
         self._temp_files = []
@@ -87,6 +87,11 @@ class BaseTestCase(unittest.TestCase):
     def expect_exception(self, func, message_part, *args, **kwargs):
         with self.assertRaises(ConfigException) as context:
             func(*args, **kwargs)
+        self.assertIn(message_part, str(context.exception))
+
+    async def async_expect_exception(self, func, message_part, *args, **kwargs):
+        with self.assertRaises(ConfigException) as context:
+            await func(*args, **kwargs)
         self.assertIn(message_part, str(context.exception))
 
 
@@ -478,19 +483,19 @@ class TestKubeConfigLoader(BaseTestCase):
         ]
     }
 
-    def test_no_user_context(self):
+    async def test_no_user_context(self):
         expected = FakeConfig(host=TEST_HOST)
         actual = FakeConfig()
-        KubeConfigLoader(
+        await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="no_user").load_and_set(actual)
         self.assertEqual(expected, actual)
 
-    def test_simple_token(self):
+    async def test_simple_token(self):
         expected = FakeConfig(host=TEST_HOST,
                               token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64)
         actual = FakeConfig()
-        KubeConfigLoader(
+        await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="simple_token").load_and_set(actual)
         self.assertEqual(expected, actual)
@@ -502,47 +507,66 @@ class TestKubeConfigLoader(BaseTestCase):
         self.assertTrue(loader._load_user_token())
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64, loader.token)
 
-    def test_gcp_no_refresh(self):
+    async def test_gcp_no_refresh(self):
         expected = FakeConfig(
             host=TEST_HOST,
             token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64)
         actual = FakeConfig()
-        KubeConfigLoader(
+        await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="gcp",
             get_google_credentials=lambda: _raise_exception(
                 "SHOULD NOT BE CALLED")).load_and_set(actual)
         self.assertEqual(expected, actual)
 
-    def test_load_gcp_token_no_refresh(self):
+    async def test_load_gcp_token_no_refresh(self):
         loader = KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="gcp",
             get_google_credentials=lambda: _raise_exception(
                 "SHOULD NOT BE CALLED"))
-        self.assertTrue(loader._load_gcp_token())
+        res = await loader.load_gcp_token()
+        self.assertTrue(res)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
                          loader.token)
 
-    def test_load_gcp_token_with_refresh(self):
+    async def test_load_gcp_token_with_refresh(self):
 
         cred = SimpleNamespace(
             token=TEST_ANOTHER_DATA_BASE64,
-            expiry=datetime.datetime.now(),
+            expiry=datetime.datetime.now()
         )
 
         loader = KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="expired_gcp",
             get_google_credentials=lambda: cred)
-        self.assertTrue(loader._load_gcp_token())
+        res = await loader.load_gcp_token()
+        self.assertTrue(res)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_ANOTHER_DATA_BASE64,
                          loader.token)
 
-    def test_user_pass(self):
+    async def test_async_load_gcp_token_with_refresh(self):
+
+        async def cred():
+            return SimpleNamespace(
+                token=TEST_ANOTHER_DATA_BASE64,
+                expiry=datetime.datetime.now()
+            )
+
+        loader = KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="expired_gcp",
+            get_google_credentials=cred)
+        res = await loader.load_gcp_token()
+        self.assertTrue(res)
+        self.assertEqual(BEARER_TOKEN_FORMAT % TEST_ANOTHER_DATA_BASE64,
+                         loader.token)
+
+    async def test_user_pass(self):
         expected = FakeConfig(host=TEST_HOST, token=TEST_BASIC_TOKEN)
         actual = FakeConfig()
-        KubeConfigLoader(
+        await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="user_pass").load_and_set(actual)
         self.assertEqual(expected, actual)
@@ -554,16 +578,16 @@ class TestKubeConfigLoader(BaseTestCase):
         self.assertTrue(loader._load_user_pass_token())
         self.assertEqual(TEST_BASIC_TOKEN, loader.token)
 
-    def test_ssl_no_cert_files(self):
+    async def test_ssl_no_cert_files(self):
         loader = KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="ssl-no_file")
-        self.expect_exception(
+        await self.async_expect_exception(
             loader.load_and_set,
             "does not exists",
             FakeConfig())
 
-    def test_ssl(self):
+    async def test_ssl(self):
         expected = FakeConfig(
             host=TEST_SSL_HOST,
             token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
@@ -572,12 +596,12 @@ class TestKubeConfigLoader(BaseTestCase):
             ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH)
         )
         actual = FakeConfig()
-        KubeConfigLoader(
+        await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="ssl").load_and_set(actual)
         self.assertEqual(expected, actual)
 
-    def test_ssl_no_verification(self):
+    async def test_ssl_no_verification(self):
         expected = FakeConfig(
             host=TEST_SSL_HOST,
             token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
@@ -587,7 +611,7 @@ class TestKubeConfigLoader(BaseTestCase):
             ssl_ca_cert=None,
         )
         actual = FakeConfig()
-        KubeConfigLoader(
+        await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="no_ssl_verification").load_and_set(actual)
         self.assertEqual(expected, actual)
@@ -615,7 +639,7 @@ class TestKubeConfigLoader(BaseTestCase):
         self.assertEqual(expected_contexts.get_with_name("ssl").value,
                          loader.current_context)
 
-    def test_ssl_with_relative_ssl_files(self):
+    async def test_ssl_with_relative_ssl_files(self):
         expected = FakeConfig(
             host=TEST_SSL_HOST,
             token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
@@ -634,7 +658,7 @@ class TestKubeConfigLoader(BaseTestCase):
                 fd.write(TEST_CLIENT_KEY.encode())
             with open(os.path.join(temp_dir, "token_file"), "wb") as fd:
                 fd.write(TEST_DATA_BASE64.encode())
-            KubeConfigLoader(
+            await KubeConfigLoader(
                 config_dict=self.TEST_KUBE_CONFIG,
                 active_context="ssl-local-file",
                 config_base_path=temp_dir).load_and_set(actual)
@@ -642,13 +666,14 @@ class TestKubeConfigLoader(BaseTestCase):
         finally:
             shutil.rmtree(temp_dir)
 
-    def test_load_kube_config(self):
+    async def test_load_kube_config(self):
         expected = FakeConfig(host=TEST_HOST,
                               token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64)
         config_file = self._create_temp_file(yaml.dump(self.TEST_KUBE_CONFIG))
         actual = FakeConfig()
-        load_kube_config(config_file=config_file, context="simple_token",
-                         client_configuration=actual)
+        await load_kube_config(config_file=config_file,
+                               context="simple_token",
+                               client_configuration=actual)
         self.assertEqual(expected, actual)
 
     def test_list_kube_config_contexts(self):
@@ -664,32 +689,33 @@ class TestKubeConfigLoader(BaseTestCase):
             self.assertItemsEqual(self.TEST_KUBE_CONFIG['contexts'],
                                   contexts)
 
-    def test_new_client_from_config(self):
+    async def test_new_client_from_config(self):
         config_file = self._create_temp_file(yaml.dump(self.TEST_KUBE_CONFIG))
-        client = new_client_from_config(
+        client = await new_client_from_config(
             config_file=config_file, context="simple_token")
         self.assertEqual(TEST_HOST, client.configuration.host)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
                          client.configuration.api_key['authorization'])
 
-    def test_no_users_section(self):
+    async def test_no_users_section(self):
         expected = FakeConfig(host=TEST_HOST)
         actual = FakeConfig()
         test_kube_config = self.TEST_KUBE_CONFIG.copy()
         del test_kube_config['users']
-        KubeConfigLoader(
+        await KubeConfigLoader(
             config_dict=test_kube_config,
             active_context="gcp").load_and_set(actual)
         self.assertEqual(expected, actual)
 
-    def test_non_existing_user(self):
+    async def test_non_existing_user(self):
         expected = FakeConfig(host=TEST_HOST)
         actual = FakeConfig()
-        KubeConfigLoader(
+        await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="non_existing_user").load_and_set(actual)
         self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':
-    unittest.main()
+    import asynctest
+    asynctest.main()

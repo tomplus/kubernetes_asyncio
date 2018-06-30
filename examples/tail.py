@@ -51,7 +51,7 @@ async def print_pod_log(pod, namespace, container, lines, follow):
 async def main():
     args = parse_args()
 
-    config.load_kube_config()
+    loader = await config.load_kube_config()
 
     v1 = client.CoreV1Api()
     ret = await v1.list_namespaced_pod(args.namespace)
@@ -68,6 +68,10 @@ async def main():
     if cmd == []:
         print('No matching PODs !')
         return
+
+    if args.follow:
+        # autorefresh gcp token
+        cmd.append(config.refresh_token(loader))
 
     await asyncio.wait(cmd)
 
