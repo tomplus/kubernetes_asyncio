@@ -14,8 +14,7 @@ async def main():
     ret = await v1.list_pod_for_all_namespaces()
 
     for i in ret.items:
-        print("%s\t%s\t%s" %
-              (i.status.pod_ip, i.metadata.namespace, i.metadata.name))
+        print(i.status.pod_ip, i.metadata.namespace, i.metadata.name)
 
 
 if __name__ == '__main__':
