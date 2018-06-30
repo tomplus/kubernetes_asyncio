@@ -14,7 +14,7 @@ async def main():
     w = watch.Watch()
 
     async for event in w.stream(v1.list_namespace, timeout_seconds=10):
-        print("Event: %s %s" % (event['type'], event['object'].metadata.name))
+        print("Event: {} {}".format(event['type'], event['object'].metadata.name))
         count -= 1
         if not count:
             w.stop()
