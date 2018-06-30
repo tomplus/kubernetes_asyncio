@@ -12,21 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import asyncio
 import atexit
 import base64
 import datetime
 import os
 import tempfile
 
-import google.auth
-import google.auth.transport.requests
 import urllib3
 import yaml
 
 from kubernetes_asyncio.client import ApiClient, Configuration
 
 from .config_exception import ConfigException
-from .dateutil import UTC, format_rfc3339, parse_rfc3339
+from .dateutil import UTC, parse_rfc3339
+from .google_auth import google_auth_credentials
 
 EXPIRY_SKEW_PREVENTION_DELAY = datetime.timedelta(minutes=5)
 KUBE_CONFIG_DEFAULT_LOCATION = os.environ.get('KUBECONFIG', '~/.kube/config')
@@ -59,7 +59,7 @@ def _create_temp_file_with_content(content):
 
 
 def _is_expired(expiry):
-    return ((parse_rfc3339(expiry) + EXPIRY_SKEW_PREVENTION_DELAY) <=
+    return ((parse_rfc3339(expiry) - EXPIRY_SKEW_PREVENTION_DELAY) <=
             datetime.datetime.utcnow().replace(tzinfo=UTC))
 
 
@@ -124,22 +124,14 @@ class KubeConfigLoader(object):
         self._current_context = None
         self._user = None
         self._cluster = None
+        self.provider = None
         self.set_active_context(active_context)
         self._config_base_path = config_base_path
         self._config_persister = config_persister
-
-        def _refresh_credentials():
-            credentials, project_id = google.auth.default(
-                scopes=['https://www.googleapis.com/auth/cloud-platform']
-            )
-            request = google.auth.transport.requests.Request()
-            credentials.refresh(request)
-            return credentials
-
         if get_google_credentials:
             self._get_google_credentials = get_google_credentials
         else:
-            self._get_google_credentials = _refresh_credentials
+            self._get_google_credentials = None
 
     def set_active_context(self, context_name=None):
         if context_name is None:
@@ -158,8 +150,10 @@ class KubeConfigLoader(object):
             self._user = None
         self._cluster = self._config['clusters'].get_with_name(
             self._current_context['context']['cluster'])['cluster']
+        if self._user is not None and 'auth-provider' in self._user and 'name' in self._user['auth-provider']:
+            self.provider = self._user['auth-provider']['name']
 
-    def _load_authentication(self):
+    async def _load_authentication(self):
         """Read authentication from kube-config user section if exists.
 
         This function goes through various authentication methods in user
@@ -173,40 +167,39 @@ class KubeConfigLoader(object):
         """
         if not self._user:
             return
-        if self._load_gcp_token():
+
+        if self.provider == 'gcp':
+            await self.load_gcp_token()
             return
+
         if self._load_user_token():
             return
         self._load_user_pass_token()
 
-    def _load_gcp_token(self):
-        if 'auth-provider' not in self._user:
-            return
-        provider = self._user['auth-provider']
-        if 'name' not in provider:
-            return
-        if provider['name'] != 'gcp':
-            return
+    async def load_gcp_token(self):
 
-        if (('config' not in provider) or
-                ('access-token' not in provider['config']) or
-                ('expiry' in provider['config'] and
-                 _is_expired(provider['config']['expiry']))):
-            # token is not available or expired, refresh it
-            self._refresh_gcp_token()
-
-        self.token = "Bearer %s" % provider['config']['access-token']
-        return self.token
-
-    def _refresh_gcp_token(self):
         if 'config' not in self._user['auth-provider']:
             self._user['auth-provider'].value['config'] = {}
-        provider = self._user['auth-provider']['config']
-        credentials = self._get_google_credentials()
-        provider.value['access-token'] = credentials.token
-        provider.value['expiry'] = format_rfc3339(credentials.expiry)
-        if self._config_persister:
-            self._config_persister(self._config.value)
+
+        config = self._user['auth-provider']['config']
+
+        if (('access-token' not in config) or
+           ('expiry' in config and _is_expired(config['expiry']))):
+
+            if self._get_google_credentials is not None:
+                if asyncio.iscoroutinefunction(self._get_google_credentials):
+                    credentials = await self._get_google_credentials()
+                else:
+                    credentials = self._get_google_credentials()
+            else:
+                credentials = await google_auth_credentials(config)
+            config.value['access-token'] = credentials.token
+            config.value['expiry'] = credentials.expiry
+            if self._config_persister:
+                self._config_persister(self._config.value)
+
+        self.token = "Bearer %s" % config['access-token']
+        return self.token
 
     def _load_user_token(self):
         token = FileOrData(
@@ -241,16 +234,18 @@ class KubeConfigLoader(object):
             self.verify_ssl = not self._cluster['insecure-skip-tls-verify']
 
     def _set_config(self, client_configuration):
+
         if 'token' in self.__dict__:
             client_configuration.api_key['authorization'] = self.token
+
         # copy these keys directly from self to configuration object
         keys = ['host', 'ssl_ca_cert', 'cert_file', 'key_file', 'verify_ssl']
         for key in keys:
             if key in self.__dict__:
                 setattr(client_configuration, key, getattr(self, key))
 
-    def load_and_set(self, client_configuration):
-        self._load_authentication()
+    async def load_and_set(self, client_configuration):
+        await self._load_authentication()
         self._load_cluster_info()
         self._set_config(client_configuration)
 
@@ -339,9 +334,9 @@ def list_kube_config_contexts(config_file=None):
     return loader.list_contexts(), loader.current_context
 
 
-def load_kube_config(config_file=None, context=None,
-                     client_configuration=None,
-                     persist_config=True):
+async def load_kube_config(config_file=None, context=None,
+                           client_configuration=None,
+                           persist_config=True):
     """Loads authentication and cluster information from kube-config file
     and stores them in kubernetes.client.configuration.
 
@@ -369,21 +364,43 @@ def load_kube_config(config_file=None, context=None,
         config_persister=config_persister)
     if client_configuration is None:
         config = type.__call__(Configuration)
-        loader.load_and_set(config)
+        await loader.load_and_set(config)
         Configuration.set_default(config)
     else:
-        loader.load_and_set(client_configuration)
+        await loader.load_and_set(client_configuration)
+
+    return loader
 
 
-def new_client_from_config(
-        config_file=None,
-        context=None,
-        persist_config=True):
+async def refresh_token(loader, client_configuration=None, interval=60):
+    """Refresh token if necessary, updates the token in client configurarion
+
+    :param loader: KubeConfigLoader returned by load_kube_config
+    :param client_configuration: The kubernetes.client.Configuration to
+            set configs to.
+    :param interval: how often check if token is up-to-date
+
+    """
+    if loader.provider != 'gcp':
+        return
+
+    if client_configuration is None:
+        client_configuration = Configuration()
+
+    while 1:
+        await asyncio.sleep(interval)
+        await loader.load_gcp_token()
+        client_configuration.api_key['authorization'] = loader.token
+
+
+async def new_client_from_config(config_file=None, context=None, persist_config=True):
     """Loads configuration the same as load_kube_config but returns an ApiClient
     to be used with any API object. This will allow the caller to concurrently
     talk with multiple clusters."""
     client_config = type.__call__(Configuration)
-    load_kube_config(config_file=config_file, context=context,
-                     client_configuration=client_config,
-                     persist_config=persist_config)
+
+    await load_kube_config(config_file=config_file, context=context,
+                           client_configuration=client_config,
+                           persist_config=persist_config)
+
     return ApiClient(configuration=client_config)

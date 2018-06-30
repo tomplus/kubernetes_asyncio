@@ -10,6 +10,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import asyncio
 import http.client
 import os
 import unittest
@@ -25,7 +26,8 @@ def get_e2e_configuration():
     config.host = None
     if os.path.exists(
             os.path.expanduser(kube_config.KUBE_CONFIG_DEFAULT_LOCATION)):
-        kube_config.load_kube_config(client_configuration=config)
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(kube_config.load_kube_config(client_configuration=config))
     else:
         print('Unable to load config from %s' %
               kube_config.KUBE_CONFIG_DEFAULT_LOCATION)
