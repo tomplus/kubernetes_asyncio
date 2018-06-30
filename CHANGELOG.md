@@ -1,3 +1,9 @@
+# v1.0.0-beta1
+
+* feat: make function `load_kube_config` asynchronous
+* feat: function to auto-refresh gke token 
+* feat: remove synchronous libraries from dependencies
+
 # v1.0.0-alpha4
 
 * feat: watch stops the iterator for empty responses and do not process ERROR responses ([#22](https://github.com/tomplus/kubernetes_asyncio/pull/22), [@olitheolix](https://github.com/olitheolix))

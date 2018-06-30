@@ -60,9 +60,8 @@ like streaming, watching or reading configuration. Because of an early stage of 
 |--|--------------------------------------------------------------------|---------------------------------------------------------------|
 | authentication method | gcp-token, user-token, oid-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, user-password, in-cluster |
 | refesh token | no | yes, optional |
-| integration with K8s' repositories | [python-base as sub-repo](https://github.com/kubernetes-client/python-base) & [gen](https://github.com/kubernetes-client/gen) | [gen](https://github.com/kubernetes-client/gen) only, python-base required a lot of changes and finally classes like watch, stream, config were incorporated here |
 | python | 2.7 3.4 3.5 3.6 | 3.5 3.6 |
-| streaming data via websocket from PODs | bidirectonal | read-only is already implemented |
+| streaming data via websocket from PODs | bidirectional | read-only is already implemented |
 
 
 ## Development
