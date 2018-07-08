@@ -38,11 +38,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_namespaced_pod_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_namespaced_pod_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -51,7 +51,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_delete_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_delete_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -62,11 +62,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_namespaced_pod_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_namespaced_pod_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -76,7 +76,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -138,7 +138,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -149,11 +149,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_namespaced_pod_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_namespaced_pod_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -163,7 +163,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_delete_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_delete_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -174,11 +174,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -189,7 +189,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -257,7 +257,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -268,11 +268,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_namespaced_service_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_namespaced_service_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -281,7 +281,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_delete_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_delete_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -292,11 +292,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_namespaced_service_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_namespaced_service_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -306,7 +306,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -368,7 +368,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -379,11 +379,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_namespaced_service_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_namespaced_service_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -393,7 +393,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_delete_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_delete_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -404,11 +404,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -419,7 +419,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -487,7 +487,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -498,11 +498,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_node_proxy(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_node_proxy(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -510,7 +510,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_delete_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_delete_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
@@ -521,11 +521,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_node_proxy_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_node_proxy_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -534,7 +534,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -590,7 +590,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -601,11 +601,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_node_proxy_with_path(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_node_proxy_with_path(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -614,7 +614,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_delete_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_delete_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
@@ -625,11 +625,11 @@ class CoreV1Api(object):
 
         connect DELETE requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_delete_node_proxy_with_path_with_http_info(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_delete_node_proxy_with_path_with_http_info(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -639,7 +639,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -701,7 +701,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -712,11 +712,11 @@ class CoreV1Api(object):
 
         connect GET requests to attach of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_attach(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_attach(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str container: The container in which to execute the command. Defaults to only container if there is only one container in the pod.
@@ -729,7 +729,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_namespaced_pod_attach_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_namespaced_pod_attach_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -740,11 +740,11 @@ class CoreV1Api(object):
 
         connect GET requests to attach of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_attach_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_attach_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str container: The container in which to execute the command. Defaults to only container if there is only one container in the pod.
@@ -758,7 +758,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'container', 'stderr', 'stdin', 'stdout', 'tty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -828,7 +828,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -839,11 +839,11 @@ class CoreV1Api(object):
 
         connect GET requests to exec of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_exec(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_exec(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str command: Command is the remote command to execute. argv array. Not executed within a shell.
@@ -857,7 +857,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_namespaced_pod_exec_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_namespaced_pod_exec_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -868,11 +868,11 @@ class CoreV1Api(object):
 
         connect GET requests to exec of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_exec_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_exec_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str command: Command is the remote command to execute. argv array. Not executed within a shell.
@@ -887,7 +887,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'command', 'container', 'stderr', 'stdin', 'stdout', 'tty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -959,7 +959,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -970,11 +970,11 @@ class CoreV1Api(object):
 
         connect GET requests to portforward of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_portforward(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_portforward(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param int ports: List of ports to forward Required when using WebSockets
@@ -983,7 +983,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_namespaced_pod_portforward_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_namespaced_pod_portforward_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -994,11 +994,11 @@ class CoreV1Api(object):
 
         connect GET requests to portforward of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_portforward_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_portforward_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param int ports: List of ports to forward Required when using WebSockets
@@ -1008,7 +1008,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'ports']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1070,7 +1070,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1081,11 +1081,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -1094,7 +1094,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -1105,11 +1105,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -1119,7 +1119,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1181,7 +1181,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1192,11 +1192,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -1206,7 +1206,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -1217,11 +1217,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -1232,7 +1232,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1300,7 +1300,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1311,11 +1311,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_service_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_service_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -1324,7 +1324,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -1335,11 +1335,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_service_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_service_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -1349,7 +1349,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1411,7 +1411,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1422,11 +1422,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_service_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_service_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -1436,7 +1436,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -1447,11 +1447,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -1462,7 +1462,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1530,7 +1530,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1541,11 +1541,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_node_proxy(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_node_proxy(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -1553,7 +1553,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
@@ -1564,11 +1564,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_node_proxy_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_node_proxy_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -1577,7 +1577,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1633,7 +1633,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1644,11 +1644,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_node_proxy_with_path(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_node_proxy_with_path(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -1657,7 +1657,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_get_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_get_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
@@ -1668,11 +1668,11 @@ class CoreV1Api(object):
 
         connect GET requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_get_node_proxy_with_path_with_http_info(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_get_node_proxy_with_path_with_http_info(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -1682,7 +1682,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1744,7 +1744,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1755,11 +1755,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_namespaced_pod_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_namespaced_pod_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -1768,7 +1768,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_head_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_head_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -1779,11 +1779,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_namespaced_pod_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_namespaced_pod_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -1793,7 +1793,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1855,7 +1855,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1866,11 +1866,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_namespaced_pod_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_namespaced_pod_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -1880,7 +1880,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_head_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_head_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -1891,11 +1891,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -1906,7 +1906,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1974,7 +1974,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1985,11 +1985,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_namespaced_service_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_namespaced_service_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -1998,7 +1998,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_head_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_head_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -2009,11 +2009,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_namespaced_service_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_namespaced_service_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -2023,7 +2023,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2085,7 +2085,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2096,11 +2096,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_namespaced_service_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_namespaced_service_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -2110,7 +2110,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_head_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_head_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -2121,11 +2121,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -2136,7 +2136,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2204,7 +2204,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2215,11 +2215,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_node_proxy(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_node_proxy(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -2227,7 +2227,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_head_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_head_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
@@ -2238,11 +2238,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_node_proxy_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_node_proxy_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -2251,7 +2251,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2307,7 +2307,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2318,11 +2318,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_node_proxy_with_path(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_node_proxy_with_path(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -2331,7 +2331,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_head_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_head_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
@@ -2342,11 +2342,11 @@ class CoreV1Api(object):
 
         connect HEAD requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_head_node_proxy_with_path_with_http_info(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_head_node_proxy_with_path_with_http_info(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -2356,7 +2356,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2418,7 +2418,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2429,11 +2429,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_namespaced_pod_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_namespaced_pod_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -2442,7 +2442,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_options_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_options_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -2453,11 +2453,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_namespaced_pod_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_namespaced_pod_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -2467,7 +2467,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2529,7 +2529,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2540,11 +2540,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_namespaced_pod_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_namespaced_pod_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -2554,7 +2554,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_options_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_options_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -2565,11 +2565,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -2580,7 +2580,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2648,7 +2648,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2659,11 +2659,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_namespaced_service_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_namespaced_service_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -2672,7 +2672,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_options_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_options_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -2683,11 +2683,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_namespaced_service_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_namespaced_service_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -2697,7 +2697,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2759,7 +2759,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2770,11 +2770,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_namespaced_service_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_namespaced_service_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -2784,7 +2784,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_options_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_options_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -2795,11 +2795,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -2810,7 +2810,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2878,7 +2878,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2889,11 +2889,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_node_proxy(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_node_proxy(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -2901,7 +2901,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_options_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_options_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
@@ -2912,11 +2912,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_node_proxy_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_node_proxy_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -2925,7 +2925,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2981,7 +2981,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2992,11 +2992,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_node_proxy_with_path(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_node_proxy_with_path(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -3005,7 +3005,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_options_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_options_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
@@ -3016,11 +3016,11 @@ class CoreV1Api(object):
 
         connect OPTIONS requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_options_node_proxy_with_path_with_http_info(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_options_node_proxy_with_path_with_http_info(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -3030,7 +3030,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -3092,7 +3092,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -3103,11 +3103,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_namespaced_pod_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_namespaced_pod_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -3116,7 +3116,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_patch_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_patch_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -3127,11 +3127,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_namespaced_pod_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_namespaced_pod_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -3141,7 +3141,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -3203,7 +3203,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -3214,11 +3214,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_namespaced_pod_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_namespaced_pod_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -3228,7 +3228,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_patch_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_patch_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -3239,11 +3239,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -3254,7 +3254,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -3322,7 +3322,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -3333,11 +3333,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_namespaced_service_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_namespaced_service_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -3346,7 +3346,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_patch_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_patch_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -3357,11 +3357,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_namespaced_service_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_namespaced_service_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -3371,7 +3371,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -3433,7 +3433,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -3444,11 +3444,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_namespaced_service_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_namespaced_service_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -3458,7 +3458,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_patch_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_patch_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -3469,11 +3469,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -3484,7 +3484,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -3552,7 +3552,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -3563,11 +3563,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_node_proxy(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_node_proxy(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -3575,7 +3575,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_patch_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_patch_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
@@ -3586,11 +3586,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_node_proxy_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_node_proxy_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -3599,7 +3599,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -3655,7 +3655,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -3666,11 +3666,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_node_proxy_with_path(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_node_proxy_with_path(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -3679,7 +3679,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_patch_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_patch_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
@@ -3690,11 +3690,11 @@ class CoreV1Api(object):
 
         connect PATCH requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_patch_node_proxy_with_path_with_http_info(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_patch_node_proxy_with_path_with_http_info(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -3704,7 +3704,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -3766,7 +3766,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -3777,11 +3777,11 @@ class CoreV1Api(object):
 
         connect POST requests to attach of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_attach(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_attach(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str container: The container in which to execute the command. Defaults to only container if there is only one container in the pod.
@@ -3794,7 +3794,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_namespaced_pod_attach_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_namespaced_pod_attach_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -3805,11 +3805,11 @@ class CoreV1Api(object):
 
         connect POST requests to attach of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_attach_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_attach_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str container: The container in which to execute the command. Defaults to only container if there is only one container in the pod.
@@ -3823,7 +3823,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'container', 'stderr', 'stdin', 'stdout', 'tty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -3893,7 +3893,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -3904,11 +3904,11 @@ class CoreV1Api(object):
 
         connect POST requests to exec of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_exec(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_exec(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str command: Command is the remote command to execute. argv array. Not executed within a shell.
@@ -3922,7 +3922,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_namespaced_pod_exec_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_namespaced_pod_exec_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -3933,11 +3933,11 @@ class CoreV1Api(object):
 
         connect POST requests to exec of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_exec_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_exec_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str command: Command is the remote command to execute. argv array. Not executed within a shell.
@@ -3952,7 +3952,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'command', 'container', 'stderr', 'stdin', 'stdout', 'tty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4024,7 +4024,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4035,11 +4035,11 @@ class CoreV1Api(object):
 
         connect POST requests to portforward of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_portforward(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_portforward(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param int ports: List of ports to forward Required when using WebSockets
@@ -4048,7 +4048,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_namespaced_pod_portforward_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_namespaced_pod_portforward_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -4059,11 +4059,11 @@ class CoreV1Api(object):
 
         connect POST requests to portforward of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_portforward_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_portforward_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param int ports: List of ports to forward Required when using WebSockets
@@ -4073,7 +4073,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'ports']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4135,7 +4135,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4146,11 +4146,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -4159,7 +4159,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -4170,11 +4170,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -4184,7 +4184,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4246,7 +4246,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4257,11 +4257,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -4271,7 +4271,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -4282,11 +4282,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -4297,7 +4297,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4365,7 +4365,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4376,11 +4376,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_service_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_service_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -4389,7 +4389,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -4400,11 +4400,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_service_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_service_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -4414,7 +4414,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4476,7 +4476,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4487,11 +4487,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_service_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_service_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -4501,7 +4501,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -4512,11 +4512,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -4527,7 +4527,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4595,7 +4595,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4606,11 +4606,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_node_proxy(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_node_proxy(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -4618,7 +4618,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
@@ -4629,11 +4629,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_node_proxy_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_node_proxy_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -4642,7 +4642,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4698,7 +4698,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4709,11 +4709,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_node_proxy_with_path(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_node_proxy_with_path(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -4722,7 +4722,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_post_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_post_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
@@ -4733,11 +4733,11 @@ class CoreV1Api(object):
 
         connect POST requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_post_node_proxy_with_path_with_http_info(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_post_node_proxy_with_path_with_http_info(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -4747,7 +4747,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4809,7 +4809,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4820,11 +4820,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_namespaced_pod_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_namespaced_pod_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -4833,7 +4833,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_put_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_put_namespaced_pod_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -4844,11 +4844,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_namespaced_pod_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_namespaced_pod_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the URL path to use for the current proxy request to pod.
@@ -4858,7 +4858,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -4920,7 +4920,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -4931,11 +4931,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_namespaced_pod_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_namespaced_pod_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -4945,7 +4945,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_put_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_put_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -4956,11 +4956,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_namespaced_pod_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -4971,7 +4971,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5039,7 +5039,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5050,11 +5050,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_namespaced_service_proxy(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_namespaced_service_proxy(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -5063,7 +5063,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_put_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_put_namespaced_service_proxy_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -5074,11 +5074,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_namespaced_service_proxy_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_namespaced_service_proxy_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: Path is the part of URLs that include service endpoints, suffixes, and parameters to use for the current proxy request to service. For example, the whole request URL is http://localhost/api/v1/namespaces/kube-system/services/elasticsearch-logging/_search?q=user:kimchy. Path is _search?q=user:kimchy.
@@ -5088,7 +5088,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5150,7 +5150,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5161,11 +5161,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_namespaced_service_proxy_with_path(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_namespaced_service_proxy_with_path(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -5175,7 +5175,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_put_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_put_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, **kwargs)  # noqa: E501
@@ -5186,11 +5186,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_namespaced_service_proxy_with_path_with_http_info(name, namespace, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str path: path to the resource (required)
@@ -5201,7 +5201,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5269,7 +5269,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5280,11 +5280,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_node_proxy(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_node_proxy(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -5292,7 +5292,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_put_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_put_node_proxy_with_http_info(name, **kwargs)  # noqa: E501
@@ -5303,11 +5303,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_node_proxy_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_node_proxy_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: Path is the URL path to use for the current proxy request to node.
         :return: str
@@ -5316,7 +5316,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5372,7 +5372,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5383,11 +5383,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_node_proxy_with_path(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_node_proxy_with_path(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -5396,7 +5396,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.connect_put_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
         else:
             (data) = self.connect_put_node_proxy_with_path_with_http_info(name, path, **kwargs)  # noqa: E501
@@ -5407,11 +5407,11 @@ class CoreV1Api(object):
 
         connect PUT requests to proxy of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.connect_put_node_proxy_with_path_with_http_info(name, path, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.connect_put_node_proxy_with_path_with_http_info(name, path, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str path: path to the resource (required)
         :param str path2: Path is the URL path to use for the current proxy request to node.
@@ -5421,7 +5421,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'path', 'path2']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5483,7 +5483,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5494,11 +5494,11 @@ class CoreV1Api(object):
 
         create a Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespace(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespace(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param V1Namespace body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1Namespace
@@ -5506,7 +5506,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespace_with_http_info(body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespace_with_http_info(body, **kwargs)  # noqa: E501
@@ -5517,11 +5517,11 @@ class CoreV1Api(object):
 
         create a Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespace_with_http_info(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespace_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param V1Namespace body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1Namespace
@@ -5530,7 +5530,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5586,7 +5586,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Namespace',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5597,11 +5597,11 @@ class CoreV1Api(object):
 
         create a Binding  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_binding(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_binding(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Binding body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -5610,7 +5610,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_binding_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_binding_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -5621,11 +5621,11 @@ class CoreV1Api(object):
 
         create a Binding  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_binding_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_binding_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Binding body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -5635,7 +5635,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5697,7 +5697,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Binding',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5708,11 +5708,11 @@ class CoreV1Api(object):
 
         create a ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_config_map(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_config_map(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ConfigMap body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -5721,7 +5721,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_config_map_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_config_map_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -5732,11 +5732,11 @@ class CoreV1Api(object):
 
         create a ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_config_map_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_config_map_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ConfigMap body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -5746,7 +5746,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5808,7 +5808,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ConfigMap',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5819,11 +5819,11 @@ class CoreV1Api(object):
 
         create Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_endpoints(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_endpoints(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Endpoints body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -5832,7 +5832,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_endpoints_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_endpoints_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -5843,11 +5843,11 @@ class CoreV1Api(object):
 
         create Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_endpoints_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_endpoints_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Endpoints body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -5857,7 +5857,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -5919,7 +5919,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Endpoints',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -5930,11 +5930,11 @@ class CoreV1Api(object):
 
         create an Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_event(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_event(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Event body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -5943,7 +5943,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_event_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_event_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -5954,11 +5954,11 @@ class CoreV1Api(object):
 
         create an Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_event_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_event_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Event body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -5968,7 +5968,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6030,7 +6030,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Event',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6041,11 +6041,11 @@ class CoreV1Api(object):
 
         create a LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_limit_range(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_limit_range(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1LimitRange body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6054,7 +6054,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_limit_range_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_limit_range_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -6065,11 +6065,11 @@ class CoreV1Api(object):
 
         create a LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_limit_range_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_limit_range_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1LimitRange body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6079,7 +6079,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6141,7 +6141,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1LimitRange',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6152,11 +6152,11 @@ class CoreV1Api(object):
 
         create a PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_persistent_volume_claim(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_persistent_volume_claim(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PersistentVolumeClaim body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6165,7 +6165,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_persistent_volume_claim_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_persistent_volume_claim_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -6176,11 +6176,11 @@ class CoreV1Api(object):
 
         create a PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_persistent_volume_claim_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_persistent_volume_claim_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PersistentVolumeClaim body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6190,7 +6190,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6252,7 +6252,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaim',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6263,11 +6263,11 @@ class CoreV1Api(object):
 
         create a Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_pod(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_pod(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Pod body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6276,7 +6276,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_pod_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_pod_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -6287,11 +6287,11 @@ class CoreV1Api(object):
 
         create a Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_pod_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_pod_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Pod body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6301,7 +6301,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6363,7 +6363,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Pod',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6374,11 +6374,11 @@ class CoreV1Api(object):
 
         create binding of a Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_pod_binding(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_pod_binding(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Binding (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Binding body: (required)
@@ -6388,7 +6388,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_pod_binding_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_pod_binding_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -6399,11 +6399,11 @@ class CoreV1Api(object):
 
         create binding of a Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_pod_binding_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_pod_binding_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Binding (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Binding body: (required)
@@ -6414,7 +6414,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6482,7 +6482,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Binding',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6493,11 +6493,11 @@ class CoreV1Api(object):
 
         create eviction of a Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_pod_eviction(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_pod_eviction(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Eviction (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1beta1Eviction body: (required)
@@ -6507,7 +6507,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_pod_eviction_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_pod_eviction_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -6518,11 +6518,11 @@ class CoreV1Api(object):
 
         create eviction of a Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_pod_eviction_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_pod_eviction_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Eviction (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1beta1Eviction body: (required)
@@ -6533,7 +6533,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6601,7 +6601,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1beta1Eviction',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6612,11 +6612,11 @@ class CoreV1Api(object):
 
         create a PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_pod_template(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_pod_template(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PodTemplate body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6625,7 +6625,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_pod_template_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_pod_template_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -6636,11 +6636,11 @@ class CoreV1Api(object):
 
         create a PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_pod_template_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_pod_template_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PodTemplate body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6650,7 +6650,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6712,7 +6712,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PodTemplate',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6723,11 +6723,11 @@ class CoreV1Api(object):
 
         create a ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_replication_controller(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_replication_controller(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ReplicationController body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6736,7 +6736,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_replication_controller_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_replication_controller_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -6747,11 +6747,11 @@ class CoreV1Api(object):
 
         create a ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_replication_controller_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_replication_controller_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ReplicationController body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6761,7 +6761,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6823,7 +6823,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationController',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6834,11 +6834,11 @@ class CoreV1Api(object):
 
         create a ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_resource_quota(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_resource_quota(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ResourceQuota body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6847,7 +6847,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_resource_quota_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_resource_quota_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -6858,11 +6858,11 @@ class CoreV1Api(object):
 
         create a ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_resource_quota_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_resource_quota_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ResourceQuota body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6872,7 +6872,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -6934,7 +6934,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuota',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -6945,11 +6945,11 @@ class CoreV1Api(object):
 
         create a Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_secret(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_secret(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Secret body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6958,7 +6958,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_secret_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_secret_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -6969,11 +6969,11 @@ class CoreV1Api(object):
 
         create a Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_secret_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_secret_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Secret body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -6983,7 +6983,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -7045,7 +7045,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Secret',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -7056,11 +7056,11 @@ class CoreV1Api(object):
 
         create a Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_service(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_service(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Service body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -7069,7 +7069,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_service_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_service_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -7080,11 +7080,11 @@ class CoreV1Api(object):
 
         create a Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_service_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_service_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Service body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -7094,7 +7094,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -7156,7 +7156,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Service',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -7167,11 +7167,11 @@ class CoreV1Api(object):
 
         create a ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_service_account(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_service_account(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ServiceAccount body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -7180,7 +7180,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_service_account_with_http_info(namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_service_account_with_http_info(namespace, body, **kwargs)  # noqa: E501
@@ -7191,11 +7191,11 @@ class CoreV1Api(object):
 
         create a ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_service_account_with_http_info(namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_service_account_with_http_info(namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ServiceAccount body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -7205,7 +7205,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -7267,7 +7267,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ServiceAccount',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -7278,11 +7278,11 @@ class CoreV1Api(object):
 
         create a Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_node(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_node(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param V1Node body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1Node
@@ -7290,7 +7290,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_node_with_http_info(body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_node_with_http_info(body, **kwargs)  # noqa: E501
@@ -7301,11 +7301,11 @@ class CoreV1Api(object):
 
         create a Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_node_with_http_info(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_node_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param V1Node body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1Node
@@ -7314,7 +7314,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -7370,7 +7370,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Node',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -7381,11 +7381,11 @@ class CoreV1Api(object):
 
         create a PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_persistent_volume(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_persistent_volume(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param V1PersistentVolume body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1PersistentVolume
@@ -7393,7 +7393,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_persistent_volume_with_http_info(body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_persistent_volume_with_http_info(body, **kwargs)  # noqa: E501
@@ -7404,11 +7404,11 @@ class CoreV1Api(object):
 
         create a PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_persistent_volume_with_http_info(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_persistent_volume_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param V1PersistentVolume body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1PersistentVolume
@@ -7417,7 +7417,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -7473,7 +7473,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolume',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -7484,11 +7484,11 @@ class CoreV1Api(object):
 
         delete collection of ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_config_map(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_config_map(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -7504,7 +7504,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_config_map_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_config_map_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -7515,11 +7515,11 @@ class CoreV1Api(object):
 
         delete collection of ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_config_map_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_config_map_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -7536,7 +7536,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -7608,7 +7608,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -7619,11 +7619,11 @@ class CoreV1Api(object):
 
         delete collection of Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_endpoints(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_endpoints(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -7639,7 +7639,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_endpoints_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_endpoints_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -7650,11 +7650,11 @@ class CoreV1Api(object):
 
         delete collection of Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_endpoints_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_endpoints_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -7671,7 +7671,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -7743,7 +7743,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -7754,11 +7754,11 @@ class CoreV1Api(object):
 
         delete collection of Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_event(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_event(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -7774,7 +7774,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_event_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_event_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -7785,11 +7785,11 @@ class CoreV1Api(object):
 
         delete collection of Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_event_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_event_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -7806,7 +7806,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -7878,7 +7878,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -7889,11 +7889,11 @@ class CoreV1Api(object):
 
         delete collection of LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_limit_range(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_limit_range(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -7909,7 +7909,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_limit_range_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_limit_range_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -7920,11 +7920,11 @@ class CoreV1Api(object):
 
         delete collection of LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_limit_range_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_limit_range_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -7941,7 +7941,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -8013,7 +8013,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -8024,11 +8024,11 @@ class CoreV1Api(object):
 
         delete collection of PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_persistent_volume_claim(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_persistent_volume_claim(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8044,7 +8044,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_persistent_volume_claim_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_persistent_volume_claim_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -8055,11 +8055,11 @@ class CoreV1Api(object):
 
         delete collection of PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_persistent_volume_claim_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_persistent_volume_claim_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8076,7 +8076,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -8148,7 +8148,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -8159,11 +8159,11 @@ class CoreV1Api(object):
 
         delete collection of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_pod(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_pod(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8179,7 +8179,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_pod_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_pod_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -8190,11 +8190,11 @@ class CoreV1Api(object):
 
         delete collection of Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_pod_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_pod_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8211,7 +8211,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -8283,7 +8283,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -8294,11 +8294,11 @@ class CoreV1Api(object):
 
         delete collection of PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_pod_template(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_pod_template(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8314,7 +8314,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_pod_template_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_pod_template_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -8325,11 +8325,11 @@ class CoreV1Api(object):
 
         delete collection of PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_pod_template_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_pod_template_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8346,7 +8346,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -8418,7 +8418,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -8429,11 +8429,11 @@ class CoreV1Api(object):
 
         delete collection of ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_replication_controller(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_replication_controller(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8449,7 +8449,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_replication_controller_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_replication_controller_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -8460,11 +8460,11 @@ class CoreV1Api(object):
 
         delete collection of ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_replication_controller_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_replication_controller_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8481,7 +8481,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -8553,7 +8553,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -8564,11 +8564,11 @@ class CoreV1Api(object):
 
         delete collection of ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_resource_quota(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_resource_quota(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8584,7 +8584,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_resource_quota_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_resource_quota_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -8595,11 +8595,11 @@ class CoreV1Api(object):
 
         delete collection of ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_resource_quota_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_resource_quota_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8616,7 +8616,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -8688,7 +8688,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -8699,11 +8699,11 @@ class CoreV1Api(object):
 
         delete collection of Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_secret(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_secret(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8719,7 +8719,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_secret_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_secret_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -8730,11 +8730,11 @@ class CoreV1Api(object):
 
         delete collection of Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_secret_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_secret_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8751,7 +8751,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -8823,7 +8823,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -8834,11 +8834,11 @@ class CoreV1Api(object):
 
         delete collection of ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_service_account(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_service_account(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8854,7 +8854,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_namespaced_service_account_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_namespaced_service_account_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -8865,11 +8865,11 @@ class CoreV1Api(object):
 
         delete collection of ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_namespaced_service_account_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_namespaced_service_account_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -8886,7 +8886,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -8958,7 +8958,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -8969,11 +8969,11 @@ class CoreV1Api(object):
 
         delete collection of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_node(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_node(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -8988,7 +8988,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_node_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_node_with_http_info(**kwargs)  # noqa: E501
@@ -8999,11 +8999,11 @@ class CoreV1Api(object):
 
         delete collection of Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_node_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_node_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -9019,7 +9019,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -9085,7 +9085,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -9096,11 +9096,11 @@ class CoreV1Api(object):
 
         delete collection of PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_persistent_volume(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_persistent_volume(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -9115,7 +9115,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_collection_persistent_volume_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.delete_collection_persistent_volume_with_http_info(**kwargs)  # noqa: E501
@@ -9126,11 +9126,11 @@ class CoreV1Api(object):
 
         delete collection of PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_collection_persistent_volume_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_collection_persistent_volume_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -9146,7 +9146,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -9212,7 +9212,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -9223,11 +9223,11 @@ class CoreV1Api(object):
 
         delete a Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespace(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespace(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param V1DeleteOptions body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -9239,7 +9239,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespace_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespace_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -9250,11 +9250,11 @@ class CoreV1Api(object):
 
         delete a Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespace_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespace_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param V1DeleteOptions body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -9267,7 +9267,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -9335,7 +9335,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -9346,11 +9346,11 @@ class CoreV1Api(object):
 
         delete a ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_config_map(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_config_map(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ConfigMap (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9363,7 +9363,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_config_map_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_config_map_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -9374,11 +9374,11 @@ class CoreV1Api(object):
 
         delete a ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_config_map_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_config_map_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ConfigMap (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9392,7 +9392,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -9466,7 +9466,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -9477,11 +9477,11 @@ class CoreV1Api(object):
 
         delete Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_endpoints(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_endpoints(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Endpoints (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9494,7 +9494,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_endpoints_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_endpoints_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -9505,11 +9505,11 @@ class CoreV1Api(object):
 
         delete Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_endpoints_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_endpoints_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Endpoints (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9523,7 +9523,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -9597,7 +9597,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -9608,11 +9608,11 @@ class CoreV1Api(object):
 
         delete an Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_event(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_event(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Event (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9625,7 +9625,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_event_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_event_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -9636,11 +9636,11 @@ class CoreV1Api(object):
 
         delete an Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_event_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_event_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Event (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9654,7 +9654,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -9728,7 +9728,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -9739,11 +9739,11 @@ class CoreV1Api(object):
 
         delete a LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_limit_range(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_limit_range(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the LimitRange (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9756,7 +9756,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_limit_range_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_limit_range_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -9767,11 +9767,11 @@ class CoreV1Api(object):
 
         delete a LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_limit_range_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_limit_range_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the LimitRange (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9785,7 +9785,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -9859,7 +9859,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -9870,11 +9870,11 @@ class CoreV1Api(object):
 
         delete a PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_persistent_volume_claim(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_persistent_volume_claim(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9887,7 +9887,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -9898,11 +9898,11 @@ class CoreV1Api(object):
 
         delete a PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -9916,7 +9916,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -9990,7 +9990,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -10001,11 +10001,11 @@ class CoreV1Api(object):
 
         delete a Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_pod(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_pod(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10018,7 +10018,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_pod_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_pod_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -10029,11 +10029,11 @@ class CoreV1Api(object):
 
         delete a Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_pod_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_pod_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10047,7 +10047,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -10121,7 +10121,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -10132,11 +10132,11 @@ class CoreV1Api(object):
 
         delete a PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_pod_template(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_pod_template(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PodTemplate (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10149,7 +10149,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_pod_template_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_pod_template_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -10160,11 +10160,11 @@ class CoreV1Api(object):
 
         delete a PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_pod_template_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_pod_template_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PodTemplate (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10178,7 +10178,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -10252,7 +10252,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -10263,11 +10263,11 @@ class CoreV1Api(object):
 
         delete a ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_replication_controller(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_replication_controller(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10280,7 +10280,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_replication_controller_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_replication_controller_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -10291,11 +10291,11 @@ class CoreV1Api(object):
 
         delete a ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_replication_controller_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_replication_controller_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10309,7 +10309,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -10383,7 +10383,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -10394,11 +10394,11 @@ class CoreV1Api(object):
 
         delete a ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_resource_quota(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_resource_quota(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10411,7 +10411,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_resource_quota_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_resource_quota_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -10422,11 +10422,11 @@ class CoreV1Api(object):
 
         delete a ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_resource_quota_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_resource_quota_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10440,7 +10440,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -10514,7 +10514,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -10525,11 +10525,11 @@ class CoreV1Api(object):
 
         delete a Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_secret(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_secret(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Secret (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10542,7 +10542,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_secret_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_secret_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -10553,11 +10553,11 @@ class CoreV1Api(object):
 
         delete a Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_secret_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_secret_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Secret (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10571,7 +10571,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -10645,7 +10645,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -10656,11 +10656,11 @@ class CoreV1Api(object):
 
         delete a Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_service(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_service(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10673,7 +10673,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_service_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_service_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -10684,11 +10684,11 @@ class CoreV1Api(object):
 
         delete a Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_service_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_service_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10702,7 +10702,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -10776,7 +10776,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -10787,11 +10787,11 @@ class CoreV1Api(object):
 
         delete a ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_service_account(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_service_account(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ServiceAccount (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10804,7 +10804,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_service_account_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_service_account_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -10815,11 +10815,11 @@ class CoreV1Api(object):
 
         delete a ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_service_account_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_service_account_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ServiceAccount (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1DeleteOptions body: (required)
@@ -10833,7 +10833,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -10907,7 +10907,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -10918,11 +10918,11 @@ class CoreV1Api(object):
 
         delete a Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_node(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_node(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param V1DeleteOptions body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -10934,7 +10934,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_node_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_node_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -10945,11 +10945,11 @@ class CoreV1Api(object):
 
         delete a Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_node_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_node_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param V1DeleteOptions body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -10962,7 +10962,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -11030,7 +11030,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -11041,11 +11041,11 @@ class CoreV1Api(object):
 
         delete a PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_persistent_volume(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_persistent_volume(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param V1DeleteOptions body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -11057,7 +11057,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_persistent_volume_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_persistent_volume_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -11068,11 +11068,11 @@ class CoreV1Api(object):
 
         delete a PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_persistent_volume_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_persistent_volume_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param V1DeleteOptions body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -11085,7 +11085,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -11153,7 +11153,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Status',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -11164,17 +11164,17 @@ class CoreV1Api(object):
 
         get available resources  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_api_resources(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_api_resources(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: V1APIResourceList
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_api_resources_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_api_resources_with_http_info(**kwargs)  # noqa: E501
@@ -11185,18 +11185,18 @@ class CoreV1Api(object):
 
         get available resources  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_api_resources_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_api_resources_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: V1APIResourceList
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -11244,7 +11244,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1APIResourceList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -11255,11 +11255,11 @@ class CoreV1Api(object):
 
         list objects of kind ComponentStatus  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_component_status(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_component_status(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11274,7 +11274,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_component_status_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_component_status_with_http_info(**kwargs)  # noqa: E501
@@ -11285,11 +11285,11 @@ class CoreV1Api(object):
 
         list objects of kind ComponentStatus  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_component_status_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_component_status_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11305,7 +11305,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -11371,7 +11371,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ComponentStatusList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -11382,11 +11382,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_config_map_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_config_map_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11401,7 +11401,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_config_map_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_config_map_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -11412,11 +11412,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_config_map_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_config_map_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11432,7 +11432,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -11498,7 +11498,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ConfigMapList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -11509,11 +11509,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_endpoints_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_endpoints_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11528,7 +11528,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_endpoints_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_endpoints_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -11539,11 +11539,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_endpoints_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_endpoints_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11559,7 +11559,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -11625,7 +11625,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1EndpointsList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -11636,11 +11636,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_event_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_event_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11655,7 +11655,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_event_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_event_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -11666,11 +11666,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_event_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_event_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11686,7 +11686,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -11752,7 +11752,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1EventList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -11763,11 +11763,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_limit_range_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_limit_range_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11782,7 +11782,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_limit_range_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_limit_range_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -11793,11 +11793,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_limit_range_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_limit_range_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -11813,7 +11813,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -11879,7 +11879,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1LimitRangeList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -11890,11 +11890,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespace(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespace(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -11909,7 +11909,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespace_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_namespace_with_http_info(**kwargs)  # noqa: E501
@@ -11920,11 +11920,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespace_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespace_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -11940,7 +11940,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -12006,7 +12006,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1NamespaceList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -12017,11 +12017,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_config_map(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_config_map(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12037,7 +12037,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_config_map_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_config_map_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -12048,11 +12048,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_config_map_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_config_map_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12069,7 +12069,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -12141,7 +12141,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ConfigMapList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -12152,11 +12152,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_endpoints(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_endpoints(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12172,7 +12172,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_endpoints_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_endpoints_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -12183,11 +12183,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_endpoints_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_endpoints_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12204,7 +12204,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -12276,7 +12276,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1EndpointsList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -12287,11 +12287,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_event(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_event(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12307,7 +12307,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_event_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_event_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -12318,11 +12318,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_event_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_event_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12339,7 +12339,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -12411,7 +12411,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1EventList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -12422,11 +12422,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_limit_range(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_limit_range(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12442,7 +12442,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_limit_range_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_limit_range_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -12453,11 +12453,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_limit_range_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_limit_range_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12474,7 +12474,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -12546,7 +12546,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1LimitRangeList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -12557,11 +12557,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_persistent_volume_claim(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_persistent_volume_claim(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12577,7 +12577,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_persistent_volume_claim_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_persistent_volume_claim_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -12588,11 +12588,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_persistent_volume_claim_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_persistent_volume_claim_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12609,7 +12609,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -12681,7 +12681,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaimList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -12692,11 +12692,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_pod(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_pod(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12712,7 +12712,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_pod_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_pod_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -12723,11 +12723,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_pod_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_pod_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12744,7 +12744,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -12816,7 +12816,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PodList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -12827,11 +12827,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_pod_template(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_pod_template(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12847,7 +12847,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_pod_template_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_pod_template_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -12858,11 +12858,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_pod_template_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_pod_template_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12879,7 +12879,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -12951,7 +12951,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PodTemplateList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -12962,11 +12962,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_replication_controller(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_replication_controller(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -12982,7 +12982,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_replication_controller_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_replication_controller_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -12993,11 +12993,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_replication_controller_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_replication_controller_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13014,7 +13014,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -13086,7 +13086,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationControllerList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -13097,11 +13097,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_resource_quota(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_resource_quota(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13117,7 +13117,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_resource_quota_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_resource_quota_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -13128,11 +13128,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_resource_quota_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_resource_quota_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13149,7 +13149,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -13221,7 +13221,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuotaList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -13232,11 +13232,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_secret(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_secret(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13252,7 +13252,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_secret_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_secret_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -13263,11 +13263,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_secret_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_secret_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13284,7 +13284,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -13356,7 +13356,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1SecretList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -13367,11 +13367,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_service(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_service(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13387,7 +13387,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_service_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_service_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -13398,11 +13398,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_service_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_service_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13419,7 +13419,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -13491,7 +13491,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ServiceList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -13502,11 +13502,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_service_account(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_service_account(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13522,7 +13522,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_service_account_with_http_info(namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_service_account_with_http_info(namespace, **kwargs)  # noqa: E501
@@ -13533,11 +13533,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_service_account_with_http_info(namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_service_account_with_http_info(namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -13554,7 +13554,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['namespace', 'pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -13626,7 +13626,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ServiceAccountList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -13637,11 +13637,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_node(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_node(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -13656,7 +13656,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_node_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_node_with_http_info(**kwargs)  # noqa: E501
@@ -13667,11 +13667,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_node_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_node_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -13687,7 +13687,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -13753,7 +13753,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1NodeList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -13764,11 +13764,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_persistent_volume(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_persistent_volume(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -13783,7 +13783,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_persistent_volume_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_persistent_volume_with_http_info(**kwargs)  # noqa: E501
@@ -13794,11 +13794,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_persistent_volume_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_persistent_volume_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str pretty: If 'true', then the output is pretty printed.
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -13814,7 +13814,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['pretty', '_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -13880,7 +13880,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -13891,11 +13891,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_persistent_volume_claim_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_persistent_volume_claim_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -13910,7 +13910,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_persistent_volume_claim_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_persistent_volume_claim_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -13921,11 +13921,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_persistent_volume_claim_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_persistent_volume_claim_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -13941,7 +13941,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -14007,7 +14007,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaimList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -14018,11 +14018,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_pod_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_pod_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14037,7 +14037,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_pod_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_pod_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -14048,11 +14048,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_pod_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_pod_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14068,7 +14068,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -14134,7 +14134,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PodList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -14145,11 +14145,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_pod_template_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_pod_template_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14164,7 +14164,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_pod_template_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_pod_template_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -14175,11 +14175,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_pod_template_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_pod_template_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14195,7 +14195,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -14261,7 +14261,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PodTemplateList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -14272,11 +14272,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_replication_controller_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_replication_controller_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14291,7 +14291,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_replication_controller_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_replication_controller_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -14302,11 +14302,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_replication_controller_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_replication_controller_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14322,7 +14322,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -14388,7 +14388,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationControllerList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -14399,11 +14399,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_resource_quota_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_resource_quota_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14418,7 +14418,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_resource_quota_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_resource_quota_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -14429,11 +14429,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_resource_quota_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_resource_quota_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14449,7 +14449,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -14515,7 +14515,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuotaList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -14526,11 +14526,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_secret_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_secret_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14545,7 +14545,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_secret_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_secret_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -14556,11 +14556,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_secret_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_secret_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14576,7 +14576,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -14642,7 +14642,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1SecretList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -14653,11 +14653,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_service_account_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_service_account_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14672,7 +14672,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_service_account_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_service_account_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -14683,11 +14683,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_service_account_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_service_account_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14703,7 +14703,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -14769,7 +14769,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ServiceAccountList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -14780,11 +14780,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_service_for_all_namespaces(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_service_for_all_namespaces(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14799,7 +14799,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_service_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.list_service_for_all_namespaces_with_http_info(**kwargs)  # noqa: E501
@@ -14810,11 +14810,11 @@ class CoreV1Api(object):
 
         list or watch objects of kind Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_service_for_all_namespaces_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_service_for_all_namespaces_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server the server will respond with a 410 ResourceExpired error indicating the client must restart their list without the continue field. This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :param str field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
         :param bool include_uninitialized: If true, partially initialized resources are included in the response.
@@ -14830,7 +14830,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['_continue', 'field_selector', 'include_uninitialized', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -14896,7 +14896,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ServiceList',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -14907,11 +14907,11 @@ class CoreV1Api(object):
 
         partially update the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespace(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespace(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -14920,7 +14920,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespace_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespace_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -14931,11 +14931,11 @@ class CoreV1Api(object):
 
         partially update the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespace_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespace_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -14945,7 +14945,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15007,7 +15007,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Namespace',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15018,11 +15018,11 @@ class CoreV1Api(object):
 
         partially update status of the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespace_status(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespace_status(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -15031,7 +15031,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespace_status_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespace_status_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -15042,11 +15042,11 @@ class CoreV1Api(object):
 
         partially update status of the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespace_status_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespace_status_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -15056,7 +15056,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15118,7 +15118,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Namespace',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15129,11 +15129,11 @@ class CoreV1Api(object):
 
         partially update the specified ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_config_map(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_config_map(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ConfigMap (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15143,7 +15143,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_config_map_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_config_map_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -15154,11 +15154,11 @@ class CoreV1Api(object):
 
         partially update the specified ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_config_map_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_config_map_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ConfigMap (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15169,7 +15169,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15237,7 +15237,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ConfigMap',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15248,11 +15248,11 @@ class CoreV1Api(object):
 
         partially update the specified Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_endpoints(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_endpoints(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Endpoints (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15262,7 +15262,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_endpoints_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_endpoints_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -15273,11 +15273,11 @@ class CoreV1Api(object):
 
         partially update the specified Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_endpoints_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_endpoints_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Endpoints (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15288,7 +15288,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15356,7 +15356,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Endpoints',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15367,11 +15367,11 @@ class CoreV1Api(object):
 
         partially update the specified Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_event(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_event(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Event (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15381,7 +15381,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_event_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_event_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -15392,11 +15392,11 @@ class CoreV1Api(object):
 
         partially update the specified Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_event_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_event_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Event (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15407,7 +15407,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15475,7 +15475,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Event',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15486,11 +15486,11 @@ class CoreV1Api(object):
 
         partially update the specified LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_limit_range(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_limit_range(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the LimitRange (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15500,7 +15500,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_limit_range_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_limit_range_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -15511,11 +15511,11 @@ class CoreV1Api(object):
 
         partially update the specified LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_limit_range_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_limit_range_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the LimitRange (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15526,7 +15526,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15594,7 +15594,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1LimitRange',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15605,11 +15605,11 @@ class CoreV1Api(object):
 
         partially update the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_persistent_volume_claim(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_persistent_volume_claim(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15619,7 +15619,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -15630,11 +15630,11 @@ class CoreV1Api(object):
 
         partially update the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15645,7 +15645,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15713,7 +15713,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaim',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15724,11 +15724,11 @@ class CoreV1Api(object):
 
         partially update status of the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_persistent_volume_claim_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_persistent_volume_claim_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15738,7 +15738,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -15749,11 +15749,11 @@ class CoreV1Api(object):
 
         partially update status of the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15764,7 +15764,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15832,7 +15832,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaim',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15843,11 +15843,11 @@ class CoreV1Api(object):
 
         partially update the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_pod(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_pod(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15857,7 +15857,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_pod_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_pod_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -15868,11 +15868,11 @@ class CoreV1Api(object):
 
         partially update the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_pod_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_pod_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15883,7 +15883,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -15951,7 +15951,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Pod',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -15962,11 +15962,11 @@ class CoreV1Api(object):
 
         partially update status of the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_pod_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_pod_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -15976,7 +15976,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_pod_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_pod_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -15987,11 +15987,11 @@ class CoreV1Api(object):
 
         partially update status of the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_pod_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_pod_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16002,7 +16002,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -16070,7 +16070,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Pod',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -16081,11 +16081,11 @@ class CoreV1Api(object):
 
         partially update the specified PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_pod_template(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_pod_template(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PodTemplate (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16095,7 +16095,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_pod_template_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_pod_template_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -16106,11 +16106,11 @@ class CoreV1Api(object):
 
         partially update the specified PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_pod_template_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_pod_template_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PodTemplate (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16121,7 +16121,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -16189,7 +16189,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PodTemplate',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -16200,11 +16200,11 @@ class CoreV1Api(object):
 
         partially update the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_replication_controller(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_replication_controller(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16214,7 +16214,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_replication_controller_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_replication_controller_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -16225,11 +16225,11 @@ class CoreV1Api(object):
 
         partially update the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_replication_controller_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_replication_controller_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16240,7 +16240,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -16308,7 +16308,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationController',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -16319,11 +16319,11 @@ class CoreV1Api(object):
 
         partially update scale of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_replication_controller_scale(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_replication_controller_scale(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Scale (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16333,7 +16333,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_replication_controller_scale_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_replication_controller_scale_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -16344,11 +16344,11 @@ class CoreV1Api(object):
 
         partially update scale of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_replication_controller_scale_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_replication_controller_scale_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Scale (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16359,7 +16359,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -16427,7 +16427,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Scale',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -16438,11 +16438,11 @@ class CoreV1Api(object):
 
         partially update status of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_replication_controller_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_replication_controller_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16452,7 +16452,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_replication_controller_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_replication_controller_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -16463,11 +16463,11 @@ class CoreV1Api(object):
 
         partially update status of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_replication_controller_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_replication_controller_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16478,7 +16478,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -16546,7 +16546,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationController',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -16557,11 +16557,11 @@ class CoreV1Api(object):
 
         partially update the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_resource_quota(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_resource_quota(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16571,7 +16571,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_resource_quota_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_resource_quota_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -16582,11 +16582,11 @@ class CoreV1Api(object):
 
         partially update the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_resource_quota_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_resource_quota_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16597,7 +16597,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -16665,7 +16665,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuota',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -16676,11 +16676,11 @@ class CoreV1Api(object):
 
         partially update status of the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_resource_quota_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_resource_quota_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16690,7 +16690,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_resource_quota_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_resource_quota_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -16701,11 +16701,11 @@ class CoreV1Api(object):
 
         partially update status of the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_resource_quota_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_resource_quota_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16716,7 +16716,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -16784,7 +16784,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuota',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -16795,11 +16795,11 @@ class CoreV1Api(object):
 
         partially update the specified Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_secret(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_secret(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Secret (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16809,7 +16809,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_secret_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_secret_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -16820,11 +16820,11 @@ class CoreV1Api(object):
 
         partially update the specified Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_secret_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_secret_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Secret (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16835,7 +16835,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -16903,7 +16903,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Secret',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -16914,11 +16914,11 @@ class CoreV1Api(object):
 
         partially update the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_service(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_service(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16928,7 +16928,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_service_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_service_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -16939,11 +16939,11 @@ class CoreV1Api(object):
 
         partially update the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_service_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_service_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -16954,7 +16954,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17022,7 +17022,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Service',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17033,11 +17033,11 @@ class CoreV1Api(object):
 
         partially update the specified ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_service_account(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_service_account(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ServiceAccount (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -17047,7 +17047,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_service_account_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_service_account_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -17058,11 +17058,11 @@ class CoreV1Api(object):
 
         partially update the specified ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_service_account_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_service_account_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ServiceAccount (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -17073,7 +17073,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17141,7 +17141,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ServiceAccount',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17152,11 +17152,11 @@ class CoreV1Api(object):
 
         partially update status of the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_service_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_service_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -17166,7 +17166,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_service_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_service_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -17177,11 +17177,11 @@ class CoreV1Api(object):
 
         partially update status of the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_service_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_service_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param object body: (required)
@@ -17192,7 +17192,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17260,7 +17260,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Service',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17271,11 +17271,11 @@ class CoreV1Api(object):
 
         partially update the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_node(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_node(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -17284,7 +17284,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_node_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_node_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -17295,11 +17295,11 @@ class CoreV1Api(object):
 
         partially update the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_node_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_node_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -17309,7 +17309,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17371,7 +17371,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Node',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17382,11 +17382,11 @@ class CoreV1Api(object):
 
         partially update status of the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_node_status(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_node_status(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -17395,7 +17395,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_node_status_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_node_status_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -17406,11 +17406,11 @@ class CoreV1Api(object):
 
         partially update status of the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_node_status_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_node_status_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -17420,7 +17420,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17482,7 +17482,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Node',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17493,11 +17493,11 @@ class CoreV1Api(object):
 
         partially update the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_persistent_volume(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_persistent_volume(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -17506,7 +17506,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_persistent_volume_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_persistent_volume_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -17517,11 +17517,11 @@ class CoreV1Api(object):
 
         partially update the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_persistent_volume_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_persistent_volume_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -17531,7 +17531,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17593,7 +17593,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolume',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17604,11 +17604,11 @@ class CoreV1Api(object):
 
         partially update status of the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_persistent_volume_status(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_persistent_volume_status(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -17617,7 +17617,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_persistent_volume_status_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_persistent_volume_status_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -17628,11 +17628,11 @@ class CoreV1Api(object):
 
         partially update status of the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_persistent_volume_status_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_persistent_volume_status_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param object body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -17642,7 +17642,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17704,7 +17704,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolume',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17715,11 +17715,11 @@ class CoreV1Api(object):
 
         read the specified ComponentStatus  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_component_status(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_component_status(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ComponentStatus (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1ComponentStatus
@@ -17727,7 +17727,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_component_status_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.read_component_status_with_http_info(name, **kwargs)  # noqa: E501
@@ -17738,11 +17738,11 @@ class CoreV1Api(object):
 
         read the specified ComponentStatus  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_component_status_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_component_status_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ComponentStatus (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1ComponentStatus
@@ -17751,7 +17751,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17807,7 +17807,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ComponentStatus',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17818,11 +17818,11 @@ class CoreV1Api(object):
 
         read the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespace(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespace(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param bool exact: Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'.
@@ -17832,7 +17832,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespace_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespace_with_http_info(name, **kwargs)  # noqa: E501
@@ -17843,11 +17843,11 @@ class CoreV1Api(object):
 
         read the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespace_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespace_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param bool exact: Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'.
@@ -17858,7 +17858,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -17918,7 +17918,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Namespace',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -17929,11 +17929,11 @@ class CoreV1Api(object):
 
         read status of the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespace_status(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespace_status(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1Namespace
@@ -17941,7 +17941,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespace_status_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespace_status_with_http_info(name, **kwargs)  # noqa: E501
@@ -17952,11 +17952,11 @@ class CoreV1Api(object):
 
         read status of the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespace_status_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespace_status_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1Namespace
@@ -17965,7 +17965,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18021,7 +18021,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Namespace',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18032,11 +18032,11 @@ class CoreV1Api(object):
 
         read the specified ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_config_map(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_config_map(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ConfigMap (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18047,7 +18047,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_config_map_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_config_map_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -18058,11 +18058,11 @@ class CoreV1Api(object):
 
         read the specified ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_config_map_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_config_map_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ConfigMap (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18074,7 +18074,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18140,7 +18140,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ConfigMap',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18151,11 +18151,11 @@ class CoreV1Api(object):
 
         read the specified Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_endpoints(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_endpoints(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Endpoints (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18166,7 +18166,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_endpoints_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_endpoints_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -18177,11 +18177,11 @@ class CoreV1Api(object):
 
         read the specified Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_endpoints_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_endpoints_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Endpoints (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18193,7 +18193,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18259,7 +18259,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Endpoints',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18270,11 +18270,11 @@ class CoreV1Api(object):
 
         read the specified Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_event(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_event(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Event (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18285,7 +18285,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_event_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_event_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -18296,11 +18296,11 @@ class CoreV1Api(object):
 
         read the specified Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_event_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_event_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Event (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18312,7 +18312,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18378,7 +18378,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Event',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18389,11 +18389,11 @@ class CoreV1Api(object):
 
         read the specified LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_limit_range(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_limit_range(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the LimitRange (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18404,7 +18404,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_limit_range_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_limit_range_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -18415,11 +18415,11 @@ class CoreV1Api(object):
 
         read the specified LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_limit_range_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_limit_range_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the LimitRange (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18431,7 +18431,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18497,7 +18497,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1LimitRange',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18508,11 +18508,11 @@ class CoreV1Api(object):
 
         read the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_persistent_volume_claim(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_persistent_volume_claim(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18523,7 +18523,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_persistent_volume_claim_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_persistent_volume_claim_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -18534,11 +18534,11 @@ class CoreV1Api(object):
 
         read the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_persistent_volume_claim_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_persistent_volume_claim_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18550,7 +18550,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18616,7 +18616,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaim',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18627,11 +18627,11 @@ class CoreV1Api(object):
 
         read status of the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_persistent_volume_claim_status(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_persistent_volume_claim_status(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18640,7 +18640,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -18651,11 +18651,11 @@ class CoreV1Api(object):
 
         read status of the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18665,7 +18665,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18727,7 +18727,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaim',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18738,11 +18738,11 @@ class CoreV1Api(object):
 
         read the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_pod(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18753,7 +18753,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_pod_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_pod_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -18764,11 +18764,11 @@ class CoreV1Api(object):
 
         read the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_pod_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -18780,7 +18780,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18846,7 +18846,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Pod',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18857,11 +18857,11 @@ class CoreV1Api(object):
 
         read log of the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_pod_log(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_log(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str container: The container for which to stream logs. Defaults to only container if there is one container in the pod.
@@ -18877,7 +18877,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_pod_log_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_pod_log_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -18888,11 +18888,11 @@ class CoreV1Api(object):
 
         read log of the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_pod_log_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_log_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str container: The container for which to stream logs. Defaults to only container if there is one container in the pod.
@@ -18909,7 +18909,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'container', 'follow', 'limit_bytes', 'pretty', 'previous', 'since_seconds', 'tail_lines', 'timestamps']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -18985,7 +18985,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -18996,11 +18996,11 @@ class CoreV1Api(object):
 
         read status of the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_pod_status(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_status(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19009,7 +19009,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_pod_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_pod_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19020,11 +19020,11 @@ class CoreV1Api(object):
 
         read status of the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_pod_status_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_status_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19034,7 +19034,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -19096,7 +19096,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Pod',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -19107,11 +19107,11 @@ class CoreV1Api(object):
 
         read the specified PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_pod_template(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_template(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PodTemplate (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19122,7 +19122,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_pod_template_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_pod_template_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19133,11 +19133,11 @@ class CoreV1Api(object):
 
         read the specified PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_pod_template_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_pod_template_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PodTemplate (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19149,7 +19149,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -19215,7 +19215,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PodTemplate',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -19226,11 +19226,11 @@ class CoreV1Api(object):
 
         read the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_replication_controller(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_replication_controller(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19241,7 +19241,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_replication_controller_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_replication_controller_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19252,11 +19252,11 @@ class CoreV1Api(object):
 
         read the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_replication_controller_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_replication_controller_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19268,7 +19268,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -19334,7 +19334,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationController',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -19345,11 +19345,11 @@ class CoreV1Api(object):
 
         read scale of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_replication_controller_scale(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_replication_controller_scale(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Scale (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19358,7 +19358,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_replication_controller_scale_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_replication_controller_scale_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19369,11 +19369,11 @@ class CoreV1Api(object):
 
         read scale of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_replication_controller_scale_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_replication_controller_scale_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Scale (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19383,7 +19383,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -19445,7 +19445,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Scale',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -19456,11 +19456,11 @@ class CoreV1Api(object):
 
         read status of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_replication_controller_status(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_replication_controller_status(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19469,7 +19469,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_replication_controller_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_replication_controller_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19480,11 +19480,11 @@ class CoreV1Api(object):
 
         read status of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_replication_controller_status_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_replication_controller_status_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19494,7 +19494,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -19556,7 +19556,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationController',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -19567,11 +19567,11 @@ class CoreV1Api(object):
 
         read the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_resource_quota(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_resource_quota(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19582,7 +19582,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_resource_quota_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_resource_quota_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19593,11 +19593,11 @@ class CoreV1Api(object):
 
         read the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_resource_quota_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_resource_quota_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19609,7 +19609,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -19675,7 +19675,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuota',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -19686,11 +19686,11 @@ class CoreV1Api(object):
 
         read status of the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_resource_quota_status(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_resource_quota_status(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19699,7 +19699,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_resource_quota_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_resource_quota_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19710,11 +19710,11 @@ class CoreV1Api(object):
 
         read status of the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_resource_quota_status_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_resource_quota_status_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19724,7 +19724,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -19786,7 +19786,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuota',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -19797,11 +19797,11 @@ class CoreV1Api(object):
 
         read the specified Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_secret(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_secret(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Secret (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19812,7 +19812,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_secret_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_secret_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19823,11 +19823,11 @@ class CoreV1Api(object):
 
         read the specified Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_secret_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_secret_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Secret (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19839,7 +19839,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -19905,7 +19905,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Secret',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -19916,11 +19916,11 @@ class CoreV1Api(object):
 
         read the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_service(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_service(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19931,7 +19931,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_service_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_service_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -19942,11 +19942,11 @@ class CoreV1Api(object):
 
         read the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_service_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_service_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -19958,7 +19958,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20024,7 +20024,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Service',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20035,11 +20035,11 @@ class CoreV1Api(object):
 
         read the specified ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_service_account(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_service_account(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ServiceAccount (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20050,7 +20050,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_service_account_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_service_account_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -20061,11 +20061,11 @@ class CoreV1Api(object):
 
         read the specified ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_service_account_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_service_account_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ServiceAccount (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20077,7 +20077,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20143,7 +20143,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ServiceAccount',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20154,11 +20154,11 @@ class CoreV1Api(object):
 
         read status of the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_service_status(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_service_status(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20167,7 +20167,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_namespaced_service_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
         else:
             (data) = self.read_namespaced_service_status_with_http_info(name, namespace, **kwargs)  # noqa: E501
@@ -20178,11 +20178,11 @@ class CoreV1Api(object):
 
         read status of the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_namespaced_service_status_with_http_info(name, namespace, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_namespaced_service_status_with_http_info(name, namespace, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20192,7 +20192,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20254,7 +20254,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Service',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20265,11 +20265,11 @@ class CoreV1Api(object):
 
         read the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_node(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_node(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param bool exact: Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'.
@@ -20279,7 +20279,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_node_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.read_node_with_http_info(name, **kwargs)  # noqa: E501
@@ -20290,11 +20290,11 @@ class CoreV1Api(object):
 
         read the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_node_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_node_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param bool exact: Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'.
@@ -20305,7 +20305,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20365,7 +20365,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Node',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20376,11 +20376,11 @@ class CoreV1Api(object):
 
         read status of the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_node_status(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_node_status(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1Node
@@ -20388,7 +20388,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_node_status_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.read_node_status_with_http_info(name, **kwargs)  # noqa: E501
@@ -20399,11 +20399,11 @@ class CoreV1Api(object):
 
         read status of the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_node_status_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_node_status_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1Node
@@ -20412,7 +20412,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20468,7 +20468,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Node',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20479,11 +20479,11 @@ class CoreV1Api(object):
 
         read the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_persistent_volume(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_persistent_volume(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param bool exact: Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'.
@@ -20493,7 +20493,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_persistent_volume_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.read_persistent_volume_with_http_info(name, **kwargs)  # noqa: E501
@@ -20504,11 +20504,11 @@ class CoreV1Api(object):
 
         read the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_persistent_volume_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_persistent_volume_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :param bool exact: Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'.
@@ -20519,7 +20519,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20579,7 +20579,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolume',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20590,11 +20590,11 @@ class CoreV1Api(object):
 
         read status of the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_persistent_volume_status(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_persistent_volume_status(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1PersistentVolume
@@ -20602,7 +20602,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.read_persistent_volume_status_with_http_info(name, **kwargs)  # noqa: E501
         else:
             (data) = self.read_persistent_volume_status_with_http_info(name, **kwargs)  # noqa: E501
@@ -20613,11 +20613,11 @@ class CoreV1Api(object):
 
         read status of the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.read_persistent_volume_status_with_http_info(name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.read_persistent_volume_status_with_http_info(name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param str pretty: If 'true', then the output is pretty printed.
         :return: V1PersistentVolume
@@ -20626,7 +20626,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20682,7 +20682,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolume',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20693,11 +20693,11 @@ class CoreV1Api(object):
 
         replace the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespace(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespace(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param V1Namespace body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20706,7 +20706,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespace_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespace_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -20717,11 +20717,11 @@ class CoreV1Api(object):
 
         replace the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespace_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespace_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param V1Namespace body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20731,7 +20731,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20793,7 +20793,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Namespace',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20804,11 +20804,11 @@ class CoreV1Api(object):
 
         replace finalize of the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespace_finalize(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespace_finalize(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param V1Namespace body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20817,7 +20817,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespace_finalize_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespace_finalize_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -20828,11 +20828,11 @@ class CoreV1Api(object):
 
         replace finalize of the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespace_finalize_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespace_finalize_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param V1Namespace body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20842,7 +20842,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -20904,7 +20904,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Namespace',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -20915,11 +20915,11 @@ class CoreV1Api(object):
 
         replace status of the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespace_status(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespace_status(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param V1Namespace body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20928,7 +20928,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespace_status_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespace_status_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -20939,11 +20939,11 @@ class CoreV1Api(object):
 
         replace status of the specified Namespace  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespace_status_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespace_status_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Namespace (required)
         :param V1Namespace body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -20953,7 +20953,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21015,7 +21015,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Namespace',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21026,11 +21026,11 @@ class CoreV1Api(object):
 
         replace the specified ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_config_map(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_config_map(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ConfigMap (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ConfigMap body: (required)
@@ -21040,7 +21040,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_config_map_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_config_map_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -21051,11 +21051,11 @@ class CoreV1Api(object):
 
         replace the specified ConfigMap  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_config_map_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_config_map_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ConfigMap (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ConfigMap body: (required)
@@ -21066,7 +21066,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21134,7 +21134,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ConfigMap',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21145,11 +21145,11 @@ class CoreV1Api(object):
 
         replace the specified Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_endpoints(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_endpoints(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Endpoints (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Endpoints body: (required)
@@ -21159,7 +21159,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_endpoints_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_endpoints_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -21170,11 +21170,11 @@ class CoreV1Api(object):
 
         replace the specified Endpoints  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_endpoints_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_endpoints_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Endpoints (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Endpoints body: (required)
@@ -21185,7 +21185,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21253,7 +21253,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Endpoints',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21264,11 +21264,11 @@ class CoreV1Api(object):
 
         replace the specified Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_event(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_event(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Event (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Event body: (required)
@@ -21278,7 +21278,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_event_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_event_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -21289,11 +21289,11 @@ class CoreV1Api(object):
 
         replace the specified Event  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_event_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_event_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Event (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Event body: (required)
@@ -21304,7 +21304,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21372,7 +21372,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Event',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21383,11 +21383,11 @@ class CoreV1Api(object):
 
         replace the specified LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_limit_range(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_limit_range(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the LimitRange (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1LimitRange body: (required)
@@ -21397,7 +21397,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_limit_range_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_limit_range_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -21408,11 +21408,11 @@ class CoreV1Api(object):
 
         replace the specified LimitRange  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_limit_range_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_limit_range_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the LimitRange (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1LimitRange body: (required)
@@ -21423,7 +21423,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21491,7 +21491,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1LimitRange',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21502,11 +21502,11 @@ class CoreV1Api(object):
 
         replace the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_persistent_volume_claim(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_persistent_volume_claim(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PersistentVolumeClaim body: (required)
@@ -21516,7 +21516,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -21527,11 +21527,11 @@ class CoreV1Api(object):
 
         replace the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_persistent_volume_claim_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PersistentVolumeClaim body: (required)
@@ -21542,7 +21542,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21610,7 +21610,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaim',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21621,11 +21621,11 @@ class CoreV1Api(object):
 
         replace status of the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_persistent_volume_claim_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_persistent_volume_claim_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PersistentVolumeClaim body: (required)
@@ -21635,7 +21635,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -21646,11 +21646,11 @@ class CoreV1Api(object):
 
         replace status of the specified PersistentVolumeClaim  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_persistent_volume_claim_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolumeClaim (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PersistentVolumeClaim body: (required)
@@ -21661,7 +21661,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21729,7 +21729,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolumeClaim',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21740,11 +21740,11 @@ class CoreV1Api(object):
 
         replace the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_pod(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_pod(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Pod body: (required)
@@ -21754,7 +21754,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_pod_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_pod_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -21765,11 +21765,11 @@ class CoreV1Api(object):
 
         replace the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_pod_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_pod_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Pod body: (required)
@@ -21780,7 +21780,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21848,7 +21848,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Pod',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21859,11 +21859,11 @@ class CoreV1Api(object):
 
         replace status of the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_pod_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_pod_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Pod body: (required)
@@ -21873,7 +21873,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_pod_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_pod_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -21884,11 +21884,11 @@ class CoreV1Api(object):
 
         replace status of the specified Pod  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_pod_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_pod_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Pod (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Pod body: (required)
@@ -21899,7 +21899,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -21967,7 +21967,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Pod',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -21978,11 +21978,11 @@ class CoreV1Api(object):
 
         replace the specified PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_pod_template(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_pod_template(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PodTemplate (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PodTemplate body: (required)
@@ -21992,7 +21992,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_pod_template_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_pod_template_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22003,11 +22003,11 @@ class CoreV1Api(object):
 
         replace the specified PodTemplate  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_pod_template_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_pod_template_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PodTemplate (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1PodTemplate body: (required)
@@ -22018,7 +22018,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -22086,7 +22086,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PodTemplate',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -22097,11 +22097,11 @@ class CoreV1Api(object):
 
         replace the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_replication_controller(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_replication_controller(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ReplicationController body: (required)
@@ -22111,7 +22111,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_replication_controller_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_replication_controller_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22122,11 +22122,11 @@ class CoreV1Api(object):
 
         replace the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_replication_controller_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_replication_controller_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ReplicationController body: (required)
@@ -22137,7 +22137,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -22205,7 +22205,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationController',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -22216,11 +22216,11 @@ class CoreV1Api(object):
 
         replace scale of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_replication_controller_scale(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_replication_controller_scale(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Scale (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Scale body: (required)
@@ -22230,7 +22230,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_replication_controller_scale_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_replication_controller_scale_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22241,11 +22241,11 @@ class CoreV1Api(object):
 
         replace scale of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_replication_controller_scale_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_replication_controller_scale_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Scale (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Scale body: (required)
@@ -22256,7 +22256,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -22324,7 +22324,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Scale',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -22335,11 +22335,11 @@ class CoreV1Api(object):
 
         replace status of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_replication_controller_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_replication_controller_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ReplicationController body: (required)
@@ -22349,7 +22349,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_replication_controller_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_replication_controller_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22360,11 +22360,11 @@ class CoreV1Api(object):
 
         replace status of the specified ReplicationController  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_replication_controller_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_replication_controller_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ReplicationController (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ReplicationController body: (required)
@@ -22375,7 +22375,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -22443,7 +22443,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ReplicationController',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -22454,11 +22454,11 @@ class CoreV1Api(object):
 
         replace the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_resource_quota(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_resource_quota(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ResourceQuota body: (required)
@@ -22468,7 +22468,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_resource_quota_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_resource_quota_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22479,11 +22479,11 @@ class CoreV1Api(object):
 
         replace the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_resource_quota_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_resource_quota_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ResourceQuota body: (required)
@@ -22494,7 +22494,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -22562,7 +22562,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuota',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -22573,11 +22573,11 @@ class CoreV1Api(object):
 
         replace status of the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_resource_quota_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_resource_quota_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ResourceQuota body: (required)
@@ -22587,7 +22587,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_resource_quota_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_resource_quota_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22598,11 +22598,11 @@ class CoreV1Api(object):
 
         replace status of the specified ResourceQuota  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_resource_quota_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_resource_quota_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ResourceQuota (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ResourceQuota body: (required)
@@ -22613,7 +22613,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -22681,7 +22681,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ResourceQuota',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -22692,11 +22692,11 @@ class CoreV1Api(object):
 
         replace the specified Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_secret(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_secret(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Secret (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Secret body: (required)
@@ -22706,7 +22706,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_secret_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_secret_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22717,11 +22717,11 @@ class CoreV1Api(object):
 
         replace the specified Secret  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_secret_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_secret_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Secret (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Secret body: (required)
@@ -22732,7 +22732,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -22800,7 +22800,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Secret',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -22811,11 +22811,11 @@ class CoreV1Api(object):
 
         replace the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_service(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_service(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Service body: (required)
@@ -22825,7 +22825,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_service_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_service_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22836,11 +22836,11 @@ class CoreV1Api(object):
 
         replace the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_service_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_service_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Service body: (required)
@@ -22851,7 +22851,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -22919,7 +22919,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Service',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -22930,11 +22930,11 @@ class CoreV1Api(object):
 
         replace the specified ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_service_account(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_service_account(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ServiceAccount (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ServiceAccount body: (required)
@@ -22944,7 +22944,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_service_account_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_service_account_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -22955,11 +22955,11 @@ class CoreV1Api(object):
 
         replace the specified ServiceAccount  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_service_account_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_service_account_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the ServiceAccount (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1ServiceAccount body: (required)
@@ -22970,7 +22970,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -23038,7 +23038,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1ServiceAccount',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -23049,11 +23049,11 @@ class CoreV1Api(object):
 
         replace status of the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_service_status(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_service_status(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Service body: (required)
@@ -23063,7 +23063,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_service_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_service_status_with_http_info(name, namespace, body, **kwargs)  # noqa: E501
@@ -23074,11 +23074,11 @@ class CoreV1Api(object):
 
         replace status of the specified Service  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_service_status_with_http_info(name, namespace, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_service_status_with_http_info(name, namespace, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Service (required)
         :param str namespace: object name and auth scope, such as for teams and projects (required)
         :param V1Service body: (required)
@@ -23089,7 +23089,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'namespace', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -23157,7 +23157,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Service',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -23168,11 +23168,11 @@ class CoreV1Api(object):
 
         replace the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_node(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_node(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param V1Node body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -23181,7 +23181,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_node_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_node_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -23192,11 +23192,11 @@ class CoreV1Api(object):
 
         replace the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_node_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_node_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param V1Node body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -23206,7 +23206,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -23268,7 +23268,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Node',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -23279,11 +23279,11 @@ class CoreV1Api(object):
 
         replace status of the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_node_status(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_node_status(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param V1Node body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -23292,7 +23292,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_node_status_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_node_status_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -23303,11 +23303,11 @@ class CoreV1Api(object):
 
         replace status of the specified Node  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_node_status_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_node_status_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the Node (required)
         :param V1Node body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -23317,7 +23317,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -23379,7 +23379,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1Node',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -23390,11 +23390,11 @@ class CoreV1Api(object):
 
         replace the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_persistent_volume(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_persistent_volume(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param V1PersistentVolume body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -23403,7 +23403,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_persistent_volume_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_persistent_volume_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -23414,11 +23414,11 @@ class CoreV1Api(object):
 
         replace the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_persistent_volume_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_persistent_volume_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param V1PersistentVolume body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -23428,7 +23428,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -23490,7 +23490,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolume',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -23501,11 +23501,11 @@ class CoreV1Api(object):
 
         replace status of the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_persistent_volume_status(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_persistent_volume_status(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param V1PersistentVolume body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -23514,7 +23514,7 @@ class CoreV1Api(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_persistent_volume_status_with_http_info(name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_persistent_volume_status_with_http_info(name, body, **kwargs)  # noqa: E501
@@ -23525,11 +23525,11 @@ class CoreV1Api(object):
 
         replace status of the specified PersistentVolume  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_persistent_volume_status_with_http_info(name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_persistent_volume_status_with_http_info(name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str name: name of the PersistentVolume (required)
         :param V1PersistentVolume body: (required)
         :param str pretty: If 'true', then the output is pretty printed.
@@ -23539,7 +23539,7 @@ class CoreV1Api(object):
         """
 
         all_params = ['name', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -23601,7 +23601,7 @@ class CoreV1Api(object):
             files=local_var_files,
             response_type='V1PersistentVolume',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
