@@ -38,11 +38,11 @@ class CustomObjectsApi(object):
 
         Creates a cluster scoped Custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_cluster_custom_object(group, version, plural, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_cluster_custom_object(group, version, plural, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: The custom resource's group name (required)
         :param str version: The custom resource's version (required)
         :param str plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -53,7 +53,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_cluster_custom_object_with_http_info(group, version, plural, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_cluster_custom_object_with_http_info(group, version, plural, body, **kwargs)  # noqa: E501
@@ -64,11 +64,11 @@ class CustomObjectsApi(object):
 
         Creates a cluster scoped Custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_cluster_custom_object_with_http_info(group, version, plural, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_cluster_custom_object_with_http_info(group, version, plural, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: The custom resource's group name (required)
         :param str version: The custom resource's version (required)
         :param str plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -80,7 +80,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'plural', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -150,7 +150,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -161,11 +161,11 @@ class CustomObjectsApi(object):
 
         Creates a namespace scoped Custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_custom_object(group, version, namespace, plural, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_custom_object(group, version, namespace, plural, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: The custom resource's group name (required)
         :param str version: The custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -177,7 +177,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.create_namespaced_custom_object_with_http_info(group, version, namespace, plural, body, **kwargs)  # noqa: E501
         else:
             (data) = self.create_namespaced_custom_object_with_http_info(group, version, namespace, plural, body, **kwargs)  # noqa: E501
@@ -188,11 +188,11 @@ class CustomObjectsApi(object):
 
         Creates a namespace scoped Custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.create_namespaced_custom_object_with_http_info(group, version, namespace, plural, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.create_namespaced_custom_object_with_http_info(group, version, namespace, plural, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: The custom resource's group name (required)
         :param str version: The custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -205,7 +205,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'namespace', 'plural', 'body', 'pretty']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -281,7 +281,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -292,11 +292,11 @@ class CustomObjectsApi(object):
 
         Deletes the specified cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_cluster_custom_object(group, version, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_cluster_custom_object(group, version, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str plural: the custom object's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -310,7 +310,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_cluster_custom_object_with_http_info(group, version, plural, name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_cluster_custom_object_with_http_info(group, version, plural, name, body, **kwargs)  # noqa: E501
@@ -321,11 +321,11 @@ class CustomObjectsApi(object):
 
         Deletes the specified cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_cluster_custom_object_with_http_info(group, version, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_cluster_custom_object_with_http_info(group, version, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str plural: the custom object's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -340,7 +340,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'plural', 'name', 'body', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -424,7 +424,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -435,11 +435,11 @@ class CustomObjectsApi(object):
 
         Deletes the specified namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_custom_object(group, version, namespace, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_custom_object(group, version, namespace, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -454,7 +454,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.delete_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.delete_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, **kwargs)  # noqa: E501
@@ -465,11 +465,11 @@ class CustomObjectsApi(object):
 
         Deletes the specified namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.delete_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -485,7 +485,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -575,7 +575,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -586,11 +586,11 @@ class CustomObjectsApi(object):
 
         Returns a cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_cluster_custom_object(group, version, plural, name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_cluster_custom_object(group, version, plural, name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str plural: the custom object's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -600,7 +600,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_cluster_custom_object_with_http_info(group, version, plural, name, **kwargs)  # noqa: E501
         else:
             (data) = self.get_cluster_custom_object_with_http_info(group, version, plural, name, **kwargs)  # noqa: E501
@@ -611,11 +611,11 @@ class CustomObjectsApi(object):
 
         Returns a cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_cluster_custom_object_with_http_info(group, version, plural, name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_cluster_custom_object_with_http_info(group, version, plural, name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str plural: the custom object's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -626,7 +626,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'plural', 'name']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -698,7 +698,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -709,11 +709,11 @@ class CustomObjectsApi(object):
 
         Returns a namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_namespaced_custom_object(group, version, namespace, plural, name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_namespaced_custom_object(group, version, namespace, plural, name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -724,7 +724,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, **kwargs)  # noqa: E501
         else:
             (data) = self.get_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, **kwargs)  # noqa: E501
@@ -735,11 +735,11 @@ class CustomObjectsApi(object):
 
         Returns a namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -751,7 +751,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'namespace', 'plural', 'name']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -829,7 +829,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -840,11 +840,11 @@ class CustomObjectsApi(object):
 
         list or watch cluster scoped custom objects  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_cluster_custom_object(group, version, plural, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_cluster_custom_object(group, version, plural, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: The custom resource's group name (required)
         :param str version: The custom resource's version (required)
         :param str plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -857,7 +857,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_cluster_custom_object_with_http_info(group, version, plural, **kwargs)  # noqa: E501
         else:
             (data) = self.list_cluster_custom_object_with_http_info(group, version, plural, **kwargs)  # noqa: E501
@@ -868,11 +868,11 @@ class CustomObjectsApi(object):
 
         list or watch cluster scoped custom objects  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_cluster_custom_object_with_http_info(group, version, plural, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_cluster_custom_object_with_http_info(group, version, plural, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: The custom resource's group name (required)
         :param str version: The custom resource's version (required)
         :param str plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -886,7 +886,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'plural', 'pretty', 'label_selector', 'resource_version', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -960,7 +960,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -971,11 +971,11 @@ class CustomObjectsApi(object):
 
         list or watch namespace scoped custom objects  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_custom_object(group, version, namespace, plural, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_custom_object(group, version, namespace, plural, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: The custom resource's group name (required)
         :param str version: The custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -989,7 +989,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.list_namespaced_custom_object_with_http_info(group, version, namespace, plural, **kwargs)  # noqa: E501
         else:
             (data) = self.list_namespaced_custom_object_with_http_info(group, version, namespace, plural, **kwargs)  # noqa: E501
@@ -1000,11 +1000,11 @@ class CustomObjectsApi(object):
 
         list or watch namespace scoped custom objects  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.list_namespaced_custom_object_with_http_info(group, version, namespace, plural, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.list_namespaced_custom_object_with_http_info(group, version, namespace, plural, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: The custom resource's group name (required)
         :param str version: The custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -1019,7 +1019,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'namespace', 'plural', 'pretty', 'label_selector', 'resource_version', 'watch']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1099,7 +1099,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1110,11 +1110,11 @@ class CustomObjectsApi(object):
 
         patch the specified cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_cluster_custom_object(group, version, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_cluster_custom_object(group, version, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str plural: the custom object's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -1125,7 +1125,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_cluster_custom_object_with_http_info(group, version, plural, name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_cluster_custom_object_with_http_info(group, version, plural, name, body, **kwargs)  # noqa: E501
@@ -1136,11 +1136,11 @@ class CustomObjectsApi(object):
 
         patch the specified cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_cluster_custom_object_with_http_info(group, version, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_cluster_custom_object_with_http_info(group, version, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str plural: the custom object's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -1152,7 +1152,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1230,7 +1230,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1241,11 +1241,11 @@ class CustomObjectsApi(object):
 
         patch the specified namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_custom_object(group, version, namespace, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_custom_object(group, version, namespace, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -1257,7 +1257,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.patch_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.patch_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, **kwargs)  # noqa: E501
@@ -1268,11 +1268,11 @@ class CustomObjectsApi(object):
 
         patch the specified namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.patch_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.patch_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -1285,7 +1285,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1369,7 +1369,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1380,11 +1380,11 @@ class CustomObjectsApi(object):
 
         replace the specified cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_cluster_custom_object(group, version, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_cluster_custom_object(group, version, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str plural: the custom object's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -1395,7 +1395,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_cluster_custom_object_with_http_info(group, version, plural, name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_cluster_custom_object_with_http_info(group, version, plural, name, body, **kwargs)  # noqa: E501
@@ -1406,11 +1406,11 @@ class CustomObjectsApi(object):
 
         replace the specified cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_cluster_custom_object_with_http_info(group, version, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_cluster_custom_object_with_http_info(group, version, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str plural: the custom object's plural name. For TPRs this would be lowercase plural kind. (required)
@@ -1422,7 +1422,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1500,7 +1500,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1511,11 +1511,11 @@ class CustomObjectsApi(object):
 
         replace the specified namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_custom_object(group, version, namespace, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_custom_object(group, version, namespace, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -1527,7 +1527,7 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.replace_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, **kwargs)  # noqa: E501
         else:
             (data) = self.replace_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, **kwargs)  # noqa: E501
@@ -1538,11 +1538,11 @@ class CustomObjectsApi(object):
 
         replace the specified namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.replace_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.replace_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param str group: the custom resource's group (required)
         :param str version: the custom resource's version (required)
         :param str namespace: The custom resource's namespace (required)
@@ -1555,7 +1555,7 @@ class CustomObjectsApi(object):
         """
 
         all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1639,7 +1639,7 @@ class CustomObjectsApi(object):
             files=local_var_files,
             response_type='object',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),

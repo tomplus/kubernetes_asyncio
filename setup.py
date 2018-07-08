@@ -16,7 +16,7 @@ from setuptools import setup
 
 # Do not edit these constants. They will be updated automatically
 # by scripts/update-client.sh.
-CLIENT_VERSION = "1.0.0-beta1"
+CLIENT_VERSION = "1.0.0-beta2"
 PACKAGE_NAME = "kubernetes_asyncio"
 DEVELOPMENT_STATUS = "4 - Beta"
 
@@ -71,5 +71,6 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
     ],
 )
