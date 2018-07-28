@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import asyncio
 import json
 
-from asynctest import CoroutineMock, Mock, TestCase
+from asynctest import CoroutineMock, Mock, TestCase, call
 
 import kubernetes_asyncio
 from kubernetes_asyncio.watch import Watch
@@ -156,6 +157,32 @@ class WatchTest(TestCase):
             watch = kubernetes_asyncio.watch.Watch()
             async for e in watch.stream(fake_api.get_namespaces, timeout_seconds=10): # noqa
                 pass
+
+    async def test_watch_timeout(self):
+        fake_resp = CoroutineMock()
+        fake_resp.content.readline = CoroutineMock()
+
+        mock_event = {"type": "ADDED",
+                      "object": {"metadata": {"name": "test1555",
+                                              "resourceVersion": "1555"},
+                                 "spec": {},
+                                 "status": {}}}
+
+        fake_resp.content.readline.side_effect = [json.dumps(mock_event).encode('utf8'),
+                                                  asyncio.TimeoutError(),
+                                                  b""]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ':return: V1NamespaceList'
+
+        watch = kubernetes_asyncio.watch.Watch()
+        async for e in watch.stream(fake_api.get_namespaces): # noqa
+            pass
+
+        fake_api.get_namespaces.assert_has_calls(
+            [call(_preload_content=False, watch=True),
+             call(_preload_content=False, watch=True, resource_version='1555')])
 
 
 if __name__ == '__main__':
