@@ -1,3 +1,11 @@
+# v1.0.0-beta3
+
+* feat: watch work forever if timeout is not specified ([#30](https://github.com/tomplus/kubernetes_asyncio/pull/30), [@tomplus](https://github.com/tomplus))
+
+# v1.0.0-beta2
+
+* feat: support Python 3.7 ([#28](https://github.com/tomplus/kubernetes_asyncio/pull/28), [@tomplus](https://github.com/tomplus))
+
 # v1.0.0-beta1
 
 * feat: make function `load_kube_config` asynchronous
