@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import asyncio
 import json
 import pydoc
 from functools import partial
@@ -48,6 +49,7 @@ class Watch(object):
         self._raw_return_type = return_type
         self._stop = False
         self._api_client = client.ApiClient()
+        self.resource_version = 0
 
     def stop(self):
         self._stop = True
@@ -86,6 +88,19 @@ class Watch(object):
                 response=SimpleNamespace(data=json.dumps(js['raw_object'])),
                 response_type=response_type
             )
+
+            # decode and save resource_version to continue watching
+            if hasattr(js['object'], 'metadata'):
+                self.resource_version = js['object'].metadata.resource_version
+
+            # For custom objects that we don't have model defined, json
+            # deserialization results in dictionary
+            elif (isinstance(js['object'], dict) and
+                  'metadata' in js['object'] and
+                  'resourceVersion' in js['object']['metadata']):
+
+                self.resource_version = js['object']['metadata']['resourceVersion']
+
         return js
 
     def __aiter__(self):
@@ -95,26 +110,38 @@ class Watch(object):
         return await self.next()
 
     async def next(self):
-        # Set the response object to the user supplied function (eg
-        # `list_namespaced_pods`) if this is the first iteration.
-        if self.resp is None:
-            self.resp = await self.func()
 
-        # Abort at the current iteration if the user has called `stop` on this
-        # stream instance.
-        if self._stop:
-            raise StopAsyncIteration
+        while 1:
 
-        # Fetch the next K8s response.
-        line = await self.resp.content.readline()
-        line = line.decode('utf8')
+            # Set the response object to the user supplied function (eg
+            # `list_namespaced_pods`) if this is the first iteration.
+            if self.resp is None:
+                self.resp = await self.func()
 
-        # Stop the iterator if K8s sends an empty response. This happens when
-        # eg the supplied timeout has expired.
-        if line == '':
-            raise StopAsyncIteration
+            # Abort at the current iteration if the user has called `stop` on this
+            # stream instance.
+            if self._stop:
+                raise StopAsyncIteration
 
-        return self.unmarshal_event(line, self.return_type)
+            # Fetch the next K8s response.
+            try:
+                line = await self.resp.content.readline()
+            except asyncio.TimeoutError:
+                if 'timeout_seconds' not in self.func.keywords:
+                    self.resp = None
+                    self.func.keywords['resource_version'] = self.resource_version
+                    continue
+                else:
+                    raise
+
+            line = line.decode('utf8')
+
+            # Stop the iterator if K8s sends an empty response. This happens when
+            # eg the supplied timeout has expired.
+            if line == '':
+                raise StopAsyncIteration
+
+            return self.unmarshal_event(line, self.return_type)
 
     def stream(self, func, *args, **kwargs):
         """Watch an API resource and stream the result back via a generator.
