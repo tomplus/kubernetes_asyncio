@@ -75,6 +75,7 @@ pip install -r test-requirements.txt
 You can run the style checks and tests with
 
 ```bash
-flake8 && isort -c
+flake8 kubernetes_asyncio/
+isort --diff --recursive kubernetes_asyncio/
 nosetests
 ```
