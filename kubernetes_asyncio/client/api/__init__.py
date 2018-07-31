@@ -49,6 +49,7 @@ from kubernetes_asyncio.client.api.rbac_authorization_v1alpha1_api import RbacAu
 from kubernetes_asyncio.client.api.rbac_authorization_v1beta1_api import RbacAuthorizationV1beta1Api
 from kubernetes_asyncio.client.api.scheduling_api import SchedulingApi
 from kubernetes_asyncio.client.api.scheduling_v1alpha1_api import SchedulingV1alpha1Api
+from kubernetes_asyncio.client.api.scheduling_v1beta1_api import SchedulingV1beta1Api
 from kubernetes_asyncio.client.api.settings_api import SettingsApi
 from kubernetes_asyncio.client.api.settings_v1alpha1_api import SettingsV1alpha1Api
 from kubernetes_asyncio.client.api.storage_api import StorageApi
