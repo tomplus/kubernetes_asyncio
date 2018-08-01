@@ -58,9 +58,9 @@ like streaming, watching or reading configuration. Because of an early stage of 
 
 |  | [synchronous library kubernetes-client/python](https://github.com/kubernetes-client/python) | [this libray](https://github.com/tomplus/kubernetes_asyncio/) |
 |--|--------------------------------------------------------------------|---------------------------------------------------------------|
-| authentication method | gcp-token, user-token, oid-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, user-password, in-cluster |
+| authentication method | gcp-token, azure-token, user-token, oid-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, user-password, in-cluster |
 | refesh token | no | yes, optional |
-| python | 2.7 3.4 3.5 3.6 | 3.5 3.6 |
+| python | 2.7 3.4 3.5 3.6 | 3.5 3.6 3.7 |
 | streaming data via websocket from PODs | bidirectional | read-only is already implemented |
 
 
