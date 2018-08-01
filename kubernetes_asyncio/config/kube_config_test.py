@@ -14,13 +14,14 @@
 
 import base64
 import datetime
+import json
 import os
 import shutil
 import tempfile
 from types import SimpleNamespace
 
 import yaml
-from asynctest import Mock, TestCase, main, patch
+from asynctest import Mock, PropertyMock, TestCase, main, patch
 from six import PY3
 
 from .config_exception import ConfigException
@@ -37,6 +38,10 @@ NON_EXISTING_FILE = "zz_non_existing_file_472398324"
 
 def _base64(string):
     return base64.encodestring(string.encode()).decode()
+
+
+def _unpadded_base64(string):
+    return base64.b64encode(string.encode()).decode().rstrip('')
 
 
 def _raise_exception(st):
@@ -66,6 +71,20 @@ TEST_CLIENT_KEY = "client-key"
 TEST_CLIENT_KEY_BASE64 = _base64(TEST_CLIENT_KEY)
 TEST_CLIENT_CERT = "client-cert"
 TEST_CLIENT_CERT_BASE64 = _base64(TEST_CLIENT_CERT)
+
+TEST_OIDC_TOKEN = "test-oidc-token"
+TEST_OIDC_INFO = "{\"name\": \"test\"}"
+TEST_OIDC_BASE = _unpadded_base64(TEST_OIDC_TOKEN) + "." + _unpadded_base64(TEST_OIDC_INFO)
+TEST_OIDC_LOGIN = TEST_OIDC_BASE + "." + TEST_CLIENT_CERT_BASE64
+TEST_OIDC_TOKEN = "Bearer %s" % TEST_OIDC_LOGIN
+TEST_OIDC_EXP = "{\"name\": \"test\",\"exp\": 536457600}"
+TEST_OIDC_EXP_BASE = _unpadded_base64(TEST_OIDC_TOKEN) + "." + _unpadded_base64(TEST_OIDC_EXP)
+TEST_OIDC_EXPIRED_LOGIN = TEST_OIDC_EXP_BASE + "." + TEST_CLIENT_CERT_BASE64
+TEST_OIDC_CA = _base64(TEST_CERTIFICATE_AUTH)
+
+
+async def _return_async_value(val):
+    return val
 
 
 class BaseTestCase(TestCase):
@@ -334,6 +353,27 @@ class TestKubeConfigLoader(BaseTestCase):
                 }
             },
             {
+                "name": "oidc",
+                "context": {
+                    "cluster": "default",
+                    "user": "oidc"
+                }
+            },
+            {
+                "name": "expired_oidc",
+                "context": {
+                    "cluster": "default",
+                    "user": "expired_oidc"
+                }
+            },
+            {
+                "name": "expired_oidc_no_idp_cert_data",
+                "context": {
+                    "cluster": "default",
+                    "user": "expired_oidc_no_idp_cert_data"
+                }
+            },
+            {
                 "name": "user_pass",
                 "context": {
                     "cluster": "default",
@@ -451,6 +491,48 @@ class TestKubeConfigLoader(BaseTestCase):
                 }
             },
             {
+                "name": "oidc",
+                "user": {
+                    "auth-provider": {
+                        "name": "oidc",
+                        "config": {
+                            "id-token": TEST_OIDC_LOGIN
+                        }
+                    }
+                }
+            },
+            {
+                "name": "expired_oidc",
+                "user": {
+                    "auth-provider": {
+                        "name": "oidc",
+                        "config": {
+                            "client-id": "tectonic-kubectl",
+                            "client-secret": "FAKE_SECRET",
+                            "id-token": TEST_OIDC_EXPIRED_LOGIN,
+                            "idp-certificate-authority-data": TEST_OIDC_CA,
+                            "idp-issuer-url": "https://example.localhost/identity",
+                            "refresh-token": "lucWJjEhlxZW01cXI3YmVlcYnpxNGhzk"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "expired_oidc_no_idp_cert_data",
+                "user": {
+                    "auth-provider": {
+                        "name": "oidc",
+                        "config": {
+                            "client-id": "tectonic-kubectl",
+                            "client-secret": "FAKE_SECRET",
+                            "id-token": TEST_OIDC_EXPIRED_LOGIN,
+                            "idp-issuer-url": "https://example.localhost/identity",
+                            "refresh-token": "lucWJjEhlxZW01cXI3YmVlcYnpxNGhzk"
+                        }
+                    }
+                }
+            },
+            {
                 "name": "user_pass",
                 "user": {
                     "username": TEST_USERNAME,  # should be ignored
@@ -563,6 +645,65 @@ class TestKubeConfigLoader(BaseTestCase):
         self.assertTrue(res)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_ANOTHER_DATA_BASE64,
                          loader.token)
+
+    async def test_oidc_no_refresh(self):
+        loader = KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context='oidc',
+        )
+        await loader._load_authentication()
+        self.assertEqual(TEST_OIDC_TOKEN, loader.token)
+
+    @patch('kubernetes_asyncio.config.kube_config.OpenIDRequestor.refresh_token')
+    async def test_oidc_with_refresh(self, mock_refresh_token):
+        mock_refresh_token.return_value = {
+            'id_token': 'abc123',
+            'refresh_token': 'newtoken123'
+        }
+
+        loader = KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context='expired_oidc',
+        )
+        await loader._load_authentication()
+        self.assertEqual('Bearer abc123', loader.token)
+
+    @patch('kubernetes_asyncio.config.kube_config.OpenIDRequestor.refresh_token')
+    async def test_oidc_with_refresh_no_idp_cert_data(self, mock_refresh_token):
+        mock_refresh_token.return_value = {
+            'id_token': 'abc123',
+            'refresh_token': 'newtoken123'
+        }
+
+        loader = KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context='expired_oidc_no_idp_cert_data',
+        )
+        await loader._load_authentication()
+        self.assertEqual('Bearer abc123', loader.token)
+
+    async def test_invalid_oidc_configs(self):
+        loader = KubeConfigLoader(config_dict=self.TEST_KUBE_CONFIG)
+
+        with self.assertRaises(ValueError):
+            loader._user = {'auth-provider': {}}
+            await loader._load_oid_token()
+
+        with self.assertRaises(ValueError):
+            loader._user = {
+                'auth-provider': {
+                    'config': {
+                        'id-token': 'notvalid'
+                    },
+                }
+            }
+            await loader._load_oid_token()
+
+    async def test_invalid_refresh(self):
+        loader = KubeConfigLoader(config_dict=self.TEST_KUBE_CONFIG)
+
+        with self.assertRaises(ConfigException):
+            await  loader._refresh_oidc({'config': {}})
 
     async def test_user_pass(self):
         expected = FakeConfig(host=TEST_HOST, token=TEST_BASIC_TOKEN)
