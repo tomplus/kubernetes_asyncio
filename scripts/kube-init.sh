@@ -40,7 +40,10 @@ fi
 docker --version
 
 # Get the latest stable version of kubernetes
-export K8S_VERSION=$(curl -sS https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+# export K8S_VERSION=$(curl -sS https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+
+# pin to version of localkube
+export K8S_VERSION="v1.7.0"
 echo "K8S_VERSION : ${K8S_VERSION}"
 
 echo "Starting docker service"
