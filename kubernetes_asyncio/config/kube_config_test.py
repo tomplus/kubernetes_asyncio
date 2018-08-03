@@ -14,14 +14,13 @@
 
 import base64
 import datetime
-import json
 import os
 import shutil
 import tempfile
 from types import SimpleNamespace
 
 import yaml
-from asynctest import Mock, PropertyMock, TestCase, main, patch
+from asynctest import Mock, TestCase, main, patch
 from six import PY3
 
 from .config_exception import ConfigException
