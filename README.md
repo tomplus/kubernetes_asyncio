@@ -62,7 +62,7 @@ like streaming, watching or reading configuration. Because of an early stage of 
 | refesh token | no | yes, optional |
 | python | 2.7 3.4 3.5 3.6 | 3.5 3.6 3.7 |
 | streaming data via websocket from PODs | bidirectional | read-only is already implemented |
-
+| API version | 1.11.x (master branch) | 1.11.x |
 
 ## Development
 Install the development packages:
