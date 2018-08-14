@@ -16,9 +16,9 @@ from setuptools import setup
 
 # Do not edit these constants. They will be updated automatically
 # by scripts/update-client.sh.
-CLIENT_VERSION = "1.0.0-beta5"
+CLIENT_VERSION = "6.0.0-snapshot"
 PACKAGE_NAME = "kubernetes_asyncio"
-DEVELOPMENT_STATUS = "4 - Beta"
+DEVELOPMENT_STATUS = "2 - Pre-Alpha"
 
 # To install the library, run the following
 #
