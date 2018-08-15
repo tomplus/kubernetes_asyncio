@@ -1,3 +1,10 @@
+# v1.0.0-beta6
+
+* feat:regenerate with latest client gen to get custom object status scale api
+  ([#37](https://github.com/tomplus/kubernetes_asyncio/pull/37), [@juliantaylor](https://github.com/juliantaylor))
+* fix: handling timeout by watch loop ([#39](https://github.com/tomplus/kubernetes_asyncio/pull/39),
+  [@tomplus](https://github.com/tomplus))
+
 # v1.0.0-beta5
 
 * feat: upgrade to spec from Kuberentes 1.11 ([#34](https://github.com/tomplus/kubernetes_asyncio/pull/34), [@tomplus](https://github.com/tomplus))
