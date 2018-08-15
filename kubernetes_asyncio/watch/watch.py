@@ -128,6 +128,7 @@ class Watch(object):
                 line = await self.resp.content.readline()
             except asyncio.TimeoutError:
                 if 'timeout_seconds' not in self.func.keywords:
+                    self.resp.close()
                     self.resp = None
                     self.func.keywords['resource_version'] = self.resource_version
                     continue
