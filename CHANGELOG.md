@@ -1,3 +1,8 @@
+# v1.0.0-beta7
+
+* feat: add OIDC auth support ([#36](https://github.com/tomplus/kubernetes_asyncio/pull/36),
+  [@bpicolo](https://github.com/bpicolo))
+
 # v1.0.0-beta6
 
 * feat:regenerate with latest client gen to get custom object status scale api
