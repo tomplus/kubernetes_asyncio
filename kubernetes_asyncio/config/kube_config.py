@@ -16,6 +16,7 @@ import asyncio
 import atexit
 import base64
 import datetime
+import json
 import os
 import tempfile
 
@@ -27,9 +28,11 @@ from kubernetes_asyncio.client import ApiClient, Configuration
 from .config_exception import ConfigException
 from .dateutil import UTC, parse_rfc3339
 from .google_auth import google_auth_credentials
+from .openid import OpenIDRequestor
 
 EXPIRY_SKEW_PREVENTION_DELAY = datetime.timedelta(minutes=5)
 KUBE_CONFIG_DEFAULT_LOCATION = os.environ.get('KUBECONFIG', '~/.kube/config')
+PROVIDER_TYPE_OIDC = 'oidc'
 _temp_files = {}
 
 
@@ -163,8 +166,10 @@ class KubeConfigLoader(object):
             1. GCP auth-provider
             2. token_data
             3. token field (point to a token file)
-            4. username/password
+            4. oidc auth-provider
+            5. username/password
         """
+
         if not self._user:
             return
 
@@ -172,8 +177,13 @@ class KubeConfigLoader(object):
             await self.load_gcp_token()
             return
 
+        if self.provider == PROVIDER_TYPE_OIDC:
+            await self._load_oid_token()
+            return
+
         if self._load_user_token():
             return
+
         self._load_user_pass_token()
 
     async def load_gcp_token(self):
@@ -184,7 +194,7 @@ class KubeConfigLoader(object):
         config = self._user['auth-provider']['config']
 
         if (('access-token' not in config) or
-           ('expiry' in config and _is_expired(config['expiry']))):
+                ('expiry' in config and _is_expired(config['expiry']))):
 
             if self._get_google_credentials is not None:
                 if asyncio.iscoroutinefunction(self._get_google_credentials):
@@ -200,6 +210,71 @@ class KubeConfigLoader(object):
 
         self.token = "Bearer %s" % config['access-token']
         return self.token
+
+    async def _load_oid_token(self):
+        provider = self._user['auth-provider']
+
+        if 'config' not in provider:
+            raise ValueError('oidc: missing configuration')
+
+        if 'id-token' not in provider['config']:
+            await self._refresh_oidc(provider)
+
+            self.token = 'Bearer {}'.format(provider['config']['id-token'])
+            return self.token
+
+        parts = provider['config']['id-token'].split('.')
+
+        if len(parts) != 3:
+            raise ValueError('oidc: JWT tokens should contain 3 period-delimited parts')
+
+        id_token = parts[1]
+        # Re-pad the unpadded JWT token
+        id_token += (4 - len(id_token) % 4) * '='
+        jwt_attributes = json.loads(base64.b64decode(id_token).decode('utf8'))
+        expires = jwt_attributes.get('exp')
+
+        if (
+            expires is not None and
+            _is_expired(datetime.datetime.utcfromtimestamp(expires))
+        ):
+            await self._refresh_oidc(provider)
+
+        self.token = 'Bearer {}'.format(provider['config']['id-token'])
+        return self.token
+
+    async def _refresh_oidc(self, provider):
+        if 'refresh-token' not in provider['config']:
+            raise ConfigException('oidc: No valid id-token, and cannot refresh without refresh-token')
+
+        with tempfile.NamedTemporaryFile(delete=True) as certfile:
+            ssl_ca_cert = None
+            cert_auth_data = self._retrieve_oidc_cacert(provider)
+            if cert_auth_data is not None:
+                certfile.write(cert_auth_data)
+                certfile.flush()
+                ssl_ca_cert = certfile.name
+
+            requestor = OpenIDRequestor(
+                provider['config']['client-id'],
+                provider['config']['client-secret'],
+                provider['config']['idp-issuer-url'],
+                ssl_ca_cert,
+            )
+
+            resp = await requestor.refresh_token(provider['config']['refresh-token'])
+
+            provider['config'].value['id-token'] = resp['id_token']
+            provider['config'].value['refresh-token'] = resp['refresh_token']
+
+            if self._config_persister:
+                self._config_persister(self._config.value)
+
+    def _retrieve_oidc_cacert(self, provider):
+        if 'idp-certificate-authority-data' in provider['config']:
+            return base64.b64decode(provider['config']['idp-certificate-authority-data'])
+
+        return None
 
     def _load_user_token(self):
         token = FileOrData(
