@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+certifi = ">=14.05.14"
+six = ">=1.9.0"
+python-dateutil = ">=2.5.3"
+"urllib3" = "!=1.21,<1.23,>=1.19.1"
+aiohttp = ">=2.3.10"
+PyYAML = ">=3.12"
+
+[dev-packages]
+
+[requires]
+python_version = "3"
