@@ -12,9 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import json
 import os
 
-from asynctest import TestCase, main, mock, patch
+from asynctest import ANY, TestCase, main, mock, patch
 
 from .config_exception import ConfigException
 from .exec_provider import ExecProvider
@@ -38,7 +39,8 @@ class ExecProviderTest(TestCase):
         """
 
         process_patch = patch('kubernetes_asyncio.config.exec_provider.asyncio.create_subprocess_exec')
-        self.process_mock = process_patch.start().return_value
+        self.exec_mock = process_patch.start()
+        self.process_mock = self.exec_mock.return_value
         self.process_mock.stdout.read = mock.CoroutineMock(return_value=self.output_ok)
         self.process_mock.stderr.read = mock.CoroutineMock(return_value='')
         self.process_mock.wait = mock.CoroutineMock(return_value=0)
@@ -117,10 +119,42 @@ class ExecProviderTest(TestCase):
         result = await ep.run()
         self.assertTrue(isinstance(result, dict))
         self.assertTrue('token' in result)
+        self.exec_mock.assert_called_once_with('aws-iam-authenticator', 'token', '-i', 'dummy',
+                                               env=ANY, stderr=-1, stdin=None, stdout=-1)
         self.process_mock.stdout.read.assert_awaited_once()
         self.process_mock.stderr.read.assert_awaited_once()
         self.process_mock.wait.assert_awaited_once()
 
+    async def test_ok_with_args(self):
+        self.input_ok['args'] = ['--mock', '90']
+        ep = ExecProvider(self.input_ok)
+        result = await ep.run()
+        self.assertTrue(isinstance(result, dict))
+        self.assertTrue('token' in result)
+        self.exec_mock.assert_called_once_with('aws-iam-authenticator', 'token', '-i', 'dummy', '--mock', '90',
+                                               env=ANY, stderr=-1, stdin=None, stdout=-1)
+        self.process_mock.stdout.read.assert_awaited_once()
+        self.process_mock.stderr.read.assert_awaited_once()
+        self.process_mock.wait.assert_awaited_once()
 
-if __name__ == '__main__':
-    main()
+    async def test_ok_with_env(self):
+
+        self.input_ok['env'] = [{'name': 'EXEC_PROVIDER_ENV_NAME',
+                                 'value': 'EXEC_PROVIDER_ENV_VALUE'}]
+
+        ep = ExecProvider(self.input_ok)
+        result = await ep.run()
+        self.assertTrue(isinstance(result, dict))
+        self.assertTrue('token' in result)
+
+        env_used = self.exec_mock.await_args_list[0][1]['env']
+        self.assertEqual(env_used['EXEC_PROVIDER_ENV_NAME'], 'EXEC_PROVIDER_ENV_VALUE')
+        self.assertEqual(json.loads(env_used['KUBERNETES_EXEC_INFO']), {'apiVersion':
+                                                                        'client.authentication.k8s.io/v1beta1',
+                                                                        'kind': 'ExecCredential',
+                                                                        'spec': {'interactive': True}})
+        self.exec_mock.assert_called_once_with('aws-iam-authenticator', 'token', '-i', 'dummy',
+                                               env=ANY, stderr=-1, stdin=None, stdout=-1)
+        self.process_mock.stdout.read.assert_awaited_once()
+        self.process_mock.stderr.read.assert_awaited_once()
+        self.process_mock.wait.assert_awaited_once()
