@@ -17,6 +17,7 @@ import atexit
 import base64
 import datetime
 import json
+import logging
 import os
 import tempfile
 
@@ -161,6 +162,12 @@ class KubeConfigLoader(object):
         if self._user is not None and 'auth-provider' in self._user and 'name' in self._user['auth-provider']:
             self.provider = self._user['auth-provider']['name']
 
+        logging.debug('kubeconfig loader - current-context %s, cluster %s, user %s, provider %s',
+                      context_name,
+                      self._current_context['context']['cluster'],
+                      self._current_context['context'].safe_get('user'),
+                      self.provider)
+
     async def _load_authentication(self):
         """Read authentication from kube-config user section if exists.
 
@@ -176,6 +183,7 @@ class KubeConfigLoader(object):
         """
 
         if not self._user:
+            logging.debug('No user section in current context.')
             return
 
         if self.provider == 'gcp':
@@ -187,13 +195,16 @@ class KubeConfigLoader(object):
             return
 
         if 'exec' in self._user:
+            logging.debug('Try to use exec provider')
             res_exec_plugin = await self._load_from_exec_plugin()
             if res_exec_plugin:
                 return
 
+        logging.debug('Try to load user token')
         if self._load_user_token():
             return
 
+        logging.debug('Try to use username and password')
         self._load_user_pass_token()
 
     async def load_gcp_token(self):
