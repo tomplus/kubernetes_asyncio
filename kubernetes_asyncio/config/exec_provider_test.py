@@ -14,6 +14,7 @@
 
 import json
 import os
+import sys
 
 from asynctest import ANY, TestCase, main, mock, patch
 
@@ -152,7 +153,7 @@ class ExecProviderTest(TestCase):
         self.assertEqual(json.loads(env_used['KUBERNETES_EXEC_INFO']), {'apiVersion':
                                                                         'client.authentication.k8s.io/v1beta1',
                                                                         'kind': 'ExecCredential',
-                                                                        'spec': {'interactive': True}})
+                                                                        'spec': {'interactive': sys.stdout.isatty()}})
         self.exec_mock.assert_called_once_with('aws-iam-authenticator', 'token', '-i', 'dummy',
                                                env=ANY, stderr=-1, stdin=None, stdout=-1)
         self.process_mock.stdout.read.assert_awaited_once()
