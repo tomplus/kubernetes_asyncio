@@ -1,3 +1,12 @@
+# v1.0.0-beta8
+
+* feat: add debug logs to KubeConfigLoader ([#45](https://github.com/tomplus/kubernetes_asyncio/pull/45),
+  [@tomplus](https://github.com/tomplus))
+* feat: exec-plugins support in kubeconfig ([#44](https://github.com/tomplus/kubernetes_asyncio/pull/44),
+  [@tomplus](https://github.com/tomplus))
+* fix: read config data with bytes (python3) ([#41](https://github.com/tomplus/kubernetes_asyncio/pull/41),
+  [@tomplus](https://github.com/tomplus))
+
 # v1.0.0-beta7
 
 * feat: add OIDC auth support ([#36](https://github.com/tomplus/kubernetes_asyncio/pull/36),
