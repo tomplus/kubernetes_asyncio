@@ -426,6 +426,13 @@ class TestKubeConfigLoader(BaseTestCase):
                     "user": "non_existing_user"
                 }
             },
+            {
+                "name": "exec_cred_user",
+                "context": {
+                    "cluster": "default",
+                    "user": "exec_cred_user"
+                }
+            },
         ],
         "clusters": [
             {
@@ -574,6 +581,16 @@ class TestKubeConfigLoader(BaseTestCase):
                     "client-key-data": TEST_CLIENT_KEY_BASE64,
                 }
             },
+            {
+                "name": "exec_cred_user",
+                "user": {
+                    "exec": {
+                        "apiVersion": "client.authentication.k8s.io/v1beta1",
+                        "command": "aws-iam-authenticator",
+                        "args": ["token", "-i", "dummy-cluster"]
+                    }
+                }
+            },
         ]
     }
 
@@ -715,6 +732,20 @@ class TestKubeConfigLoader(BaseTestCase):
 
         with self.assertRaises(ConfigException):
             await  loader._refresh_oidc({'config': {}})
+
+    @patch('kubernetes_asyncio.config.kube_config.ExecProvider.run')
+    async def test_user_exec_auth(self, mock):
+        token = "dummy"
+        mock.return_value = {
+            "token": token
+        }
+        expected = FakeConfig(host=TEST_HOST, api_key={
+                              "authorization": BEARER_TOKEN_FORMAT % token})
+        actual = FakeConfig()
+        await KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="exec_cred_user").load_and_set(actual)
+        self.assertEqual(expected, actual)
 
     async def test_user_pass(self):
         expected = FakeConfig(host=TEST_HOST, token=TEST_BASIC_TOKEN)

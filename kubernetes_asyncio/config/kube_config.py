@@ -27,6 +27,7 @@ from kubernetes_asyncio.client import ApiClient, Configuration
 
 from .config_exception import ConfigException
 from .dateutil import UTC, parse_rfc3339
+from .exec_provider import ExecProvider
 from .google_auth import google_auth_credentials
 from .openid import OpenIDRequestor
 
@@ -168,9 +169,9 @@ class KubeConfigLoader(object):
         method. The order of authentication methods is:
 
             1. GCP auth-provider
-            2. token_data
-            3. token field (point to a token file)
-            4. oidc auth-provider
+            2. token field (point to a token file)
+            3. oidc auth-provider
+            4. exec provided plugin
             5. username/password
         """
 
@@ -184,6 +185,11 @@ class KubeConfigLoader(object):
         if self.provider == PROVIDER_TYPE_OIDC:
             await self._load_oid_token()
             return
+
+        if 'exec' in self._user:
+            res_exec_plugin = await self._load_from_exec_plugin()
+            if res_exec_plugin:
+                return
 
         if self._load_user_token():
             return
@@ -279,6 +285,17 @@ class KubeConfigLoader(object):
             return base64.b64decode(provider['config']['idp-certificate-authority-data'])
 
         return None
+
+    async def _load_from_exec_plugin(self):
+        try:
+            status = await ExecProvider(self._user['exec']).run()
+            if 'token' not in status:
+                logging.error('exec: missing token field in plugin output')
+                return None
+            self.token = "Bearer %s" % status['token']
+            return True
+        except Exception as e:
+            logging.error(str(e))
 
     def _load_user_token(self):
         token = FileOrData(
