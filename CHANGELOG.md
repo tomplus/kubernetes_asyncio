@@ -1,3 +1,8 @@
+# v1.0.0-beta9
+
+* fix: option verify-ssl impacts on server certs only ([#46](https://github.com/tomplus/kubernetes_asyncio/pull/46),
+  [@tomplus](https://github.com/tomplus))
+
 # v1.0.0-beta8
 
 * feat: add debug logs to KubeConfigLoader ([#45](https://github.com/tomplus/kubernetes_asyncio/pull/45),
