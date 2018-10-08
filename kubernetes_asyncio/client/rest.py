@@ -64,10 +64,13 @@ class RESTClientObject(object):
                 configuration.cert_file, keyfile=configuration.key_file
             )
 
+        if not configuration.verify_ssl:
+            ssl_context.check_hostname = False
+            ssl_context.verify_mode = ssl.CERT_NONE
+
         connector = aiohttp.TCPConnector(
             limit=maxsize,
-            ssl_context=ssl_context if configuration.verify_ssl else None,
-            verify_ssl=configuration.verify_ssl
+            ssl_context=ssl_context
         )
 
         # https pool manager
