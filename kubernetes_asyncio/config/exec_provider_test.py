@@ -20,15 +20,17 @@ from asynctest import ANY, TestCase, main, mock, patch
 
 from .config_exception import ConfigException
 from .exec_provider import ExecProvider
+from .kube_config import ConfigNode
 
 
 class ExecProviderTest(TestCase):
 
     def setUp(self):
-        self.input_ok = {
+        self.input_ok = ConfigNode('test', {
             'command': 'aws-iam-authenticator token -i dummy',
-            'apiVersion': 'client.authentication.k8s.io/v1beta1'
-        }
+            'apiVersion': 'client.authentication.k8s.io/v1beta1',
+            'env': None
+        })
         self.output_ok = """
         {
             "apiVersion": "client.authentication.k8s.io/v1beta1",
@@ -127,8 +129,12 @@ class ExecProviderTest(TestCase):
         self.process_mock.wait.assert_awaited_once()
 
     async def test_ok_with_args(self):
-        self.input_ok['args'] = ['--mock', '90']
-        ep = ExecProvider(self.input_ok)
+        input_ok = ConfigNode('test', {
+            'command': 'aws-iam-authenticator token -i dummy',
+            'apiVersion': 'client.authentication.k8s.io/v1beta1',
+            'args': ['--mock', '90']
+        })
+        ep = ExecProvider(input_ok)
         result = await ep.run()
         self.assertTrue(isinstance(result, dict))
         self.assertTrue('token' in result)
@@ -140,10 +146,13 @@ class ExecProviderTest(TestCase):
 
     async def test_ok_with_env(self):
 
-        self.input_ok['env'] = [{'name': 'EXEC_PROVIDER_ENV_NAME',
-                                 'value': 'EXEC_PROVIDER_ENV_VALUE'}]
+        input_ok = ConfigNode('test', {
+            'command': 'aws-iam-authenticator token -i dummy',
+            'apiVersion': 'client.authentication.k8s.io/v1beta1',
+            'env': [{'name': 'EXEC_PROVIDER_ENV_NAME',
+                     'value': 'EXEC_PROVIDER_ENV_VALUE'}]})
 
-        ep = ExecProvider(self.input_ok)
+        ep = ExecProvider(input_ok)
         result = await ep.run()
         self.assertTrue(isinstance(result, dict))
         self.assertTrue('token' in result)
