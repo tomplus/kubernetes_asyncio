@@ -74,7 +74,7 @@ class WSClientTest(TestCase):
                 headers={
                     'sec-websocket-protocol': 'v4.channel.k8s.io',
                     'Accept': '*/*',
-                    'User-Agent': 'Swagger-Codegen/6.0.0-snapshot/python',
+                    'User-Agent': 'Swagger-Codegen/7.0.0/python',
                     'Content-Type': 'application/json'
                 }
             )
