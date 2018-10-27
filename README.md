@@ -53,7 +53,7 @@ More complicated examples, like asynchronous multiple watch or tail logs from po
 you can find in `examples/` folder.
 
 
-## Comparison with official synchronous library
+## Compatibility
 
 This library is generated in the same way as the official Kubernetes Python Library. It uses swagger-codegen and the same concepts
 like streaming, watching or reading configuration. Because of an early stage of this library some differences still exist:
@@ -64,7 +64,12 @@ like streaming, watching or reading configuration. Because of an early stage of 
 | refesh token | no | yes, optional |
 | python | 2.7 3.4 3.5 3.6 3.7 | 3.5.3 3.6 3.7 |
 | streaming data via websocket from PODs | bidirectional | read-only is already implemented |
-| API version | 1.11.x (master branch) | 1.11.x |
+
+## Versions
+
+This library is versioned in the same way as the synchronous library. The first stable version is 7.0.0 and
+next major versions are comparable. This [compatibility table](https://github.com/kubernetes-client/python#compatibility)
+describes this library too.
 
 ## Development
 Install the development packages:
