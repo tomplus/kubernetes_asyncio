@@ -30,6 +30,9 @@ trap "clean_exit" EXIT
 # Switch off SE-Linux
 setenforce 0
 
+# define HOME dir
+HOME=/home/travis
+
 # Install docker if needed
 path_to_executable=$(which docker)
 if [ -x "$path_to_executable" ] ; then
