@@ -57,7 +57,7 @@ sudo mv kubectl /usr/local/bin/
 echo "Download localkube from minikube project"
 wget -O minikube "https://storage.googleapis.com/minikube/releases/v0.30.0/minikube-linux-amd64" 
 sudo chmod +x minikube
-sudo mv localkube /usr/local/bin/
+sudo mv minikube /usr/local/bin/
 
 # L68-100: Set up minikube within Travis CI
 # See https://github.com/kubernetes/minikube/blob/master/README.md#linux-continuous-integration-without-vm-support
@@ -78,13 +78,13 @@ sudo minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubern
 MINIKUBE_OK="false"
 echo "Waiting for minikube to start..."
 # this for loop waits until kubectl can access the api server that Minikube has created
-for i in {1..90}; do # timeout for 3 minutes
+for i in {1..18}; do # timeout for 3 minutes
    kubectl get po &> /dev/null
    if [ $? -ne 1 ]; then
       MINIKUBE_OK="true"
       break
   fi
-  sleep 2
+  sleep 10
 done
 # Shut down CI if minikube did not start and show logs
 if [ $MINIKUBE_OK == "false" ]; then
