@@ -1,3 +1,7 @@
+# v7.0.0
+
+* first stable release 7.0.0
+
 # v1.0.0-beta9
 
 * fix: option verify-ssl impacts on server certs only ([#46](https://github.com/tomplus/kubernetes_asyncio/pull/46),
