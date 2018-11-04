@@ -25,12 +25,15 @@ from kubernetes_asyncio.client.api.authorization_v1beta1_api import Authorizatio
 from kubernetes_asyncio.client.api.autoscaling_api import AutoscalingApi
 from kubernetes_asyncio.client.api.autoscaling_v1_api import AutoscalingV1Api
 from kubernetes_asyncio.client.api.autoscaling_v2beta1_api import AutoscalingV2beta1Api
+from kubernetes_asyncio.client.api.autoscaling_v2beta2_api import AutoscalingV2beta2Api
 from kubernetes_asyncio.client.api.batch_api import BatchApi
 from kubernetes_asyncio.client.api.batch_v1_api import BatchV1Api
 from kubernetes_asyncio.client.api.batch_v1beta1_api import BatchV1beta1Api
 from kubernetes_asyncio.client.api.batch_v2alpha1_api import BatchV2alpha1Api
 from kubernetes_asyncio.client.api.certificates_api import CertificatesApi
 from kubernetes_asyncio.client.api.certificates_v1beta1_api import CertificatesV1beta1Api
+from kubernetes_asyncio.client.api.coordination_api import CoordinationApi
+from kubernetes_asyncio.client.api.coordination_v1beta1_api import CoordinationV1beta1Api
 from kubernetes_asyncio.client.api.core_api import CoreApi
 from kubernetes_asyncio.client.api.core_v1_api import CoreV1Api
 from kubernetes_asyncio.client.api.custom_objects_api import CustomObjectsApi
