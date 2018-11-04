@@ -60,7 +60,8 @@ class WSClientTest(TestCase):
         mock.ws_connect.return_value = WsMock()
         with patch('kubernetes_asyncio.client.api_client.rest', mock):
 
-            ws = client.CoreV1Api(api_client=WsApiClient())
+            api_client = WsApiClient()
+            ws = client.CoreV1Api(api_client=api_client)
             resp = ws.connect_get_namespaced_pod_exec('pod', 'namespace',
                                                       command="mock-command",
                                                       stderr=True, stdin=False,
@@ -74,7 +75,7 @@ class WSClientTest(TestCase):
                 headers={
                     'sec-websocket-protocol': 'v4.channel.k8s.io',
                     'Accept': '*/*',
-                    'User-Agent': 'Swagger-Codegen/7.0.0/python',
+                    'User-Agent': api_client.user_agent,
                     'Content-Type': 'application/json'
                 }
             )
