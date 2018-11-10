@@ -1,3 +1,7 @@
+# v8.0.0
+
+* feat: upgrade to API spec from Kubernetes 1.12 ([#34](https://github.com/tomplus/kubernetes_asyncio/pull/50), [@tomplus](https://github.com/tomplus))
+
 # v7.0.0
 
 * first stable release 7.0.0
@@ -23,7 +27,7 @@
 
 # v1.0.0-beta6
 
-* feat:regenerate with latest client gen to get custom object status scale api
+* feat: regenerate with latest client gen to get custom object status scale api
   ([#37](https://github.com/tomplus/kubernetes_asyncio/pull/37), [@juliantaylor](https://github.com/juliantaylor))
 * fix: handling timeout by watch loop ([#39](https://github.com/tomplus/kubernetes_asyncio/pull/39),
   [@tomplus](https://github.com/tomplus))
