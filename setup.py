@@ -18,7 +18,7 @@ from setuptools import setup
 # by scripts/update-client.sh.
 CLIENT_VERSION = "8.0.0"
 PACKAGE_NAME = "kubernetes_asyncio"
-DEVELOPMENT_STATUS = "4 - Beta"
+DEVELOPMENT_STATUS = "5 - Production/Stable"
 
 # To install the library, run the following
 #
