@@ -58,7 +58,7 @@ you can find in `examples/` folder.
 This library is generated in the same way as the official Kubernetes Python Library. It uses swagger-codegen and the same concepts
 like streaming, watching or reading configuration. Because of an early stage of this library some differences still exist:
 
-|  | [synchronous library kubernetes-client/python](https://github.com/kubernetes-client/python) | [this libray](https://github.com/tomplus/kubernetes_asyncio/) |
+|  | [synchronous library kubernetes-client/python](https://github.com/kubernetes-client/python) | [this library](https://github.com/tomplus/kubernetes_asyncio/) |
 |--|--------------------------------------------------------------------|---------------------------------------------------------------|
 | authentication method | gcp-token, azure-token, user-token, oidc-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, oidc-token, user-password, in-cluster |
 | refesh token | no | yes, optional |
