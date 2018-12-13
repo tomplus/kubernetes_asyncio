@@ -21,7 +21,6 @@ import logging
 import os
 import tempfile
 
-import urllib3
 import yaml
 
 from kubernetes_asyncio.client import ApiClient, Configuration
@@ -319,9 +318,9 @@ class KubeConfigLoader(object):
 
     def _load_user_pass_token(self):
         if 'username' in self._user and 'password' in self._user:
-            self.token = urllib3.util.make_headers(
-                basic_auth=(self._user['username'] + ':' +
-                            self._user['password'])).get('authorization')
+            basic_auth = self._user['username'] + ':' + self._user['password']
+            self.token = 'Basic ' + base64.b64encode(
+                basic_auth.encode()).decode('utf-8')
             return True
 
     def _load_cluster_info(self):
