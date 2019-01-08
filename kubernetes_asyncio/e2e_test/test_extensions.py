@@ -51,7 +51,7 @@ spec:
         - containerPort: 80
 '''
         resp = await api.create_namespaced_deployment(
-            body=yaml.load(deployment % name),
+            body=yaml.safe_load(deployment % name),
             namespace="default")
         resp = await api.read_namespaced_deployment(name, 'default')
         self.assertIsNotNone(resp)

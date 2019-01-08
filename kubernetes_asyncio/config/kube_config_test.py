@@ -853,7 +853,7 @@ class TestKubeConfigLoader(BaseTestCase):
     async def test_load_kube_config(self):
         expected = FakeConfig(host=TEST_HOST,
                               token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64)
-        config_file = self._create_temp_file(yaml.dump(self.TEST_KUBE_CONFIG))
+        config_file = self._create_temp_file(yaml.safe_dump(self.TEST_KUBE_CONFIG))
         actual = FakeConfig()
         await load_kube_config(config_file=config_file,
                                context="simple_token",
@@ -861,7 +861,7 @@ class TestKubeConfigLoader(BaseTestCase):
         self.assertEqual(expected, actual)
 
     def test_list_kube_config_contexts(self):
-        config_file = self._create_temp_file(yaml.dump(self.TEST_KUBE_CONFIG))
+        config_file = self._create_temp_file(yaml.safe_dump(self.TEST_KUBE_CONFIG))
         contexts, active_context = list_kube_config_contexts(
             config_file=config_file)
         self.assertDictEqual(self.TEST_KUBE_CONFIG['contexts'][0],
@@ -874,7 +874,7 @@ class TestKubeConfigLoader(BaseTestCase):
                                   contexts)
 
     async def test_new_client_from_config(self):
-        config_file = self._create_temp_file(yaml.dump(self.TEST_KUBE_CONFIG))
+        config_file = self._create_temp_file(yaml.safe_dump(self.TEST_KUBE_CONFIG))
         client = await new_client_from_config(
             config_file=config_file, context="simple_token")
         self.assertEqual(TEST_HOST, client.configuration.host)
