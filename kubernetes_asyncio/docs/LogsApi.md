@@ -1,6 +1,6 @@
 # kubernetes_asyncio.client.LogsApi
 
-All URIs are relative to *https://localhost*
+All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -14,6 +14,8 @@ Method | HTTP request | Description
 
 
 ### Example
+
+* Api Key Authentication (BearerToken): 
 ```python
 from __future__ import print_function
 import time
@@ -64,6 +66,8 @@ void (empty response body)
 
 
 ### Example
+
+* Api Key Authentication (BearerToken): 
 ```python
 from __future__ import print_function
 import time
