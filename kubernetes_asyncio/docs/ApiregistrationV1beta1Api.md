@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 
 # **create_api_service**
-> V1beta1APIService create_api_service(v1beta1_api_service, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1beta1APIService create_api_service(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -42,13 +42,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ApiregistrationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1beta1_api_service = kubernetes_asyncio.client.V1beta1APIService() # V1beta1APIService | 
+body = kubernetes_asyncio.client.V1beta1APIService() # V1beta1APIService | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_api_service(v1beta1_api_service, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_api_service(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ApiregistrationV1beta1Api->create_api_service: %s\n" % e)
@@ -58,7 +58,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1beta1_api_service** | [**V1beta1APIService**](V1beta1APIService.md)|  | 
+ **body** | [**V1beta1APIService**](V1beta1APIService.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_api_service**
-> V1Status delete_api_service(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_api_service(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -104,7 +104,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ApiregistrationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the APIService
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -112,7 +112,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_api_service(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_api_service(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ApiregistrationV1beta1Api->delete_api_service: %s\n" % e)
@@ -123,7 +123,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the APIService | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -339,7 +339,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_api_service**
-> V1beta1APIService patch_api_service(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1beta1APIService patch_api_service(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -364,12 +364,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ApiregistrationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the APIService
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_api_service(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_api_service(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ApiregistrationV1beta1Api->patch_api_service: %s\n" % e)
@@ -380,7 +380,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the APIService | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -400,7 +400,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_api_service_status**
-> V1beta1APIService patch_api_service_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1beta1APIService patch_api_service_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -425,12 +425,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ApiregistrationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the APIService
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_api_service_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_api_service_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ApiregistrationV1beta1Api->patch_api_service_status: %s\n" % e)
@@ -441,7 +441,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the APIService | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -579,7 +579,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_api_service**
-> V1beta1APIService replace_api_service(name, v1beta1_api_service, pretty=pretty, dry_run=dry_run)
+> V1beta1APIService replace_api_service(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -604,12 +604,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ApiregistrationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the APIService
-v1beta1_api_service = kubernetes_asyncio.client.V1beta1APIService() # V1beta1APIService | 
+body = kubernetes_asyncio.client.V1beta1APIService() # V1beta1APIService | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_api_service(name, v1beta1_api_service, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_api_service(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ApiregistrationV1beta1Api->replace_api_service: %s\n" % e)
@@ -620,7 +620,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the APIService | 
- **v1beta1_api_service** | [**V1beta1APIService**](V1beta1APIService.md)|  | 
+ **body** | [**V1beta1APIService**](V1beta1APIService.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -640,7 +640,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_api_service_status**
-> V1beta1APIService replace_api_service_status(name, v1beta1_api_service, pretty=pretty, dry_run=dry_run)
+> V1beta1APIService replace_api_service_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -665,12 +665,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ApiregistrationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the APIService
-v1beta1_api_service = kubernetes_asyncio.client.V1beta1APIService() # V1beta1APIService | 
+body = kubernetes_asyncio.client.V1beta1APIService() # V1beta1APIService | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_api_service_status(name, v1beta1_api_service, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_api_service_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ApiregistrationV1beta1Api->replace_api_service_status: %s\n" % e)
@@ -681,7 +681,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the APIService | 
- **v1beta1_api_service** | [**V1beta1APIService**](V1beta1APIService.md)|  | 
+ **body** | [**V1beta1APIService**](V1beta1APIService.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 

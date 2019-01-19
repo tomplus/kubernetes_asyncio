@@ -31,7 +31,7 @@ Method | HTTP request | Description
 
 
 # **create_cluster_custom_object**
-> object create_cluster_custom_object(group, version, plural, unknown_base_type, pretty=pretty)
+> object create_cluster_custom_object(group, version, plural, body, pretty=pretty)
 
 
 
@@ -58,11 +58,11 @@ api_instance = kubernetes_asyncio.client.CustomObjectsApi(kubernetes_asyncio.cli
 group = 'group_example' # str | The custom resource's group name
 version = 'version_example' # str | The custom resource's version
 plural = 'plural_example' # str | The custom resource's plural name. For TPRs this would be lowercase plural kind.
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to create.
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to create.
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_cluster_custom_object(group, version, plural, unknown_base_type, pretty=pretty)
+    api_response = api_instance.create_cluster_custom_object(group, version, plural, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->create_cluster_custom_object: %s\n" % e)
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
  **group** | **str**| The custom resource&#39;s group name | 
  **version** | **str**| The custom resource&#39;s version | 
  **plural** | **str**| The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to create. | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to create. | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
 
 ### Return type
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_custom_object**
-> object create_namespaced_custom_object(group, version, namespace, plural, unknown_base_type, pretty=pretty)
+> object create_namespaced_custom_object(group, version, namespace, plural, body, pretty=pretty)
 
 
 
@@ -122,11 +122,11 @@ group = 'group_example' # str | The custom resource's group name
 version = 'version_example' # str | The custom resource's version
 namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | The custom resource's plural name. For TPRs this would be lowercase plural kind.
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to create.
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to create.
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_custom_object(group, version, namespace, plural, unknown_base_type, pretty=pretty)
+    api_response = api_instance.create_namespaced_custom_object(group, version, namespace, plural, body, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->create_namespaced_custom_object: %s\n" % e)
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
  **version** | **str**| The custom resource&#39;s version | 
  **namespace** | **str**| The custom resource&#39;s namespace | 
  **plural** | **str**| The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to create. | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to create. | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
 
 ### Return type
@@ -159,7 +159,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_cluster_custom_object**
-> object delete_cluster_custom_object(group, version, plural, name, v1_delete_options, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> object delete_cluster_custom_object(group, version, plural, name, body, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -187,13 +187,13 @@ group = 'group_example' # str | the custom resource's group
 version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom object's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
 orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
 
 try:
-    api_response = api_instance.delete_cluster_custom_object(group, version, plural, name, v1_delete_options, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_cluster_custom_object(group, version, plural, name, body, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->delete_cluster_custom_object: %s\n" % e)
@@ -207,7 +207,7 @@ Name | Type | Description  | Notes
  **version** | **str**| the custom resource&#39;s version | 
  **plural** | **str**| the custom object&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
  **orphan_dependents** | **bool**| Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | [optional] 
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. | [optional] 
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_custom_object**
-> object delete_namespaced_custom_object(group, version, namespace, plural, name, v1_delete_options, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> object delete_namespaced_custom_object(group, version, namespace, plural, name, body, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -257,13 +257,13 @@ version = 'version_example' # str | the custom resource's version
 namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
 orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_custom_object(group, version, namespace, plural, name, v1_delete_options, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_custom_object(group, version, namespace, plural, name, body, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->delete_namespaced_custom_object: %s\n" % e)
@@ -278,7 +278,7 @@ Name | Type | Description  | Notes
  **namespace** | **str**| The custom resource&#39;s namespace | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
  **orphan_dependents** | **bool**| Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | [optional] 
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. | [optional] 
@@ -807,7 +807,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_cluster_custom_object**
-> object patch_cluster_custom_object(group, version, plural, name, unknown_base_type)
+> object patch_cluster_custom_object(group, version, plural, name, body)
 
 
 
@@ -835,10 +835,10 @@ group = 'group_example' # str | the custom resource's group
 version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom object's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to patch.
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to patch.
 
 try:
-    api_response = api_instance.patch_cluster_custom_object(group, version, plural, name, unknown_base_type)
+    api_response = api_instance.patch_cluster_custom_object(group, version, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->patch_cluster_custom_object: %s\n" % e)
@@ -852,7 +852,7 @@ Name | Type | Description  | Notes
  **version** | **str**| the custom resource&#39;s version | 
  **plural** | **str**| the custom object&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to patch. | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to patch. | 
 
 ### Return type
 
@@ -870,7 +870,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_cluster_custom_object_scale**
-> object patch_cluster_custom_object_scale(group, version, plural, name, unknown_base_type)
+> object patch_cluster_custom_object_scale(group, version, plural, name, body)
 
 
 
@@ -898,10 +898,10 @@ group = 'group_example' # str | the custom resource's group
 version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
-    api_response = api_instance.patch_cluster_custom_object_scale(group, version, plural, name, unknown_base_type)
+    api_response = api_instance.patch_cluster_custom_object_scale(group, version, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->patch_cluster_custom_object_scale: %s\n" % e)
@@ -915,7 +915,7 @@ Name | Type | Description  | Notes
  **version** | **str**| the custom resource&#39;s version | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 
@@ -933,7 +933,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_cluster_custom_object_status**
-> object patch_cluster_custom_object_status(group, version, plural, name, unknown_base_type)
+> object patch_cluster_custom_object_status(group, version, plural, name, body)
 
 
 
@@ -961,10 +961,10 @@ group = 'group_example' # str | the custom resource's group
 version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
-    api_response = api_instance.patch_cluster_custom_object_status(group, version, plural, name, unknown_base_type)
+    api_response = api_instance.patch_cluster_custom_object_status(group, version, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->patch_cluster_custom_object_status: %s\n" % e)
@@ -978,7 +978,7 @@ Name | Type | Description  | Notes
  **version** | **str**| the custom resource&#39;s version | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 
@@ -996,7 +996,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_custom_object**
-> object patch_namespaced_custom_object(group, version, namespace, plural, name, unknown_base_type)
+> object patch_namespaced_custom_object(group, version, namespace, plural, name, body)
 
 
 
@@ -1025,10 +1025,10 @@ version = 'version_example' # str | the custom resource's version
 namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to patch.
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to patch.
 
 try:
-    api_response = api_instance.patch_namespaced_custom_object(group, version, namespace, plural, name, unknown_base_type)
+    api_response = api_instance.patch_namespaced_custom_object(group, version, namespace, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->patch_namespaced_custom_object: %s\n" % e)
@@ -1043,7 +1043,7 @@ Name | Type | Description  | Notes
  **namespace** | **str**| The custom resource&#39;s namespace | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to patch. | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to patch. | 
 
 ### Return type
 
@@ -1061,7 +1061,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_custom_object_scale**
-> object patch_namespaced_custom_object_scale(group, version, namespace, plural, name, unknown_base_type)
+> object patch_namespaced_custom_object_scale(group, version, namespace, plural, name, body)
 
 
 
@@ -1090,10 +1090,10 @@ version = 'version_example' # str | the custom resource's version
 namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
-    api_response = api_instance.patch_namespaced_custom_object_scale(group, version, namespace, plural, name, unknown_base_type)
+    api_response = api_instance.patch_namespaced_custom_object_scale(group, version, namespace, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->patch_namespaced_custom_object_scale: %s\n" % e)
@@ -1108,7 +1108,7 @@ Name | Type | Description  | Notes
  **namespace** | **str**| The custom resource&#39;s namespace | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 
@@ -1126,7 +1126,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_custom_object_status**
-> object patch_namespaced_custom_object_status(group, version, namespace, plural, name, unknown_base_type)
+> object patch_namespaced_custom_object_status(group, version, namespace, plural, name, body)
 
 
 
@@ -1155,10 +1155,10 @@ version = 'version_example' # str | the custom resource's version
 namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
-    api_response = api_instance.patch_namespaced_custom_object_status(group, version, namespace, plural, name, unknown_base_type)
+    api_response = api_instance.patch_namespaced_custom_object_status(group, version, namespace, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->patch_namespaced_custom_object_status: %s\n" % e)
@@ -1173,7 +1173,7 @@ Name | Type | Description  | Notes
  **namespace** | **str**| The custom resource&#39;s namespace | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 
@@ -1191,7 +1191,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_cluster_custom_object**
-> object replace_cluster_custom_object(group, version, plural, name, unknown_base_type)
+> object replace_cluster_custom_object(group, version, plural, name, body)
 
 
 
@@ -1219,10 +1219,10 @@ group = 'group_example' # str | the custom resource's group
 version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom object's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to replace.
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to replace.
 
 try:
-    api_response = api_instance.replace_cluster_custom_object(group, version, plural, name, unknown_base_type)
+    api_response = api_instance.replace_cluster_custom_object(group, version, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->replace_cluster_custom_object: %s\n" % e)
@@ -1236,7 +1236,7 @@ Name | Type | Description  | Notes
  **version** | **str**| the custom resource&#39;s version | 
  **plural** | **str**| the custom object&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to replace. | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to replace. | 
 
 ### Return type
 
@@ -1254,7 +1254,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_cluster_custom_object_scale**
-> object replace_cluster_custom_object_scale(group, version, plural, name, unknown_base_type)
+> object replace_cluster_custom_object_scale(group, version, plural, name, body)
 
 
 
@@ -1282,10 +1282,10 @@ group = 'group_example' # str | the custom resource's group
 version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
-    api_response = api_instance.replace_cluster_custom_object_scale(group, version, plural, name, unknown_base_type)
+    api_response = api_instance.replace_cluster_custom_object_scale(group, version, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->replace_cluster_custom_object_scale: %s\n" % e)
@@ -1299,7 +1299,7 @@ Name | Type | Description  | Notes
  **version** | **str**| the custom resource&#39;s version | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 
@@ -1317,7 +1317,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_cluster_custom_object_status**
-> object replace_cluster_custom_object_status(group, version, plural, name, unknown_base_type)
+> object replace_cluster_custom_object_status(group, version, plural, name, body)
 
 
 
@@ -1345,10 +1345,10 @@ group = 'group_example' # str | the custom resource's group
 version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
-    api_response = api_instance.replace_cluster_custom_object_status(group, version, plural, name, unknown_base_type)
+    api_response = api_instance.replace_cluster_custom_object_status(group, version, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->replace_cluster_custom_object_status: %s\n" % e)
@@ -1362,7 +1362,7 @@ Name | Type | Description  | Notes
  **version** | **str**| the custom resource&#39;s version | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 
@@ -1380,7 +1380,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_custom_object**
-> object replace_namespaced_custom_object(group, version, namespace, plural, name, unknown_base_type)
+> object replace_namespaced_custom_object(group, version, namespace, plural, name, body)
 
 
 
@@ -1409,10 +1409,10 @@ version = 'version_example' # str | the custom resource's version
 namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to replace.
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | The JSON schema of the Resource to replace.
 
 try:
-    api_response = api_instance.replace_namespaced_custom_object(group, version, namespace, plural, name, unknown_base_type)
+    api_response = api_instance.replace_namespaced_custom_object(group, version, namespace, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->replace_namespaced_custom_object: %s\n" % e)
@@ -1427,7 +1427,7 @@ Name | Type | Description  | Notes
  **namespace** | **str**| The custom resource&#39;s namespace | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to replace. | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)| The JSON schema of the Resource to replace. | 
 
 ### Return type
 
@@ -1445,7 +1445,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_custom_object_scale**
-> object replace_namespaced_custom_object_scale(group, version, namespace, plural, name, unknown_base_type)
+> object replace_namespaced_custom_object_scale(group, version, namespace, plural, name, body)
 
 
 
@@ -1474,10 +1474,10 @@ version = 'version_example' # str | the custom resource's version
 namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
-    api_response = api_instance.replace_namespaced_custom_object_scale(group, version, namespace, plural, name, unknown_base_type)
+    api_response = api_instance.replace_namespaced_custom_object_scale(group, version, namespace, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->replace_namespaced_custom_object_scale: %s\n" % e)
@@ -1492,7 +1492,7 @@ Name | Type | Description  | Notes
  **namespace** | **str**| The custom resource&#39;s namespace | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 
@@ -1510,7 +1510,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_custom_object_status**
-> object replace_namespaced_custom_object_status(group, version, namespace, plural, name, unknown_base_type)
+> object replace_namespaced_custom_object_status(group, version, namespace, plural, name, body)
 
 
 
@@ -1539,10 +1539,10 @@ version = 'version_example' # str | the custom resource's version
 namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 
 try:
-    api_response = api_instance.replace_namespaced_custom_object_status(group, version, namespace, plural, name, unknown_base_type)
+    api_response = api_instance.replace_namespaced_custom_object_status(group, version, namespace, plural, name, body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CustomObjectsApi->replace_namespaced_custom_object_status: %s\n" % e)
@@ -1557,7 +1557,7 @@ Name | Type | Description  | Notes
  **namespace** | **str**| The custom resource&#39;s namespace | 
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
 
 ### Return type
 

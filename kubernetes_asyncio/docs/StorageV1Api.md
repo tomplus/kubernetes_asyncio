@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 
 # **create_storage_class**
-> V1StorageClass create_storage_class(v1_storage_class, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1StorageClass create_storage_class(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -39,13 +39,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.StorageV1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1_storage_class = kubernetes_asyncio.client.V1StorageClass() # V1StorageClass | 
+body = kubernetes_asyncio.client.V1StorageClass() # V1StorageClass | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_storage_class(v1_storage_class, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_storage_class(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling StorageV1Api->create_storage_class: %s\n" % e)
@@ -55,7 +55,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1_storage_class** | [**V1StorageClass**](V1StorageClass.md)|  | 
+ **body** | [**V1StorageClass**](V1StorageClass.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_storage_class**
-> V1Status delete_storage_class(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_storage_class(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -172,7 +172,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.StorageV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the StorageClass
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -180,7 +180,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_storage_class(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_storage_class(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling StorageV1Api->delete_storage_class: %s\n" % e)
@@ -191,7 +191,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the StorageClass | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -336,7 +336,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_storage_class**
-> V1StorageClass patch_storage_class(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1StorageClass patch_storage_class(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -361,12 +361,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.StorageV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the StorageClass
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_storage_class(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_storage_class(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling StorageV1Api->patch_storage_class: %s\n" % e)
@@ -377,7 +377,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the StorageClass | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -458,7 +458,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_storage_class**
-> V1StorageClass replace_storage_class(name, v1_storage_class, pretty=pretty, dry_run=dry_run)
+> V1StorageClass replace_storage_class(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -483,12 +483,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.StorageV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the StorageClass
-v1_storage_class = kubernetes_asyncio.client.V1StorageClass() # V1StorageClass | 
+body = kubernetes_asyncio.client.V1StorageClass() # V1StorageClass | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_storage_class(name, v1_storage_class, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_storage_class(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling StorageV1Api->replace_storage_class: %s\n" % e)
@@ -499,7 +499,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the StorageClass | 
- **v1_storage_class** | [**V1StorageClass**](V1StorageClass.md)|  | 
+ **body** | [**V1StorageClass**](V1StorageClass.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 

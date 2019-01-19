@@ -38,7 +38,7 @@ Method | HTTP request | Description
 
 
 # **create_cluster_role**
-> V1ClusterRole create_cluster_role(v1_cluster_role, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1ClusterRole create_cluster_role(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -62,13 +62,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1_cluster_role = kubernetes_asyncio.client.V1ClusterRole() # V1ClusterRole | 
+body = kubernetes_asyncio.client.V1ClusterRole() # V1ClusterRole | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_cluster_role(v1_cluster_role, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_cluster_role(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->create_cluster_role: %s\n" % e)
@@ -78,7 +78,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1_cluster_role** | [**V1ClusterRole**](V1ClusterRole.md)|  | 
+ **body** | [**V1ClusterRole**](V1ClusterRole.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_cluster_role_binding**
-> V1ClusterRoleBinding create_cluster_role_binding(v1_cluster_role_binding, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1ClusterRoleBinding create_cluster_role_binding(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -123,13 +123,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1_cluster_role_binding = kubernetes_asyncio.client.V1ClusterRoleBinding() # V1ClusterRoleBinding | 
+body = kubernetes_asyncio.client.V1ClusterRoleBinding() # V1ClusterRoleBinding | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_cluster_role_binding(v1_cluster_role_binding, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_cluster_role_binding(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->create_cluster_role_binding: %s\n" % e)
@@ -139,7 +139,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1_cluster_role_binding** | [**V1ClusterRoleBinding**](V1ClusterRoleBinding.md)|  | 
+ **body** | [**V1ClusterRoleBinding**](V1ClusterRoleBinding.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_role**
-> V1Role create_namespaced_role(namespace, v1_role, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1Role create_namespaced_role(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -185,13 +185,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_role = kubernetes_asyncio.client.V1Role() # V1Role | 
+body = kubernetes_asyncio.client.V1Role() # V1Role | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_role(namespace, v1_role, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_role(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->create_namespaced_role: %s\n" % e)
@@ -202,7 +202,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_role** | [**V1Role**](V1Role.md)|  | 
+ **body** | [**V1Role**](V1Role.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_role_binding**
-> V1RoleBinding create_namespaced_role_binding(namespace, v1_role_binding, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1RoleBinding create_namespaced_role_binding(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -248,13 +248,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_role_binding = kubernetes_asyncio.client.V1RoleBinding() # V1RoleBinding | 
+body = kubernetes_asyncio.client.V1RoleBinding() # V1RoleBinding | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_role_binding(namespace, v1_role_binding, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_role_binding(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->create_namespaced_role_binding: %s\n" % e)
@@ -265,7 +265,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_role_binding** | [**V1RoleBinding**](V1RoleBinding.md)|  | 
+ **body** | [**V1RoleBinding**](V1RoleBinding.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -286,7 +286,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_cluster_role**
-> V1Status delete_cluster_role(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_cluster_role(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -311,7 +311,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ClusterRole
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -319,7 +319,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_cluster_role(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_cluster_role(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->delete_cluster_role: %s\n" % e)
@@ -330,7 +330,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ClusterRole | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -353,7 +353,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_cluster_role_binding**
-> V1Status delete_cluster_role_binding(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_cluster_role_binding(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -378,7 +378,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ClusterRoleBinding
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -386,7 +386,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_cluster_role_binding(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_cluster_role_binding(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->delete_cluster_role_binding: %s\n" % e)
@@ -397,7 +397,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ClusterRoleBinding | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -708,7 +708,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_role**
-> V1Status delete_namespaced_role(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_role(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -734,7 +734,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Role
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -742,7 +742,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_role(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_role(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->delete_namespaced_role: %s\n" % e)
@@ -754,7 +754,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Role | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -777,7 +777,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_role_binding**
-> V1Status delete_namespaced_role_binding(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_role_binding(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -803,7 +803,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the RoleBinding
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -811,7 +811,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_role_binding(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_role_binding(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->delete_namespaced_role_binding: %s\n" % e)
@@ -823,7 +823,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the RoleBinding | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -1327,7 +1327,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_cluster_role**
-> V1ClusterRole patch_cluster_role(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1ClusterRole patch_cluster_role(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -1352,12 +1352,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ClusterRole
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_cluster_role(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_cluster_role(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->patch_cluster_role: %s\n" % e)
@@ -1368,7 +1368,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ClusterRole | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -1388,7 +1388,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_cluster_role_binding**
-> V1ClusterRoleBinding patch_cluster_role_binding(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1ClusterRoleBinding patch_cluster_role_binding(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -1413,12 +1413,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ClusterRoleBinding
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_cluster_role_binding(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_cluster_role_binding(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->patch_cluster_role_binding: %s\n" % e)
@@ -1429,7 +1429,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ClusterRoleBinding | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -1449,7 +1449,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_role**
-> V1Role patch_namespaced_role(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Role patch_namespaced_role(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -1475,12 +1475,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Role
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_role(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_role(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->patch_namespaced_role: %s\n" % e)
@@ -1492,7 +1492,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Role | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -1512,7 +1512,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_role_binding**
-> V1RoleBinding patch_namespaced_role_binding(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1RoleBinding patch_namespaced_role_binding(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -1538,12 +1538,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the RoleBinding
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_role_binding(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_role_binding(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->patch_namespaced_role_binding: %s\n" % e)
@@ -1555,7 +1555,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the RoleBinding | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -1807,7 +1807,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_cluster_role**
-> V1ClusterRole replace_cluster_role(name, v1_cluster_role, pretty=pretty, dry_run=dry_run)
+> V1ClusterRole replace_cluster_role(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -1832,12 +1832,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ClusterRole
-v1_cluster_role = kubernetes_asyncio.client.V1ClusterRole() # V1ClusterRole | 
+body = kubernetes_asyncio.client.V1ClusterRole() # V1ClusterRole | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_cluster_role(name, v1_cluster_role, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_cluster_role(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->replace_cluster_role: %s\n" % e)
@@ -1848,7 +1848,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ClusterRole | 
- **v1_cluster_role** | [**V1ClusterRole**](V1ClusterRole.md)|  | 
+ **body** | [**V1ClusterRole**](V1ClusterRole.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -1868,7 +1868,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_cluster_role_binding**
-> V1ClusterRoleBinding replace_cluster_role_binding(name, v1_cluster_role_binding, pretty=pretty, dry_run=dry_run)
+> V1ClusterRoleBinding replace_cluster_role_binding(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -1893,12 +1893,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ClusterRoleBinding
-v1_cluster_role_binding = kubernetes_asyncio.client.V1ClusterRoleBinding() # V1ClusterRoleBinding | 
+body = kubernetes_asyncio.client.V1ClusterRoleBinding() # V1ClusterRoleBinding | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_cluster_role_binding(name, v1_cluster_role_binding, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_cluster_role_binding(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->replace_cluster_role_binding: %s\n" % e)
@@ -1909,7 +1909,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ClusterRoleBinding | 
- **v1_cluster_role_binding** | [**V1ClusterRoleBinding**](V1ClusterRoleBinding.md)|  | 
+ **body** | [**V1ClusterRoleBinding**](V1ClusterRoleBinding.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -1929,7 +1929,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_role**
-> V1Role replace_namespaced_role(name, namespace, v1_role, pretty=pretty, dry_run=dry_run)
+> V1Role replace_namespaced_role(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -1955,12 +1955,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Role
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_role = kubernetes_asyncio.client.V1Role() # V1Role | 
+body = kubernetes_asyncio.client.V1Role() # V1Role | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_role(name, namespace, v1_role, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_role(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->replace_namespaced_role: %s\n" % e)
@@ -1972,7 +1972,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Role | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_role** | [**V1Role**](V1Role.md)|  | 
+ **body** | [**V1Role**](V1Role.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -1992,7 +1992,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_role_binding**
-> V1RoleBinding replace_namespaced_role_binding(name, namespace, v1_role_binding, pretty=pretty, dry_run=dry_run)
+> V1RoleBinding replace_namespaced_role_binding(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -2018,12 +2018,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.RbacAuthorizationV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the RoleBinding
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_role_binding = kubernetes_asyncio.client.V1RoleBinding() # V1RoleBinding | 
+body = kubernetes_asyncio.client.V1RoleBinding() # V1RoleBinding | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_role_binding(name, namespace, v1_role_binding, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_role_binding(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling RbacAuthorizationV1Api->replace_namespaced_role_binding: %s\n" % e)
@@ -2035,7 +2035,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the RoleBinding | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_role_binding** | [**V1RoleBinding**](V1RoleBinding.md)|  | 
+ **body** | [**V1RoleBinding**](V1RoleBinding.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 

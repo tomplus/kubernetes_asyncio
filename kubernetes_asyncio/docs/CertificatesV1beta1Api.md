@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 
 # **create_certificate_signing_request**
-> V1beta1CertificateSigningRequest create_certificate_signing_request(v1beta1_certificate_signing_request, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1beta1CertificateSigningRequest create_certificate_signing_request(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -43,13 +43,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CertificatesV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1beta1_certificate_signing_request = kubernetes_asyncio.client.V1beta1CertificateSigningRequest() # V1beta1CertificateSigningRequest | 
+body = kubernetes_asyncio.client.V1beta1CertificateSigningRequest() # V1beta1CertificateSigningRequest | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_certificate_signing_request(v1beta1_certificate_signing_request, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_certificate_signing_request(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CertificatesV1beta1Api->create_certificate_signing_request: %s\n" % e)
@@ -59,7 +59,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1beta1_certificate_signing_request** | [**V1beta1CertificateSigningRequest**](V1beta1CertificateSigningRequest.md)|  | 
+ **body** | [**V1beta1CertificateSigningRequest**](V1beta1CertificateSigningRequest.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_certificate_signing_request**
-> V1Status delete_certificate_signing_request(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_certificate_signing_request(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -105,7 +105,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CertificatesV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the CertificateSigningRequest
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -113,7 +113,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_certificate_signing_request(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_certificate_signing_request(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CertificatesV1beta1Api->delete_certificate_signing_request: %s\n" % e)
@@ -124,7 +124,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the CertificateSigningRequest | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -340,7 +340,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_certificate_signing_request**
-> V1beta1CertificateSigningRequest patch_certificate_signing_request(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1beta1CertificateSigningRequest patch_certificate_signing_request(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -365,12 +365,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CertificatesV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the CertificateSigningRequest
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_certificate_signing_request(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_certificate_signing_request(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CertificatesV1beta1Api->patch_certificate_signing_request: %s\n" % e)
@@ -381,7 +381,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the CertificateSigningRequest | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -401,7 +401,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_certificate_signing_request_status**
-> V1beta1CertificateSigningRequest patch_certificate_signing_request_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1beta1CertificateSigningRequest patch_certificate_signing_request_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -426,12 +426,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CertificatesV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the CertificateSigningRequest
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_certificate_signing_request_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_certificate_signing_request_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CertificatesV1beta1Api->patch_certificate_signing_request_status: %s\n" % e)
@@ -442,7 +442,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the CertificateSigningRequest | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -580,7 +580,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_certificate_signing_request**
-> V1beta1CertificateSigningRequest replace_certificate_signing_request(name, v1beta1_certificate_signing_request, pretty=pretty, dry_run=dry_run)
+> V1beta1CertificateSigningRequest replace_certificate_signing_request(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -605,12 +605,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CertificatesV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the CertificateSigningRequest
-v1beta1_certificate_signing_request = kubernetes_asyncio.client.V1beta1CertificateSigningRequest() # V1beta1CertificateSigningRequest | 
+body = kubernetes_asyncio.client.V1beta1CertificateSigningRequest() # V1beta1CertificateSigningRequest | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_certificate_signing_request(name, v1beta1_certificate_signing_request, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_certificate_signing_request(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CertificatesV1beta1Api->replace_certificate_signing_request: %s\n" % e)
@@ -621,7 +621,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the CertificateSigningRequest | 
- **v1beta1_certificate_signing_request** | [**V1beta1CertificateSigningRequest**](V1beta1CertificateSigningRequest.md)|  | 
+ **body** | [**V1beta1CertificateSigningRequest**](V1beta1CertificateSigningRequest.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -641,7 +641,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_certificate_signing_request_approval**
-> V1beta1CertificateSigningRequest replace_certificate_signing_request_approval(name, v1beta1_certificate_signing_request, dry_run=dry_run, pretty=pretty)
+> V1beta1CertificateSigningRequest replace_certificate_signing_request_approval(name, body, dry_run=dry_run, pretty=pretty)
 
 
 
@@ -666,12 +666,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CertificatesV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the CertificateSigningRequest
-v1beta1_certificate_signing_request = kubernetes_asyncio.client.V1beta1CertificateSigningRequest() # V1beta1CertificateSigningRequest | 
+body = kubernetes_asyncio.client.V1beta1CertificateSigningRequest() # V1beta1CertificateSigningRequest | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.replace_certificate_signing_request_approval(name, v1beta1_certificate_signing_request, dry_run=dry_run, pretty=pretty)
+    api_response = api_instance.replace_certificate_signing_request_approval(name, body, dry_run=dry_run, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CertificatesV1beta1Api->replace_certificate_signing_request_approval: %s\n" % e)
@@ -682,7 +682,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the CertificateSigningRequest | 
- **v1beta1_certificate_signing_request** | [**V1beta1CertificateSigningRequest**](V1beta1CertificateSigningRequest.md)|  | 
+ **body** | [**V1beta1CertificateSigningRequest**](V1beta1CertificateSigningRequest.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
 
@@ -702,7 +702,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_certificate_signing_request_status**
-> V1beta1CertificateSigningRequest replace_certificate_signing_request_status(name, v1beta1_certificate_signing_request, pretty=pretty, dry_run=dry_run)
+> V1beta1CertificateSigningRequest replace_certificate_signing_request_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -727,12 +727,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CertificatesV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the CertificateSigningRequest
-v1beta1_certificate_signing_request = kubernetes_asyncio.client.V1beta1CertificateSigningRequest() # V1beta1CertificateSigningRequest | 
+body = kubernetes_asyncio.client.V1beta1CertificateSigningRequest() # V1beta1CertificateSigningRequest | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_certificate_signing_request_status(name, v1beta1_certificate_signing_request, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_certificate_signing_request_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CertificatesV1beta1Api->replace_certificate_signing_request_status: %s\n" % e)
@@ -743,7 +743,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the CertificateSigningRequest | 
- **v1beta1_certificate_signing_request** | [**V1beta1CertificateSigningRequest**](V1beta1CertificateSigningRequest.md)|  | 
+ **body** | [**V1beta1CertificateSigningRequest**](V1beta1CertificateSigningRequest.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 

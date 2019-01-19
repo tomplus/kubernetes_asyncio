@@ -3087,7 +3087,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespace**
-> V1Namespace create_namespace(v1_namespace, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1Namespace create_namespace(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3111,13 +3111,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1_namespace = kubernetes_asyncio.client.V1Namespace() # V1Namespace | 
+body = kubernetes_asyncio.client.V1Namespace() # V1Namespace | 
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespace(v1_namespace, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespace(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespace: %s\n" % e)
@@ -3127,7 +3127,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1_namespace** | [**V1Namespace**](V1Namespace.md)|  | 
+ **body** | [**V1Namespace**](V1Namespace.md)|  | 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3148,7 +3148,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_binding**
-> V1Binding create_namespaced_binding(namespace, v1_binding, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+> V1Binding create_namespaced_binding(namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
 
 
 
@@ -3173,13 +3173,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_binding = kubernetes_asyncio.client.V1Binding() # V1Binding | 
+body = kubernetes_asyncio.client.V1Binding() # V1Binding | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_binding(namespace, v1_binding, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+    api_response = api_instance.create_namespaced_binding(namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_binding: %s\n" % e)
@@ -3190,7 +3190,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_binding** | [**V1Binding**](V1Binding.md)|  | 
+ **body** | [**V1Binding**](V1Binding.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -3211,7 +3211,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_config_map**
-> V1ConfigMap create_namespaced_config_map(namespace, v1_config_map, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1ConfigMap create_namespaced_config_map(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3236,13 +3236,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_config_map = kubernetes_asyncio.client.V1ConfigMap() # V1ConfigMap | 
+body = kubernetes_asyncio.client.V1ConfigMap() # V1ConfigMap | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_config_map(namespace, v1_config_map, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_config_map(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_config_map: %s\n" % e)
@@ -3253,7 +3253,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_config_map** | [**V1ConfigMap**](V1ConfigMap.md)|  | 
+ **body** | [**V1ConfigMap**](V1ConfigMap.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3274,7 +3274,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_endpoints**
-> V1Endpoints create_namespaced_endpoints(namespace, v1_endpoints, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1Endpoints create_namespaced_endpoints(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3299,13 +3299,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_endpoints = kubernetes_asyncio.client.V1Endpoints() # V1Endpoints | 
+body = kubernetes_asyncio.client.V1Endpoints() # V1Endpoints | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_endpoints(namespace, v1_endpoints, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_endpoints(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_endpoints: %s\n" % e)
@@ -3316,7 +3316,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_endpoints** | [**V1Endpoints**](V1Endpoints.md)|  | 
+ **body** | [**V1Endpoints**](V1Endpoints.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3337,7 +3337,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_event**
-> V1Event create_namespaced_event(namespace, v1_event, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1Event create_namespaced_event(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3362,13 +3362,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_event = kubernetes_asyncio.client.V1Event() # V1Event | 
+body = kubernetes_asyncio.client.V1Event() # V1Event | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_event(namespace, v1_event, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_event(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_event: %s\n" % e)
@@ -3379,7 +3379,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_event** | [**V1Event**](V1Event.md)|  | 
+ **body** | [**V1Event**](V1Event.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3400,7 +3400,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_limit_range**
-> V1LimitRange create_namespaced_limit_range(namespace, v1_limit_range, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1LimitRange create_namespaced_limit_range(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3425,13 +3425,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_limit_range = kubernetes_asyncio.client.V1LimitRange() # V1LimitRange | 
+body = kubernetes_asyncio.client.V1LimitRange() # V1LimitRange | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_limit_range(namespace, v1_limit_range, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_limit_range(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_limit_range: %s\n" % e)
@@ -3442,7 +3442,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_limit_range** | [**V1LimitRange**](V1LimitRange.md)|  | 
+ **body** | [**V1LimitRange**](V1LimitRange.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3463,7 +3463,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_persistent_volume_claim**
-> V1PersistentVolumeClaim create_namespaced_persistent_volume_claim(namespace, v1_persistent_volume_claim, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolumeClaim create_namespaced_persistent_volume_claim(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3488,13 +3488,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_persistent_volume_claim = kubernetes_asyncio.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
+body = kubernetes_asyncio.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_persistent_volume_claim(namespace, v1_persistent_volume_claim, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_persistent_volume_claim(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_persistent_volume_claim: %s\n" % e)
@@ -3505,7 +3505,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_persistent_volume_claim** | [**V1PersistentVolumeClaim**](V1PersistentVolumeClaim.md)|  | 
+ **body** | [**V1PersistentVolumeClaim**](V1PersistentVolumeClaim.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3526,7 +3526,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_pod**
-> V1Pod create_namespaced_pod(namespace, v1_pod, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1Pod create_namespaced_pod(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3551,13 +3551,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_pod = kubernetes_asyncio.client.V1Pod() # V1Pod | 
+body = kubernetes_asyncio.client.V1Pod() # V1Pod | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_pod(namespace, v1_pod, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_pod(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_pod: %s\n" % e)
@@ -3568,7 +3568,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_pod** | [**V1Pod**](V1Pod.md)|  | 
+ **body** | [**V1Pod**](V1Pod.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3589,7 +3589,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_pod_binding**
-> V1Binding create_namespaced_pod_binding(name, namespace, v1_binding, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+> V1Binding create_namespaced_pod_binding(name, namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
 
 
 
@@ -3615,13 +3615,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Binding
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_binding = kubernetes_asyncio.client.V1Binding() # V1Binding | 
+body = kubernetes_asyncio.client.V1Binding() # V1Binding | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_pod_binding(name, namespace, v1_binding, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+    api_response = api_instance.create_namespaced_pod_binding(name, namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_pod_binding: %s\n" % e)
@@ -3633,7 +3633,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Binding | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_binding** | [**V1Binding**](V1Binding.md)|  | 
+ **body** | [**V1Binding**](V1Binding.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -3654,7 +3654,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_pod_eviction**
-> V1beta1Eviction create_namespaced_pod_eviction(name, namespace, v1beta1_eviction, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+> V1beta1Eviction create_namespaced_pod_eviction(name, namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
 
 
 
@@ -3680,13 +3680,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Eviction
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1beta1_eviction = kubernetes_asyncio.client.V1beta1Eviction() # V1beta1Eviction | 
+body = kubernetes_asyncio.client.V1beta1Eviction() # V1beta1Eviction | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_pod_eviction(name, namespace, v1beta1_eviction, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+    api_response = api_instance.create_namespaced_pod_eviction(name, namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_pod_eviction: %s\n" % e)
@@ -3698,7 +3698,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Eviction | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1beta1_eviction** | [**V1beta1Eviction**](V1beta1Eviction.md)|  | 
+ **body** | [**V1beta1Eviction**](V1beta1Eviction.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -3719,7 +3719,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_pod_template**
-> V1PodTemplate create_namespaced_pod_template(namespace, v1_pod_template, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1PodTemplate create_namespaced_pod_template(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3744,13 +3744,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_pod_template = kubernetes_asyncio.client.V1PodTemplate() # V1PodTemplate | 
+body = kubernetes_asyncio.client.V1PodTemplate() # V1PodTemplate | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_pod_template(namespace, v1_pod_template, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_pod_template(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_pod_template: %s\n" % e)
@@ -3761,7 +3761,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_pod_template** | [**V1PodTemplate**](V1PodTemplate.md)|  | 
+ **body** | [**V1PodTemplate**](V1PodTemplate.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3782,7 +3782,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_replication_controller**
-> V1ReplicationController create_namespaced_replication_controller(namespace, v1_replication_controller, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1ReplicationController create_namespaced_replication_controller(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3807,13 +3807,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_replication_controller = kubernetes_asyncio.client.V1ReplicationController() # V1ReplicationController | 
+body = kubernetes_asyncio.client.V1ReplicationController() # V1ReplicationController | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_replication_controller(namespace, v1_replication_controller, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_replication_controller(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_replication_controller: %s\n" % e)
@@ -3824,7 +3824,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_replication_controller** | [**V1ReplicationController**](V1ReplicationController.md)|  | 
+ **body** | [**V1ReplicationController**](V1ReplicationController.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3845,7 +3845,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_resource_quota**
-> V1ResourceQuota create_namespaced_resource_quota(namespace, v1_resource_quota, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1ResourceQuota create_namespaced_resource_quota(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3870,13 +3870,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_resource_quota = kubernetes_asyncio.client.V1ResourceQuota() # V1ResourceQuota | 
+body = kubernetes_asyncio.client.V1ResourceQuota() # V1ResourceQuota | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_resource_quota(namespace, v1_resource_quota, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_resource_quota(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_resource_quota: %s\n" % e)
@@ -3887,7 +3887,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_resource_quota** | [**V1ResourceQuota**](V1ResourceQuota.md)|  | 
+ **body** | [**V1ResourceQuota**](V1ResourceQuota.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3908,7 +3908,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_secret**
-> V1Secret create_namespaced_secret(namespace, v1_secret, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1Secret create_namespaced_secret(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3933,13 +3933,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_secret = kubernetes_asyncio.client.V1Secret() # V1Secret | 
+body = kubernetes_asyncio.client.V1Secret() # V1Secret | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_secret(namespace, v1_secret, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_secret(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_secret: %s\n" % e)
@@ -3950,7 +3950,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_secret** | [**V1Secret**](V1Secret.md)|  | 
+ **body** | [**V1Secret**](V1Secret.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -3971,7 +3971,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_service**
-> V1Service create_namespaced_service(namespace, v1_service, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1Service create_namespaced_service(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -3996,13 +3996,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_service = kubernetes_asyncio.client.V1Service() # V1Service | 
+body = kubernetes_asyncio.client.V1Service() # V1Service | 
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_service(namespace, v1_service, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_service(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_service: %s\n" % e)
@@ -4013,7 +4013,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_service** | [**V1Service**](V1Service.md)|  | 
+ **body** | [**V1Service**](V1Service.md)|  | 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -4034,7 +4034,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_service_account**
-> V1ServiceAccount create_namespaced_service_account(namespace, v1_service_account, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1ServiceAccount create_namespaced_service_account(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -4059,13 +4059,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_service_account = kubernetes_asyncio.client.V1ServiceAccount() # V1ServiceAccount | 
+body = kubernetes_asyncio.client.V1ServiceAccount() # V1ServiceAccount | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_namespaced_service_account(namespace, v1_service_account, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_service_account(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_namespaced_service_account: %s\n" % e)
@@ -4076,7 +4076,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_service_account** | [**V1ServiceAccount**](V1ServiceAccount.md)|  | 
+ **body** | [**V1ServiceAccount**](V1ServiceAccount.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -4097,7 +4097,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_node**
-> V1Node create_node(v1_node, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1Node create_node(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -4121,13 +4121,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1_node = kubernetes_asyncio.client.V1Node() # V1Node | 
+body = kubernetes_asyncio.client.V1Node() # V1Node | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_node(v1_node, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_node(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_node: %s\n" % e)
@@ -4137,7 +4137,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1_node** | [**V1Node**](V1Node.md)|  | 
+ **body** | [**V1Node**](V1Node.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -4158,7 +4158,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_persistent_volume**
-> V1PersistentVolume create_persistent_volume(v1_persistent_volume, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolume create_persistent_volume(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -4182,13 +4182,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1_persistent_volume = kubernetes_asyncio.client.V1PersistentVolume() # V1PersistentVolume | 
+body = kubernetes_asyncio.client.V1PersistentVolume() # V1PersistentVolume | 
 include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.create_persistent_volume(v1_persistent_volume, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_persistent_volume(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->create_persistent_volume: %s\n" % e)
@@ -4198,7 +4198,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1_persistent_volume** | [**V1PersistentVolume**](V1PersistentVolume.md)|  | 
+ **body** | [**V1PersistentVolume**](V1PersistentVolume.md)|  | 
  **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
@@ -5164,7 +5164,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespace**
-> V1Status delete_namespace(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespace(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5189,7 +5189,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Namespace
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5197,7 +5197,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespace(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespace(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespace: %s\n" % e)
@@ -5208,7 +5208,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Namespace | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5231,7 +5231,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_config_map**
-> V1Status delete_namespaced_config_map(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_config_map(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5257,7 +5257,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ConfigMap
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5265,7 +5265,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_config_map(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_config_map(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_config_map: %s\n" % e)
@@ -5277,7 +5277,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ConfigMap | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5300,7 +5300,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_endpoints**
-> V1Status delete_namespaced_endpoints(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_endpoints(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5326,7 +5326,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Endpoints
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5334,7 +5334,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_endpoints(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_endpoints(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_endpoints: %s\n" % e)
@@ -5346,7 +5346,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Endpoints | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5369,7 +5369,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_event**
-> V1Status delete_namespaced_event(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_event(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5395,7 +5395,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Event
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5403,7 +5403,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_event(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_event(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_event: %s\n" % e)
@@ -5415,7 +5415,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Event | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5438,7 +5438,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_limit_range**
-> V1Status delete_namespaced_limit_range(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_limit_range(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5464,7 +5464,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the LimitRange
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5472,7 +5472,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_limit_range(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_limit_range(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_limit_range: %s\n" % e)
@@ -5484,7 +5484,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the LimitRange | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5507,7 +5507,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_persistent_volume_claim**
-> V1Status delete_namespaced_persistent_volume_claim(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5533,7 +5533,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolumeClaim
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5541,7 +5541,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_persistent_volume_claim(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_persistent_volume_claim: %s\n" % e)
@@ -5553,7 +5553,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolumeClaim | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5576,7 +5576,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_pod**
-> V1Status delete_namespaced_pod(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_pod(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5602,7 +5602,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5610,7 +5610,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_pod(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_pod(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_pod: %s\n" % e)
@@ -5622,7 +5622,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Pod | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5645,7 +5645,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_pod_template**
-> V1Status delete_namespaced_pod_template(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_pod_template(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5671,7 +5671,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PodTemplate
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5679,7 +5679,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_pod_template(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_pod_template(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_pod_template: %s\n" % e)
@@ -5691,7 +5691,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PodTemplate | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5714,7 +5714,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_replication_controller**
-> V1Status delete_namespaced_replication_controller(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_replication_controller(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5740,7 +5740,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ReplicationController
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5748,7 +5748,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_replication_controller(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_replication_controller(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_replication_controller: %s\n" % e)
@@ -5760,7 +5760,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ReplicationController | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5783,7 +5783,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_resource_quota**
-> V1Status delete_namespaced_resource_quota(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_resource_quota(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5809,7 +5809,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ResourceQuota
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5817,7 +5817,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_resource_quota(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_resource_quota(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_resource_quota: %s\n" % e)
@@ -5829,7 +5829,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ResourceQuota | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5852,7 +5852,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_secret**
-> V1Status delete_namespaced_secret(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_secret(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5878,7 +5878,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Secret
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5886,7 +5886,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_secret(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_secret(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_secret: %s\n" % e)
@@ -5898,7 +5898,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Secret | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5921,7 +5921,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_service**
-> V1Status delete_namespaced_service(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_service(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -5947,7 +5947,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -5955,7 +5955,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_service(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_service(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_service: %s\n" % e)
@@ -5967,7 +5967,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Service | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -5990,7 +5990,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_service_account**
-> V1Status delete_namespaced_service_account(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_namespaced_service_account(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -6016,7 +6016,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ServiceAccount
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -6024,7 +6024,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_namespaced_service_account(name, namespace, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_namespaced_service_account(name, namespace, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_namespaced_service_account: %s\n" % e)
@@ -6036,7 +6036,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ServiceAccount | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -6059,7 +6059,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_node**
-> V1Status delete_node(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_node(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -6084,7 +6084,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Node
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -6092,7 +6092,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_node(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_node(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_node: %s\n" % e)
@@ -6103,7 +6103,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Node | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -6126,7 +6126,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_persistent_volume**
-> V1Status delete_persistent_volume(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+> V1Status delete_persistent_volume(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
 
 
 
@@ -6151,7 +6151,7 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolume
-v1_delete_options = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
@@ -6159,7 +6159,7 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 
 try:
-    api_response = api_instance.delete_persistent_volume(name, v1_delete_options, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
+    api_response = api_instance.delete_persistent_volume(name, body, pretty=pretty, dry_run=dry_run, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->delete_persistent_volume: %s\n" % e)
@@ -6170,7 +6170,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolume | 
- **v1_delete_options** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
@@ -8256,7 +8256,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespace**
-> V1Namespace patch_namespace(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Namespace patch_namespace(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8281,12 +8281,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Namespace
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespace(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespace(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespace: %s\n" % e)
@@ -8297,7 +8297,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Namespace | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8317,7 +8317,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespace_status**
-> V1Namespace patch_namespace_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Namespace patch_namespace_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8342,12 +8342,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Namespace
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespace_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespace_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespace_status: %s\n" % e)
@@ -8358,7 +8358,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Namespace | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8378,7 +8378,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_config_map**
-> V1ConfigMap patch_namespaced_config_map(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1ConfigMap patch_namespaced_config_map(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8404,12 +8404,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ConfigMap
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_config_map(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_config_map(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_config_map: %s\n" % e)
@@ -8421,7 +8421,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ConfigMap | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8441,7 +8441,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_endpoints**
-> V1Endpoints patch_namespaced_endpoints(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Endpoints patch_namespaced_endpoints(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8467,12 +8467,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Endpoints
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_endpoints(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_endpoints(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_endpoints: %s\n" % e)
@@ -8484,7 +8484,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Endpoints | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8504,7 +8504,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_event**
-> V1Event patch_namespaced_event(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Event patch_namespaced_event(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8530,12 +8530,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Event
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_event(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_event(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_event: %s\n" % e)
@@ -8547,7 +8547,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Event | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8567,7 +8567,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_limit_range**
-> V1LimitRange patch_namespaced_limit_range(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1LimitRange patch_namespaced_limit_range(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8593,12 +8593,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the LimitRange
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_limit_range(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_limit_range(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_limit_range: %s\n" % e)
@@ -8610,7 +8610,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the LimitRange | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8630,7 +8630,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_persistent_volume_claim**
-> V1PersistentVolumeClaim patch_namespaced_persistent_volume_claim(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolumeClaim patch_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8656,12 +8656,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolumeClaim
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_persistent_volume_claim(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_persistent_volume_claim: %s\n" % e)
@@ -8673,7 +8673,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolumeClaim | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8693,7 +8693,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_persistent_volume_claim_status**
-> V1PersistentVolumeClaim patch_namespaced_persistent_volume_claim_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolumeClaim patch_namespaced_persistent_volume_claim_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8719,12 +8719,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolumeClaim
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_persistent_volume_claim_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_persistent_volume_claim_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_persistent_volume_claim_status: %s\n" % e)
@@ -8736,7 +8736,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolumeClaim | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8756,7 +8756,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_pod**
-> V1Pod patch_namespaced_pod(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Pod patch_namespaced_pod(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8782,12 +8782,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_pod(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_pod(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_pod: %s\n" % e)
@@ -8799,7 +8799,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Pod | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8819,7 +8819,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_pod_status**
-> V1Pod patch_namespaced_pod_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Pod patch_namespaced_pod_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8845,12 +8845,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_pod_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_pod_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_pod_status: %s\n" % e)
@@ -8862,7 +8862,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Pod | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8882,7 +8882,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_pod_template**
-> V1PodTemplate patch_namespaced_pod_template(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1PodTemplate patch_namespaced_pod_template(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8908,12 +8908,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PodTemplate
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_pod_template(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_pod_template(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_pod_template: %s\n" % e)
@@ -8925,7 +8925,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PodTemplate | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -8945,7 +8945,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_replication_controller**
-> V1ReplicationController patch_namespaced_replication_controller(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1ReplicationController patch_namespaced_replication_controller(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -8971,12 +8971,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ReplicationController
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_replication_controller(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_replication_controller(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_replication_controller: %s\n" % e)
@@ -8988,7 +8988,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ReplicationController | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9008,7 +9008,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_replication_controller_scale**
-> V1Scale patch_namespaced_replication_controller_scale(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Scale patch_namespaced_replication_controller_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9034,12 +9034,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Scale
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_replication_controller_scale(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_replication_controller_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_replication_controller_scale: %s\n" % e)
@@ -9051,7 +9051,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Scale | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9071,7 +9071,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_replication_controller_status**
-> V1ReplicationController patch_namespaced_replication_controller_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1ReplicationController patch_namespaced_replication_controller_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9097,12 +9097,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ReplicationController
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_replication_controller_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_replication_controller_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_replication_controller_status: %s\n" % e)
@@ -9114,7 +9114,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ReplicationController | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9134,7 +9134,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_resource_quota**
-> V1ResourceQuota patch_namespaced_resource_quota(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1ResourceQuota patch_namespaced_resource_quota(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9160,12 +9160,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ResourceQuota
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_resource_quota(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_resource_quota(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_resource_quota: %s\n" % e)
@@ -9177,7 +9177,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ResourceQuota | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9197,7 +9197,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_resource_quota_status**
-> V1ResourceQuota patch_namespaced_resource_quota_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1ResourceQuota patch_namespaced_resource_quota_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9223,12 +9223,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ResourceQuota
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_resource_quota_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_resource_quota_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_resource_quota_status: %s\n" % e)
@@ -9240,7 +9240,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ResourceQuota | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9260,7 +9260,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_secret**
-> V1Secret patch_namespaced_secret(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Secret patch_namespaced_secret(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9286,12 +9286,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Secret
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_secret(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_secret(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_secret: %s\n" % e)
@@ -9303,7 +9303,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Secret | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9323,7 +9323,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_service**
-> V1Service patch_namespaced_service(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Service patch_namespaced_service(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9349,12 +9349,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_service(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_service(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_service: %s\n" % e)
@@ -9366,7 +9366,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Service | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9386,7 +9386,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_service_account**
-> V1ServiceAccount patch_namespaced_service_account(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1ServiceAccount patch_namespaced_service_account(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9412,12 +9412,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ServiceAccount
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_service_account(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_service_account(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_service_account: %s\n" % e)
@@ -9429,7 +9429,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ServiceAccount | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9449,7 +9449,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_service_status**
-> V1Service patch_namespaced_service_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Service patch_namespaced_service_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9475,12 +9475,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_service_status(name, namespace, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_service_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_namespaced_service_status: %s\n" % e)
@@ -9492,7 +9492,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Service | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9512,7 +9512,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_node**
-> V1Node patch_node(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Node patch_node(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9537,12 +9537,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Node
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_node(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_node(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_node: %s\n" % e)
@@ -9553,7 +9553,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Node | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9573,7 +9573,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_node_status**
-> V1Node patch_node_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1Node patch_node_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9598,12 +9598,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Node
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_node_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_node_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_node_status: %s\n" % e)
@@ -9614,7 +9614,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Node | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9634,7 +9634,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_persistent_volume**
-> V1PersistentVolume patch_persistent_volume(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolume patch_persistent_volume(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9659,12 +9659,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolume
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_persistent_volume(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_persistent_volume(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_persistent_volume: %s\n" % e)
@@ -9675,7 +9675,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolume | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -9695,7 +9695,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_persistent_volume_status**
-> V1PersistentVolume patch_persistent_volume_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolume patch_persistent_volume_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -9720,12 +9720,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolume
-unknown_base_type = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
+body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.patch_persistent_volume_status(name, unknown_base_type, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_persistent_volume_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->patch_persistent_volume_status: %s\n" % e)
@@ -9736,7 +9736,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolume | 
- **unknown_base_type** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
+ **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11350,7 +11350,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespace**
-> V1Namespace replace_namespace(name, v1_namespace, pretty=pretty, dry_run=dry_run)
+> V1Namespace replace_namespace(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11375,12 +11375,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Namespace
-v1_namespace = kubernetes_asyncio.client.V1Namespace() # V1Namespace | 
+body = kubernetes_asyncio.client.V1Namespace() # V1Namespace | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespace(name, v1_namespace, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespace(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespace: %s\n" % e)
@@ -11391,7 +11391,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Namespace | 
- **v1_namespace** | [**V1Namespace**](V1Namespace.md)|  | 
+ **body** | [**V1Namespace**](V1Namespace.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11411,7 +11411,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespace_finalize**
-> V1Namespace replace_namespace_finalize(name, v1_namespace, dry_run=dry_run, pretty=pretty)
+> V1Namespace replace_namespace_finalize(name, body, dry_run=dry_run, pretty=pretty)
 
 
 
@@ -11436,12 +11436,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Namespace
-v1_namespace = kubernetes_asyncio.client.V1Namespace() # V1Namespace | 
+body = kubernetes_asyncio.client.V1Namespace() # V1Namespace | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.replace_namespace_finalize(name, v1_namespace, dry_run=dry_run, pretty=pretty)
+    api_response = api_instance.replace_namespace_finalize(name, body, dry_run=dry_run, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespace_finalize: %s\n" % e)
@@ -11452,7 +11452,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Namespace | 
- **v1_namespace** | [**V1Namespace**](V1Namespace.md)|  | 
+ **body** | [**V1Namespace**](V1Namespace.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
 
@@ -11472,7 +11472,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespace_status**
-> V1Namespace replace_namespace_status(name, v1_namespace, pretty=pretty, dry_run=dry_run)
+> V1Namespace replace_namespace_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11497,12 +11497,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Namespace
-v1_namespace = kubernetes_asyncio.client.V1Namespace() # V1Namespace | 
+body = kubernetes_asyncio.client.V1Namespace() # V1Namespace | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespace_status(name, v1_namespace, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespace_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespace_status: %s\n" % e)
@@ -11513,7 +11513,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Namespace | 
- **v1_namespace** | [**V1Namespace**](V1Namespace.md)|  | 
+ **body** | [**V1Namespace**](V1Namespace.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11533,7 +11533,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_config_map**
-> V1ConfigMap replace_namespaced_config_map(name, namespace, v1_config_map, pretty=pretty, dry_run=dry_run)
+> V1ConfigMap replace_namespaced_config_map(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11559,12 +11559,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ConfigMap
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_config_map = kubernetes_asyncio.client.V1ConfigMap() # V1ConfigMap | 
+body = kubernetes_asyncio.client.V1ConfigMap() # V1ConfigMap | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_config_map(name, namespace, v1_config_map, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_config_map(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_config_map: %s\n" % e)
@@ -11576,7 +11576,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ConfigMap | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_config_map** | [**V1ConfigMap**](V1ConfigMap.md)|  | 
+ **body** | [**V1ConfigMap**](V1ConfigMap.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11596,7 +11596,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_endpoints**
-> V1Endpoints replace_namespaced_endpoints(name, namespace, v1_endpoints, pretty=pretty, dry_run=dry_run)
+> V1Endpoints replace_namespaced_endpoints(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11622,12 +11622,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Endpoints
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_endpoints = kubernetes_asyncio.client.V1Endpoints() # V1Endpoints | 
+body = kubernetes_asyncio.client.V1Endpoints() # V1Endpoints | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_endpoints(name, namespace, v1_endpoints, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_endpoints(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_endpoints: %s\n" % e)
@@ -11639,7 +11639,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Endpoints | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_endpoints** | [**V1Endpoints**](V1Endpoints.md)|  | 
+ **body** | [**V1Endpoints**](V1Endpoints.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11659,7 +11659,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_event**
-> V1Event replace_namespaced_event(name, namespace, v1_event, pretty=pretty, dry_run=dry_run)
+> V1Event replace_namespaced_event(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11685,12 +11685,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Event
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_event = kubernetes_asyncio.client.V1Event() # V1Event | 
+body = kubernetes_asyncio.client.V1Event() # V1Event | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_event(name, namespace, v1_event, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_event(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_event: %s\n" % e)
@@ -11702,7 +11702,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Event | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_event** | [**V1Event**](V1Event.md)|  | 
+ **body** | [**V1Event**](V1Event.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11722,7 +11722,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_limit_range**
-> V1LimitRange replace_namespaced_limit_range(name, namespace, v1_limit_range, pretty=pretty, dry_run=dry_run)
+> V1LimitRange replace_namespaced_limit_range(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11748,12 +11748,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the LimitRange
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_limit_range = kubernetes_asyncio.client.V1LimitRange() # V1LimitRange | 
+body = kubernetes_asyncio.client.V1LimitRange() # V1LimitRange | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_limit_range(name, namespace, v1_limit_range, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_limit_range(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_limit_range: %s\n" % e)
@@ -11765,7 +11765,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the LimitRange | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_limit_range** | [**V1LimitRange**](V1LimitRange.md)|  | 
+ **body** | [**V1LimitRange**](V1LimitRange.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11785,7 +11785,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_persistent_volume_claim**
-> V1PersistentVolumeClaim replace_namespaced_persistent_volume_claim(name, namespace, v1_persistent_volume_claim, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolumeClaim replace_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11811,12 +11811,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolumeClaim
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_persistent_volume_claim = kubernetes_asyncio.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
+body = kubernetes_asyncio.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_persistent_volume_claim(name, namespace, v1_persistent_volume_claim, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_persistent_volume_claim(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_persistent_volume_claim: %s\n" % e)
@@ -11828,7 +11828,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolumeClaim | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_persistent_volume_claim** | [**V1PersistentVolumeClaim**](V1PersistentVolumeClaim.md)|  | 
+ **body** | [**V1PersistentVolumeClaim**](V1PersistentVolumeClaim.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11848,7 +11848,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_persistent_volume_claim_status**
-> V1PersistentVolumeClaim replace_namespaced_persistent_volume_claim_status(name, namespace, v1_persistent_volume_claim, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolumeClaim replace_namespaced_persistent_volume_claim_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11874,12 +11874,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolumeClaim
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_persistent_volume_claim = kubernetes_asyncio.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
+body = kubernetes_asyncio.client.V1PersistentVolumeClaim() # V1PersistentVolumeClaim | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_persistent_volume_claim_status(name, namespace, v1_persistent_volume_claim, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_persistent_volume_claim_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_persistent_volume_claim_status: %s\n" % e)
@@ -11891,7 +11891,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolumeClaim | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_persistent_volume_claim** | [**V1PersistentVolumeClaim**](V1PersistentVolumeClaim.md)|  | 
+ **body** | [**V1PersistentVolumeClaim**](V1PersistentVolumeClaim.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11911,7 +11911,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_pod**
-> V1Pod replace_namespaced_pod(name, namespace, v1_pod, pretty=pretty, dry_run=dry_run)
+> V1Pod replace_namespaced_pod(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -11937,12 +11937,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_pod = kubernetes_asyncio.client.V1Pod() # V1Pod | 
+body = kubernetes_asyncio.client.V1Pod() # V1Pod | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_pod(name, namespace, v1_pod, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_pod(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_pod: %s\n" % e)
@@ -11954,7 +11954,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Pod | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_pod** | [**V1Pod**](V1Pod.md)|  | 
+ **body** | [**V1Pod**](V1Pod.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -11974,7 +11974,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_pod_status**
-> V1Pod replace_namespaced_pod_status(name, namespace, v1_pod, pretty=pretty, dry_run=dry_run)
+> V1Pod replace_namespaced_pod_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12000,12 +12000,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_pod = kubernetes_asyncio.client.V1Pod() # V1Pod | 
+body = kubernetes_asyncio.client.V1Pod() # V1Pod | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_pod_status(name, namespace, v1_pod, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_pod_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_pod_status: %s\n" % e)
@@ -12017,7 +12017,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Pod | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_pod** | [**V1Pod**](V1Pod.md)|  | 
+ **body** | [**V1Pod**](V1Pod.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12037,7 +12037,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_pod_template**
-> V1PodTemplate replace_namespaced_pod_template(name, namespace, v1_pod_template, pretty=pretty, dry_run=dry_run)
+> V1PodTemplate replace_namespaced_pod_template(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12063,12 +12063,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PodTemplate
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_pod_template = kubernetes_asyncio.client.V1PodTemplate() # V1PodTemplate | 
+body = kubernetes_asyncio.client.V1PodTemplate() # V1PodTemplate | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_pod_template(name, namespace, v1_pod_template, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_pod_template(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_pod_template: %s\n" % e)
@@ -12080,7 +12080,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PodTemplate | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_pod_template** | [**V1PodTemplate**](V1PodTemplate.md)|  | 
+ **body** | [**V1PodTemplate**](V1PodTemplate.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12100,7 +12100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_replication_controller**
-> V1ReplicationController replace_namespaced_replication_controller(name, namespace, v1_replication_controller, pretty=pretty, dry_run=dry_run)
+> V1ReplicationController replace_namespaced_replication_controller(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12126,12 +12126,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ReplicationController
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_replication_controller = kubernetes_asyncio.client.V1ReplicationController() # V1ReplicationController | 
+body = kubernetes_asyncio.client.V1ReplicationController() # V1ReplicationController | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_replication_controller(name, namespace, v1_replication_controller, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_replication_controller(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_replication_controller: %s\n" % e)
@@ -12143,7 +12143,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ReplicationController | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_replication_controller** | [**V1ReplicationController**](V1ReplicationController.md)|  | 
+ **body** | [**V1ReplicationController**](V1ReplicationController.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12163,7 +12163,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_replication_controller_scale**
-> V1Scale replace_namespaced_replication_controller_scale(name, namespace, v1_scale, pretty=pretty, dry_run=dry_run)
+> V1Scale replace_namespaced_replication_controller_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12189,12 +12189,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Scale
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_scale = kubernetes_asyncio.client.V1Scale() # V1Scale | 
+body = kubernetes_asyncio.client.V1Scale() # V1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_replication_controller_scale(name, namespace, v1_scale, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_replication_controller_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_replication_controller_scale: %s\n" % e)
@@ -12206,7 +12206,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Scale | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_scale** | [**V1Scale**](V1Scale.md)|  | 
+ **body** | [**V1Scale**](V1Scale.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12226,7 +12226,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_replication_controller_status**
-> V1ReplicationController replace_namespaced_replication_controller_status(name, namespace, v1_replication_controller, pretty=pretty, dry_run=dry_run)
+> V1ReplicationController replace_namespaced_replication_controller_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12252,12 +12252,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ReplicationController
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_replication_controller = kubernetes_asyncio.client.V1ReplicationController() # V1ReplicationController | 
+body = kubernetes_asyncio.client.V1ReplicationController() # V1ReplicationController | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_replication_controller_status(name, namespace, v1_replication_controller, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_replication_controller_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_replication_controller_status: %s\n" % e)
@@ -12269,7 +12269,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ReplicationController | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_replication_controller** | [**V1ReplicationController**](V1ReplicationController.md)|  | 
+ **body** | [**V1ReplicationController**](V1ReplicationController.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12289,7 +12289,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_resource_quota**
-> V1ResourceQuota replace_namespaced_resource_quota(name, namespace, v1_resource_quota, pretty=pretty, dry_run=dry_run)
+> V1ResourceQuota replace_namespaced_resource_quota(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12315,12 +12315,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ResourceQuota
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_resource_quota = kubernetes_asyncio.client.V1ResourceQuota() # V1ResourceQuota | 
+body = kubernetes_asyncio.client.V1ResourceQuota() # V1ResourceQuota | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_resource_quota(name, namespace, v1_resource_quota, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_resource_quota(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_resource_quota: %s\n" % e)
@@ -12332,7 +12332,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ResourceQuota | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_resource_quota** | [**V1ResourceQuota**](V1ResourceQuota.md)|  | 
+ **body** | [**V1ResourceQuota**](V1ResourceQuota.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12352,7 +12352,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_resource_quota_status**
-> V1ResourceQuota replace_namespaced_resource_quota_status(name, namespace, v1_resource_quota, pretty=pretty, dry_run=dry_run)
+> V1ResourceQuota replace_namespaced_resource_quota_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12378,12 +12378,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ResourceQuota
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_resource_quota = kubernetes_asyncio.client.V1ResourceQuota() # V1ResourceQuota | 
+body = kubernetes_asyncio.client.V1ResourceQuota() # V1ResourceQuota | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_resource_quota_status(name, namespace, v1_resource_quota, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_resource_quota_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_resource_quota_status: %s\n" % e)
@@ -12395,7 +12395,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ResourceQuota | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_resource_quota** | [**V1ResourceQuota**](V1ResourceQuota.md)|  | 
+ **body** | [**V1ResourceQuota**](V1ResourceQuota.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12415,7 +12415,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_secret**
-> V1Secret replace_namespaced_secret(name, namespace, v1_secret, pretty=pretty, dry_run=dry_run)
+> V1Secret replace_namespaced_secret(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12441,12 +12441,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Secret
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_secret = kubernetes_asyncio.client.V1Secret() # V1Secret | 
+body = kubernetes_asyncio.client.V1Secret() # V1Secret | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_secret(name, namespace, v1_secret, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_secret(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_secret: %s\n" % e)
@@ -12458,7 +12458,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Secret | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_secret** | [**V1Secret**](V1Secret.md)|  | 
+ **body** | [**V1Secret**](V1Secret.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12478,7 +12478,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_service**
-> V1Service replace_namespaced_service(name, namespace, v1_service, pretty=pretty, dry_run=dry_run)
+> V1Service replace_namespaced_service(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12504,12 +12504,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_service = kubernetes_asyncio.client.V1Service() # V1Service | 
+body = kubernetes_asyncio.client.V1Service() # V1Service | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_service(name, namespace, v1_service, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_service(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_service: %s\n" % e)
@@ -12521,7 +12521,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Service | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_service** | [**V1Service**](V1Service.md)|  | 
+ **body** | [**V1Service**](V1Service.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12541,7 +12541,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_service_account**
-> V1ServiceAccount replace_namespaced_service_account(name, namespace, v1_service_account, pretty=pretty, dry_run=dry_run)
+> V1ServiceAccount replace_namespaced_service_account(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12567,12 +12567,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the ServiceAccount
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_service_account = kubernetes_asyncio.client.V1ServiceAccount() # V1ServiceAccount | 
+body = kubernetes_asyncio.client.V1ServiceAccount() # V1ServiceAccount | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_service_account(name, namespace, v1_service_account, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_service_account(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_service_account: %s\n" % e)
@@ -12584,7 +12584,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the ServiceAccount | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_service_account** | [**V1ServiceAccount**](V1ServiceAccount.md)|  | 
+ **body** | [**V1ServiceAccount**](V1ServiceAccount.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12604,7 +12604,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_service_status**
-> V1Service replace_namespaced_service_status(name, namespace, v1_service, pretty=pretty, dry_run=dry_run)
+> V1Service replace_namespaced_service_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12630,12 +12630,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1_service = kubernetes_asyncio.client.V1Service() # V1Service | 
+body = kubernetes_asyncio.client.V1Service() # V1Service | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_service_status(name, namespace, v1_service, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_service_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_namespaced_service_status: %s\n" % e)
@@ -12647,7 +12647,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Service | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1_service** | [**V1Service**](V1Service.md)|  | 
+ **body** | [**V1Service**](V1Service.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12667,7 +12667,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_node**
-> V1Node replace_node(name, v1_node, pretty=pretty, dry_run=dry_run)
+> V1Node replace_node(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12692,12 +12692,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Node
-v1_node = kubernetes_asyncio.client.V1Node() # V1Node | 
+body = kubernetes_asyncio.client.V1Node() # V1Node | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_node(name, v1_node, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_node(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_node: %s\n" % e)
@@ -12708,7 +12708,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Node | 
- **v1_node** | [**V1Node**](V1Node.md)|  | 
+ **body** | [**V1Node**](V1Node.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12728,7 +12728,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_node_status**
-> V1Node replace_node_status(name, v1_node, pretty=pretty, dry_run=dry_run)
+> V1Node replace_node_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12753,12 +12753,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Node
-v1_node = kubernetes_asyncio.client.V1Node() # V1Node | 
+body = kubernetes_asyncio.client.V1Node() # V1Node | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_node_status(name, v1_node, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_node_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_node_status: %s\n" % e)
@@ -12769,7 +12769,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Node | 
- **v1_node** | [**V1Node**](V1Node.md)|  | 
+ **body** | [**V1Node**](V1Node.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12789,7 +12789,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_persistent_volume**
-> V1PersistentVolume replace_persistent_volume(name, v1_persistent_volume, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolume replace_persistent_volume(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12814,12 +12814,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolume
-v1_persistent_volume = kubernetes_asyncio.client.V1PersistentVolume() # V1PersistentVolume | 
+body = kubernetes_asyncio.client.V1PersistentVolume() # V1PersistentVolume | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_persistent_volume(name, v1_persistent_volume, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_persistent_volume(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_persistent_volume: %s\n" % e)
@@ -12830,7 +12830,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolume | 
- **v1_persistent_volume** | [**V1PersistentVolume**](V1PersistentVolume.md)|  | 
+ **body** | [**V1PersistentVolume**](V1PersistentVolume.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 
@@ -12850,7 +12850,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_persistent_volume_status**
-> V1PersistentVolume replace_persistent_volume_status(name, v1_persistent_volume, pretty=pretty, dry_run=dry_run)
+> V1PersistentVolume replace_persistent_volume_status(name, body, pretty=pretty, dry_run=dry_run)
 
 
 
@@ -12875,12 +12875,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.CoreV1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PersistentVolume
-v1_persistent_volume = kubernetes_asyncio.client.V1PersistentVolume() # V1PersistentVolume | 
+body = kubernetes_asyncio.client.V1PersistentVolume() # V1PersistentVolume | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 
 try:
-    api_response = api_instance.replace_persistent_volume_status(name, v1_persistent_volume, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_persistent_volume_status(name, body, pretty=pretty, dry_run=dry_run)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling CoreV1Api->replace_persistent_volume_status: %s\n" % e)
@@ -12891,7 +12891,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolume | 
- **v1_persistent_volume** | [**V1PersistentVolume**](V1PersistentVolume.md)|  | 
+ **body** | [**V1PersistentVolume**](V1PersistentVolume.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
 

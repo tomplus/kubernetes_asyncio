@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_namespaced_local_subject_access_review**
-> V1beta1LocalSubjectAccessReview create_namespaced_local_subject_access_review(namespace, v1beta1_local_subject_access_review, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+> V1beta1LocalSubjectAccessReview create_namespaced_local_subject_access_review(namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
 
 
 
@@ -37,13 +37,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.AuthorizationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-v1beta1_local_subject_access_review = kubernetes_asyncio.client.V1beta1LocalSubjectAccessReview() # V1beta1LocalSubjectAccessReview | 
+body = kubernetes_asyncio.client.V1beta1LocalSubjectAccessReview() # V1beta1LocalSubjectAccessReview | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_local_subject_access_review(namespace, v1beta1_local_subject_access_review, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+    api_response = api_instance.create_namespaced_local_subject_access_review(namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthorizationV1beta1Api->create_namespaced_local_subject_access_review: %s\n" % e)
@@ -54,7 +54,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **v1beta1_local_subject_access_review** | [**V1beta1LocalSubjectAccessReview**](V1beta1LocalSubjectAccessReview.md)|  | 
+ **body** | [**V1beta1LocalSubjectAccessReview**](V1beta1LocalSubjectAccessReview.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -75,7 +75,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_self_subject_access_review**
-> V1beta1SelfSubjectAccessReview create_self_subject_access_review(v1beta1_self_subject_access_review, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+> V1beta1SelfSubjectAccessReview create_self_subject_access_review(body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
 
 
 
@@ -99,13 +99,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.AuthorizationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1beta1_self_subject_access_review = kubernetes_asyncio.client.V1beta1SelfSubjectAccessReview() # V1beta1SelfSubjectAccessReview | 
+body = kubernetes_asyncio.client.V1beta1SelfSubjectAccessReview() # V1beta1SelfSubjectAccessReview | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_self_subject_access_review(v1beta1_self_subject_access_review, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+    api_response = api_instance.create_self_subject_access_review(body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthorizationV1beta1Api->create_self_subject_access_review: %s\n" % e)
@@ -115,7 +115,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1beta1_self_subject_access_review** | [**V1beta1SelfSubjectAccessReview**](V1beta1SelfSubjectAccessReview.md)|  | 
+ **body** | [**V1beta1SelfSubjectAccessReview**](V1beta1SelfSubjectAccessReview.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_self_subject_rules_review**
-> V1beta1SelfSubjectRulesReview create_self_subject_rules_review(v1beta1_self_subject_rules_review, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+> V1beta1SelfSubjectRulesReview create_self_subject_rules_review(body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
 
 
 
@@ -160,13 +160,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.AuthorizationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1beta1_self_subject_rules_review = kubernetes_asyncio.client.V1beta1SelfSubjectRulesReview() # V1beta1SelfSubjectRulesReview | 
+body = kubernetes_asyncio.client.V1beta1SelfSubjectRulesReview() # V1beta1SelfSubjectRulesReview | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_self_subject_rules_review(v1beta1_self_subject_rules_review, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+    api_response = api_instance.create_self_subject_rules_review(body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthorizationV1beta1Api->create_self_subject_rules_review: %s\n" % e)
@@ -176,7 +176,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1beta1_self_subject_rules_review** | [**V1beta1SelfSubjectRulesReview**](V1beta1SelfSubjectRulesReview.md)|  | 
+ **body** | [**V1beta1SelfSubjectRulesReview**](V1beta1SelfSubjectRulesReview.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -197,7 +197,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_subject_access_review**
-> V1beta1SubjectAccessReview create_subject_access_review(v1beta1_subject_access_review, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+> V1beta1SubjectAccessReview create_subject_access_review(body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
 
 
 
@@ -221,13 +221,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.AuthorizationV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
-v1beta1_subject_access_review = kubernetes_asyncio.client.V1beta1SubjectAccessReview() # V1beta1SubjectAccessReview | 
+body = kubernetes_asyncio.client.V1beta1SubjectAccessReview() # V1beta1SubjectAccessReview | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_subject_access_review(v1beta1_subject_access_review, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+    api_response = api_instance.create_subject_access_review(body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthorizationV1beta1Api->create_subject_access_review: %s\n" % e)
@@ -237,7 +237,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **v1beta1_subject_access_review** | [**V1beta1SubjectAccessReview**](V1beta1SubjectAccessReview.md)|  | 
+ **body** | [**V1beta1SubjectAccessReview**](V1beta1SubjectAccessReview.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
