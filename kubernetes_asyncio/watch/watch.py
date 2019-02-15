@@ -186,7 +186,7 @@ class Watch(object):
     async def __aenter__(self):
         return self
 
-    async def __aexit__(self):
+    async def __aexit__(self, exc_type, exc_value, traceback):
         if self.resp:
             self.resp.release()
             self.resp = None
