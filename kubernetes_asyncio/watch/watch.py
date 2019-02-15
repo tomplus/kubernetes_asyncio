@@ -50,6 +50,7 @@ class Watch(object):
         self._stop = False
         self._api_client = client.ApiClient()
         self.resource_version = 0
+        self.resp = None
 
     def stop(self):
         self._stop = True
@@ -169,6 +170,9 @@ class Watch(object):
                 if should_stop:
                     watch.stop()
         """
+        if self.resp is not None:
+            self.resp.release()
+            self.resp = None
         self._stop = False
         self.return_type = self.get_return_type(func)
         kwargs['watch'] = True
@@ -178,3 +182,11 @@ class Watch(object):
         self.resp = None
 
         return self
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self):
+        if self.resp:
+            self.resp.release()
+            self.resp = None
