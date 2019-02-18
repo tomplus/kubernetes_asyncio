@@ -108,7 +108,14 @@ class Watch(object):
         return self
 
     async def __anext__(self):
-        return await self.next()
+        try:
+            return await self.next()
+        except:
+            if self.resp is not None:
+                # clean up
+                self.resp.release()
+                self.resp = None
+            raise
 
     async def next(self):
 
