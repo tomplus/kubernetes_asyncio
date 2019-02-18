@@ -179,7 +179,6 @@ class Watch(object):
         kwargs['_preload_content'] = False
 
         self.func = partial(func, *args, **kwargs)
-        self.resp = None
 
         return self
 
