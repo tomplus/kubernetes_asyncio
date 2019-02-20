@@ -111,10 +111,7 @@ class Watch(object):
         try:
             return await self.next()
         except:
-            if self.resp is not None:
-                # clean up
-                self.resp.release()
-                self.resp = None
+            self.close()
             raise
 
     async def next(self):
@@ -177,9 +174,7 @@ class Watch(object):
                 if should_stop:
                     watch.stop()
         """
-        if self.resp is not None:
-            self.resp.release()
-            self.resp = None
+        self.close()
         self._stop = False
         self.return_type = self.get_return_type(func)
         kwargs['watch'] = True
@@ -193,6 +188,9 @@ class Watch(object):
         return self
 
     async def __aexit__(self, exc_type, exc_value, traceback):
-        if self.resp:
+        self.close()
+    
+    def close(self):
+        if self.resp is not None:
             self.resp.release()
             self.resp = None

@@ -26,6 +26,7 @@ class WatchTest(TestCase):
     async def test_watch_with_decode(self):
         fake_resp = CoroutineMock()
         fake_resp.content.readline = CoroutineMock()
+        fake_resp.release = Mock()
         side_effects = [
             {
                 "type": "ADDED",
@@ -64,6 +65,7 @@ class WatchTest(TestCase):
 
         fake_api.get_namespaces.assert_called_once_with(
             _preload_content=False, watch=True, resource_version='123')
+        fake_resp.release.assert_called_once_with()
 
     async def test_watch_k8s_empty_response(self):
         """Stop the iterator when the response is empty.
@@ -162,6 +164,7 @@ class WatchTest(TestCase):
     async def test_watch_timeout(self):
         fake_resp = CoroutineMock()
         fake_resp.content.readline = CoroutineMock()
+        fake_resp.release = Mock()
 
         mock_event = {"type": "ADDED",
                       "object": {"metadata": {"name": "test1555",
@@ -185,7 +188,7 @@ class WatchTest(TestCase):
         fake_api.get_namespaces.assert_has_calls(
             [call(_preload_content=False, watch=True),
              call(_preload_content=False, watch=True, resource_version='1555')])
-
+        fake_resp.release.assert_called_once_with()
 
 if __name__ == '__main__':
     import asynctest
