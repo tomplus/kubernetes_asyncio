@@ -11,14 +11,18 @@ async def main():
 
     v1 = client.CoreV1Api()
     count = 10
-    async with watch.Watch() as w:
-        async for event in w.stream(v1.list_namespace, timeout_seconds=10):
-            print("Event: {} {}".format(event['type'], event['object'].metadata.name))
-            count -= 1
-            if not count:
-                w.stop()
+    w = watch.Watch()
+
+    async for event in w.stream(v1.list_namespace, timeout_seconds=10):
+        print("Event: {} {}".format(event['type'], event['object'].metadata.name))
+        count -= 1
+        if not count:
+            w.stop()
 
     print("Ended.")
+    # An explicit close is necessary to stop the stream
+    # or use async context manager like in example4.py
+    w.close()
 
 
 if __name__ == '__main__':
