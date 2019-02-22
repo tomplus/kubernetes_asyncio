@@ -26,6 +26,7 @@ class WatchTest(TestCase):
     async def test_watch_with_decode(self):
         fake_resp = CoroutineMock()
         fake_resp.content.readline = CoroutineMock()
+        fake_resp.release = Mock()
         side_effects = [
             {
                 "type": "ADDED",
@@ -47,22 +48,24 @@ class WatchTest(TestCase):
 
         watch = kubernetes_asyncio.watch.Watch()
         count = 0
-        async for e in watch.stream(fake_api.get_namespaces, resource_version='123'):
-            self.assertEqual("ADDED", e['type'])
-            # make sure decoder worked and we got a model with the right name
-            self.assertEqual("test%d" % count, e['object'].metadata.name)
-            # make sure decoder worked and updated Watch.resource_version
-            self.assertEqual(e['object'].metadata.resource_version, str(count))
-            self.assertEqual(watch.resource_version, str(count))
+        async with watch:
+            async for e in watch.stream(fake_api.get_namespaces, resource_version='123'):
+                self.assertEqual("ADDED", e['type'])
+                # make sure decoder worked and we got a model with the right name
+                self.assertEqual("test%d" % count, e['object'].metadata.name)
+                # make sure decoder worked and updated Watch.resource_version
+                self.assertEqual(e['object'].metadata.resource_version, str(count))
+                self.assertEqual(watch.resource_version, str(count))
 
-            # Stop the watch. This must not return the next event which would
-            # be an AssertionError exception.
-            count += 1
-            if count == len(side_effects) - 1:
-                watch.stop()
+                # Stop the watch. This must not return the next event which would
+                # be an AssertionError exception.
+                count += 1
+                if count == len(side_effects) - 1:
+                    watch.stop()
 
         fake_api.get_namespaces.assert_called_once_with(
             _preload_content=False, watch=True, resource_version='123')
+        fake_resp.release.assert_called_once_with()
 
     async def test_watch_k8s_empty_response(self):
         """Stop the iterator when the response is empty.
@@ -161,6 +164,7 @@ class WatchTest(TestCase):
     async def test_watch_timeout(self):
         fake_resp = CoroutineMock()
         fake_resp.content.readline = CoroutineMock()
+        fake_resp.release = Mock()
 
         mock_event = {"type": "ADDED",
                       "object": {"metadata": {"name": "test1555",
@@ -177,13 +181,14 @@ class WatchTest(TestCase):
         fake_api.get_namespaces.__doc__ = ':return: V1NamespaceList'
 
         watch = kubernetes_asyncio.watch.Watch()
-        async for e in watch.stream(fake_api.get_namespaces): # noqa
-            pass
+        async with watch.stream(fake_api.get_namespaces) as stream:
+            async for e in stream: # noqa
+                pass
 
         fake_api.get_namespaces.assert_has_calls(
             [call(_preload_content=False, watch=True),
              call(_preload_content=False, watch=True, resource_version='1555')])
-
+        fake_resp.release.assert_called_once_with()
 
 if __name__ == '__main__':
     import asynctest
