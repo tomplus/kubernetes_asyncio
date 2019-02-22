@@ -50,6 +50,7 @@ class Watch(object):
         self._stop = False
         self._api_client = client.ApiClient()
         self.resource_version = 0
+        self.resp = None
 
     def stop(self):
         self._stop = True
@@ -107,7 +108,11 @@ class Watch(object):
         return self
 
     async def __anext__(self):
-        return await self.next()
+        try:
+            return await self.next()
+        except:
+            self.close()
+            raise
 
     async def next(self):
 
@@ -169,12 +174,23 @@ class Watch(object):
                 if should_stop:
                     watch.stop()
         """
+        self.close()
         self._stop = False
         self.return_type = self.get_return_type(func)
         kwargs['watch'] = True
         kwargs['_preload_content'] = False
 
         self.func = partial(func, *args, **kwargs)
-        self.resp = None
 
         return self
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, exc_type, exc_value, traceback):
+        self.close()
+    
+    def close(self):
+        if self.resp is not None:
+            self.resp.release()
+            self.resp = None
