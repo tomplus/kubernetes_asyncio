@@ -16,6 +16,8 @@ from kubernetes_asyncio.client.api.apps_api import AppsApi
 from kubernetes_asyncio.client.api.apps_v1_api import AppsV1Api
 from kubernetes_asyncio.client.api.apps_v1beta1_api import AppsV1beta1Api
 from kubernetes_asyncio.client.api.apps_v1beta2_api import AppsV1beta2Api
+from kubernetes_asyncio.client.api.auditregistration_api import AuditregistrationApi
+from kubernetes_asyncio.client.api.auditregistration_v1alpha1_api import AuditregistrationV1alpha1Api
 from kubernetes_asyncio.client.api.authentication_api import AuthenticationApi
 from kubernetes_asyncio.client.api.authentication_v1_api import AuthenticationV1Api
 from kubernetes_asyncio.client.api.authentication_v1beta1_api import AuthenticationV1beta1Api
