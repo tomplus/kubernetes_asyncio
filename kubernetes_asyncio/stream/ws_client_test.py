@@ -61,6 +61,7 @@ class WSClientTest(TestCase):
         with patch('kubernetes_asyncio.client.api_client.rest', mock):
 
             api_client = WsApiClient()
+            api_client.configuration.host = 'https://localhost'
             ws = client.CoreV1Api(api_client=api_client)
             resp = ws.connect_get_namespaced_pod_exec('pod', 'namespace',
                                                       command="mock-command",
@@ -75,8 +76,7 @@ class WSClientTest(TestCase):
                 headers={
                     'sec-websocket-protocol': 'v4.channel.k8s.io',
                     'Accept': '*/*',
-                    'User-Agent': api_client.user_agent,
-                    'Content-Type': 'application/json'
+                    'User-Agent': api_client.user_agent
                 }
             )
 

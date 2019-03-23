@@ -1,0 +1,14 @@
+*** /rest.orig	2019-01-20 02:22:35.375205004 +0100
+--- /rest.py	2019-01-20 02:20:42.820324233 +0100
+***************
+*** 132,137 ****
+--- 132,140 ----
+          # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
+          if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
+              if re.search('json', headers['Content-Type'], re.IGNORECASE):
++                 if headers['Content-Type'] == 'application/json-patch+json':
++                     if not isinstance(body, list):
++                         headers['Content-Type'] = 'application/strategic-merge-patch+json'
+                  if body is not None:
+                      body = json.dumps(body)
+                  args["data"] = body
