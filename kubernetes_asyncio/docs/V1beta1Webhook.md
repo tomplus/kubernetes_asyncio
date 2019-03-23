@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**kubernetes_asyncio.client_config** | [**V1beta1WebhookClientConfig**](V1beta1WebhookClientConfig.md) |  | 
+**kubernetes_asyncio.client_config** | [**AdmissionregistrationV1beta1WebhookClientConfig**](AdmissionregistrationV1beta1WebhookClientConfig.md) |  | 
 **failure_policy** | **str** | FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Ignore. | [optional] 
 **name** | **str** | The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where \&quot;imagepolicy\&quot; is the name of the webhook, and kubernetes.io is the name of the organization. Required. | 
 **namespace_selector** | [**V1LabelSelector**](V1LabelSelector.md) |  | [optional] 

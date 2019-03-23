@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **privileged** | **bool** | privileged determines if a pod can request to be run as privileged. | [optional] 
 **read_only_root_filesystem** | **bool** | readOnlyRootFilesystem when set to true will force containers to run with a read only root file system.  If the container specifically requests to run with a non-read only root file system the PSP should deny the pod. If set to false the container may run with a read only root file system if it wishes but it will not be forced to. | [optional] 
 **required_drop_capabilities** | **list[str]** | requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added. | [optional] 
+**run_as_group** | [**ExtensionsV1beta1RunAsGroupStrategyOptions**](ExtensionsV1beta1RunAsGroupStrategyOptions.md) |  | [optional] 
 **run_as_user** | [**ExtensionsV1beta1RunAsUserStrategyOptions**](ExtensionsV1beta1RunAsUserStrategyOptions.md) |  | 
 **se_linux** | [**ExtensionsV1beta1SELinuxStrategyOptions**](ExtensionsV1beta1SELinuxStrategyOptions.md) |  | 
 **supplemental_groups** | [**ExtensionsV1beta1SupplementalGroupsStrategyOptions**](ExtensionsV1beta1SupplementalGroupsStrategyOptions.md) |  | 

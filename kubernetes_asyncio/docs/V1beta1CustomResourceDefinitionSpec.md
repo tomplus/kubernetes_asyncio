@@ -3,7 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**additional_printer_columns** | [**list[V1beta1CustomResourceColumnDefinition]**](V1beta1CustomResourceColumnDefinition.md) | AdditionalPrinterColumns are additional columns shown e.g. in kubectl next to the name. Defaults to a created-at column. | [optional] 
+**additional_printer_columns** | [**list[V1beta1CustomResourceColumnDefinition]**](V1beta1CustomResourceColumnDefinition.md) | AdditionalPrinterColumns are additional columns shown e.g. in kubectl next to the name. Defaults to a created-at column. Optional, the global columns for all versions. Top-level and per-version columns are mutually exclusive. | [optional] 
+**conversion** | [**V1beta1CustomResourceConversion**](V1beta1CustomResourceConversion.md) |  | [optional] 
 **group** | **str** | Group is the group this resource belongs in | 
 **names** | [**V1beta1CustomResourceDefinitionNames**](V1beta1CustomResourceDefinitionNames.md) |  | 
 **scope** | **str** | Scope indicates whether this resource is cluster or namespace scoped.  Default is namespaced | 
