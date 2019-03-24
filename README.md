@@ -25,7 +25,7 @@ Requirements: Python 3.5.3+ ([required by aiohttp](https://aiohttp.readthedocs.i
 ## OpenAPI generator
 
 Starting from v9.0.0 [OpenAPI generator](https://github.com/openapitools/openapi-generator) is used to generate code instead of
-swagger-codegen. This change should be invisible from the client point of view.
+swagger-codegen. This change should be transparent from the client point of view.
 
 ## Example
 
