@@ -22,6 +22,11 @@ pip install kubernetes_asyncio
 
 Requirements: Python 3.5.3+ ([required by aiohttp](https://aiohttp.readthedocs.io/en/stable/faq.html#why-is-python-3-5-3-the-lowest-supported-version)).
 
+## OpenAPI generator
+
+Starting from v9.0.0 [OpenAPI generator](https://github.com/openapitools/openapi-generator) is used to generate code instead of
+swagger-codegen. This change should be invisible from the client point of view.
+
 ## Example
 
 To list all pods:
@@ -63,9 +68,9 @@ like streaming, watching or reading configuration. Because of an early stage of 
 |  | [synchronous library kubernetes-client/python](https://github.com/kubernetes-client/python) | [this library](https://github.com/tomplus/kubernetes_asyncio/) |
 |--|--------------------------------------------------------------------|---------------------------------------------------------------|
 | authentication method | gcp-token, azure-token, user-token, oidc-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, oidc-token, user-password, in-cluster |
-| refesh token | no | yes, optional |
 | python | 2.7 3.4 3.5 3.6 3.7 | 3.5.3 3.6 3.7 |
 | streaming data via websocket from PODs | bidirectional | read-only is already implemented |
+| generator | swagger-codegen | openapi-generator |
 
 ## Versions
 
