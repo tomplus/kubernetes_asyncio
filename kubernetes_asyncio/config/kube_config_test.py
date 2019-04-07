@@ -26,9 +26,10 @@ from six import PY3
 from .config_exception import ConfigException
 from .kube_config import (
     ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode,
-    FileOrData, KubeConfigLoader, _cleanup_temp_files,
-    _create_temp_file_with_content, list_kube_config_contexts,
-    load_kube_config, new_client_from_config, refresh_token,
+    FileOrData, KubeConfigLoader, KubeConfigMerger
+    _cleanup_temp_files, _create_temp_file_with_content,
+    list_kube_config_contexts, load_kube_config,
+    new_client_from_config, refresh_token,
 )
 
 BEARER_TOKEN_FORMAT = "Bearer %s"
@@ -1054,9 +1055,9 @@ class TestKubeConfigMerger(BaseTestCase):
         self.assertEqual(contexts, expected_contexts)
         self.assertEqual(active_context, expected_contexts[0])
 
-    def test_new_client_from_config(self):
+    async def test_new_client_from_config(self):
         kubeconfigs = self._create_multi_config()
-        client = new_client_from_config(
+        client = await new_client_from_config(
             config_file=kubeconfigs, context="simple_token")
         self.assertEqual(TEST_HOST, client.configuration.host)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
