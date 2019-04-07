@@ -26,7 +26,7 @@ from six import PY3
 from .config_exception import ConfigException
 from .kube_config import (
     ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode,
-    FileOrData, KubeConfigLoader, KubeConfigMerger
+    FileOrData, KubeConfigLoader, KubeConfigMerger,
     _cleanup_temp_files, _create_temp_file_with_content,
     list_kube_config_contexts, load_kube_config,
     new_client_from_config, refresh_token,
