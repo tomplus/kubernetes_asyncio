@@ -70,6 +70,8 @@ class Watch(object):
         """
         js = json.loads(data)
 
+        if 'object' not in js:
+            raise Exception(f"Malformed JSON response, 'object' field is missing. Response: {response_type}, JSON: {js}")
         # Make a copy of the original object and save it under the
         # `raw_object` key because we will replace the data under `object` with
         # a Python native type shortly.
