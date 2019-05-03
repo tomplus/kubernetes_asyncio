@@ -1,6 +1,8 @@
-# v9.0.1
+# v9.1.0
 
 * feat: check whether an object key is present on watch ([#71](https://github.com/tomplus/kubernetes_asyncio/pull/71), [@mickours](https://github.com/mickours))
+
+* feat: feat: merging kubeconfig files ([#69](https://github.com/tomplus/kubernetes_asyncio/pull/69), [@tomplus](https://github.com/tomplus))
 
 # v9.0.0
 
