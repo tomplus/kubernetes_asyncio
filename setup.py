@@ -54,7 +54,7 @@ setup(
         'kubernetes_asyncio.watch',
         'kubernetes_asyncio.client.api',
         'kubernetes_asyncio.stream',
-        'kubernetes_asyncio.client.models,
+        'kubernetes_asyncio.client.models',
         'kubernetes_asyncio.utils'],
     include_package_data=True,
     long_description="""\
