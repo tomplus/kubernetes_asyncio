@@ -20,3 +20,4 @@ import kubernetes_asyncio.client
 import kubernetes_asyncio.config
 import kubernetes_asyncio.watch
 import kubernetes_asyncio.stream
+import kubernetes_asyncio.utils
