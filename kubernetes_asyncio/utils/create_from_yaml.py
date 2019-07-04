@@ -108,7 +108,7 @@ async def create_from_yaml_single_item(
     # python class name convention
     group = "".join(word.capitalize() for word in group.split('.'))
     fcn_to_call = "{0}{1}Api".format(group, version.capitalize())
-    k8s_api = await getattr(client, fcn_to_call)(k8s_client)
+    k8s_api = getattr(client, fcn_to_call)(k8s_client)
     # Replace CamelCased action_type into snake_case
     kind = yml_object["kind"]
     kind = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', kind)
