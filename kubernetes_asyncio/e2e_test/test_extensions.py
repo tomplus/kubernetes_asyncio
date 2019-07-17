@@ -87,7 +87,7 @@ spec:
         with open(tempfile, 'w') as f:
             f.write(deployment % name)
         resp = await utils.create_from_yaml(client, tempfile)
-        os.remove(temfile)
+        os.remove(tempfile)
         resp = await api.read_namespaced_deployment(name, 'default')
         self.assertIsNotNone(resp)
 
