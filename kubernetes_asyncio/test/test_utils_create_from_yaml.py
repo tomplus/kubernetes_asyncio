@@ -22,7 +22,7 @@ class TestCreateFromYAML(unittest.TestCase):
     def testCreateFromYAML(self):
         """Test testCreateFromYAML"""
         # The only function there is will deploy a yaml straight to a kubernetes cluster
-        # So there is not much to unit test...
+        # So there is not much to unit test... There is a e2e test doing this.
         pass
 
 
