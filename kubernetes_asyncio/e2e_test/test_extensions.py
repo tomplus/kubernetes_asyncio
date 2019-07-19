@@ -12,12 +12,15 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import os
+
 import uuid
 
 import asynctest
 import yaml
 
 from kubernetes_asyncio.client import api_client
+from kubernetes_asyncio import utils
 from kubernetes_asyncio.client.api import extensions_v1beta1_api
 from kubernetes_asyncio.client.models import v1_delete_options
 from kubernetes_asyncio.e2e_test import base
@@ -53,6 +56,38 @@ spec:
         resp = await api.create_namespaced_deployment(
             body=yaml.safe_load(deployment % name),
             namespace="default")
+        resp = await api.read_namespaced_deployment(name, 'default')
+        self.assertIsNotNone(resp)
+
+        options = v1_delete_options.V1DeleteOptions()
+        resp = await api.delete_namespaced_deployment(name, 'default', body=options)
+
+    async def test_create_deployment_from_yaml_file(self):
+        client = api_client.ApiClient(configuration=self.config)
+        api = extensions_v1beta1_api.ExtensionsV1beta1Api(client)
+        name = 'nginx-deployment-' + str(uuid.uuid4())
+        tempfile = 'temp.yaml'
+        deployment = '''apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: %s
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+'''
+        with open(tempfile, 'w') as f:
+            f.write(deployment % name)
+        resp = await utils.create_from_yaml(client, tempfile)
+        os.remove(tempfile)
         resp = await api.read_namespaced_deployment(name, 'default')
         self.assertIsNotNone(resp)
 

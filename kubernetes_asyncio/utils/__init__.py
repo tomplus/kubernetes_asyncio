@@ -1,4 +1,4 @@
-# Copyright 2016 The Kubernetes Authors.
+# Copyright 2018 The Kubernetes Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,12 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__project__ = 'kubernetes_asyncio'
-# The version is auto-updated. Please do not edit.
-__version__ = "9.0.0-snapshot"
+from __future__ import absolute_import
 
-import kubernetes_asyncio.client
-import kubernetes_asyncio.config
-import kubernetes_asyncio.watch
-import kubernetes_asyncio.stream
-import kubernetes_asyncio.utils
+from .create_from_yaml import FailToCreateError, create_from_yaml
