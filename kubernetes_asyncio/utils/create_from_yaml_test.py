@@ -12,13 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import asyncio
-import json
+from asynctest import CoroutineMock, TestCase
 
-from asynctest import CoroutineMock, Mock, TestCase, call, patch
-
-import kubernetes_asyncio
 from kubernetes_asyncio.utils import create_from_yaml
+
 
 class CreateFromYamlTest(TestCase):
 
@@ -29,7 +26,8 @@ class CreateFromYamlTest(TestCase):
         await create_from_yaml(api_client, 'examples/nginx-deployment.yaml')
 
         # simple check for api call
-        self.assertEqual(api_client.call_api.call_args[0][0], '/apis/extensions/v1beta1/namespaces/{namespace}/deployments')
+        self.assertEqual(api_client.call_api.call_args[0][0],
+                         '/apis/extensions/v1beta1/namespaces/{namespace}/deployments')
 
 
 if __name__ == '__main__':
