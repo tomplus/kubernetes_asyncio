@@ -77,7 +77,7 @@ Method | HTTP request | Description
 
 
 # **create_namespaced_daemon_set**
-> V1beta1DaemonSet create_namespaced_daemon_set(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1beta1DaemonSet create_namespaced_daemon_set(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -103,12 +103,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 body = kubernetes_asyncio.client.V1beta1DaemonSet() # V1beta1DaemonSet | 
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_daemon_set(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_daemon_set(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->create_namespaced_daemon_set: %s\n" % e)
@@ -120,9 +120,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **body** | [**V1beta1DaemonSet**](V1beta1DaemonSet.md)|  | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_deployment**
-> ExtensionsV1beta1Deployment create_namespaced_deployment(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Deployment create_namespaced_deployment(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -166,12 +166,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 body = kubernetes_asyncio.client.ExtensionsV1beta1Deployment() # ExtensionsV1beta1Deployment | 
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_deployment(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_deployment(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->create_namespaced_deployment: %s\n" % e)
@@ -183,9 +183,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **body** | [**ExtensionsV1beta1Deployment**](ExtensionsV1beta1Deployment.md)|  | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -203,7 +203,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_deployment_rollback**
-> V1Status create_namespaced_deployment_rollback(name, namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+> V1Status create_namespaced_deployment_rollback(name, namespace, body, dry_run=dry_run, field_manager=field_manager, pretty=pretty)
 
 
 
@@ -231,11 +231,11 @@ name = 'name_example' # str | name of the DeploymentRollback
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 body = kubernetes_asyncio.client.ExtensionsV1beta1DeploymentRollback() # ExtensionsV1beta1DeploymentRollback | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
-include_uninitialized = True # bool | If IncludeUninitialized is specified, the object may be returned without completing initialization. (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_deployment_rollback(name, namespace, body, dry_run=dry_run, include_uninitialized=include_uninitialized, pretty=pretty)
+    api_response = api_instance.create_namespaced_deployment_rollback(name, namespace, body, dry_run=dry_run, field_manager=field_manager, pretty=pretty)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->create_namespaced_deployment_rollback: %s\n" % e)
@@ -249,7 +249,7 @@ Name | Type | Description  | Notes
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **body** | [**ExtensionsV1beta1DeploymentRollback**](ExtensionsV1beta1DeploymentRollback.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
- **include_uninitialized** | **bool**| If IncludeUninitialized is specified, the object may be returned without completing initialization. | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
 
 ### Return type
@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_ingress**
-> V1beta1Ingress create_namespaced_ingress(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Ingress create_namespaced_ingress(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -293,13 +293,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-body = kubernetes_asyncio.client.V1beta1Ingress() # V1beta1Ingress | 
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
+body = kubernetes_asyncio.client.ExtensionsV1beta1Ingress() # ExtensionsV1beta1Ingress | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_ingress(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_ingress(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->create_namespaced_ingress: %s\n" % e)
@@ -310,14 +310,14 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **body** | [**V1beta1Ingress**](V1beta1Ingress.md)|  | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
+ **body** | [**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
-[**V1beta1Ingress**](V1beta1Ingress.md)
+[**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)
 
 ### Authorization
 
@@ -331,7 +331,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_network_policy**
-> V1beta1NetworkPolicy create_namespaced_network_policy(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1beta1NetworkPolicy create_namespaced_network_policy(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -357,12 +357,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 body = kubernetes_asyncio.client.V1beta1NetworkPolicy() # V1beta1NetworkPolicy | 
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_network_policy(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_network_policy(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->create_namespaced_network_policy: %s\n" % e)
@@ -374,9 +374,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **body** | [**V1beta1NetworkPolicy**](V1beta1NetworkPolicy.md)|  | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -394,7 +394,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_replica_set**
-> V1beta1ReplicaSet create_namespaced_replica_set(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> V1beta1ReplicaSet create_namespaced_replica_set(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -420,12 +420,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 body = kubernetes_asyncio.client.V1beta1ReplicaSet() # V1beta1ReplicaSet | 
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.create_namespaced_replica_set(namespace, body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_namespaced_replica_set(namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->create_namespaced_replica_set: %s\n" % e)
@@ -437,9 +437,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **body** | [**V1beta1ReplicaSet**](V1beta1ReplicaSet.md)|  | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -457,7 +457,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_pod_security_policy**
-> ExtensionsV1beta1PodSecurityPolicy create_pod_security_policy(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1PodSecurityPolicy create_pod_security_policy(body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -482,12 +482,12 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 body = kubernetes_asyncio.client.ExtensionsV1beta1PodSecurityPolicy() # ExtensionsV1beta1PodSecurityPolicy | 
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.create_pod_security_policy(body, include_uninitialized=include_uninitialized, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.create_pod_security_policy(body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->create_pod_security_policy: %s\n" % e)
@@ -498,9 +498,9 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**ExtensionsV1beta1PodSecurityPolicy**](ExtensionsV1beta1PodSecurityPolicy.md)|  | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -518,7 +518,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_namespaced_daemon_set**
-> V1Status delete_collection_namespaced_daemon_set(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1Status delete_collection_namespaced_daemon_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -543,7 +543,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -554,7 +553,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.delete_collection_namespaced_daemon_set(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.delete_collection_namespaced_daemon_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->delete_collection_namespaced_daemon_set: %s\n" % e)
@@ -565,7 +564,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -591,7 +589,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_namespaced_deployment**
-> V1Status delete_collection_namespaced_deployment(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1Status delete_collection_namespaced_deployment(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -616,7 +614,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -627,7 +624,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.delete_collection_namespaced_deployment(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.delete_collection_namespaced_deployment(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->delete_collection_namespaced_deployment: %s\n" % e)
@@ -638,7 +635,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -664,7 +660,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_namespaced_ingress**
-> V1Status delete_collection_namespaced_ingress(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1Status delete_collection_namespaced_ingress(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -689,7 +685,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -700,7 +695,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.delete_collection_namespaced_ingress(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.delete_collection_namespaced_ingress(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->delete_collection_namespaced_ingress: %s\n" % e)
@@ -711,7 +706,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -737,7 +731,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_namespaced_network_policy**
-> V1Status delete_collection_namespaced_network_policy(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1Status delete_collection_namespaced_network_policy(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -762,7 +756,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -773,7 +766,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.delete_collection_namespaced_network_policy(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.delete_collection_namespaced_network_policy(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->delete_collection_namespaced_network_policy: %s\n" % e)
@@ -784,7 +777,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -810,7 +802,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_namespaced_replica_set**
-> V1Status delete_collection_namespaced_replica_set(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1Status delete_collection_namespaced_replica_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -835,7 +827,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -846,7 +837,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.delete_collection_namespaced_replica_set(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.delete_collection_namespaced_replica_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->delete_collection_namespaced_replica_set: %s\n" % e)
@@ -857,7 +848,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -883,7 +873,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_pod_security_policy**
-> V1Status delete_collection_pod_security_policy(include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1Status delete_collection_pod_security_policy(pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -907,7 +897,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -918,7 +907,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.delete_collection_pod_security_policy(include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.delete_collection_pod_security_policy(pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->delete_collection_pod_security_policy: %s\n" % e)
@@ -928,7 +917,6 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -1417,7 +1405,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_daemon_set_for_all_namespaces**
-> V1beta1DaemonSetList list_daemon_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1beta1DaemonSetList list_daemon_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -1443,7 +1431,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
 limit = 56 # int | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
@@ -1452,7 +1439,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_daemon_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_daemon_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_daemon_set_for_all_namespaces: %s\n" % e)
@@ -1464,7 +1451,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
  **limit** | **int**| limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -1488,7 +1474,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_deployment_for_all_namespaces**
-> ExtensionsV1beta1DeploymentList list_deployment_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> ExtensionsV1beta1DeploymentList list_deployment_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -1514,7 +1500,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
 limit = 56 # int | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
@@ -1523,7 +1508,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_deployment_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_deployment_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_deployment_for_all_namespaces: %s\n" % e)
@@ -1535,7 +1520,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
  **limit** | **int**| limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -1559,7 +1543,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_ingress_for_all_namespaces**
-> V1beta1IngressList list_ingress_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> ExtensionsV1beta1IngressList list_ingress_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -1585,7 +1569,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
 limit = 56 # int | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
@@ -1594,7 +1577,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_ingress_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_ingress_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_ingress_for_all_namespaces: %s\n" % e)
@@ -1606,7 +1589,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
  **limit** | **int**| limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -1616,7 +1598,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**V1beta1IngressList**](V1beta1IngressList.md)
+[**ExtensionsV1beta1IngressList**](ExtensionsV1beta1IngressList.md)
 
 ### Authorization
 
@@ -1630,7 +1612,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_namespaced_daemon_set**
-> V1beta1DaemonSetList list_namespaced_daemon_set(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1beta1DaemonSetList list_namespaced_daemon_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -1655,7 +1637,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -1666,7 +1647,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_namespaced_daemon_set(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_namespaced_daemon_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_namespaced_daemon_set: %s\n" % e)
@@ -1677,7 +1658,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -1703,7 +1683,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_namespaced_deployment**
-> ExtensionsV1beta1DeploymentList list_namespaced_deployment(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> ExtensionsV1beta1DeploymentList list_namespaced_deployment(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -1728,7 +1708,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -1739,7 +1718,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_namespaced_deployment(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_namespaced_deployment(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_namespaced_deployment: %s\n" % e)
@@ -1750,7 +1729,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -1776,7 +1754,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_namespaced_ingress**
-> V1beta1IngressList list_namespaced_ingress(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> ExtensionsV1beta1IngressList list_namespaced_ingress(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -1801,7 +1779,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -1812,7 +1789,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_namespaced_ingress(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_namespaced_ingress(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_namespaced_ingress: %s\n" % e)
@@ -1823,7 +1800,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -1835,7 +1811,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**V1beta1IngressList**](V1beta1IngressList.md)
+[**ExtensionsV1beta1IngressList**](ExtensionsV1beta1IngressList.md)
 
 ### Authorization
 
@@ -1849,7 +1825,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_namespaced_network_policy**
-> V1beta1NetworkPolicyList list_namespaced_network_policy(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1beta1NetworkPolicyList list_namespaced_network_policy(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -1874,7 +1850,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -1885,7 +1860,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_namespaced_network_policy(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_namespaced_network_policy(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_namespaced_network_policy: %s\n" % e)
@@ -1896,7 +1871,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -1922,7 +1896,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_namespaced_replica_set**
-> V1beta1ReplicaSetList list_namespaced_replica_set(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1beta1ReplicaSetList list_namespaced_replica_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -1947,7 +1921,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -1958,7 +1931,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_namespaced_replica_set(namespace, include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_namespaced_replica_set(namespace, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_namespaced_replica_set: %s\n" % e)
@@ -1969,7 +1942,6 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -1995,7 +1967,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_network_policy_for_all_namespaces**
-> V1beta1NetworkPolicyList list_network_policy_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1beta1NetworkPolicyList list_network_policy_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -2021,7 +1993,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
 limit = 56 # int | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
@@ -2030,7 +2001,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_network_policy_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_network_policy_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_network_policy_for_all_namespaces: %s\n" % e)
@@ -2042,7 +2013,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
  **limit** | **int**| limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -2066,7 +2036,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_pod_security_policy**
-> ExtensionsV1beta1PodSecurityPolicyList list_pod_security_policy(include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> ExtensionsV1beta1PodSecurityPolicyList list_pod_security_policy(pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -2090,7 +2060,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 
 # create an instance of the API class
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -2101,7 +2070,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_pod_security_policy(include_uninitialized=include_uninitialized, pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_pod_security_policy(pretty=pretty, _continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_pod_security_policy: %s\n" % e)
@@ -2111,7 +2080,6 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -2137,7 +2105,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_replica_set_for_all_namespaces**
-> V1beta1ReplicaSetList list_replica_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+> V1beta1ReplicaSetList list_replica_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
 
 
 
@@ -2163,7 +2131,6 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
-include_uninitialized = True # bool | If true, partially initialized resources are included in the response. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
 limit = 56 # int | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
@@ -2172,7 +2139,7 @@ timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the du
 watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 
 try:
-    api_response = api_instance.list_replica_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, include_uninitialized=include_uninitialized, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
+    api_response = api_instance.list_replica_set_for_all_namespaces(_continue=_continue, field_selector=field_selector, label_selector=label_selector, limit=limit, pretty=pretty, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->list_replica_set_for_all_namespaces: %s\n" % e)
@@ -2184,7 +2151,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
- **include_uninitialized** | **bool**| If true, partially initialized resources are included in the response. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
  **limit** | **int**| limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and kubernetes_asyncio.clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, kubernetes_asyncio.clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a kubernetes_asyncio.client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
@@ -2208,7 +2174,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_daemon_set**
-> V1beta1DaemonSet patch_namespaced_daemon_set(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1DaemonSet patch_namespaced_daemon_set(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2237,9 +2203,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_daemon_set(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_daemon_set(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_daemon_set: %s\n" % e)
@@ -2254,6 +2222,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2271,7 +2241,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_daemon_set_status**
-> V1beta1DaemonSet patch_namespaced_daemon_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1DaemonSet patch_namespaced_daemon_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2300,9 +2270,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_daemon_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_daemon_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_daemon_set_status: %s\n" % e)
@@ -2317,6 +2289,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2334,7 +2308,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_deployment**
-> ExtensionsV1beta1Deployment patch_namespaced_deployment(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Deployment patch_namespaced_deployment(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2363,9 +2337,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_deployment(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_deployment(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_deployment: %s\n" % e)
@@ -2380,6 +2356,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2397,7 +2375,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_deployment_scale**
-> ExtensionsV1beta1Scale patch_namespaced_deployment_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Scale patch_namespaced_deployment_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2426,9 +2404,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_deployment_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_deployment_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_deployment_scale: %s\n" % e)
@@ -2443,6 +2423,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2460,7 +2442,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_deployment_status**
-> ExtensionsV1beta1Deployment patch_namespaced_deployment_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Deployment patch_namespaced_deployment_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2489,9 +2471,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_deployment_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_deployment_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_deployment_status: %s\n" % e)
@@ -2506,6 +2490,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2523,7 +2509,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_ingress**
-> V1beta1Ingress patch_namespaced_ingress(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Ingress patch_namespaced_ingress(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2552,9 +2538,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_ingress(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_ingress(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_ingress: %s\n" % e)
@@ -2569,10 +2557,12 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
-[**V1beta1Ingress**](V1beta1Ingress.md)
+[**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)
 
 ### Authorization
 
@@ -2586,7 +2576,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_ingress_status**
-> V1beta1Ingress patch_namespaced_ingress_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Ingress patch_namespaced_ingress_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2615,9 +2605,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_ingress_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_ingress_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_ingress_status: %s\n" % e)
@@ -2632,10 +2624,12 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
-[**V1beta1Ingress**](V1beta1Ingress.md)
+[**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)
 
 ### Authorization
 
@@ -2649,7 +2643,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_network_policy**
-> V1beta1NetworkPolicy patch_namespaced_network_policy(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1NetworkPolicy patch_namespaced_network_policy(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2678,9 +2672,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_network_policy(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_network_policy(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_network_policy: %s\n" % e)
@@ -2695,6 +2691,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2712,7 +2710,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_replica_set**
-> V1beta1ReplicaSet patch_namespaced_replica_set(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1ReplicaSet patch_namespaced_replica_set(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2741,9 +2739,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_replica_set(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_replica_set(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_replica_set: %s\n" % e)
@@ -2758,6 +2758,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2775,7 +2777,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_replica_set_scale**
-> ExtensionsV1beta1Scale patch_namespaced_replica_set_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Scale patch_namespaced_replica_set_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2804,9 +2806,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_replica_set_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_replica_set_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_replica_set_scale: %s\n" % e)
@@ -2821,6 +2825,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2838,7 +2844,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_replica_set_status**
-> V1beta1ReplicaSet patch_namespaced_replica_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1ReplicaSet patch_namespaced_replica_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2867,9 +2873,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_replica_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_replica_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_replica_set_status: %s\n" % e)
@@ -2884,6 +2892,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2901,7 +2911,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_replication_controller_dummy_scale**
-> ExtensionsV1beta1Scale patch_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Scale patch_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2930,9 +2940,11 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_namespaced_replication_controller_dummy_scale: %s\n" % e)
@@ -2947,6 +2959,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -2964,7 +2978,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_pod_security_policy**
-> ExtensionsV1beta1PodSecurityPolicy patch_pod_security_policy(name, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1PodSecurityPolicy patch_pod_security_policy(name, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -2992,9 +3006,11 @@ name = 'name_example' # str | name of the PodSecurityPolicy
 body = kubernetes_asyncio.client.UNKNOWN_BASE_TYPE() # UNKNOWN_BASE_TYPE | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
 try:
-    api_response = api_instance.patch_pod_security_policy(name, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.patch_pod_security_policy(name, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->patch_pod_security_policy: %s\n" % e)
@@ -3008,6 +3024,8 @@ Name | Type | Description  | Notes
  **body** | [**UNKNOWN_BASE_TYPE**](UNKNOWN_BASE_TYPE.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -3052,8 +3070,8 @@ api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio
 name = 'name_example' # str | name of the DaemonSet
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
+exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
+export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
 try:
     api_response = api_instance.read_namespaced_daemon_set(name, namespace, pretty=pretty, exact=exact, export=export)
@@ -3069,8 +3087,8 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the DaemonSet | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. | [optional] 
+ **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
+ **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -3174,8 +3192,8 @@ api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio
 name = 'name_example' # str | name of the Deployment
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
+exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
+export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
 try:
     api_response = api_instance.read_namespaced_deployment(name, namespace, pretty=pretty, exact=exact, export=export)
@@ -3191,8 +3209,8 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the Deployment | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. | [optional] 
+ **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
+ **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -3328,7 +3346,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_ingress**
-> V1beta1Ingress read_namespaced_ingress(name, namespace, pretty=pretty, exact=exact, export=export)
+> ExtensionsV1beta1Ingress read_namespaced_ingress(name, namespace, pretty=pretty, exact=exact, export=export)
 
 
 
@@ -3355,8 +3373,8 @@ api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio
 name = 'name_example' # str | name of the Ingress
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
+exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
+export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
 try:
     api_response = api_instance.read_namespaced_ingress(name, namespace, pretty=pretty, exact=exact, export=export)
@@ -3372,12 +3390,12 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the Ingress | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. | [optional] 
+ **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
+ **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
-[**V1beta1Ingress**](V1beta1Ingress.md)
+[**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)
 
 ### Authorization
 
@@ -3391,7 +3409,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_ingress_status**
-> V1beta1Ingress read_namespaced_ingress_status(name, namespace, pretty=pretty)
+> ExtensionsV1beta1Ingress read_namespaced_ingress_status(name, namespace, pretty=pretty)
 
 
 
@@ -3436,7 +3454,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**V1beta1Ingress**](V1beta1Ingress.md)
+[**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)
 
 ### Authorization
 
@@ -3477,8 +3495,8 @@ api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio
 name = 'name_example' # str | name of the NetworkPolicy
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
+exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
+export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
 try:
     api_response = api_instance.read_namespaced_network_policy(name, namespace, pretty=pretty, exact=exact, export=export)
@@ -3494,8 +3512,8 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the NetworkPolicy | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. | [optional] 
+ **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
+ **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -3540,8 +3558,8 @@ api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio
 name = 'name_example' # str | name of the ReplicaSet
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
+exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
+export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
 try:
     api_response = api_instance.read_namespaced_replica_set(name, namespace, pretty=pretty, exact=exact, export=export)
@@ -3557,8 +3575,8 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the ReplicaSet | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. | [optional] 
+ **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
+ **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -3779,8 +3797,8 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the PodSecurityPolicy
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. (optional)
+exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
+export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
 try:
     api_response = api_instance.read_pod_security_policy(name, pretty=pretty, exact=exact, export=export)
@@ -3795,8 +3813,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PodSecurityPolicy | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. | [optional] 
+ **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
+ **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -3814,7 +3832,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_daemon_set**
-> V1beta1DaemonSet replace_namespaced_daemon_set(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1DaemonSet replace_namespaced_daemon_set(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -3843,9 +3861,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.V1beta1DaemonSet() # V1beta1DaemonSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_daemon_set(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_daemon_set(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_daemon_set: %s\n" % e)
@@ -3860,6 +3879,7 @@ Name | Type | Description  | Notes
  **body** | [**V1beta1DaemonSet**](V1beta1DaemonSet.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -3877,7 +3897,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_daemon_set_status**
-> V1beta1DaemonSet replace_namespaced_daemon_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1DaemonSet replace_namespaced_daemon_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -3906,9 +3926,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.V1beta1DaemonSet() # V1beta1DaemonSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_daemon_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_daemon_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_daemon_set_status: %s\n" % e)
@@ -3923,6 +3944,7 @@ Name | Type | Description  | Notes
  **body** | [**V1beta1DaemonSet**](V1beta1DaemonSet.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -3940,7 +3962,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_deployment**
-> ExtensionsV1beta1Deployment replace_namespaced_deployment(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Deployment replace_namespaced_deployment(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -3969,9 +3991,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.ExtensionsV1beta1Deployment() # ExtensionsV1beta1Deployment | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_deployment(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_deployment(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_deployment: %s\n" % e)
@@ -3986,6 +4009,7 @@ Name | Type | Description  | Notes
  **body** | [**ExtensionsV1beta1Deployment**](ExtensionsV1beta1Deployment.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -4003,7 +4027,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_deployment_scale**
-> ExtensionsV1beta1Scale replace_namespaced_deployment_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Scale replace_namespaced_deployment_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4032,9 +4056,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.ExtensionsV1beta1Scale() # ExtensionsV1beta1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_deployment_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_deployment_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_deployment_scale: %s\n" % e)
@@ -4049,6 +4074,7 @@ Name | Type | Description  | Notes
  **body** | [**ExtensionsV1beta1Scale**](ExtensionsV1beta1Scale.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -4066,7 +4092,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_deployment_status**
-> ExtensionsV1beta1Deployment replace_namespaced_deployment_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Deployment replace_namespaced_deployment_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4095,9 +4121,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.ExtensionsV1beta1Deployment() # ExtensionsV1beta1Deployment | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_deployment_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_deployment_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_deployment_status: %s\n" % e)
@@ -4112,6 +4139,7 @@ Name | Type | Description  | Notes
  **body** | [**ExtensionsV1beta1Deployment**](ExtensionsV1beta1Deployment.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -4129,7 +4157,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_ingress**
-> V1beta1Ingress replace_namespaced_ingress(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Ingress replace_namespaced_ingress(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4155,12 +4183,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Ingress
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-body = kubernetes_asyncio.client.V1beta1Ingress() # V1beta1Ingress | 
+body = kubernetes_asyncio.client.ExtensionsV1beta1Ingress() # ExtensionsV1beta1Ingress | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_ingress(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_ingress(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_ingress: %s\n" % e)
@@ -4172,13 +4201,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Ingress | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **body** | [**V1beta1Ingress**](V1beta1Ingress.md)|  | 
+ **body** | [**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
-[**V1beta1Ingress**](V1beta1Ingress.md)
+[**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)
 
 ### Authorization
 
@@ -4192,7 +4222,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_ingress_status**
-> V1beta1Ingress replace_namespaced_ingress_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Ingress replace_namespaced_ingress_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4218,12 +4248,13 @@ configuration.api_key['authorization'] = 'YOUR_API_KEY'
 api_instance = kubernetes_asyncio.client.ExtensionsV1beta1Api(kubernetes_asyncio.client.ApiClient(configuration))
 name = 'name_example' # str | name of the Ingress
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-body = kubernetes_asyncio.client.V1beta1Ingress() # V1beta1Ingress | 
+body = kubernetes_asyncio.client.ExtensionsV1beta1Ingress() # ExtensionsV1beta1Ingress | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_ingress_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_ingress_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_ingress_status: %s\n" % e)
@@ -4235,13 +4266,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Ingress | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **body** | [**V1beta1Ingress**](V1beta1Ingress.md)|  | 
+ **body** | [**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
-[**V1beta1Ingress**](V1beta1Ingress.md)
+[**ExtensionsV1beta1Ingress**](ExtensionsV1beta1Ingress.md)
 
 ### Authorization
 
@@ -4255,7 +4287,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_network_policy**
-> V1beta1NetworkPolicy replace_namespaced_network_policy(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1NetworkPolicy replace_namespaced_network_policy(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4284,9 +4316,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.V1beta1NetworkPolicy() # V1beta1NetworkPolicy | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_network_policy(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_network_policy(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_network_policy: %s\n" % e)
@@ -4301,6 +4334,7 @@ Name | Type | Description  | Notes
  **body** | [**V1beta1NetworkPolicy**](V1beta1NetworkPolicy.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -4318,7 +4352,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_replica_set**
-> V1beta1ReplicaSet replace_namespaced_replica_set(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1ReplicaSet replace_namespaced_replica_set(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4347,9 +4381,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.V1beta1ReplicaSet() # V1beta1ReplicaSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_replica_set(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_replica_set(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_replica_set: %s\n" % e)
@@ -4364,6 +4399,7 @@ Name | Type | Description  | Notes
  **body** | [**V1beta1ReplicaSet**](V1beta1ReplicaSet.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -4381,7 +4417,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_replica_set_scale**
-> ExtensionsV1beta1Scale replace_namespaced_replica_set_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Scale replace_namespaced_replica_set_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4410,9 +4446,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.ExtensionsV1beta1Scale() # ExtensionsV1beta1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_replica_set_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_replica_set_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_replica_set_scale: %s\n" % e)
@@ -4427,6 +4464,7 @@ Name | Type | Description  | Notes
  **body** | [**ExtensionsV1beta1Scale**](ExtensionsV1beta1Scale.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -4444,7 +4482,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_replica_set_status**
-> V1beta1ReplicaSet replace_namespaced_replica_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> V1beta1ReplicaSet replace_namespaced_replica_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4473,9 +4511,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.V1beta1ReplicaSet() # V1beta1ReplicaSet | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_replica_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_replica_set_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_replica_set_status: %s\n" % e)
@@ -4490,6 +4529,7 @@ Name | Type | Description  | Notes
  **body** | [**V1beta1ReplicaSet**](V1beta1ReplicaSet.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -4507,7 +4547,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_replication_controller_dummy_scale**
-> ExtensionsV1beta1Scale replace_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1Scale replace_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4536,9 +4576,10 @@ namespace = 'namespace_example' # str | object name and auth scope, such as for 
 body = kubernetes_asyncio.client.ExtensionsV1beta1Scale() # ExtensionsV1beta1Scale | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_namespaced_replication_controller_dummy_scale(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_namespaced_replication_controller_dummy_scale: %s\n" % e)
@@ -4553,6 +4594,7 @@ Name | Type | Description  | Notes
  **body** | [**ExtensionsV1beta1Scale**](ExtensionsV1beta1Scale.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -4570,7 +4612,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_pod_security_policy**
-> ExtensionsV1beta1PodSecurityPolicy replace_pod_security_policy(name, body, pretty=pretty, dry_run=dry_run)
+> ExtensionsV1beta1PodSecurityPolicy replace_pod_security_policy(name, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -4598,9 +4640,10 @@ name = 'name_example' # str | name of the PodSecurityPolicy
 body = kubernetes_asyncio.client.ExtensionsV1beta1PodSecurityPolicy() # ExtensionsV1beta1PodSecurityPolicy | 
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
 try:
-    api_response = api_instance.replace_pod_security_policy(name, body, pretty=pretty, dry_run=dry_run)
+    api_response = api_instance.replace_pod_security_policy(name, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling ExtensionsV1beta1Api->replace_pod_security_policy: %s\n" % e)
@@ -4614,6 +4657,7 @@ Name | Type | Description  | Notes
  **body** | [**ExtensionsV1beta1PodSecurityPolicy**](ExtensionsV1beta1PodSecurityPolicy.md)|  | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
