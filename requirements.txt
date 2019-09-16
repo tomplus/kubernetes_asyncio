@@ -2,6 +2,6 @@ certifi>=14.05.14 # MPL
 six>=1.9.0  # MIT
 python-dateutil>=2.5.3  # BSD
 setuptools>=21.0.0  # PSF/ZPL
-urllib3>=1.23  # MIT
+urllib3>=1.24.2  # MIT
 pyyaml>=3.12  # MIT
 aiohttp>=2.3.10 # # Apache-2.0
