@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **cephfs** | [**V1CephFSVolumeSource**](V1CephFSVolumeSource.md) |  | [optional] 
 **cinder** | [**V1CinderVolumeSource**](V1CinderVolumeSource.md) |  | [optional] 
 **config_map** | [**V1ConfigMapVolumeSource**](V1ConfigMapVolumeSource.md) |  | [optional] 
+**csi** | [**V1CSIVolumeSource**](V1CSIVolumeSource.md) |  | [optional] 
 **downward_api** | [**V1DownwardAPIVolumeSource**](V1DownwardAPIVolumeSource.md) |  | [optional] 
 **empty_dir** | [**V1EmptyDirVolumeSource**](V1EmptyDirVolumeSource.md) |  | [optional] 
 **fc** | [**V1FCVolumeSource**](V1FCVolumeSource.md) |  | [optional] 
