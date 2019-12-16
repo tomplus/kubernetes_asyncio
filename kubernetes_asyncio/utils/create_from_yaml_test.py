@@ -27,7 +27,7 @@ class CreateFromYamlTest(TestCase):
 
         # simple check for api call
         self.assertEqual(api_client.call_api.call_args[0][0],
-                         '/apis/extensions/v1beta1/namespaces/{namespace}/deployments')
+                         '/apis/apps/v1/namespaces/{namespace}/deployments')
 
 
 if __name__ == '__main__':
