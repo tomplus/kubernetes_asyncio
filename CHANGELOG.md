@@ -1,6 +1,11 @@
+# v10.0.1
+
+* fix: when `_preload_content=False` Websocket Stream returns 401 error ([#84](https://github.com/tomplus/kubernetes_asyncio/pull/84), [@kexirong](https://github.com/kexirong))
+* fix: e2e tests use `apps/v1` api instead of removed `extensions/v1beta1` ([#85](https://github.com/tomplus/kubernetes_asyncio/pull/85), [@tomplus](https://github.com/tomplus))
+
 # v10.0.0
 
-* feat: add create_form_yaml() functionality ([#76](https://github.com/tomplus/kubernetes_asyncio/pull/76), [@PidgeyBE](https://github.com/PidgeyBE))
+* feat: add `create_form_yaml()` functionality ([#76](https://github.com/tomplus/kubernetes_asyncio/pull/76), [@PidgeyBE](https://github.com/PidgeyBE))
 * feat: custom objects can be merged by json-patch ([gen/#119](https://github.com/kubernetes-client/gen/pull/119), [@tomplus](https://github.com/tomplus)) 
 * fix: parse microseconds in data-time fields ([#80](https://github.com/tomplus/kubernetes_asyncio/pull/80), [@tomplus](https://github.com/tomplus))
 * feat: upgrade to API spec from Kubernetes 1.14 ([#83](https://github.com/tomplus/kubernetes_asyncio/pull/83), [@tomplus](https://github.com/tomplus))
