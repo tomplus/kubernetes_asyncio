@@ -45,7 +45,7 @@ _re_rfc3339 = re.compile(r"(\d\d\d\d)-(\d\d)-(\d\d)"        # full-date
 _re_timezone = re.compile(r"([-+])(\d\d?):?(\d\d)?")
 
 
-MICROSEC_PER_SEC = 10.0.10
+MICROSEC_PER_SEC = 1000000
 
 
 def parse_rfc3339(s):
