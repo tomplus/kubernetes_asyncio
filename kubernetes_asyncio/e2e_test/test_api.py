@@ -21,12 +21,12 @@ import yaml
 
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio import utils
-from kubernetes_asyncio.client.api import extensions_v1beta1_api
+from kubernetes_asyncio.client.api import apps_v1_api
 from kubernetes_asyncio.client.models import v1_delete_options
 from kubernetes_asyncio.e2e_test import base
 
 
-class TestClientExtensions(asynctest.TestCase):
+class TestClientApi(asynctest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -34,14 +34,17 @@ class TestClientExtensions(asynctest.TestCase):
 
     async def test_create_deployment(self):
         client = api_client.ApiClient(configuration=self.config)
-        api = extensions_v1beta1_api.ExtensionsV1beta1Api(client)
+        api = apps_v1_api.AppsV1Api(client)
         name = 'nginx-deployment-' + str(uuid.uuid4())
-        deployment = '''apiVersion: extensions/v1beta1
+        deployment = '''apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: %s
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
@@ -64,15 +67,18 @@ spec:
 
     async def test_create_deployment_from_yaml_file(self):
         client = api_client.ApiClient(configuration=self.config)
-        api = extensions_v1beta1_api.ExtensionsV1beta1Api(client)
+        api = apps_v1_api.AppsV1Api(client)
         name = 'nginx-deployment-' + str(uuid.uuid4())
         tempfile = 'temp.yaml'
-        deployment = '''apiVersion: extensions/v1beta1
+        deployment = '''apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: %s
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: nginx  
   template:
     metadata:
       labels:
@@ -96,16 +102,19 @@ spec:
 
     async def test_create_daemonset(self):
         client = api_client.ApiClient(configuration=self.config)
-        api = extensions_v1beta1_api.ExtensionsV1beta1Api(client)
+        api = apps_v1_api.AppsV1Api(client)
         name = 'nginx-app-' + str(uuid.uuid4())
         daemonset = {
-            'apiVersion': 'extensions/v1beta1',
+            'apiVersion': 'apps/v1',
             'kind': 'DaemonSet',
             'metadata': {
                 'labels': {'app': 'nginx'},
-                'name': '%s' % name,
+                'name': name,
             },
             'spec': {
+                'selector': {
+                    'matchLabels': {'app': 'nginx'}
+                },
                 'template': {
                     'metadata': {
                         'labels': {'app': 'nginx'},
