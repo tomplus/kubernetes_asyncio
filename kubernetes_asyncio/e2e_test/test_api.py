@@ -42,6 +42,9 @@ metadata:
   name: %s
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
@@ -73,6 +76,9 @@ metadata:
   name: %s
 spec:
   replicas: 3
+  selector:
+    matchLabels:
+      app: nginx  
   template:
     metadata:
       labels:
@@ -103,9 +109,12 @@ spec:
             'kind': 'DaemonSet',
             'metadata': {
                 'labels': {'app': 'nginx'},
-                'name': '%s' % name,
+                'name': name,
             },
             'spec': {
+                'selector': {
+                    'matchLabels': {'app': 'nginx'}
+                },
                 'template': {
                     'metadata': {
                         'labels': {'app': 'nginx'},
