@@ -71,7 +71,7 @@ async def create_from_yaml(
                 for yml_object in yml_document["items"]:
                     # Mitigate cases when server returns a xxxList object
                     # See kubernetes-client/python#586
-                    if kind is not "":
+                    if kind != "":
                         yml_object["apiVersion"] = yml_document["apiVersion"]
                         yml_object["kind"] = kind
                     try:
