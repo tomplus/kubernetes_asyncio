@@ -4,4 +4,4 @@ python-dateutil>=2.5.3  # BSD
 setuptools>=21.0.0  # PSF/ZPL
 urllib3>=1.24.2  # MIT
 pyyaml>=3.12  # MIT
-aiohttp>=2.3.10 # # Apache-2.0
+aiohttp>=2.3.10,<4.0.0 # # Apache-2.0
