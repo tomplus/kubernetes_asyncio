@@ -67,6 +67,9 @@ class WatchTest(TestCase):
             _preload_content=False, watch=True, resource_version='123')
         fake_resp.release.assert_called_once_with()
 
+        # last resource_version has to be stored in the object
+        self.assertEqual(watch.resource_version, '2')
+
     async def test_watch_k8s_empty_response(self):
         """Stop the iterator when the response is empty.
 
@@ -189,6 +192,32 @@ class WatchTest(TestCase):
             [call(_preload_content=False, watch=True),
              call(_preload_content=False, watch=True, resource_version='1555')])
         fake_resp.release.assert_called_once_with()
+
+    async def test_watch_timeout_with_resource_version(self):
+        fake_resp = CoroutineMock()
+        fake_resp.content.readline = CoroutineMock()
+        fake_resp.release = Mock()
+
+        fake_resp.content.readline.side_effect = [asyncio.TimeoutError(),
+                                                  b""]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ':return: V1NamespaceList'
+
+        watch = kubernetes_asyncio.watch.Watch()
+        async with watch.stream(fake_api.get_namespaces, resource_version='10') as stream:
+            async for e in stream: # noqa
+                pass
+
+        # all calls use the passed resource version
+        fake_api.get_namespaces.assert_has_calls(
+            [call(_preload_content=False, watch=True, resource_version='10'),
+             call(_preload_content=False, watch=True, resource_version='10')])
+
+        fake_resp.release.assert_called_once_with()
+        self.assertEqual(watch.resource_version, '10')
+
 
 if __name__ == '__main__':
     import asynctest
