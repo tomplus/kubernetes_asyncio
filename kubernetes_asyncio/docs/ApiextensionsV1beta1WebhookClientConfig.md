@@ -1,5 +1,6 @@
 # ApiextensionsV1beta1WebhookClientConfig
 
+WebhookClientConfig contains the information to make a TLS connection with the webhook. It has the same field as admissionregistration.v1beta1.WebhookClientConfig.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
