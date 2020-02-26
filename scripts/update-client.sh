@@ -42,6 +42,7 @@ SETTING_FILE="${TEMP_FOLDER}/settings"
 echo "export KUBERNETES_BRANCH=\"$(python ${SCRIPT_ROOT}/constants.py KUBERNETES_BRANCH)\"" > $SETTING_FILE
 echo "export CLIENT_VERSION=\"$(python ${SCRIPT_ROOT}/constants.py CLIENT_VERSION)\"" >> $SETTING_FILE
 echo "export PACKAGE_NAME=\"client\"" >> $SETTING_FILE
+echo "export OPENAPI_GENERATOR_COMMIT=3f0c163f0cdac2070b542b3e1239aea76a3cf49e" >> $SETTING_FILE
 echo "unset USERNAME" >> $SETTING_FILE
 
 if [[ -z ${GEN_ROOT:-} ]]; then
@@ -64,5 +65,8 @@ sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STAT
 
 echo ">>> fix generated rest client for patching with strategic merge..."
 patch "${SCRIPT_ROOT}/../kubernetes_asyncio/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch.diff"
+
+echo ">>> Remove invalid tests (workaround https://github.com/OpenAPITools/openapi-generator/issues/5377)"
+rgrep make_instance "${SCRIPT_ROOT}/../kubernetes_asyncio/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm
 
 echo ">>> Done."

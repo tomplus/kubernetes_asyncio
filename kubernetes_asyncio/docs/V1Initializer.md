@@ -1,5 +1,6 @@
 # V1Initializer
 
+Initializer is information about an initializer that has not yet completed.
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
