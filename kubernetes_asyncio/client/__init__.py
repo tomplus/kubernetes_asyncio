@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "11.0.0-snapshot"
+__version__ = "11.0.0"
 
 # import apis into sdk package
 from kubernetes_asyncio.client.api.admissionregistration_api import AdmissionregistrationApi
