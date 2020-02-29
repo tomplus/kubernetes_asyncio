@@ -145,20 +145,21 @@ class Watch(object):
                 line = await self.resp.content.readline()
             except asyncio.TimeoutError:
                 if 'timeout_seconds' not in self.func.keywords:
-                    self.resp.close()
-                    self.resp = None
-                    if self.resource_version:
-                      self.func.keywords['resource_version'] = self.resource_version
+                    self._handle_reconnection()
                     continue
                 else:
                     raise
 
             line = line.decode('utf8')
 
-            # Stop the iterator if K8s sends an empty response. This happens when
-            # eg the supplied timeout has expired.
+            # Reconnect if k8s sends an empty response. This usually happens
+            # when the server-side timeout has expired.
             if line == '':
-                raise StopAsyncIteration
+                if 'timeout_seconds' not in self.func.keywords:
+                    self._handle_reconnection()
+                    continue
+                else:
+                    raise StopAsyncIteration
 
             return self.unmarshal_event(line, self.return_type)
 
@@ -204,8 +205,13 @@ class Watch(object):
 
     async def __aexit__(self, exc_type, exc_value, traceback):
         self.close()
-    
+
     def close(self):
         if self.resp is not None:
             self.resp.release()
             self.resp = None
+
+    def _handle_reconnection(self):
+        self.resp.close()
+        self.resp = None
+        self.func.keywords['resource_version'] = self.resource_version
