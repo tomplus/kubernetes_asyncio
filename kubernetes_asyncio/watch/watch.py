@@ -21,6 +21,7 @@ from types import SimpleNamespace
 from kubernetes_asyncio import client
 
 PYDOC_RETURN_LABEL = ":return:"
+PYDOC_FOLLOW_PARAM = ":param bool follow:"
 
 # Removing this suffix from return type name should give us event's object
 # type. e.g., if list_namespaces() returns "NamespaceList" type,
@@ -49,7 +50,7 @@ class Watch(object):
         self._raw_return_type = return_type
         self._stop = False
         self._api_client = client.ApiClient()
-        self.resource_version = 0
+        self.resource_version = None
         self.resp = None
 
     def stop(self):
@@ -64,11 +65,20 @@ class Watch(object):
             return return_type[:-len(TYPE_LIST_SUFFIX)]
         return return_type
 
+    def get_watch_argument_name(self, func):
+        if PYDOC_FOLLOW_PARAM in pydoc.getdoc(func):
+            return 'follow'
+        else:
+            return 'watch'
+
     def unmarshal_event(self, data: str, response_type):
         """Return the K8s response `data` in JSON format.
 
         """
-        js = json.loads(data)
+        try:
+            js = json.loads(data)
+        except ValueError:
+            return data
 
         if 'object' not in js or 'type' not in js:
             raise Exception("Malformed JSON response, the 'object' and/or 'type' field is missing. JSON: {}".format(js))
@@ -137,7 +147,8 @@ class Watch(object):
                 if 'timeout_seconds' not in self.func.keywords:
                     self.resp.close()
                     self.resp = None
-                    self.func.keywords['resource_version'] = self.resource_version
+                    if self.resource_version:
+                      self.func.keywords['resource_version'] = self.resource_version
                     continue
                 else:
                     raise
@@ -179,7 +190,7 @@ class Watch(object):
         self.close()
         self._stop = False
         self.return_type = self.get_return_type(func)
-        kwargs['watch'] = True
+        kwargs[self.get_watch_argument_name(func)] = True
         kwargs['_preload_content'] = False
         if 'resource_version' in kwargs:
             self.resource_version = kwargs['resource_version']
