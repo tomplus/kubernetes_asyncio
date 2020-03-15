@@ -1,3 +1,7 @@
+# v11.1.0
+
+* feat: add compatability for follow methods ([#98](https://github.com/tomplus/kubernetes_asyncio/pull/98), [@playground-julia](https://github.com/playground-julia))
+
 # v11.0.0
 
 * feat: regenerate library using the latest version of openapi-generator (4.3.x) ([gen/#146](https://github.com/kubernetes-client/gen/pull/146), [@tomplus](https://github.com/tomplus))
