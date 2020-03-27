@@ -42,7 +42,8 @@ SETTING_FILE="${TEMP_FOLDER}/settings"
 echo "export KUBERNETES_BRANCH=\"$(python ${SCRIPT_ROOT}/constants.py KUBERNETES_BRANCH)\"" > $SETTING_FILE
 echo "export CLIENT_VERSION=\"$(python ${SCRIPT_ROOT}/constants.py CLIENT_VERSION)\"" >> $SETTING_FILE
 echo "export PACKAGE_NAME=\"client\"" >> $SETTING_FILE
-echo "export OPENAPI_GENERATOR_COMMIT=3f0c163f0cdac2070b542b3e1239aea76a3cf49e" >> $SETTING_FILE
+# openapi-generator v4.3.0
+echo "export OPENAPI_GENERATOR_COMMIT=c224cf484b020a7f5997d883cf331715df3fb52a" >> $SETTING_FILE
 echo "unset USERNAME" >> $SETTING_FILE
 
 if [[ -z ${GEN_ROOT:-} ]]; then
