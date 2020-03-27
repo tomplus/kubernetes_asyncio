@@ -628,8 +628,10 @@ Class | Method | HTTP request | Description
 *CoreV1Api* | [**replace_persistent_volume_status**](docs/CoreV1Api.md#replace_persistent_volume_status) | **PUT** /api/v1/persistentvolumes/{name}/status | 
 *CustomObjectsApi* | [**create_cluster_custom_object**](docs/CustomObjectsApi.md#create_cluster_custom_object) | **POST** /apis/{group}/{version}/{plural} | 
 *CustomObjectsApi* | [**create_namespaced_custom_object**](docs/CustomObjectsApi.md#create_namespaced_custom_object) | **POST** /apis/{group}/{version}/namespaces/{namespace}/{plural} | 
-*CustomObjectsApi* | [**delete_cluster_custom_object**](docs/CustomObjectsApi.md#delete_cluster_custom_object) | **DELETE** /apis/{group}/{version}/{plural}/{name} | 
-*CustomObjectsApi* | [**delete_namespaced_custom_object**](docs/CustomObjectsApi.md#delete_namespaced_custom_object) | **DELETE** /apis/{group}/{version}/namespaces/{namespace}/{plural}/{name} | 
+*CustomObjectsApi* | [**delete_cluster_custom_object**](docs/CustomObjectsApi.md#delete_cluster_custom_object) | **DELETE** /apis/{group}/{version}/{plural} | 
+*CustomObjectsApi* | [**delete_cluster_custom_object_0**](docs/CustomObjectsApi.md#delete_cluster_custom_object_0) | **DELETE** /apis/{group}/{version}/{plural}/{name} | 
+*CustomObjectsApi* | [**delete_namespaced_custom_object**](docs/CustomObjectsApi.md#delete_namespaced_custom_object) | **DELETE** /apis/{group}/{version}/namespaces/{namespace}/{plural} | 
+*CustomObjectsApi* | [**delete_namespaced_custom_object_0**](docs/CustomObjectsApi.md#delete_namespaced_custom_object_0) | **DELETE** /apis/{group}/{version}/namespaces/{namespace}/{plural}/{name} | 
 *CustomObjectsApi* | [**get_cluster_custom_object**](docs/CustomObjectsApi.md#get_cluster_custom_object) | **GET** /apis/{group}/{version}/{plural}/{name} | 
 *CustomObjectsApi* | [**get_cluster_custom_object_scale**](docs/CustomObjectsApi.md#get_cluster_custom_object_scale) | **GET** /apis/{group}/{version}/{plural}/{name}/scale | 
 *CustomObjectsApi* | [**get_cluster_custom_object_status**](docs/CustomObjectsApi.md#get_cluster_custom_object_status) | **GET** /apis/{group}/{version}/{plural}/{name}/status | 

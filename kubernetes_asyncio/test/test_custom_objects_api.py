@@ -46,8 +46,20 @@ class TestCustomObjectsApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_cluster_custom_object_0(self):
+        """Test case for delete_cluster_custom_object_0
+
+        """
+        pass
+
     def test_delete_namespaced_custom_object(self):
         """Test case for delete_namespaced_custom_object
+
+        """
+        pass
+
+    def test_delete_namespaced_custom_object_0(self):
+        """Test case for delete_namespaced_custom_object_0
 
         """
         pass

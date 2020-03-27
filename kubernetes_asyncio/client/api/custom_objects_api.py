@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from kubernetes_asyncio.client.api_client import ApiClient
-from kubernetes_asyncio.client.exceptions import (
+from kubernetes_asyncio.client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -96,11 +96,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'body', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'body',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -234,11 +244,22 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'body', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'body',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -316,13 +337,170 @@ class CustomObjectsApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_cluster_custom_object(self, group, version, plural, name, **kwargs):  # noqa: E501
+    def delete_cluster_custom_object(self, group, version, plural, **kwargs):  # noqa: E501
         """delete_cluster_custom_object  # noqa: E501
 
         Deletes the specified cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_cluster_custom_object(group, version, plural, name, async_req=True)
+        >>> thread = api.delete_cluster_custom_object(group, version, plural, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str group: The custom resource's group name (required)
+        :param str version: The custom resource's version (required)
+        :param str plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
+        :param str pretty: If 'true', then the output is pretty printed.
+        :param int grace_period_seconds: The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+        :param bool orphan_dependents: Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
+        :param str propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
+        :param V1DeleteOptions body:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.delete_cluster_custom_object_with_http_info(group, version, plural, **kwargs)  # noqa: E501
+
+    def delete_cluster_custom_object_with_http_info(self, group, version, plural, **kwargs):  # noqa: E501
+        """delete_cluster_custom_object  # noqa: E501
+
+        Deletes the specified cluster scoped custom object  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_cluster_custom_object_with_http_info(group, version, plural, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str group: The custom resource's group name (required)
+        :param str version: The custom resource's version (required)
+        :param str plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
+        :param str pretty: If 'true', then the output is pretty printed.
+        :param int grace_period_seconds: The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+        :param bool orphan_dependents: Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
+        :param str propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
+        :param V1DeleteOptions body:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'pretty',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_cluster_custom_object" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'group' is set
+        if self.api_client.client_side_validation and ('group' not in local_var_params or  # noqa: E501
+                                                        local_var_params['group'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `group` when calling `delete_cluster_custom_object`")  # noqa: E501
+        # verify the required parameter 'version' is set
+        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
+                                                        local_var_params['version'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `version` when calling `delete_cluster_custom_object`")  # noqa: E501
+        # verify the required parameter 'plural' is set
+        if self.api_client.client_side_validation and ('plural' not in local_var_params or  # noqa: E501
+                                                        local_var_params['plural'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `plural` when calling `delete_cluster_custom_object`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'group' in local_var_params:
+            path_params['group'] = local_var_params['group']  # noqa: E501
+        if 'version' in local_var_params:
+            path_params['version'] = local_var_params['version']  # noqa: E501
+        if 'plural' in local_var_params:
+            path_params['plural'] = local_var_params['plural']  # noqa: E501
+
+        query_params = []
+        if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
+            query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'grace_period_seconds' in local_var_params and local_var_params['grace_period_seconds'] is not None:  # noqa: E501
+            query_params.append(('gracePeriodSeconds', local_var_params['grace_period_seconds']))  # noqa: E501
+        if 'orphan_dependents' in local_var_params and local_var_params['orphan_dependents'] is not None:  # noqa: E501
+            query_params.append(('orphanDependents', local_var_params['orphan_dependents']))  # noqa: E501
+        if 'propagation_policy' in local_var_params and local_var_params['propagation_policy'] is not None:  # noqa: E501
+            query_params.append(('propagationPolicy', local_var_params['propagation_policy']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['BearerToken']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/apis/{group}/{version}/{plural}', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def delete_cluster_custom_object_0(self, group, version, plural, name, **kwargs):  # noqa: E501
+        """delete_cluster_custom_object_0  # noqa: E501
+
+        Deletes the specified cluster scoped custom object  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_cluster_custom_object_0(group, version, plural, name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -346,15 +524,15 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.delete_cluster_custom_object_with_http_info(group, version, plural, name, **kwargs)  # noqa: E501
+        return self.delete_cluster_custom_object_0_with_http_info(group, version, plural, name, **kwargs)  # noqa: E501
 
-    def delete_cluster_custom_object_with_http_info(self, group, version, plural, name, **kwargs):  # noqa: E501
-        """delete_cluster_custom_object  # noqa: E501
+    def delete_cluster_custom_object_0_with_http_info(self, group, version, plural, name, **kwargs):  # noqa: E501
+        """delete_cluster_custom_object_0  # noqa: E501
 
         Deletes the specified cluster scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_cluster_custom_object_with_http_info(group, version, plural, name, async_req=True)
+        >>> thread = api.delete_cluster_custom_object_0_with_http_info(group, version, plural, name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -382,36 +560,49 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method delete_cluster_custom_object" % key
+                    " to method delete_cluster_custom_object_0" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'group' is set
         if self.api_client.client_side_validation and ('group' not in local_var_params or  # noqa: E501
                                                         local_var_params['group'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `group` when calling `delete_cluster_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `group` when calling `delete_cluster_custom_object_0`")  # noqa: E501
         # verify the required parameter 'version' is set
         if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
                                                         local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `delete_cluster_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `version` when calling `delete_cluster_custom_object_0`")  # noqa: E501
         # verify the required parameter 'plural' is set
         if self.api_client.client_side_validation and ('plural' not in local_var_params or  # noqa: E501
                                                         local_var_params['plural'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `plural` when calling `delete_cluster_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `plural` when calling `delete_cluster_custom_object_0`")  # noqa: E501
         # verify the required parameter 'name' is set
         if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
                                                         local_var_params['name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `name` when calling `delete_cluster_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `name` when calling `delete_cluster_custom_object_0`")  # noqa: E501
 
         collection_formats = {}
 
@@ -464,13 +655,179 @@ class CustomObjectsApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def delete_namespaced_custom_object(self, group, version, namespace, plural, name, **kwargs):  # noqa: E501
+    def delete_namespaced_custom_object(self, group, version, namespace, plural, **kwargs):  # noqa: E501
         """delete_namespaced_custom_object  # noqa: E501
 
         Deletes the specified namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_namespaced_custom_object(group, version, namespace, plural, name, async_req=True)
+        >>> thread = api.delete_namespaced_custom_object(group, version, namespace, plural, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str group: The custom resource's group name (required)
+        :param str version: The custom resource's version (required)
+        :param str namespace: The custom resource's namespace (required)
+        :param str plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
+        :param str pretty: If 'true', then the output is pretty printed.
+        :param int grace_period_seconds: The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+        :param bool orphan_dependents: Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
+        :param str propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
+        :param V1DeleteOptions body:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: object
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.delete_namespaced_custom_object_with_http_info(group, version, namespace, plural, **kwargs)  # noqa: E501
+
+    def delete_namespaced_custom_object_with_http_info(self, group, version, namespace, plural, **kwargs):  # noqa: E501
+        """delete_namespaced_custom_object  # noqa: E501
+
+        Deletes the specified namespace scoped custom object  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_custom_object_with_http_info(group, version, namespace, plural, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str group: The custom resource's group name (required)
+        :param str version: The custom resource's version (required)
+        :param str namespace: The custom resource's namespace (required)
+        :param str plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
+        :param str pretty: If 'true', then the output is pretty printed.
+        :param int grace_period_seconds: The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+        :param bool orphan_dependents: Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
+        :param str propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
+        :param V1DeleteOptions body:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(object, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'pretty',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_namespaced_custom_object" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'group' is set
+        if self.api_client.client_side_validation and ('group' not in local_var_params or  # noqa: E501
+                                                        local_var_params['group'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `group` when calling `delete_namespaced_custom_object`")  # noqa: E501
+        # verify the required parameter 'version' is set
+        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
+                                                        local_var_params['version'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `version` when calling `delete_namespaced_custom_object`")  # noqa: E501
+        # verify the required parameter 'namespace' is set
+        if self.api_client.client_side_validation and ('namespace' not in local_var_params or  # noqa: E501
+                                                        local_var_params['namespace'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `namespace` when calling `delete_namespaced_custom_object`")  # noqa: E501
+        # verify the required parameter 'plural' is set
+        if self.api_client.client_side_validation and ('plural' not in local_var_params or  # noqa: E501
+                                                        local_var_params['plural'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `plural` when calling `delete_namespaced_custom_object`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'group' in local_var_params:
+            path_params['group'] = local_var_params['group']  # noqa: E501
+        if 'version' in local_var_params:
+            path_params['version'] = local_var_params['version']  # noqa: E501
+        if 'namespace' in local_var_params:
+            path_params['namespace'] = local_var_params['namespace']  # noqa: E501
+        if 'plural' in local_var_params:
+            path_params['plural'] = local_var_params['plural']  # noqa: E501
+
+        query_params = []
+        if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
+            query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'grace_period_seconds' in local_var_params and local_var_params['grace_period_seconds'] is not None:  # noqa: E501
+            query_params.append(('gracePeriodSeconds', local_var_params['grace_period_seconds']))  # noqa: E501
+        if 'orphan_dependents' in local_var_params and local_var_params['orphan_dependents'] is not None:  # noqa: E501
+            query_params.append(('orphanDependents', local_var_params['orphan_dependents']))  # noqa: E501
+        if 'propagation_policy' in local_var_params and local_var_params['propagation_policy'] is not None:  # noqa: E501
+            query_params.append(('propagationPolicy', local_var_params['propagation_policy']))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['BearerToken']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/apis/{group}/{version}/namespaces/{namespace}/{plural}', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='object',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def delete_namespaced_custom_object_0(self, group, version, namespace, plural, name, **kwargs):  # noqa: E501
+        """delete_namespaced_custom_object_0  # noqa: E501
+
+        Deletes the specified namespace scoped custom object  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.delete_namespaced_custom_object_0(group, version, namespace, plural, name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -495,15 +852,15 @@ class CustomObjectsApi(object):
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        return self.delete_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, **kwargs)  # noqa: E501
+        return self.delete_namespaced_custom_object_0_with_http_info(group, version, namespace, plural, name, **kwargs)  # noqa: E501
 
-    def delete_namespaced_custom_object_with_http_info(self, group, version, namespace, plural, name, **kwargs):  # noqa: E501
-        """delete_namespaced_custom_object  # noqa: E501
+    def delete_namespaced_custom_object_0_with_http_info(self, group, version, namespace, plural, name, **kwargs):  # noqa: E501
+        """delete_namespaced_custom_object_0  # noqa: E501
 
         Deletes the specified namespace scoped custom object  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.delete_namespaced_custom_object_with_http_info(group, version, namespace, plural, name, async_req=True)
+        >>> thread = api.delete_namespaced_custom_object_0_with_http_info(group, version, namespace, plural, name, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
@@ -532,40 +889,54 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method delete_namespaced_custom_object" % key
+                    " to method delete_namespaced_custom_object_0" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
         # verify the required parameter 'group' is set
         if self.api_client.client_side_validation and ('group' not in local_var_params or  # noqa: E501
                                                         local_var_params['group'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `group` when calling `delete_namespaced_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `group` when calling `delete_namespaced_custom_object_0`")  # noqa: E501
         # verify the required parameter 'version' is set
         if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
                                                         local_var_params['version'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `version` when calling `delete_namespaced_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `version` when calling `delete_namespaced_custom_object_0`")  # noqa: E501
         # verify the required parameter 'namespace' is set
         if self.api_client.client_side_validation and ('namespace' not in local_var_params or  # noqa: E501
                                                         local_var_params['namespace'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `namespace` when calling `delete_namespaced_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `namespace` when calling `delete_namespaced_custom_object_0`")  # noqa: E501
         # verify the required parameter 'plural' is set
         if self.api_client.client_side_validation and ('plural' not in local_var_params or  # noqa: E501
                                                         local_var_params['plural'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `plural` when calling `delete_namespaced_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `plural` when calling `delete_namespaced_custom_object_0`")  # noqa: E501
         # verify the required parameter 'name' is set
         if self.api_client.client_side_validation and ('name' not in local_var_params or  # noqa: E501
                                                         local_var_params['name'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `name` when calling `delete_namespaced_custom_object`")  # noqa: E501
+            raise ApiValueError("Missing the required parameter `name` when calling `delete_namespaced_custom_object_0`")  # noqa: E501
 
         collection_formats = {}
 
@@ -678,11 +1049,20 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -810,11 +1190,20 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -942,11 +1331,20 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1076,11 +1474,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1216,11 +1624,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1356,11 +1774,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1508,11 +1936,27 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'pretty', '_continue', 'field_selector', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'pretty',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1666,11 +2110,28 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'pretty', '_continue', 'field_selector', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'pretty',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1816,11 +2277,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1960,11 +2431,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2104,11 +2585,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2250,11 +2741,22 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2402,11 +2904,22 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2554,11 +3067,22 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2704,11 +3228,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2844,11 +3378,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2984,11 +3528,21 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3126,11 +3680,22 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3274,11 +3839,22 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3422,11 +3998,22 @@ class CustomObjectsApi(object):
 
         local_var_params = locals()
 
-        all_params = ['group', 'version', 'namespace', 'plural', 'name', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'name',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
