@@ -34,6 +34,7 @@ setenforce 0
 HOME=/home/travis
 
 # Install conntrack (required by minikube)
+sudo apt-get update
 sudo apt-get install -y conntrack
 
 # Install docker if needed
