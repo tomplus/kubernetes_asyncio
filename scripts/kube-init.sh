@@ -33,6 +33,10 @@ setenforce 0
 # define HOME dir
 HOME=/home/travis
 
+# Install conntrack (required by minikube)
+sudo apt-get update
+sudo apt-get install -y conntrack
+
 # Install docker if needed
 path_to_executable=$(which docker)
 if [ -x "$path_to_executable" ] ; then
