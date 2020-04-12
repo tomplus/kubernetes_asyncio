@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from kubernetes_asyncio.client.api_client import ApiClient
-from kubernetes_asyncio.client.exceptions import (
+from kubernetes_asyncio.client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -94,11 +94,20 @@ class AuthenticationV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['body', 'dry_run', 'field_manager', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'body',
+            'dry_run',
+            'field_manager',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -206,11 +215,16 @@ class AuthenticationV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:

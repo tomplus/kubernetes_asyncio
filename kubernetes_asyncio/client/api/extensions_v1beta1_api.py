@@ -18,7 +18,7 @@ import re  # noqa: F401
 import six
 
 from kubernetes_asyncio.client.api_client import ApiClient
-from kubernetes_asyncio.client.exceptions import (
+from kubernetes_asyncio.client.exceptions import (  # noqa: F401
     ApiTypeError,
     ApiValueError
 )
@@ -96,11 +96,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -224,11 +234,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -354,11 +374,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'dry_run', 'field_manager', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'dry_run',
+            'field_manager',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -488,11 +519,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -616,11 +657,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -744,11 +795,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -870,11 +931,20 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1012,11 +1082,31 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'dry_run', 'field_selector', 'grace_period_seconds', 'label_selector', 'limit', 'orphan_dependents', 'propagation_policy', 'resource_version', 'timeout_seconds', 'watch', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'dry_run',
+            'field_selector',
+            'grace_period_seconds',
+            'label_selector',
+            'limit',
+            'orphan_dependents',
+            'propagation_policy',
+            'resource_version',
+            'timeout_seconds',
+            'watch',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1176,11 +1266,31 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'dry_run', 'field_selector', 'grace_period_seconds', 'label_selector', 'limit', 'orphan_dependents', 'propagation_policy', 'resource_version', 'timeout_seconds', 'watch', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'dry_run',
+            'field_selector',
+            'grace_period_seconds',
+            'label_selector',
+            'limit',
+            'orphan_dependents',
+            'propagation_policy',
+            'resource_version',
+            'timeout_seconds',
+            'watch',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1340,11 +1450,31 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'dry_run', 'field_selector', 'grace_period_seconds', 'label_selector', 'limit', 'orphan_dependents', 'propagation_policy', 'resource_version', 'timeout_seconds', 'watch', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'dry_run',
+            'field_selector',
+            'grace_period_seconds',
+            'label_selector',
+            'limit',
+            'orphan_dependents',
+            'propagation_policy',
+            'resource_version',
+            'timeout_seconds',
+            'watch',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1504,11 +1634,31 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'dry_run', 'field_selector', 'grace_period_seconds', 'label_selector', 'limit', 'orphan_dependents', 'propagation_policy', 'resource_version', 'timeout_seconds', 'watch', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'dry_run',
+            'field_selector',
+            'grace_period_seconds',
+            'label_selector',
+            'limit',
+            'orphan_dependents',
+            'propagation_policy',
+            'resource_version',
+            'timeout_seconds',
+            'watch',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1668,11 +1818,31 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'dry_run', 'field_selector', 'grace_period_seconds', 'label_selector', 'limit', 'orphan_dependents', 'propagation_policy', 'resource_version', 'timeout_seconds', 'watch', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'dry_run',
+            'field_selector',
+            'grace_period_seconds',
+            'label_selector',
+            'limit',
+            'orphan_dependents',
+            'propagation_policy',
+            'resource_version',
+            'timeout_seconds',
+            'watch',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1830,11 +2000,30 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['pretty', 'allow_watch_bookmarks', '_continue', 'dry_run', 'field_selector', 'grace_period_seconds', 'label_selector', 'limit', 'orphan_dependents', 'propagation_policy', 'resource_version', 'timeout_seconds', 'watch', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'dry_run',
+            'field_selector',
+            'grace_period_seconds',
+            'label_selector',
+            'limit',
+            'orphan_dependents',
+            'propagation_policy',
+            'resource_version',
+            'timeout_seconds',
+            'watch',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -1974,11 +2163,24 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'dry_run', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'dry_run',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2114,11 +2316,24 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'dry_run', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'dry_run',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2254,11 +2469,24 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'dry_run', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'dry_run',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2394,11 +2622,24 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'dry_run', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'dry_run',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2534,11 +2775,24 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'dry_run', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'dry_run',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2672,11 +2926,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'pretty', 'dry_run', 'grace_period_seconds', 'orphan_dependents', 'propagation_policy', 'body']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'pretty',
+            'dry_run',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2790,11 +3056,16 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = []  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -2908,11 +3179,25 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'pretty',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3044,11 +3329,25 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'pretty',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3180,11 +3479,25 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'pretty',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3318,11 +3631,26 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3462,11 +3790,26 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3606,11 +3949,26 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3750,11 +4108,26 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -3894,11 +4267,26 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['namespace', 'pretty', 'allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'namespace',
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4036,11 +4424,25 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'pretty',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4172,11 +4574,25 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['pretty', 'allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'pretty',
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4308,11 +4724,25 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['allow_watch_bookmarks', '_continue', 'field_selector', 'label_selector', 'limit', 'pretty', 'resource_version', 'timeout_seconds', 'watch']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'allow_watch_bookmarks',
+            '_continue',
+            'field_selector',
+            'label_selector',
+            'limit',
+            'pretty',
+            'resource_version',
+            'timeout_seconds',
+            'watch'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4440,11 +4870,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4584,11 +5026,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4728,11 +5182,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -4872,11 +5338,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -5016,11 +5494,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -5160,11 +5650,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -5304,11 +5806,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -5448,11 +5962,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -5592,11 +6118,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -5736,11 +6274,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -5880,11 +6430,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -6024,11 +6586,23 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -6166,11 +6740,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'body', 'pretty', 'dry_run', 'field_manager', 'force']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager',
+            'force'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -6300,11 +6885,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'exact',
+            'export'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -6424,11 +7019,19 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -6548,11 +7151,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'exact',
+            'export'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -6672,11 +7285,19 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -6792,11 +7413,19 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -6916,11 +7545,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'exact',
+            'export'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -7040,11 +7679,19 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -7164,11 +7811,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'exact',
+            'export'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -7292,11 +7949,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty',
+            'exact',
+            'export'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -7416,11 +8083,19 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -7536,11 +8211,19 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -7656,11 +8339,19 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'pretty']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'pretty'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -7778,11 +8469,20 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'pretty', 'exact', 'export']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'pretty',
+            'exact',
+            'export'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -7902,11 +8602,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -8038,11 +8749,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -8174,11 +8896,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -8310,11 +9043,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -8446,11 +9190,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -8582,11 +9337,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -8718,11 +9484,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -8854,11 +9631,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -8990,11 +9778,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -9126,11 +9925,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -9262,11 +10072,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -9398,11 +10219,22 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'namespace', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'namespace',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:
@@ -9532,11 +10364,21 @@ class ExtensionsV1beta1Api(object):
 
         local_var_params = locals()
 
-        all_params = ['name', 'body', 'pretty', 'dry_run', 'field_manager']  # noqa: E501
-        all_params.append('async_req')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
+        all_params = [
+            'name',
+            'body',
+            'pretty',
+            'dry_run',
+            'field_manager'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
 
         for key, val in six.iteritems(local_var_params['kwargs']):
             if key not in all_params:

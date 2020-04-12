@@ -22,7 +22,7 @@ set -o nounset
 set -o pipefail
 
 SCRIPT_ROOT=$(dirname "${BASH_SOURCE}")
-CLIENT_ROOT="${SCRIPT_ROOT}/../kubernetes_asyncio"
+CLIENT_ROOT="$(dirname ${SCRIPT_ROOT})/kubernetes_asyncio"
 CLIENT_VERSION=$(python "${SCRIPT_ROOT}/constants.py" CLIENT_VERSION)
 PACKAGE_NAME=$(python "${SCRIPT_ROOT}/constants.py" PACKAGE_NAME)
 DEVELOPMENT_STATUS=$(python "${SCRIPT_ROOT}/constants.py" DEVELOPMENT_STATUS)
@@ -42,7 +42,8 @@ SETTING_FILE="${TEMP_FOLDER}/settings"
 echo "export KUBERNETES_BRANCH=\"$(python ${SCRIPT_ROOT}/constants.py KUBERNETES_BRANCH)\"" > $SETTING_FILE
 echo "export CLIENT_VERSION=\"$(python ${SCRIPT_ROOT}/constants.py CLIENT_VERSION)\"" >> $SETTING_FILE
 echo "export PACKAGE_NAME=\"client\"" >> $SETTING_FILE
-echo "export OPENAPI_GENERATOR_COMMIT=3f0c163f0cdac2070b542b3e1239aea76a3cf49e" >> $SETTING_FILE
+# openapi-generator v4.3.0
+echo "export OPENAPI_GENERATOR_COMMIT=c224cf484b020a7f5997d883cf331715df3fb52a" >> $SETTING_FILE
 echo "unset USERNAME" >> $SETTING_FILE
 
 if [[ -z ${GEN_ROOT:-} ]]; then
@@ -64,9 +65,9 @@ sed -i'' "s/^PACKAGE_NAME = .*/PACKAGE_NAME = \\\"${PACKAGE_NAME}\\\"/" "${SCRIP
 sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STATUS}\\\"," "${SCRIPT_ROOT}/../setup.py"
 
 echo ">>> fix generated rest client for patching with strategic merge..."
-patch "${SCRIPT_ROOT}/../kubernetes_asyncio/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch.diff"
+patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch.diff"
 
 echo ">>> Remove invalid tests (workaround https://github.com/OpenAPITools/openapi-generator/issues/5377)"
-rgrep make_instance "${SCRIPT_ROOT}/../kubernetes_asyncio/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm
+grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm
 
 echo ">>> Done."
