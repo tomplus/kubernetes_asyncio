@@ -14,6 +14,7 @@ import argparse
 import asyncio
 
 from kubernetes_asyncio import client, config
+from kubernetes_asyncio.client.api_client import ApiClient
 
 
 def parse_args():
@@ -27,20 +28,19 @@ def parse_args():
     return parser.parse_args()
 
 
-async def print_pod_log(pod, namespace, container, lines, follow):
-    v1 = client.CoreV1Api()
+async def print_pod_log(v1_api, pod, namespace, container, lines, follow):
     if not follow:
-        resp = await v1.read_namespaced_pod_log(pod,
-                                                namespace,
-                                                container=container,
-                                                tail_lines=lines)
+        resp = await v1_api.read_namespaced_pod_log(pod,
+                                                    namespace,
+                                                    container=container,
+                                                    tail_lines=lines)
         print(resp)
     else:
-        resp = await v1.read_namespaced_pod_log(pod,
-                                                namespace,
-                                                container=container,
-                                                tail_lines=lines,
-                                                follow=True, _preload_content=False)
+        resp = await v1_api.read_namespaced_pod_log(pod,
+                                                    namespace,
+                                                    container=container,
+                                                    tail_lines=lines,
+                                                    follow=True, _preload_content=False)
         while True:
             line = await resp.content.readline()
             if not line:
@@ -52,14 +52,15 @@ async def main():
     args = parse_args()
 
     loader = await config.load_kube_config()
-
-    v1 = client.CoreV1Api()
-    ret = await v1.list_namespaced_pod(args.namespace)
+    api = ApiClient()
+    v1_api = client.CoreV1Api(api)
+    ret = await v1_api.list_namespaced_pod(args.namespace)
     cmd = []
     for pod in ret.items:
         if pod.metadata.name.startswith(args.pod):
             for container in pod.spec.containers:
-                cmd.append(print_pod_log(pod.metadata.name,
+                cmd.append(print_pod_log(v1_api,
+                                         pod.metadata.name,
                                          args.namespace,
                                          container.name,
                                          args.lines,
@@ -74,6 +75,7 @@ async def main():
         cmd.append(config.refresh_token(loader))
 
     await asyncio.wait(cmd)
+    await api.close()
 
 
 if __name__ == '__main__':
