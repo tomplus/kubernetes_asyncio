@@ -42,12 +42,15 @@ async def main():
     # default location.
     await config.load_kube_config()
 
-    v1 = client.CoreV1Api()
-    print("Listing pods with their IPs:")
-    ret = await v1.list_pod_for_all_namespaces()
+    # use the context manager to close http sessions automatically
+    async with ApiClient() as api:
 
-    for i in ret.items:
-        print(i.status.pod_ip, i.metadata.namespace, i.metadata.name)
+        v1 = client.CoreV1Api(api)
+        print("Listing pods with their IPs:")
+        ret = await v1.list_pod_for_all_namespaces()
+
+        for i in ret.items:
+            print(i.status.pod_ip, i.metadata.namespace, i.metadata.name)
 
 
 if __name__ == '__main__':
