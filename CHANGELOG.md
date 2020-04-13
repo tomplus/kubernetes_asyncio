@@ -1,3 +1,8 @@
+# v11.2.0
+
+* feat: regenerate client against openapi-generator v4.3.0 (context-manager and close function for http client instead of using `__del__` method)
+  ([#99](https://github.com/tomplus/kubernetes_asyncio/pull/99), [@jnschaeffer](https://github.com/jnschaeffer))
+
 # v11.1.0
 
 * feat: add compatability for follow methods ([#98](https://github.com/tomplus/kubernetes_asyncio/pull/98), [@playground-julia](https://github.com/playground-julia))
