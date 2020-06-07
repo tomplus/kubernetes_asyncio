@@ -123,7 +123,7 @@ class Watch(object):
         try:
             return await self.next()
         except:
-            self.close()
+            await self.close()
             raise
 
     async def next(self):
@@ -203,9 +203,10 @@ class Watch(object):
         return self
 
     async def __aexit__(self, exc_type, exc_value, traceback):
-        self.close()
+        await self.close()
     
-    def close(self):
+    async def close(self):
+        await self._api_client.close()
         if self.resp is not None:
             self.resp.release()
             self.resp = None

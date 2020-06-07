@@ -34,6 +34,7 @@ To list all pods:
 ```python
 import asyncio
 from kubernetes_asyncio import client, config
+from kubernetes_asyncio.client.api_client import ApiClient
 
 
 async def main():
