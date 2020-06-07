@@ -1,3 +1,7 @@
+# v11.3.0
+
+* fix: watch closes http session ([#104](https://github.com/tomplus), [@tomplus](https://github.com/tomplus))
+
 # v11.2.0
 
 * feat: regenerate client against openapi-generator v4.3.0 (context-manager and close function for http client instead of using `__del__` method)
