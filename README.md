@@ -1,6 +1,6 @@
 # Kubernetes Python Client
 
-[![Build Status](https://travis-ci.org/tomplus/kubernetes_asyncio.svg?branch=master)](https://travis-ci.org/tomplus/kubernetes_asyncio)
+![Build status](https://github.com/tomplus/kubernetes_asyncio/workflows/Tests/badge.svg)
 [![PyPI version](https://badge.fury.io/py/kubernetes_asyncio.svg)](https://badge.fury.io/py/kubernetes_asyncio)
 [![codecov](https://codecov.io/gh/tomplus/kubernetes_asyncio/branch/master/graph/badge.svg)](https://codecov.io/gh/tomplus/kubernetes_asyncio)
 [![pypi supported versions](https://img.shields.io/pypi/pyversions/kubernetes_asyncio.svg)](https://pypi.python.org/pypi/kubernetes_asyncio)
