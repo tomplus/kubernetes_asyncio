@@ -731,7 +731,7 @@ class TestKubeConfigLoader(BaseTestCase):
         loader = KubeConfigLoader(config_dict=self.TEST_KUBE_CONFIG)
 
         with self.assertRaises(ConfigException):
-            await  loader._refresh_oidc({'config': {}})
+            await loader._refresh_oidc({'config': {}})
 
     @patch('kubernetes_asyncio.config.kube_config.ExecProvider.run')
     async def test_user_exec_auth(self, mock):
