@@ -13,14 +13,13 @@
 # under the License.
 
 import os
-
 import uuid
 
 import asynctest
 import yaml
 
-from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio import utils
+from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.client.api import apps_v1_api
 from kubernetes_asyncio.client.models import v1_delete_options
 from kubernetes_asyncio.e2e_test import base
@@ -78,7 +77,7 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: nginx  
+      app: nginx
   template:
     metadata:
       labels:

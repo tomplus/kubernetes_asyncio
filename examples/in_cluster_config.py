@@ -46,8 +46,8 @@
 #
 # This example can be run from the image: https://hub.docker.com/r/tpimages/kubernetes_asyncio_examples/
 #
-# $ kubectl run kubernetes-asyncio-examples --image tpimages/kubernetes_asyncio_examples 
-# 
+# $ kubectl run kubernetes-asyncio-examples --image tpimages/kubernetes_asyncio_examples
+#
 
 import asyncio
 import sys

@@ -13,10 +13,9 @@
 # limitations under the License.
 
 import json
-import os
 import sys
 
-from asynctest import ANY, TestCase, main, mock, patch
+from asynctest import ANY, TestCase, mock, patch
 
 from .config_exception import ConfigException
 from .exec_provider import ExecProvider
@@ -113,7 +112,9 @@ class ExecProviderTest(TestCase):
         }
         """ % wrong_api_version
         self.process_mock.stdout.read.return_value = output
-        with self.assertRaisesRegex(ConfigException, 'exec: plugin api version {} does not match'.format(wrong_api_version)):
+        with self.assertRaisesRegex(
+                ConfigException,
+                'exec: plugin api version {} does not match'.format(wrong_api_version)):
             ep = ExecProvider(self.input_ok)
             await ep.run()
 

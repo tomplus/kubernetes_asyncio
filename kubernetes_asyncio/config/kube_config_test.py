@@ -24,13 +24,11 @@ from asynctest import Mock, TestCase, main, patch
 from six import PY3
 
 from .config_exception import ConfigException
-from .kube_config import (
-    ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode,
-    FileOrData, KubeConfigLoader, KubeConfigMerger,
-    _cleanup_temp_files, _create_temp_file_with_content,
-    list_kube_config_contexts, load_kube_config,
-    new_client_from_config, refresh_token,
-)
+from .kube_config import (ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode,
+                          FileOrData, KubeConfigLoader, KubeConfigMerger,
+                          _cleanup_temp_files, _create_temp_file_with_content,
+                          list_kube_config_contexts, load_kube_config,
+                          new_client_from_config, refresh_token)
 
 BEARER_TOKEN_FORMAT = "Bearer %s"
 
@@ -733,7 +731,7 @@ class TestKubeConfigLoader(BaseTestCase):
         loader = KubeConfigLoader(config_dict=self.TEST_KUBE_CONFIG)
 
         with self.assertRaises(ConfigException):
-            await  loader._refresh_oidc({'config': {}})
+            await loader._refresh_oidc({'config': {}})
 
     @patch('kubernetes_asyncio.config.kube_config.ExecProvider.run')
     async def test_user_exec_auth(self, mock):

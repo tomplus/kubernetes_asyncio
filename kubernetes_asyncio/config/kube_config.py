@@ -66,8 +66,8 @@ def _create_temp_file_with_content(content):
 
 
 def _is_expired(expiry):
-    return ((parse_rfc3339(expiry) - EXPIRY_SKEW_PREVENTION_DELAY) <=
-            datetime.datetime.utcnow().replace(tzinfo=UTC))
+    return ((parse_rfc3339(expiry) - EXPIRY_SKEW_PREVENTION_DELAY)
+            <= datetime.datetime.utcnow().replace(tzinfo=UTC))
 
 
 class FileOrData(object):
@@ -332,7 +332,7 @@ class KubeConfigLoader(object):
                 basic_auth.encode()).decode('utf-8')
             return True
 
-    def  _get_base_path(self, config_path):
+    def _get_base_path(self, config_path):
         if self._config_base_path is not None:
             return self._config_base_path
         if config_path is not None:
