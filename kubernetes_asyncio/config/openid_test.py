@@ -5,8 +5,7 @@ from contextlib import contextmanager
 from aiohttp import web
 from aiohttp.test_utils import TestClient as _TestClient
 from aiohttp.test_utils import TestServer as _TestServer
-from asynctest import patch
-from asynctest import TestCase
+from asynctest import TestCase, patch
 
 from .config_exception import ConfigException
 from .openid import OpenIDRequestor

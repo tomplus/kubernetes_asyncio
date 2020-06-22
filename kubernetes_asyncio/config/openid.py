@@ -47,7 +47,7 @@ class OpenIDRequestor:
                         'refresh_token': refresh_token,
                     }
                 )
-            except aiohttp.ClientResponseError as e:
+            except aiohttp.ClientResponseError:
                 raise ConfigException('oidc: failed to refresh access token')
 
     async def _get(self, client, *args, **kwargs):

@@ -81,7 +81,8 @@ class Watch(object):
             return data
 
         if 'object' not in js or 'type' not in js:
-            raise Exception("Malformed JSON response, the 'object' and/or 'type' field is missing. JSON: {}".format(js))
+            raise Exception(("Malformed JSON response, the 'object' and/or "
+                             "'type' field is missing. JSON: {}").format(js))
         # Make a copy of the original object and save it under the
         # `raw_object` key because we will replace the data under `object` with
         # a Python native type shortly.
@@ -108,10 +109,9 @@ class Watch(object):
 
             # For custom objects that we don't have model defined, json
             # deserialization results in dictionary
-            elif (isinstance(js['object'], dict) and
-                  'metadata' in js['object'] and
-                  'resourceVersion' in js['object']['metadata']):
-
+            elif (isinstance(js['object'], dict)
+                    and 'metadata' in js['object']
+                    and 'resourceVersion' in js['object']['metadata']):
                 self.resource_version = js['object']['metadata']['resourceVersion']
 
         return js
@@ -122,7 +122,7 @@ class Watch(object):
     async def __anext__(self):
         try:
             return await self.next()
-        except:
+        except:  # noqa: E722
             await self.close()
             raise
 
@@ -148,7 +148,7 @@ class Watch(object):
                     self.resp.close()
                     self.resp = None
                     if self.resource_version:
-                      self.func.keywords['resource_version'] = self.resource_version
+                        self.func.keywords['resource_version'] = self.resource_version
                     continue
                 else:
                     raise
@@ -204,7 +204,7 @@ class Watch(object):
 
     async def __aexit__(self, exc_type, exc_value, traceback):
         await self.close()
-    
+
     async def close(self):
         await self._api_client.close()
         if self.resp is not None:

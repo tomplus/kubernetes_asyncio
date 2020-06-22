@@ -74,9 +74,7 @@ class WatchTest(TestCase):
         fake_resp = CoroutineMock()
         fake_resp.content.readline = CoroutineMock()
         fake_resp.release = Mock()
-        side_effects = [
-                'log_line_1',
-                'log_line_2']
+        side_effects = ['log_line_1', 'log_line_2']
         side_effects = [_.encode('utf8') for _ in side_effects]
         side_effects.extend([AssertionError('Should not have been called')])
         fake_resp.content.readline.side_effect = side_effects

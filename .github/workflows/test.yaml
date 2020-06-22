@@ -41,7 +41,8 @@ jobs:
     - name: Lint with flake8 and isort (only on Python 3.8)
       if: matrix.python-version == 3.8
       run: |
-        scripts/style-checks.sh
+        flake8
+        isort -c --diff
 
     - name: Send coverage report
       if: matrix.python-version == 3.8
