@@ -1,4 +1,4 @@
-name: Kubernetes Python Client - Validation
+name: Tests
 
 on: [ push, pull_request ]
 
