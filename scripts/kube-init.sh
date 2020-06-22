@@ -31,7 +31,7 @@ trap "clean_exit" EXIT
 setenforce 0
 
 # define HOME dir
-HOME=/home/travis
+#HOME=/home/runner
 
 # Install conntrack (required by minikube)
 sudo apt-get update
@@ -81,22 +81,15 @@ export MINIKUBE_DRIVER=${MINIKUBE_DRIVER:-none}
 # Used bootstrapper to be kubeadm for the most recent k8s version
 # since localkube is depreciated and only supported up to version 1.10.0
 echo "Starting minikube"
-sudo minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr
-MINIKUBE_OK="false"
-echo "Waiting for minikube to start..."
-# this for loop waits until kubectl can access the api server that Minikube has created
-for i in {1..18}; do # timeout for 3 minutes
-   kubectl get po &> /dev/null
-   if [ $? -ne 1 ]; then
-      MINIKUBE_OK="true"
-      break
-  fi
-  sleep 10
-done
-# Shut down CI if minikube did not start and show logs
-if [ $MINIKUBE_OK == "false" ]; then
+sudo minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr -v8 --wait=all
+sudo chown -R $USER /home/runner/.minikube/
+
+# check if kubectl can access the api server that Minikube has created
+kubectl get po &> /dev/null
+if [ $? -eq 1 ]; then
   sudo minikube logs
   die $LINENO "minikube did not start"
+  break
 fi
 
 echo "Dump kube config"
@@ -125,7 +118,6 @@ kubectl get replicationcontrollers
 kubectl get secrets
 kubectl get serviceaccounts
 kubectl get services
-
 
 echo "Running tests..."
 set -x -e
