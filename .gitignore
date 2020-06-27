@@ -68,3 +68,6 @@ target/
 .idea/*
 *.iml
 .vscode
+
+# rest.py is patched
+kubernetes_asyncio/client/rest.py.orig

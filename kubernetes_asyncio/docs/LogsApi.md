@@ -22,14 +22,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -83,14 +95,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
