@@ -26,7 +26,8 @@ class ExecProviderTest(TestCase):
 
     def setUp(self):
         self.input_ok = ConfigNode('test', {
-            'command': 'aws-iam-authenticator token -i dummy',
+            'command': 'aws-iam-authenticator',
+            'args': ['token', '-i', 'dummy'],
             'apiVersion': 'client.authentication.k8s.io/v1beta1',
             'env': None
         })
@@ -131,9 +132,9 @@ class ExecProviderTest(TestCase):
 
     async def test_ok_with_args(self):
         input_ok = ConfigNode('test', {
-            'command': 'aws-iam-authenticator token -i dummy',
+            'command': 'aws-iam-authenticator',
             'apiVersion': 'client.authentication.k8s.io/v1beta1',
-            'args': ['--mock', '90']
+            'args': ['token', '-i', 'dummy', '--mock', '90']
         })
         ep = ExecProvider(input_ok)
         result = await ep.run()
@@ -148,8 +149,9 @@ class ExecProviderTest(TestCase):
     async def test_ok_with_env(self):
 
         input_ok = ConfigNode('test', {
-            'command': 'aws-iam-authenticator token -i dummy',
+            'command': 'aws-iam-authenticator',
             'apiVersion': 'client.authentication.k8s.io/v1beta1',
+            'args': ['token', '-i', 'dummy'],
             'env': [{'name': 'EXEC_PROVIDER_ENV_NAME',
                      'value': 'EXEC_PROVIDER_ENV_VALUE'}]})
 
