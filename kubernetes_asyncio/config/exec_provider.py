@@ -14,7 +14,6 @@
 import asyncio.subprocess
 import json
 import os
-import shlex
 import sys
 
 from .config_exception import ConfigException
@@ -62,8 +61,7 @@ class ExecProvider(object):
             kubernetes_exec_info['spec']['response'] = previous_response
         self.env['KUBERNETES_EXEC_INFO'] = json.dumps(kubernetes_exec_info)
 
-        cmd = shlex.split(' '.join(self.args))
-        cmd_exec = asyncio.create_subprocess_exec(*cmd,
+        cmd_exec = asyncio.create_subprocess_exec(*self.args,
                                                   env=self.env,
                                                   stdin=None,
                                                   stdout=asyncio.subprocess.PIPE,
