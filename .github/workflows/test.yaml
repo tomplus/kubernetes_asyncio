@@ -42,7 +42,7 @@ jobs:
       if: matrix.python-version == 3.8
       run: |
         flake8
-        isort -c --diff
+        isort -c --diff .
 
     - name: Send coverage report
       if: matrix.python-version == 3.8
