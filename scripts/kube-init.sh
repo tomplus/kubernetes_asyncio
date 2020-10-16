@@ -48,6 +48,9 @@ docker --version
 
 # Get the latest stable version of kubernetes
 K8S_VERSION=$(curl -sS https://storage.googleapis.com/kubernetes-release/release/stable.txt)
+
+# workaround, v.19.3 in minikube has an issue - https://github.com/kubernetes/minikube/issues/9470
+K8S_VERSION=v1.19.2
 echo "K8S_VERSION : ${K8S_VERSION}"
 
 echo "Starting docker service"
