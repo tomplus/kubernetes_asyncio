@@ -6,10 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_cluster_custom_object**](CustomObjectsApi.md#create_cluster_custom_object) | **POST** /apis/{group}/{version}/{plural} | 
 [**create_namespaced_custom_object**](CustomObjectsApi.md#create_namespaced_custom_object) | **POST** /apis/{group}/{version}/namespaces/{namespace}/{plural} | 
-[**delete_cluster_custom_object**](CustomObjectsApi.md#delete_cluster_custom_object) | **DELETE** /apis/{group}/{version}/{plural} | 
-[**delete_cluster_custom_object_0**](CustomObjectsApi.md#delete_cluster_custom_object_0) | **DELETE** /apis/{group}/{version}/{plural}/{name} | 
-[**delete_namespaced_custom_object**](CustomObjectsApi.md#delete_namespaced_custom_object) | **DELETE** /apis/{group}/{version}/namespaces/{namespace}/{plural} | 
-[**delete_namespaced_custom_object_0**](CustomObjectsApi.md#delete_namespaced_custom_object_0) | **DELETE** /apis/{group}/{version}/namespaces/{namespace}/{plural}/{name} | 
+[**delete_cluster_custom_object**](CustomObjectsApi.md#delete_cluster_custom_object) | **DELETE** /apis/{group}/{version}/{plural}/{name} | 
+[**delete_collection_cluster_custom_object**](CustomObjectsApi.md#delete_collection_cluster_custom_object) | **DELETE** /apis/{group}/{version}/{plural} | 
+[**delete_collection_namespaced_custom_object**](CustomObjectsApi.md#delete_collection_namespaced_custom_object) | **DELETE** /apis/{group}/{version}/namespaces/{namespace}/{plural} | 
+[**delete_namespaced_custom_object**](CustomObjectsApi.md#delete_namespaced_custom_object) | **DELETE** /apis/{group}/{version}/namespaces/{namespace}/{plural}/{name} | 
 [**get_cluster_custom_object**](CustomObjectsApi.md#get_cluster_custom_object) | **GET** /apis/{group}/{version}/{plural}/{name} | 
 [**get_cluster_custom_object_scale**](CustomObjectsApi.md#get_cluster_custom_object_scale) | **GET** /apis/{group}/{version}/{plural}/{name}/scale | 
 [**get_cluster_custom_object_status**](CustomObjectsApi.md#get_cluster_custom_object_status) | **GET** /apis/{group}/{version}/{plural}/{name}/status | 
@@ -33,7 +33,7 @@ Method | HTTP request | Description
 
 
 # **create_cluster_custom_object**
-> object create_cluster_custom_object(group, version, plural, body, pretty=pretty)
+> object create_cluster_custom_object(group, version, plural, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -48,14 +48,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -66,9 +78,11 @@ version = 'version_example' # str | The custom resource's version
 plural = 'plural_example' # str | The custom resource's plural name. For TPRs this would be lowercase plural kind.
 body = None # object | The JSON schema of the Resource to create.
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
 
     try:
-        api_response = api_instance.create_cluster_custom_object(group, version, plural, body, pretty=pretty)
+        api_response = api_instance.create_cluster_custom_object(group, version, plural, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->create_cluster_custom_object: %s\n" % e)
@@ -83,6 +97,8 @@ Name | Type | Description  | Notes
  **plural** | **str**| The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **body** | **object**| The JSON schema of the Resource to create. | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
 
 ### Return type
 
@@ -106,7 +122,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_custom_object**
-> object create_namespaced_custom_object(group, version, namespace, plural, body, pretty=pretty)
+> object create_namespaced_custom_object(group, version, namespace, plural, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -121,14 +137,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -140,9 +168,11 @@ namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | The custom resource's plural name. For TPRs this would be lowercase plural kind.
 body = None # object | The JSON schema of the Resource to create.
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
     try:
-        api_response = api_instance.create_namespaced_custom_object(group, version, namespace, plural, body, pretty=pretty)
+        api_response = api_instance.create_namespaced_custom_object(group, version, namespace, plural, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->create_namespaced_custom_object: %s\n" % e)
@@ -158,6 +188,8 @@ Name | Type | Description  | Notes
  **plural** | **str**| The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **body** | **object**| The JSON schema of the Resource to create. | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -181,7 +213,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_cluster_custom_object**
-> object delete_cluster_custom_object(group, version, plural, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, body=body)
+> object delete_cluster_custom_object(group, version, plural, name, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, dry_run=dry_run, body=body)
 
 
 
@@ -196,30 +228,43 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.CustomObjectsApi(api_client)
-    group = 'group_example' # str | The custom resource's group name
-version = 'version_example' # str | The custom resource's version
-plural = 'plural_example' # str | The custom resource's plural name. For TPRs this would be lowercase plural kind.
-pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
+    group = 'group_example' # str | the custom resource's group
+version = 'version_example' # str | the custom resource's version
+plural = 'plural_example' # str | the custom object's plural name. For TPRs this would be lowercase plural kind.
+name = 'name_example' # str | the custom object's name
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
 orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
 
     try:
-        api_response = api_instance.delete_cluster_custom_object(group, version, plural, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, body=body)
+        api_response = api_instance.delete_cluster_custom_object(group, version, plural, name, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, dry_run=dry_run, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->delete_cluster_custom_object: %s\n" % e)
@@ -229,13 +274,14 @@ body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optiona
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group** | **str**| The custom resource&#39;s group name | 
- **version** | **str**| The custom resource&#39;s version | 
- **plural** | **str**| The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
- **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
+ **group** | **str**| the custom resource&#39;s group | 
+ **version** | **str**| the custom resource&#39;s version | 
+ **plural** | **str**| the custom object&#39;s plural name. For TPRs this would be lowercase plural kind. | 
+ **name** | **str**| the custom object&#39;s name | 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
  **orphan_dependents** | **bool**| Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | [optional] 
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. | [optional] 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
 
 ### Return type
@@ -259,12 +305,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_cluster_custom_object_0**
-> object delete_cluster_custom_object_0(group, version, plural, name, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, body=body)
+# **delete_collection_cluster_custom_object**
+> object delete_collection_cluster_custom_object(group, version, plural, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, dry_run=dry_run, body=body)
 
 
 
-Deletes the specified cluster scoped custom object
+Delete collection of cluster scoped custom objects
 
 ### Example
 
@@ -275,46 +321,155 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.CustomObjectsApi(api_client)
-    group = 'group_example' # str | the custom resource's group
-version = 'version_example' # str | the custom resource's version
-plural = 'plural_example' # str | the custom object's plural name. For TPRs this would be lowercase plural kind.
-name = 'name_example' # str | the custom object's name
+    group = 'group_example' # str | The custom resource's group name
+version = 'version_example' # str | The custom resource's version
+plural = 'plural_example' # str | The custom resource's plural name. For TPRs this would be lowercase plural kind.
+pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
 orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
 
     try:
-        api_response = api_instance.delete_cluster_custom_object_0(group, version, plural, name, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, body=body)
+        api_response = api_instance.delete_collection_cluster_custom_object(group, version, plural, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, dry_run=dry_run, body=body)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CustomObjectsApi->delete_cluster_custom_object_0: %s\n" % e)
+        print("Exception when calling CustomObjectsApi->delete_collection_cluster_custom_object: %s\n" % e)
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **group** | **str**| the custom resource&#39;s group | 
- **version** | **str**| the custom resource&#39;s version | 
- **plural** | **str**| the custom object&#39;s plural name. For TPRs this would be lowercase plural kind. | 
- **name** | **str**| the custom object&#39;s name | 
+ **group** | **str**| The custom resource&#39;s group name | 
+ **version** | **str**| The custom resource&#39;s version | 
+ **plural** | **str**| The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
+ **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
  **orphan_dependents** | **bool**| Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | [optional] 
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. | [optional] 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
+
+### Return type
+
+**object**
+
+### Authorization
+
+[BearerToken](../README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_collection_namespaced_custom_object**
+> object delete_collection_namespaced_custom_object(group, version, namespace, plural, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, dry_run=dry_run, body=body)
+
+
+
+Delete collection of namespace scoped custom objects
+
+### Example
+
+* Api Key Authentication (BearerToken):
+```python
+from __future__ import print_function
+import time
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: BearerToken
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API kubernetes_asyncio.client
+with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kubernetes_asyncio.client.CustomObjectsApi(api_client)
+    group = 'group_example' # str | The custom resource's group name
+version = 'version_example' # str | The custom resource's version
+namespace = 'namespace_example' # str | The custom resource's namespace
+plural = 'plural_example' # str | The custom resource's plural name. For TPRs this would be lowercase plural kind.
+pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
+grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
+orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
+propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
+
+    try:
+        api_response = api_instance.delete_collection_namespaced_custom_object(group, version, namespace, plural, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, dry_run=dry_run, body=body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CustomObjectsApi->delete_collection_namespaced_custom_object: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **group** | **str**| The custom resource&#39;s group name | 
+ **version** | **str**| The custom resource&#39;s version | 
+ **namespace** | **str**| The custom resource&#39;s namespace | 
+ **plural** | **str**| The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
+ **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
+ **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
+ **orphan_dependents** | **bool**| Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | [optional] 
+ **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. | [optional] 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
 
 ### Return type
@@ -339,7 +494,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_namespaced_custom_object**
-> object delete_namespaced_custom_object(group, version, namespace, plural, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, body=body)
+> object delete_namespaced_custom_object(group, version, namespace, plural, name, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, dry_run=dry_run, body=body)
 
 
 
@@ -354,95 +509,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
-
-# Enter a context with an instance of the API kubernetes_asyncio.client
-with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = kubernetes_asyncio.client.CustomObjectsApi(api_client)
-    group = 'group_example' # str | The custom resource's group name
-version = 'version_example' # str | The custom resource's version
-namespace = 'namespace_example' # str | The custom resource's namespace
-plural = 'plural_example' # str | The custom resource's plural name. For TPRs this would be lowercase plural kind.
-pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
-orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
-propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
-body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
-
-    try:
-        api_response = api_instance.delete_namespaced_custom_object(group, version, namespace, plural, pretty=pretty, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, body=body)
-        pprint(api_response)
-    except ApiException as e:
-        print("Exception when calling CustomObjectsApi->delete_namespaced_custom_object: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **group** | **str**| The custom resource&#39;s group name | 
- **version** | **str**| The custom resource&#39;s version | 
- **namespace** | **str**| The custom resource&#39;s namespace | 
- **plural** | **str**| The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
- **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
- **orphan_dependents** | **bool**| Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | [optional] 
- **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. | [optional] 
- **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
-
-### Return type
-
-**object**
-
-### Authorization
-
-[BearerToken](../README.md#BearerToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_namespaced_custom_object_0**
-> object delete_namespaced_custom_object_0(group, version, namespace, plural, name, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, body=body)
-
-
-
-Deletes the specified namespace scoped custom object
-
-### Example
-
-* Api Key Authentication (BearerToken):
-```python
-from __future__ import print_function
-import time
-import kubernetes_asyncio.client
-from kubernetes_asyncio.client.rest import ApiException
-from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
-# Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -456,13 +542,14 @@ name = 'name_example' # str | the custom object's name
 grace_period_seconds = 56 # int | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
 orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. (optional)
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
 
     try:
-        api_response = api_instance.delete_namespaced_custom_object_0(group, version, namespace, plural, name, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, body=body)
+        api_response = api_instance.delete_namespaced_custom_object(group, version, namespace, plural, name, grace_period_seconds=grace_period_seconds, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, dry_run=dry_run, body=body)
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling CustomObjectsApi->delete_namespaced_custom_object_0: %s\n" % e)
+        print("Exception when calling CustomObjectsApi->delete_namespaced_custom_object: %s\n" % e)
 ```
 
 ### Parameters
@@ -477,6 +564,7 @@ Name | Type | Description  | Notes
  **grace_period_seconds** | **int**| The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | [optional] 
  **orphan_dependents** | **bool**| Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | [optional] 
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. | [optional] 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
 
 ### Return type
@@ -516,14 +604,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -587,14 +687,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -658,14 +770,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -729,14 +853,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -802,14 +938,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -875,14 +1023,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -948,14 +1108,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1033,14 +1205,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1105,7 +1289,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_cluster_custom_object**
-> object patch_cluster_custom_object(group, version, plural, name, body)
+> object patch_cluster_custom_object(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -1120,14 +1304,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1138,9 +1334,12 @@ version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom object's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | The JSON schema of the Resource to patch.
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
     try:
-        api_response = api_instance.patch_cluster_custom_object(group, version, plural, name, body)
+        api_response = api_instance.patch_cluster_custom_object(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->patch_cluster_custom_object: %s\n" % e)
@@ -1155,6 +1354,9 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom object&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**| The JSON schema of the Resource to patch. | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -1178,7 +1380,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_cluster_custom_object_scale**
-> object patch_cluster_custom_object_scale(group, version, plural, name, body)
+> object patch_cluster_custom_object_scale(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -1193,14 +1395,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1211,9 +1425,12 @@ version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | 
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
     try:
-        api_response = api_instance.patch_cluster_custom_object_scale(group, version, plural, name, body)
+        api_response = api_instance.patch_cluster_custom_object_scale(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->patch_cluster_custom_object_scale: %s\n" % e)
@@ -1228,6 +1445,9 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**|  | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -1251,7 +1471,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_cluster_custom_object_status**
-> object patch_cluster_custom_object_status(group, version, plural, name, body)
+> object patch_cluster_custom_object_status(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -1266,14 +1486,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1284,9 +1516,12 @@ version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | 
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
     try:
-        api_response = api_instance.patch_cluster_custom_object_status(group, version, plural, name, body)
+        api_response = api_instance.patch_cluster_custom_object_status(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->patch_cluster_custom_object_status: %s\n" % e)
@@ -1301,6 +1536,9 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**|  | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -1324,7 +1562,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_custom_object**
-> object patch_namespaced_custom_object(group, version, namespace, plural, name, body)
+> object patch_namespaced_custom_object(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -1339,14 +1577,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1358,9 +1608,12 @@ namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | The JSON schema of the Resource to patch.
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
     try:
-        api_response = api_instance.patch_namespaced_custom_object(group, version, namespace, plural, name, body)
+        api_response = api_instance.patch_namespaced_custom_object(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->patch_namespaced_custom_object: %s\n" % e)
@@ -1376,6 +1629,9 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**| The JSON schema of the Resource to patch. | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -1399,7 +1655,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_custom_object_scale**
-> object patch_namespaced_custom_object_scale(group, version, namespace, plural, name, body)
+> object patch_namespaced_custom_object_scale(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -1414,14 +1670,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1433,9 +1701,12 @@ namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | 
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
     try:
-        api_response = api_instance.patch_namespaced_custom_object_scale(group, version, namespace, plural, name, body)
+        api_response = api_instance.patch_namespaced_custom_object_scale(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->patch_namespaced_custom_object_scale: %s\n" % e)
@@ -1451,6 +1722,9 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**|  | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -1462,7 +1736,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/apply-patch+yaml
  - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
 
 ### HTTP response details
@@ -1474,7 +1748,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **patch_namespaced_custom_object_status**
-> object patch_namespaced_custom_object_status(group, version, namespace, plural, name, body)
+> object patch_namespaced_custom_object_status(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
 
 
 
@@ -1489,14 +1763,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1508,9 +1794,12 @@ namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | 
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
 
     try:
-        api_response = api_instance.patch_namespaced_custom_object_status(group, version, namespace, plural, name, body)
+        api_response = api_instance.patch_namespaced_custom_object_status(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager, force=force)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->patch_namespaced_custom_object_status: %s\n" % e)
@@ -1526,6 +1815,9 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**|  | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
 
 ### Return type
 
@@ -1537,7 +1829,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/apply-patch+yaml
  - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
 
 ### HTTP response details
@@ -1549,7 +1841,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_cluster_custom_object**
-> object replace_cluster_custom_object(group, version, plural, name, body)
+> object replace_cluster_custom_object(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -1564,14 +1856,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1582,9 +1886,11 @@ version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom object's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | The JSON schema of the Resource to replace.
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
     try:
-        api_response = api_instance.replace_cluster_custom_object(group, version, plural, name, body)
+        api_response = api_instance.replace_cluster_custom_object(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->replace_cluster_custom_object: %s\n" % e)
@@ -1599,6 +1905,8 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom object&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**| The JSON schema of the Resource to replace. | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -1622,7 +1930,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_cluster_custom_object_scale**
-> object replace_cluster_custom_object_scale(group, version, plural, name, body)
+> object replace_cluster_custom_object_scale(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -1637,14 +1945,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1655,9 +1975,11 @@ version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | 
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
     try:
-        api_response = api_instance.replace_cluster_custom_object_scale(group, version, plural, name, body)
+        api_response = api_instance.replace_cluster_custom_object_scale(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->replace_cluster_custom_object_scale: %s\n" % e)
@@ -1672,6 +1994,8 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**|  | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -1696,7 +2020,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_cluster_custom_object_status**
-> object replace_cluster_custom_object_status(group, version, plural, name, body)
+> object replace_cluster_custom_object_status(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -1711,14 +2035,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1729,9 +2065,11 @@ version = 'version_example' # str | the custom resource's version
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | 
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
     try:
-        api_response = api_instance.replace_cluster_custom_object_status(group, version, plural, name, body)
+        api_response = api_instance.replace_cluster_custom_object_status(group, version, plural, name, body, dry_run=dry_run, field_manager=field_manager)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->replace_cluster_custom_object_status: %s\n" % e)
@@ -1746,6 +2084,8 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**|  | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -1770,7 +2110,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_custom_object**
-> object replace_namespaced_custom_object(group, version, namespace, plural, name, body)
+> object replace_namespaced_custom_object(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -1785,14 +2125,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1804,9 +2156,11 @@ namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | The JSON schema of the Resource to replace.
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
     try:
-        api_response = api_instance.replace_namespaced_custom_object(group, version, namespace, plural, name, body)
+        api_response = api_instance.replace_namespaced_custom_object(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->replace_namespaced_custom_object: %s\n" % e)
@@ -1822,6 +2176,8 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**| The JSON schema of the Resource to replace. | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -1845,7 +2201,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_custom_object_scale**
-> object replace_namespaced_custom_object_scale(group, version, namespace, plural, name, body)
+> object replace_namespaced_custom_object_scale(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -1860,14 +2216,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1879,9 +2247,11 @@ namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | 
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
     try:
-        api_response = api_instance.replace_namespaced_custom_object_scale(group, version, namespace, plural, name, body)
+        api_response = api_instance.replace_namespaced_custom_object_scale(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->replace_namespaced_custom_object_scale: %s\n" % e)
@@ -1897,6 +2267,8 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**|  | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 
@@ -1921,7 +2293,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **replace_namespaced_custom_object_status**
-> object replace_namespaced_custom_object_status(group, version, namespace, plural, name, body)
+> object replace_namespaced_custom_object_status(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager)
 
 
 
@@ -1936,14 +2308,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1955,9 +2339,11 @@ namespace = 'namespace_example' # str | The custom resource's namespace
 plural = 'plural_example' # str | the custom resource's plural name. For TPRs this would be lowercase plural kind.
 name = 'name_example' # str | the custom object's name
 body = None # object | 
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 
     try:
-        api_response = api_instance.replace_namespaced_custom_object_status(group, version, namespace, plural, name, body)
+        api_response = api_instance.replace_namespaced_custom_object_status(group, version, namespace, plural, name, body, dry_run=dry_run, field_manager=field_manager)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CustomObjectsApi->replace_namespaced_custom_object_status: %s\n" % e)
@@ -1973,6 +2359,8 @@ Name | Type | Description  | Notes
  **plural** | **str**| the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind. | 
  **name** | **str**| the custom object&#39;s name | 
  **body** | **object**|  | 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
 
 ### Return type
 

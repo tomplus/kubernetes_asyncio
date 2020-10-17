@@ -51,14 +51,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -124,14 +136,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -197,14 +221,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -270,14 +306,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -328,7 +376,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_csi_driver**
-> V1Status delete_collection_csi_driver(pretty=pretty, allow_watch_bookmarks=allow_watch_bookmarks, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch, body=body)
+> V1Status delete_collection_csi_driver(pretty=pretty, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, body=body)
 
 
 
@@ -343,21 +391,32 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.StorageV1beta1Api(api_client)
     pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -368,11 +427,10 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 resource_version = 'resource_version_example' # str | When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. (optional)
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
-watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
 
     try:
-        api_response = api_instance.delete_collection_csi_driver(pretty=pretty, allow_watch_bookmarks=allow_watch_bookmarks, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch, body=body)
+        api_response = api_instance.delete_collection_csi_driver(pretty=pretty, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling StorageV1beta1Api->delete_collection_csi_driver: %s\n" % e)
@@ -383,7 +441,6 @@ body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optiona
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -394,7 +451,6 @@ Name | Type | Description  | Notes
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. | [optional] 
  **resource_version** | **str**| When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. | [optional] 
  **timeout_seconds** | **int**| Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | [optional] 
- **watch** | **bool**| Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | [optional] 
  **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
 
 ### Return type
@@ -419,7 +475,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_csi_node**
-> V1Status delete_collection_csi_node(pretty=pretty, allow_watch_bookmarks=allow_watch_bookmarks, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch, body=body)
+> V1Status delete_collection_csi_node(pretty=pretty, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, body=body)
 
 
 
@@ -434,21 +490,32 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.StorageV1beta1Api(api_client)
     pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -459,11 +526,10 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 resource_version = 'resource_version_example' # str | When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. (optional)
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
-watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
 
     try:
-        api_response = api_instance.delete_collection_csi_node(pretty=pretty, allow_watch_bookmarks=allow_watch_bookmarks, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch, body=body)
+        api_response = api_instance.delete_collection_csi_node(pretty=pretty, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling StorageV1beta1Api->delete_collection_csi_node: %s\n" % e)
@@ -474,7 +540,6 @@ body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optiona
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -485,7 +550,6 @@ Name | Type | Description  | Notes
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. | [optional] 
  **resource_version** | **str**| When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. | [optional] 
  **timeout_seconds** | **int**| Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | [optional] 
- **watch** | **bool**| Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | [optional] 
  **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
 
 ### Return type
@@ -510,7 +574,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_storage_class**
-> V1Status delete_collection_storage_class(pretty=pretty, allow_watch_bookmarks=allow_watch_bookmarks, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch, body=body)
+> V1Status delete_collection_storage_class(pretty=pretty, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, body=body)
 
 
 
@@ -525,21 +589,32 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.StorageV1beta1Api(api_client)
     pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -550,11 +625,10 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 resource_version = 'resource_version_example' # str | When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. (optional)
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
-watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
 
     try:
-        api_response = api_instance.delete_collection_storage_class(pretty=pretty, allow_watch_bookmarks=allow_watch_bookmarks, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch, body=body)
+        api_response = api_instance.delete_collection_storage_class(pretty=pretty, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling StorageV1beta1Api->delete_collection_storage_class: %s\n" % e)
@@ -565,7 +639,6 @@ body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optiona
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -576,7 +649,6 @@ Name | Type | Description  | Notes
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. | [optional] 
  **resource_version** | **str**| When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. | [optional] 
  **timeout_seconds** | **int**| Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | [optional] 
- **watch** | **bool**| Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | [optional] 
  **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
 
 ### Return type
@@ -601,7 +673,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_collection_volume_attachment**
-> V1Status delete_collection_volume_attachment(pretty=pretty, allow_watch_bookmarks=allow_watch_bookmarks, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch, body=body)
+> V1Status delete_collection_volume_attachment(pretty=pretty, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, body=body)
 
 
 
@@ -616,21 +688,32 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.StorageV1beta1Api(api_client)
     pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
@@ -641,11 +724,10 @@ orphan_dependents = True # bool | Deprecated: please use the PropagationPolicy, 
 propagation_policy = 'propagation_policy_example' # str | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: 'Orphan' - orphan the dependents; 'Background' - allow the garbage collector to delete the dependents in the background; 'Foreground' - a cascading policy that deletes all dependents in the foreground. (optional)
 resource_version = 'resource_version_example' # str | When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. (optional)
 timeout_seconds = 56 # int | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
-watch = True # bool | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
 body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optional)
 
     try:
-        api_response = api_instance.delete_collection_volume_attachment(pretty=pretty, allow_watch_bookmarks=allow_watch_bookmarks, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, watch=watch, body=body)
+        api_response = api_instance.delete_collection_volume_attachment(pretty=pretty, _continue=_continue, dry_run=dry_run, field_selector=field_selector, grace_period_seconds=grace_period_seconds, label_selector=label_selector, limit=limit, orphan_dependents=orphan_dependents, propagation_policy=propagation_policy, resource_version=resource_version, timeout_seconds=timeout_seconds, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling StorageV1beta1Api->delete_collection_volume_attachment: %s\n" % e)
@@ -656,7 +738,6 @@ body = kubernetes_asyncio.client.V1DeleteOptions() # V1DeleteOptions |  (optiona
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
@@ -667,7 +748,6 @@ Name | Type | Description  | Notes
  **propagation_policy** | **str**| Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground. | [optional] 
  **resource_version** | **str**| When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv. | [optional] 
  **timeout_seconds** | **int**| Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | [optional] 
- **watch** | **bool**| Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | [optional] 
  **body** | [**V1DeleteOptions**](V1DeleteOptions.md)|  | [optional] 
 
 ### Return type
@@ -707,14 +787,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -785,14 +877,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -863,14 +967,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -941,14 +1057,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1019,14 +1147,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1080,21 +1220,33 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.StorageV1beta1Api(api_client)
     pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. (optional)
+allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is beta. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
@@ -1115,7 +1267,7 @@ watch = True # bool | Watch for changes to the described resources and return th
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. | [optional] 
+ **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is beta. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
@@ -1161,21 +1313,33 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.StorageV1beta1Api(api_client)
     pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. (optional)
+allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is beta. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
@@ -1196,7 +1360,7 @@ watch = True # bool | Watch for changes to the described resources and return th
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. | [optional] 
+ **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is beta. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
@@ -1242,21 +1406,33 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.StorageV1beta1Api(api_client)
     pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. (optional)
+allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is beta. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
@@ -1277,7 +1453,7 @@ watch = True # bool | Watch for changes to the described resources and return th
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. | [optional] 
+ **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is beta. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
@@ -1323,21 +1499,33 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = kubernetes_asyncio.client.StorageV1beta1Api(api_client)
     pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. (optional)
+allow_watch_bookmarks = True # bool | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is beta. (optional)
 _continue = '_continue_example' # str | The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
 field_selector = 'field_selector_example' # str | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
 label_selector = 'label_selector_example' # str | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
@@ -1358,7 +1546,7 @@ watch = True # bool | Watch for changes to the described resources and return th
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is alpha and can be changed or removed without notice. | [optional] 
+ **allow_watch_bookmarks** | **bool**| allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.  This field is beta. | [optional] 
  **_continue** | **str**| The continue option should be set when retrieving more results from the server. Since this value is server defined, kubernetes_asyncio.clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the kubernetes_asyncio.client needs a consistent list, it must restart their list without the continue field. Otherwise, the kubernetes_asyncio.client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | [optional] 
  **field_selector** | **str**| A selector to restrict the list of returned objects by their fields. Defaults to everything. | [optional] 
  **label_selector** | **str**| A selector to restrict the list of returned objects by their labels. Defaults to everything. | [optional] 
@@ -1404,14 +1592,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1452,7 +1652,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
  - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
 
 ### HTTP response details
@@ -1479,14 +1679,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1527,7 +1739,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
  - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
 
 ### HTTP response details
@@ -1554,14 +1766,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1602,7 +1826,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
  - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
 
 ### HTTP response details
@@ -1629,14 +1853,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1677,7 +1913,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
  - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
 
 ### HTTP response details
@@ -1704,14 +1940,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1775,14 +2023,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1846,14 +2106,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1917,14 +2189,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -1988,14 +2272,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -2062,14 +2358,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -2136,14 +2444,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
@@ -2210,14 +2530,26 @@ import time
 import kubernetes_asyncio.client
 from kubernetes_asyncio.client.rest import ApiException
 from pprint import pprint
-configuration = kubernetes_asyncio.client.Configuration()
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
 # Configure API key authorization: BearerToken
-configuration.api_key['authorization'] = 'YOUR_API_KEY'
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
 # configuration.api_key_prefix['authorization'] = 'Bearer'
-
-# Defining host is optional and default to http://localhost
-configuration.host = "http://localhost"
 
 # Enter a context with an instance of the API kubernetes_asyncio.client
 with kubernetes_asyncio.client.ApiClient(configuration) as api_client:

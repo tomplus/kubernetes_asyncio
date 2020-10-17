@@ -43,7 +43,7 @@ echo "export KUBERNETES_BRANCH=\"$(python ${SCRIPT_ROOT}/constants.py KUBERNETES
 echo "export CLIENT_VERSION=\"$(python ${SCRIPT_ROOT}/constants.py CLIENT_VERSION)\"" >> $SETTING_FILE
 echo "export PACKAGE_NAME=\"client\"" >> $SETTING_FILE
 # openapi-generator v4.3.0
-echo "export OPENAPI_GENERATOR_COMMIT=c224cf484b020a7f5997d883cf331715df3fb52a" >> $SETTING_FILE
+echo "export OPENAPI_GENERATOR_COMMIT=v4.3.1" >> $SETTING_FILE
 echo "unset USERNAME" >> $SETTING_FILE
 
 if [[ -z ${GEN_ROOT:-} ]]; then

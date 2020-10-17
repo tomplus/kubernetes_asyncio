@@ -36,6 +36,13 @@ class WsResponse(RESTResponse):
 
     def __init__(self, data):
         self.data = data
+        self.headers = {}
+
+    def getheaders(self):
+        return self.headers
+
+    def getheader(self, name, default=None):
+        return self.headers.get(name, default)
 
 
 class WsApiClient(ApiClient):
@@ -74,12 +81,11 @@ class WsApiClient(ApiClient):
                     if len(msg) > 1:
                         channel = ord(msg[0])
                         data = msg[1:]
-
                         if data:
                             if channel in [STDOUT_CHANNEL, STDERR_CHANNEL]:
                                 resp_all += data
 
-            return WsResponse(resp_all)
+            return WsResponse(resp_all.encode('utf-8'))
 
         else:
 
