@@ -187,7 +187,6 @@ class Watch(object):
                 if should_stop:
                     watch.stop()
         """
-        self.close()
         self._stop = False
         self.return_type = self.get_return_type(func)
         kwargs[self.get_watch_argument_name(func)] = True
