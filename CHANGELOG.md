@@ -2,6 +2,7 @@
 
 * feat: regenerate client for Kubernetes API Version: 1.16.14 using OpenAPI 4.3.1
 * fix: Removed shlex args mangling ([#110](https://github.com/tomplus/kubernetes_asyncio/pull/110), [@WoLpH](https://github.com/WoLpH)
+* fix: remove redundant close() in Watch class ([#119](https://github.com/tomplus/kubernetes_asyncio/pull/119), [@tomplus](https://github.com/tomplus)
 
 **API Change:**
 
