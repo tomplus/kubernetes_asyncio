@@ -9,7 +9,7 @@
 
 Asynchronous (AsyncIO) client library for the [Kubernetes](http://kubernetes.io/) API.
 
-This library is created in the same way as official https://github.com/kubernetes-client/python but uses asynchronous version of swagger-codegen.
+This library is created in the same way as official https://github.com/kubernetes-client/python but uses asynchronous version of OpenAPI Generator.
 My motivation is described here: https://github.com/kubernetes-client/python/pull/324
 
 ## Installation
@@ -74,7 +74,6 @@ like streaming, watching or reading configuration. Because of an early stage of 
 | authentication method | gcp-token, azure-token, user-token, oidc-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, oidc-token, user-password, in-cluster |
 | python | 2.7 3.4 3.5 3.6 3.7 3.8 | 3.5.3 3.6 3.7 3.8 |
 | streaming data via websocket from PODs | bidirectional | read-only is already implemented |
-| generator | swagger-codegen | openapi-generator |
 
 ## Versions
 
