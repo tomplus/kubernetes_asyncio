@@ -1,3 +1,7 @@
+# v12.0.1
+
+* fix: remove checking headers if not preloaded content is returned from rest api ([#123](https://github.com/tomplus/kubernetes_asyncio/pull/123), [@tomplus](https://github.com/tomplus)
+
 # v12.0.0
 
 * feat: regenerate client for Kubernetes API Version: 1.16.14 using OpenAPI 4.3.1
