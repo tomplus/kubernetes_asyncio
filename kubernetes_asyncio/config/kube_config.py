@@ -398,7 +398,7 @@ class ConfigNode(object):
 
     def safe_get(self, key):
         if (isinstance(self.value, list) and isinstance(key, int) or
-                key in self.value):
+                (self.value and key in self.value)):
             return self.value[key]
 
     def __getitem__(self, key):
@@ -461,13 +461,17 @@ class KubeConfigMerger:
         self.config_files = {}
         self.config_merged = None
 
+        file_loaded = False
         for path in paths.split(ENV_KUBECONFIG_PATH_SEPARATOR):
             if path:
                 path = os.path.expanduser(path)
                 if os.path.exists(path):
                     self.paths.append(path)
                     self.load_config(path)
+                    file_loaded = True
         self.config_saved = copy.deepcopy(self.config_files)
+        if not file_loaded:
+            logging.warning('Config not found: %s', paths)
 
     @property
     def config(self):
