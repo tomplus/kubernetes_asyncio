@@ -216,7 +216,8 @@ class TestClient(asynctest.TestCase):
             name=name, body={}, namespace='default')
 
         resp = await api.list_namespaced_config_map('default', pretty=True)
-        self.assertEqual([], resp.items)
+        for item in resp.items:
+            self.assertNotEqual(item.metadata.name, name)
 
     async def test_node_apis(self):
         client = api_client.ApiClient(configuration=self.config)
