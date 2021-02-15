@@ -93,6 +93,6 @@ You can run the style checks and tests with
 
 ```bash
 flake8 kubernetes_asyncio/
-isort --diff --recursive kubernetes_asyncio/
+isort --diff kubernetes_asyncio/
 nosetests
 ```
