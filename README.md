@@ -20,7 +20,7 @@ From [PyPi](https://pypi.python.org/pypi/kubernetes_asyncio/) directly:
 pip install kubernetes_asyncio
 ```
 
-Requirements: Python 3.5.3+ ([required by aiohttp](https://aiohttp.readthedocs.io/en/stable/faq.html#why-is-python-3-5-3-the-lowest-supported-version)).
+It requires Python 3.6+
 
 ## OpenAPI generator
 
@@ -72,7 +72,7 @@ like streaming, watching or reading configuration. Because of an early stage of 
 |  | [synchronous library kubernetes-client/python](https://github.com/kubernetes-client/python) | [this library](https://github.com/tomplus/kubernetes_asyncio/) |
 |--|--------------------------------------------------------------------|---------------------------------------------------------------|
 | authentication method | gcp-token, azure-token, user-token, oidc-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, oidc-token, user-password, in-cluster |
-| python | 2.7 3.4 3.5 3.6 3.7 3.8 | 3.5.3 3.6 3.7 3.8 |
+| python | 2.7 3.4 3.5 3.6 3.7 3.8 | 3.6 3.7 3.8 |
 | streaming data via websocket from PODs | bidirectional | read-only is already implemented |
 
 ## Versions
