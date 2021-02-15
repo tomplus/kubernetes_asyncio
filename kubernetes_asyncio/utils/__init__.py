@@ -14,4 +14,6 @@
 
 from __future__ import absolute_import
 
-from .create_from_yaml import FailToCreateError, create_from_yaml, create_from_yaml_single_item
+from .create_from_yaml import (
+    FailToCreateError, create_from_yaml, create_from_yaml_single_item,
+)
