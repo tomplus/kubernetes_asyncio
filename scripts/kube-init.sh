@@ -74,26 +74,26 @@ export MINIKUBE_WANTREPORTERRORPROMPT=false
 export CHANGE_MINIKUBE_NONE_USER=true
 sudo mkdir -p $HOME/.kube
 sudo mkdir -p $HOME/.minikube
-sudo touch $HOME/.kube/config
-export KUBECONFIG=$HOME/.kube/config
 export MINIKUBE_HOME=$HOME
 export MINIKUBE_DRIVER=${MINIKUBE_DRIVER:-none}
 # Used bootstrapper to be kubeadm for the most recent k8s version
 # since localkube is depreciated and only supported up to version 1.10.0
 echo "Starting minikube"
-sudo minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr -v8 --wait=all
-sudo chown -R $USER /home/runner/.minikube/
+sudo --preserve-env=MINIKUBE_HOME --preserve-env=HOME minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr -v8 --wait=all
+
+# Update ownership for configs/certs
+sudo chown -R $USER /home/runner/.minikube /home/runner/.kube
+
+echo "Dump kube config"
+kubectl config view
 
 # check if kubectl can access the api server that Minikube has created
 kubectl get po &> /dev/null
 if [ $? -eq 1 ]; then
   sudo minikube logs
-  die $LINENO "minikube did not start"
-  break
+  echo "minikube did not start"
+  exit 1
 fi
-
-echo "Dump kube config"
-kubectl config view
 
 echo "Dump Kubernetes Objects..."
 kubectl get componentstatuses
