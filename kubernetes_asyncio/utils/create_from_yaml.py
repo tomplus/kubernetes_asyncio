@@ -61,34 +61,93 @@ async def create_from_yaml(
     with open(path.abspath(yaml_file)) as f:
         yml_document_all = yaml.safe_load_all(f)
         api_exceptions = []
+        k8s_objects = []
         # Load all documents from a single YAML file
         for yml_document in yml_document_all:
-            # If it is a list type, will need to iterate its items
-            if "List" in yml_document["kind"]:
-                # Could be "List" or "Pod/Service/...List"
-                # This is a list type. iterate within its items
-                kind = yml_document["kind"].replace("List", "")
-                for yml_object in yml_document["items"]:
-                    # Mitigate cases when server returns a xxxList object
-                    # See kubernetes-client/python#586
-                    if kind != "":
-                        yml_object["apiVersion"] = yml_document["apiVersion"]
-                        yml_object["kind"] = kind
-                    try:
-                        await create_from_yaml_single_item(
-                            k8s_client, yml_object, verbose, namespace, **kwargs)
-                    except client.rest.ApiException as api_exception:
-                        api_exceptions.append(api_exception)
-            else:
-                # This is a single object. Call the single item method
-                try:
-                    await create_from_yaml_single_item(
-                        k8s_client, yml_document, verbose, namespace, **kwargs)
-                except client.rest.ApiException as api_exception:
-                    api_exceptions.append(api_exception)
+            try:
+                created = await create_from_dict(k8s_client, yml_document,
+                                                 verbose, namespace=namespace,
+                                                 **kwargs)
+                k8s_objects.append(created)
+            except FailToCreateError as failure:
+                api_exceptions.extend(failure)
+
     # In case we have exceptions waiting for us, raise them
     if api_exceptions:
         raise FailToCreateError(api_exceptions)
+
+    return k8s_objects
+
+
+async def create_from_dict(
+        k8s_client,
+        data,
+        verbose=False,
+        namespace="default",
+        **kwargs):
+    """
+    Perform an action from a yaml file. Pass True for verbose to
+    print confirmation information.
+    Input:
+    yaml_file: string. Contains the path to yaml file.
+    data: a dictionary holding valid kubernetes objects
+    verbose: If True, print confirmation from the create action.
+        Default is False.
+    namespace: string. Contains the namespace to create all
+        resources inside. The namespace must preexist otherwise
+        the resource creation will fail. If the API object in
+        the yaml file already contains a namespace definition
+        this parameter has no effect.
+    Returns:
+    An k8s api object or list of apis objects created from dict.
+    When a single object is generated, return type is dependent
+    on output_list.
+    Throws a FailToCreateError exception if creation of any object
+    fails with helpful messages from the server.
+    Available parameters for creating <kind>:
+    :param async_req bool
+    :param bool include_uninitialized: If true, partially initialized
+        resources are included in the response.
+    :param str pretty: If 'true', then the output is pretty printed.
+    :param str dry_run: When present, indicates that modifications
+        should not be persisted. An invalid or unrecognized dryRun
+        directive will result in an error response and no further
+        processing of the request.
+        Valid values are: - All: all dry run stages will be processed
+    """
+    api_exceptions = []
+    k8s_objects = []
+
+    # If it is a list type, will need to iterate its items
+    if "List" in data["kind"]:
+        # Could be "List" or "Pod/Service/...List"
+        # This is a list type. iterate within its items
+        kind = data["kind"].replace("List", "")
+        for yml_object in data["items"]:
+            # Mitigate cases when server returns a xxxList object
+            # See kubernetes-client/python#586
+            if kind != "":
+                yml_object["apiVersion"] = data["apiVersion"]
+                yml_object["kind"] = kind
+            try:
+                created = await create_from_yaml_single_item(
+                    k8s_client, yml_object, verbose, namespace, **kwargs)
+                k8s_objects.append(created)
+            except client.rest.ApiException as api_exception:
+                api_exceptions.append(api_exception)
+    else:
+        # This is a single object. Call the single item method
+        try:
+            created = await create_from_yaml_single_item(
+                k8s_client, data, verbose, namespace, **kwargs)
+            k8s_objects.append(created)
+        except client.rest.ApiException as api_exception:
+            api_exceptions.append(api_exception)
+
+    if api_exceptions:
+        raise FailToCreateError(api_exceptions)
+
+    return k8s_objects
 
 
 async def create_from_yaml_single_item(
@@ -126,6 +185,7 @@ async def create_from_yaml_single_item(
             body=yml_object, **kwargs)
     if verbose:
         print("{0} created. status='{1}'".format(kind, str(resp.status)))
+    return resp
 
 
 class FailToCreateError(Exception):

@@ -14,7 +14,7 @@
 
 from asynctest import CoroutineMock, TestCase
 
-from kubernetes_asyncio.utils import create_from_yaml
+from kubernetes_asyncio.utils import create_from_dict, create_from_yaml
 
 
 class CreateFromYamlTest(TestCase):
@@ -22,12 +22,38 @@ class CreateFromYamlTest(TestCase):
     async def test_create_from_yaml(self):
         api_client = CoroutineMock()
         api_client.call_api = CoroutineMock()
+        api_client.call_api.return_value = 'mock-value'
 
-        await create_from_yaml(api_client, 'examples/nginx-deployment.yaml')
+        created = await create_from_yaml(api_client, 'examples/nginx-deployment.yaml')
 
         # simple check for api call
         self.assertEqual(api_client.call_api.call_args[0][0],
                          '/apis/apps/v1/namespaces/{namespace}/deployments')
+
+        # returned values
+        self.assertEqual(created, [['mock-value']])
+
+    async def test_create_from_dict(self):
+        api_client = CoroutineMock()
+        api_client.call_api = CoroutineMock()
+        api_client.call_api.return_value = 'mock-value'
+
+        created = await create_from_dict(api_client, {
+            'apiVersion': 'apps/v1',
+            'kind': 'Deployment',
+            'metadata': {
+                'name': 'nginx-deployment'},
+            'spec': {
+                'replicas': 3,
+            }
+        })
+
+        # simple check for api call
+        self.assertEqual(api_client.call_api.call_args[0][0],
+                         '/apis/apps/v1/namespaces/{namespace}/deployments')
+
+        # returned values
+        self.assertEqual(created, ['mock-value'])
 
 
 if __name__ == '__main__':
