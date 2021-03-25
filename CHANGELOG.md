@@ -1,12 +1,19 @@
+# v12.1.0
+
+* feat: add function to create objects from dict ([#143](https://github.com/tomplus/kubernetes_asyncio/pull/143), [@tomplus](https://github.com/tomplus))
+* feat: Increase aiohttp read buffer to 2MiB #138 ([#138](https://github.com/tomplus/kubernetes_asyncio/pull/138), [@acobHenner](https://github.com/JacobHenner))
+* fix: Missing `create_from_yaml_single_item` import ([#133](https://github.com/tomplus/kubernetes_asyncio/pull/133), [@VideoSystemsTech](https://github.com/VideoSystemsTech))
+* fix: show warning if config not loaded #127 ([#127](https://github.com/tomplus/kubernetes_asyncio/pull/127),   [@tomplus](https://github.com/tomplus))
+
 # v12.0.1
 
-* fix: remove checking headers if not preloaded content is returned from rest api ([#123](https://github.com/tomplus/kubernetes_asyncio/pull/123), [@tomplus](https://github.com/tomplus)
+* fix: remove checking headers if not preloaded content is returned from rest api ([#123](https://github.com/tomplus/kubernetes_asyncio/pull/123), [@tomplus](https://github.com/tomplus))
 
 # v12.0.0
 
 * feat: regenerate client for Kubernetes API Version: 1.16.14 using OpenAPI 4.3.1
-* fix: Removed shlex args mangling ([#110](https://github.com/tomplus/kubernetes_asyncio/pull/110), [@WoLpH](https://github.com/WoLpH)
-* fix: remove redundant close() in Watch class ([#119](https://github.com/tomplus/kubernetes_asyncio/pull/119), [@tomplus](https://github.com/tomplus)
+* fix: Removed shlex args mangling ([#110](https://github.com/tomplus/kubernetes_asyncio/pull/110), [@WoLpH](https://github.com/WoLpH))
+* fix: remove redundant close() in Watch class ([#119](https://github.com/tomplus/kubernetes_asyncio/pull/119), [@tomplus](https://github.com/tomplus))
 
 **API Change:**
 
