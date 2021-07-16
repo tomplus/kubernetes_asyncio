@@ -162,8 +162,9 @@ class WatchTest(TestCase):
             }
         }
 
-        with self.assertRaisesRegex(kubernetes_asyncio.client.exceptions.ApiException,
-                '\(410\)\nReason: Gone: too old resource version: 1 \(8146471\)'):
+        with self.assertRaisesRegex(
+                kubernetes_asyncio.client.exceptions.ApiException,
+                r'\(410\)\nReason: Gone: too old resource version: 1 \(8146471\)'):
             Watch().unmarshal_event(json.dumps(k8s_err), None)
 
     def test_unmarshal_with_custom_object(self):
