@@ -1,3 +1,7 @@
+# v12.1.1
+
+* fix: Watch() raises exceptions for received errors #151 ([#151](https://github.com/tomplus/kubernetes_asyncio/pull/151), [@tomplus](https://github.com/tomplus))
+
 # v12.1.0
 
 * feat: add function to create objects from dict ([#143](https://github.com/tomplus/kubernetes_asyncio/pull/143), [@tomplus](https://github.com/tomplus))
