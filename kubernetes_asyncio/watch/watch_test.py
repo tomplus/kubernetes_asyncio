@@ -157,14 +157,14 @@ class WatchTest(TestCase):
                 'kind': 'Status', 'apiVersion': 'v1', 'metadata': {},
                 'status': 'Failure',
                 'message': 'too old resource version: 1 (8146471)',
-                'reason': 'Gone', 'code': 410
+                'reason': 'Gone',
+                'code': 410
             }
         }
 
-        ret = Watch().unmarshal_event(json.dumps(k8s_err), None)
-        self.assertEqual(ret['type'], k8s_err['type'])
-        self.assertEqual(ret['object'], k8s_err['object'])
-        self.assertEqual(ret['object'], k8s_err['object'])
+        with self.assertRaisesRegex(kubernetes_asyncio.client.exceptions.ApiException,
+                '\(410\)\nReason: Gone: too old resource version: 1 \(8146471\)'):
+            ret = Watch().unmarshal_event(json.dumps(k8s_err), None)
 
     def test_unmarshal_with_custom_object(self):
         w = Watch()
