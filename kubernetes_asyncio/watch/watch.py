@@ -93,7 +93,9 @@ class Watch(object):
         # not send a conventional ADDED/DELETED/... event but an error. Turn
         # this error into a Python exception to save the user the hassle.
         if js['type'].lower() == 'error':
-            return js
+            obj = js['raw_object']
+            reason = "%s: %s" % (obj['reason'], obj['message'])
+            raise client.exceptions.ApiException(status=obj['code'], reason=reason)
 
         # If possible, compile the JSON response into a Python native response
         # type, eg `V1Namespace` or `V1Pod`,`ExtensionsV1beta1Deployment`, ...
