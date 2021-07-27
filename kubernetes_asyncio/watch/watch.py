@@ -81,6 +81,11 @@ class Watch(object):
             return data
 
         if 'object' not in js or 'type' not in js:
+            # raise error with code if set
+            if 'code' in js:
+                reason = "{}: {}".format(js.get('reason'), js.get('message'))
+                raise client.exceptions.ApiException(status=js['code'], reason=reason)
+
             raise Exception(("Malformed JSON response, the 'object' and/or "
                              "'type' field is missing. JSON: {}").format(js))
         # Make a copy of the original object and save it under the
@@ -94,7 +99,7 @@ class Watch(object):
         # this error into a Python exception to save the user the hassle.
         if js['type'].lower() == 'error':
             obj = js['raw_object']
-            reason = "%s: %s" % (obj['reason'], obj['message'])
+            reason = "{}: {}".format(obj['reason'], obj['message'])
             raise client.exceptions.ApiException(status=obj['code'], reason=reason)
 
         # If possible, compile the JSON response into a Python native response
