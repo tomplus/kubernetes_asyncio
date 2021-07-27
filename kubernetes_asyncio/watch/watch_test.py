@@ -154,7 +154,9 @@ class WatchTest(TestCase):
         k8s_err = {
             'type': 'ERROR',
             'object': {
-                'kind': 'Status', 'apiVersion': 'v1', 'metadata': {},
+                'kind': 'Status',
+                'apiVersion': 'v1',
+                'metadata': {},
                 'status': 'Failure',
                 'message': 'too old resource version: 1 (8146471)',
                 'reason': 'Gone',
@@ -165,6 +167,28 @@ class WatchTest(TestCase):
         with self.assertRaisesRegex(
                 kubernetes_asyncio.client.exceptions.ApiException,
                 r'\(410\)\nReason: Gone: too old resource version: 1 \(8146471\)'):
+            Watch().unmarshal_event(json.dumps(k8s_err), None)
+
+    async def test_unmarshall_k8s_error_response_401_gke(self):
+        """Never parse messages of type ERROR.
+
+        This test uses an actually recorded error returned by GKE.
+
+        """
+        # An actual error response sent by K8s during testing.
+        k8s_err = {
+            'kind': 'Status',
+            'apiVersion': 'v1',
+            'metadata': {},
+            'status': 'Failure',
+            'message': 'Unauthorized',
+            'reason': 'Unauthorized',
+            'code': 401
+        }
+
+        with self.assertRaisesRegex(
+                kubernetes_asyncio.client.exceptions.ApiException,
+                r'\(401\)\nReason: Unauthorized: Unauthorized'):
             Watch().unmarshal_event(json.dumps(k8s_err), None)
 
     def test_unmarshal_with_custom_object(self):
