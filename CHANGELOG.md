@@ -1,11 +1,15 @@
+# v12.1.2
+
+* fix: Wfix: handle 401 returned by GKE ([#154](https://github.com/tomplus/kubernetes_asyncio/pull/154), [@tomplus](https://github.com/tomplus))
+
 # v12.1.1
 
-* fix: Watch() raises exceptions for received errors #151 ([#151](https://github.com/tomplus/kubernetes_asyncio/pull/151), [@tomplus](https://github.com/tomplus))
+* fix: Watch() raises exceptions for received errors ([#151](https://github.com/tomplus/kubernetes_asyncio/pull/151), [@tomplus](https://github.com/tomplus))
 
 # v12.1.0
 
 * feat: add function to create objects from dict ([#143](https://github.com/tomplus/kubernetes_asyncio/pull/143), [@tomplus](https://github.com/tomplus))
-* feat: Increase aiohttp read buffer to 2MiB #138 ([#138](https://github.com/tomplus/kubernetes_asyncio/pull/138), [@acobHenner](https://github.com/JacobHenner))
+* feat: Increase aiohttp read buffer to 2MiB ([#138](https://github.com/tomplus/kubernetes_asyncio/pull/138), [@acobHenner](https://github.com/JacobHenner))
 * fix: Missing `create_from_yaml_single_item` import ([#133](https://github.com/tomplus/kubernetes_asyncio/pull/133), [@VideoSystemsTech](https://github.com/VideoSystemsTech))
 * fix: show warning if config not loaded #127 ([#127](https://github.com/tomplus/kubernetes_asyncio/pull/127),   [@tomplus](https://github.com/tomplus))
 
