@@ -167,6 +167,10 @@ class Watch(object):
             if line == '':
                 raise StopAsyncIteration
 
+            # Special case for faster log streaming
+            if self.return_type == 'str':
+                return line
+
             return self.unmarshal_event(line, self.return_type)
 
     def stream(self, func, *args, **kwargs):
