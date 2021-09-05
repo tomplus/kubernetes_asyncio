@@ -4,6 +4,13 @@
 
 The library versioning scheme has been changed. Starting from this release, the library uses a version format `vY.Z.P` where `Y` and `Z` are respectively from the Kubernetes version `v1.Y.Z` and `P` would incremented due to changes on the library side itself. Ref: https://github.com/kubernetes-client/python/issues/1244
 
+**API Deprecations:**
+- The following deprecated APIs can no longer be served:
+- All resources under `apps/v1beta1` and `apps/v1beta2` - use `apps/v1` instead
+- `daemonsets`, `deployments`, `replicasets` resources under `extensions/v1beta1` - use `apps/v1` instead
+- `networkpolicies` resources under `extensions/v1beta1` - use `networking.k8s.io/v1` instead
+- `podsecuritypolicies` resources under `extensions/v1beta1` - use `policy/v1beta1` instead ([#85903](https://github.com/kubernetes/kubernetes/pull/85903), [@liggitt](https://github.com/liggitt)) [SIG API Machinery, Apps, Cluster Lifecycle, Instrumentation and Testing]
+
 **API Change:**
 - Fix bug in reflector that couldn't recover from "Too large resource version" errors ([#92537](https://github.com/kubernetes/kubernetes/pull/92537), [@wojtek-t](https://github.com/wojtek-t)) [SIG API Machinery]
 - Fixed: log timestamps now include trailing zeros to maintain a fixed width ([#91207](https://github.com/kubernetes/kubernetes/pull/91207), [@iamchuckss](https://github.com/iamchuckss)) [SIG Apps and Node]
