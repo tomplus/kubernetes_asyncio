@@ -72,14 +72,14 @@ like streaming, watching or reading configuration. Because of an early stage of 
 |  | [synchronous library kubernetes-client/python](https://github.com/kubernetes-client/python) | [this library](https://github.com/tomplus/kubernetes_asyncio/) |
 |--|--------------------------------------------------------------------|---------------------------------------------------------------|
 | authentication method | gcp-token, azure-token, user-token, oidc-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, oidc-token, user-password, in-cluster |
-| python | 2.7 3.4 3.5 3.6 3.7 3.8 | 3.6 3.7 3.8 |
 | streaming data via websocket from PODs | bidirectional | read-only is already implemented |
 
 ## Versions
 
-This library is versioned in the same way as the synchronous library. The first stable version is 7.0.0 and
-next major versions are comparable. This [compatibility table](https://github.com/kubernetes-client/python#compatibility)
-describes this library too.
+This library is versioned in the same way as the synchronous library.
+The scehma version has been changed with version v18.20.0. Now, first
+two numbers from version are Kubernetes version (v.1.18.20). The last
+number is for changes in the library not directly connected with K8s.
 
 ## Development
 Install the development packages:
