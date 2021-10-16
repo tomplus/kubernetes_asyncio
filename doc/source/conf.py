@@ -21,7 +21,6 @@ sys.path.insert(0, os.path.abspath('../..'))
 # -- General configuration ----------------------------------------------------
 
 source_parsers = {
-    '.md': CommonMarkParser,
 }
 
 source_suffix = ['.rst', '.md']
@@ -30,8 +29,10 @@ source_suffix = ['.rst', '.md']
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'myst_parser',
     # 'sphinx.ext.intersphinx',
 ]
+
 
 # autodoc generation is a bit aggressive and a nuisance when doing heavy
 # text edit cycles.
@@ -64,6 +65,8 @@ pygments_style = 'sphinx'
 # html_theme_path = ["."]
 # html_theme = '_theme'
 # html_static_path = ['static']
+
+html_theme = 'sphinx_rtd_theme'
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = '%sdoc' % project
