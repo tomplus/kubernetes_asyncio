@@ -1,7 +1,8 @@
-kubernetes
-==========
+kubernetes_asyncio
+==================
 
 .. toctree::
    :maxdepth: 4
 
-   kubernetes
+   kubernetes_asyncio
+   setup
