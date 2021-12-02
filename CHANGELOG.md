@@ -1,3 +1,7 @@
+# v18.20.1
+
+* feat: load kubeconfig from dict ([#169](https://github.com/tomplus/kubernetes_asyncio/pull/169), [@tomplus](https://github.com/tomplus))
+
 # v18.20.0
 
 **Important Information:**
