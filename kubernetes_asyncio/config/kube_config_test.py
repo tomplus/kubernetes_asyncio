@@ -26,9 +26,9 @@ from six import PY3
 from .config_exception import ConfigException
 from .kube_config import (
     ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode, FileOrData, KubeConfigLoader,
-    KubeConfigMerger, _cleanup_temp_files, _create_temp_file_with_content,
-    list_kube_config_contexts, load_kube_config, new_client_from_config,
-    refresh_token,
+    KubeConfigMerger, list_kube_config_contexts, load_kube_config,
+    load_kube_config_from_dict, new_client_from_config,
+    new_client_from_config_dict, refresh_token,
 )
 
 BEARER_TOKEN_FORMAT = "Bearer %s"
@@ -123,8 +123,8 @@ class TestFileOrData(BaseTestCase):
             return f.read()
 
     def test_file_given_file(self):
-        temp_filename = _create_temp_file_with_content(TEST_DATA)
-        obj = {TEST_FILE_KEY: temp_filename}
+        obj = {
+            TEST_FILE_KEY: self._create_temp_file(content=TEST_DATA)}
         t = FileOrData(obj=obj, file_key_name=TEST_FILE_KEY)
         self.assertEqual(TEST_DATA, self.get_file_content(t.as_file()))
 
@@ -191,12 +191,6 @@ class TestFileOrData(BaseTestCase):
         t = FileOrData(obj=obj, file_key_name=TEST_FILE_KEY,
                        file_base_path=tempfile_dir)
         self.assertEqual(TEST_DATA, self.get_file_content(t.as_file()))
-
-    def test_create_temp_file_with_content(self):
-        self.assertEqual(TEST_DATA,
-                         self.get_file_content(
-                             _create_temp_file_with_content(TEST_DATA)))
-        _cleanup_temp_files()
 
     def test_file_given_data_bytes(self):
         obj = {TEST_DATA_KEY: TEST_DATA_BASE64.encode()}
@@ -861,6 +855,36 @@ class TestKubeConfigLoader(BaseTestCase):
                                client_configuration=actual)
         self.assertEqual(expected, actual)
 
+    async def test_load_kube_config_from_dict(self):
+        expected = FakeConfig(host=TEST_HOST,
+                              token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64)
+        actual = FakeConfig()
+        await load_kube_config_from_dict(config_dict=self.TEST_KUBE_CONFIG,
+                                         context="simple_token",
+                                         client_configuration=actual)
+        self.assertEqual(expected, actual)
+
+    async def test_load_kube_config_from_dict_with_temp_file_path(self):
+        expected = FakeConfig(
+            host=TEST_SSL_HOST,
+            token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
+            cert_file=self._create_temp_file(TEST_CLIENT_CERT),
+            key_file=self._create_temp_file(TEST_CLIENT_KEY),
+            ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH)
+        )
+        actual = FakeConfig()
+
+        tmp_path = tempfile.mkdtemp('test_temp_file_path')
+
+        await load_kube_config_from_dict(config_dict=self.TEST_KUBE_CONFIG,
+                                         context="ssl",
+                                         client_configuration=actual,
+                                         temp_file_path=tmp_path)
+        self.assertEqual(expected, actual)
+
+        # 3 files has to be created within temp_file_path
+        self.assertEqual(len(os.listdir(tmp_path)), 3)
+
     def test_list_kube_config_contexts(self):
         config_file = self._create_temp_file(yaml.safe_dump(self.TEST_KUBE_CONFIG))
         contexts, active_context = list_kube_config_contexts(
@@ -878,6 +902,13 @@ class TestKubeConfigLoader(BaseTestCase):
         config_file = self._create_temp_file(yaml.safe_dump(self.TEST_KUBE_CONFIG))
         client = await new_client_from_config(
             config_file=config_file, context="simple_token")
+        self.assertEqual(TEST_HOST, client.configuration.host)
+        self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
+                         client.configuration.api_key['authorization'])
+
+    async def test_new_client_from_config_dict(self):
+        client = await new_client_from_config_dict(
+            config_dict=self.TEST_KUBE_CONFIG, context="simple_token")
         self.assertEqual(TEST_HOST, client.configuration.host)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
                          client.configuration.api_key['authorization'])
