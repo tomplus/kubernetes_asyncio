@@ -15,8 +15,6 @@ from kubernetes_asyncio.client.api.apiregistration_v1beta1_api import Apiregistr
 from kubernetes_asyncio.client.api.apis_api import ApisApi
 from kubernetes_asyncio.client.api.apps_api import AppsApi
 from kubernetes_asyncio.client.api.apps_v1_api import AppsV1Api
-from kubernetes_asyncio.client.api.auditregistration_api import AuditregistrationApi
-from kubernetes_asyncio.client.api.auditregistration_v1alpha1_api import AuditregistrationV1alpha1Api
 from kubernetes_asyncio.client.api.authentication_api import AuthenticationApi
 from kubernetes_asyncio.client.api.authentication_v1_api import AuthenticationV1Api
 from kubernetes_asyncio.client.api.authentication_v1beta1_api import AuthenticationV1beta1Api
@@ -32,6 +30,7 @@ from kubernetes_asyncio.client.api.batch_v1_api import BatchV1Api
 from kubernetes_asyncio.client.api.batch_v1beta1_api import BatchV1beta1Api
 from kubernetes_asyncio.client.api.batch_v2alpha1_api import BatchV2alpha1Api
 from kubernetes_asyncio.client.api.certificates_api import CertificatesApi
+from kubernetes_asyncio.client.api.certificates_v1_api import CertificatesV1Api
 from kubernetes_asyncio.client.api.certificates_v1beta1_api import CertificatesV1beta1Api
 from kubernetes_asyncio.client.api.coordination_api import CoordinationApi
 from kubernetes_asyncio.client.api.coordination_v1_api import CoordinationV1Api
@@ -42,6 +41,7 @@ from kubernetes_asyncio.client.api.custom_objects_api import CustomObjectsApi
 from kubernetes_asyncio.client.api.discovery_api import DiscoveryApi
 from kubernetes_asyncio.client.api.discovery_v1beta1_api import DiscoveryV1beta1Api
 from kubernetes_asyncio.client.api.events_api import EventsApi
+from kubernetes_asyncio.client.api.events_v1_api import EventsV1Api
 from kubernetes_asyncio.client.api.events_v1beta1_api import EventsV1beta1Api
 from kubernetes_asyncio.client.api.extensions_api import ExtensionsApi
 from kubernetes_asyncio.client.api.extensions_v1beta1_api import ExtensionsV1beta1Api
