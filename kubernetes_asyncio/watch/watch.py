@@ -104,7 +104,7 @@ class Watch(object):
 
         # If possible, compile the JSON response into a Python native response
         # type, eg `V1Namespace` or `V1Pod`,`ExtensionsV1beta1Deployment`, ...
-        if response_type is not None:
+        if response_type:
             js['object'] = self._api_client.deserialize(
                 response=SimpleNamespace(data=json.dumps(js['raw_object'])),
                 response_type=response_type
