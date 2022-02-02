@@ -1,3 +1,7 @@
+# v19.15.1
+
+* fix: watch returns `raw_object` if detection of returned objects fail ([#177](https://github.com/tomplus/kubernetes_asyncio/pull/177), [@tomplus](https://github.com/tomplus))
+
 # v19.15.0
 
 * feat: Kubernetes API Version: v1.19.15
@@ -207,7 +211,7 @@ To read the full CHANGELOG visit [here](https://raw.githubusercontent.com/kubern
 
 # v12.1.2
 
-* fix: Wfix: handle 401 returned by GKE ([#154](https://github.com/tomplus/kubernetes_asyncio/pull/154), [@tomplus](https://github.com/tomplus))
+* fix: handle 401 returned by GKE ([#154](https://github.com/tomplus/kubernetes_asyncio/pull/154), [@tomplus](https://github.com/tomplus))
 
 # v12.1.1
 
