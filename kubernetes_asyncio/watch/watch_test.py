@@ -135,10 +135,20 @@ class WatchTest(TestCase):
         self.assertTrue(isinstance(event['object'], float))
         self.assertEqual(1, event['raw_object'])
 
-    def test_unmarshal_with_no_return_type(self):
+    def test_unmarshal_without_return_type(self):
         w = Watch()
         event = w.unmarshal_event(
             '{"type": "ADDED", "object": ["test1"]}', None)
+        self.assertEqual("ADDED", event['type'])
+        self.assertEqual(["test1"], event['object'])
+        self.assertEqual(["test1"], event['raw_object'])
+
+    def test_unmarshal_with_empty_return_type(self):
+        # empty string as a return_type is a default value
+        # if watch can't detect object by function's name
+        w = Watch()
+        event = w.unmarshal_event(
+            '{"type": "ADDED", "object": ["test1"]}', '')
         self.assertEqual("ADDED", event['type'])
         self.assertEqual(["test1"], event['object'])
         self.assertEqual(["test1"], event['raw_object'])
