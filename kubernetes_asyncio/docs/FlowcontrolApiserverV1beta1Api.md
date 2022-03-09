@@ -1191,7 +1191,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_flow_schema**
-> V1beta1FlowSchema read_flow_schema(name, pretty=pretty, exact=exact, export=export)
+> V1beta1FlowSchema read_flow_schema(name, pretty=pretty)
 
 
 
@@ -1233,11 +1233,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     api_instance = kubernetes_asyncio.client.FlowcontrolApiserverV1beta1Api(api_client)
     name = 'name_example' # str | name of the FlowSchema
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_flow_schema(name, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_flow_schema(name, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FlowcontrolApiserverV1beta1Api->read_flow_schema: %s\n" % e)
@@ -1249,8 +1247,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the FlowSchema | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -1353,7 +1349,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_priority_level_configuration**
-> V1beta1PriorityLevelConfiguration read_priority_level_configuration(name, pretty=pretty, exact=exact, export=export)
+> V1beta1PriorityLevelConfiguration read_priority_level_configuration(name, pretty=pretty)
 
 
 
@@ -1395,11 +1391,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     api_instance = kubernetes_asyncio.client.FlowcontrolApiserverV1beta1Api(api_client)
     name = 'name_example' # str | name of the PriorityLevelConfiguration
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_priority_level_configuration(name, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_priority_level_configuration(name, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FlowcontrolApiserverV1beta1Api->read_priority_level_configuration: %s\n" % e)
@@ -1411,8 +1405,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PriorityLevelConfiguration | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 

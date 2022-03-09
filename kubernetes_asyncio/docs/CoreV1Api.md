@@ -137,6 +137,7 @@ Method | HTTP request | Description
 [**patch_namespaced_persistent_volume_claim**](CoreV1Api.md#patch_namespaced_persistent_volume_claim) | **PATCH** /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name} | 
 [**patch_namespaced_persistent_volume_claim_status**](CoreV1Api.md#patch_namespaced_persistent_volume_claim_status) | **PATCH** /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status | 
 [**patch_namespaced_pod**](CoreV1Api.md#patch_namespaced_pod) | **PATCH** /api/v1/namespaces/{namespace}/pods/{name} | 
+[**patch_namespaced_pod_ephemeralcontainers**](CoreV1Api.md#patch_namespaced_pod_ephemeralcontainers) | **PATCH** /api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers | 
 [**patch_namespaced_pod_status**](CoreV1Api.md#patch_namespaced_pod_status) | **PATCH** /api/v1/namespaces/{namespace}/pods/{name}/status | 
 [**patch_namespaced_pod_template**](CoreV1Api.md#patch_namespaced_pod_template) | **PATCH** /api/v1/namespaces/{namespace}/podtemplates/{name} | 
 [**patch_namespaced_replication_controller**](CoreV1Api.md#patch_namespaced_replication_controller) | **PATCH** /api/v1/namespaces/{namespace}/replicationcontrollers/{name} | 
@@ -162,6 +163,7 @@ Method | HTTP request | Description
 [**read_namespaced_persistent_volume_claim**](CoreV1Api.md#read_namespaced_persistent_volume_claim) | **GET** /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name} | 
 [**read_namespaced_persistent_volume_claim_status**](CoreV1Api.md#read_namespaced_persistent_volume_claim_status) | **GET** /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status | 
 [**read_namespaced_pod**](CoreV1Api.md#read_namespaced_pod) | **GET** /api/v1/namespaces/{namespace}/pods/{name} | 
+[**read_namespaced_pod_ephemeralcontainers**](CoreV1Api.md#read_namespaced_pod_ephemeralcontainers) | **GET** /api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers | 
 [**read_namespaced_pod_log**](CoreV1Api.md#read_namespaced_pod_log) | **GET** /api/v1/namespaces/{namespace}/pods/{name}/log | 
 [**read_namespaced_pod_status**](CoreV1Api.md#read_namespaced_pod_status) | **GET** /api/v1/namespaces/{namespace}/pods/{name}/status | 
 [**read_namespaced_pod_template**](CoreV1Api.md#read_namespaced_pod_template) | **GET** /api/v1/namespaces/{namespace}/podtemplates/{name} | 
@@ -188,6 +190,7 @@ Method | HTTP request | Description
 [**replace_namespaced_persistent_volume_claim**](CoreV1Api.md#replace_namespaced_persistent_volume_claim) | **PUT** /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name} | 
 [**replace_namespaced_persistent_volume_claim_status**](CoreV1Api.md#replace_namespaced_persistent_volume_claim_status) | **PUT** /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status | 
 [**replace_namespaced_pod**](CoreV1Api.md#replace_namespaced_pod) | **PUT** /api/v1/namespaces/{namespace}/pods/{name} | 
+[**replace_namespaced_pod_ephemeralcontainers**](CoreV1Api.md#replace_namespaced_pod_ephemeralcontainers) | **PUT** /api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers | 
 [**replace_namespaced_pod_status**](CoreV1Api.md#replace_namespaced_pod_status) | **PUT** /api/v1/namespaces/{namespace}/pods/{name}/status | 
 [**replace_namespaced_pod_template**](CoreV1Api.md#replace_namespaced_pod_template) | **PUT** /api/v1/namespaces/{namespace}/podtemplates/{name} | 
 [**replace_namespaced_replication_controller**](CoreV1Api.md#replace_namespaced_replication_controller) | **PUT** /api/v1/namespaces/{namespace}/replicationcontrollers/{name} | 
@@ -12059,6 +12062,95 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **patch_namespaced_pod_ephemeralcontainers**
+> V1EphemeralContainers patch_namespaced_pod_ephemeralcontainers(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
+
+
+
+partially update ephemeralcontainers of the specified Pod
+
+### Example
+
+* Api Key Authentication (BearerToken):
+```python
+from __future__ import print_function
+import time
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: BearerToken
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API kubernetes_asyncio.client
+with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kubernetes_asyncio.client.CoreV1Api(api_client)
+    name = 'name_example' # str | name of the EphemeralContainers
+namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
+body = None # object | 
+pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+force = True # bool | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
+
+    try:
+        api_response = api_instance.patch_namespaced_pod_ephemeralcontainers(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CoreV1Api->patch_namespaced_pod_ephemeralcontainers: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **str**| name of the EphemeralContainers | 
+ **namespace** | **str**| object name and auth scope, such as for teams and projects | 
+ **body** | **object**|  | 
+ **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | [optional] 
+ **force** | **bool**| Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | [optional] 
+
+### Return type
+
+[**V1EphemeralContainers**](V1EphemeralContainers.md)
+
+### Authorization
+
+[BearerToken](../README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **patch_namespaced_pod_status**
 > V1Pod patch_namespaced_pod_status(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager, force=force)
 
@@ -13466,7 +13558,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespace**
-> V1Namespace read_namespace(name, pretty=pretty, exact=exact, export=export)
+> V1Namespace read_namespace(name, pretty=pretty)
 
 
 
@@ -13508,11 +13600,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     api_instance = kubernetes_asyncio.client.CoreV1Api(api_client)
     name = 'name_example' # str | name of the Namespace
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespace(name, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespace(name, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespace: %s\n" % e)
@@ -13524,8 +13614,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Namespace | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -13628,7 +13716,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_config_map**
-> V1ConfigMap read_namespaced_config_map(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1ConfigMap read_namespaced_config_map(name, namespace, pretty=pretty)
 
 
 
@@ -13671,11 +13759,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the ConfigMap
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_config_map(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_config_map(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_config_map: %s\n" % e)
@@ -13688,8 +13774,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the ConfigMap | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -13713,7 +13797,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_endpoints**
-> V1Endpoints read_namespaced_endpoints(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1Endpoints read_namespaced_endpoints(name, namespace, pretty=pretty)
 
 
 
@@ -13756,11 +13840,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the Endpoints
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_endpoints(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_endpoints(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_endpoints: %s\n" % e)
@@ -13773,8 +13855,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the Endpoints | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -13798,7 +13878,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_event**
-> CoreV1Event read_namespaced_event(name, namespace, pretty=pretty, exact=exact, export=export)
+> CoreV1Event read_namespaced_event(name, namespace, pretty=pretty)
 
 
 
@@ -13841,11 +13921,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the Event
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_event(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_event(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_event: %s\n" % e)
@@ -13858,8 +13936,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the Event | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -13883,7 +13959,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_limit_range**
-> V1LimitRange read_namespaced_limit_range(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1LimitRange read_namespaced_limit_range(name, namespace, pretty=pretty)
 
 
 
@@ -13926,11 +14002,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the LimitRange
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_limit_range(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_limit_range(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_limit_range: %s\n" % e)
@@ -13943,8 +14017,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the LimitRange | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -13968,7 +14040,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_persistent_volume_claim**
-> V1PersistentVolumeClaim read_namespaced_persistent_volume_claim(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1PersistentVolumeClaim read_namespaced_persistent_volume_claim(name, namespace, pretty=pretty)
 
 
 
@@ -14011,11 +14083,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the PersistentVolumeClaim
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_persistent_volume_claim(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_persistent_volume_claim(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_persistent_volume_claim: %s\n" % e)
@@ -14028,8 +14098,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the PersistentVolumeClaim | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -14134,7 +14202,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_pod**
-> V1Pod read_namespaced_pod(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1Pod read_namespaced_pod(name, namespace, pretty=pretty)
 
 
 
@@ -14177,11 +14245,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the Pod
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_pod(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_pod(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_pod: %s\n" % e)
@@ -14194,12 +14260,91 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the Pod | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
 [**V1Pod**](V1Pod.md)
+
+### Authorization
+
+[BearerToken](../README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **read_namespaced_pod_ephemeralcontainers**
+> V1EphemeralContainers read_namespaced_pod_ephemeralcontainers(name, namespace, pretty=pretty)
+
+
+
+read ephemeralcontainers of the specified Pod
+
+### Example
+
+* Api Key Authentication (BearerToken):
+```python
+from __future__ import print_function
+import time
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: BearerToken
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API kubernetes_asyncio.client
+with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kubernetes_asyncio.client.CoreV1Api(api_client)
+    name = 'name_example' # str | name of the EphemeralContainers
+namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
+pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
+
+    try:
+        api_response = api_instance.read_namespaced_pod_ephemeralcontainers(name, namespace, pretty=pretty)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CoreV1Api->read_namespaced_pod_ephemeralcontainers: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **str**| name of the EphemeralContainers | 
+ **namespace** | **str**| object name and auth scope, such as for teams and projects | 
+ **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
+
+### Return type
+
+[**V1EphemeralContainers**](V1EphemeralContainers.md)
 
 ### Authorization
 
@@ -14397,7 +14542,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_pod_template**
-> V1PodTemplate read_namespaced_pod_template(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1PodTemplate read_namespaced_pod_template(name, namespace, pretty=pretty)
 
 
 
@@ -14440,11 +14585,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the PodTemplate
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_pod_template(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_pod_template(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_pod_template: %s\n" % e)
@@ -14457,8 +14600,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the PodTemplate | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -14482,7 +14623,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_replication_controller**
-> V1ReplicationController read_namespaced_replication_controller(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1ReplicationController read_namespaced_replication_controller(name, namespace, pretty=pretty)
 
 
 
@@ -14525,11 +14666,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the ReplicationController
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_replication_controller(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_replication_controller(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_replication_controller: %s\n" % e)
@@ -14542,8 +14681,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the ReplicationController | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -14729,7 +14866,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_resource_quota**
-> V1ResourceQuota read_namespaced_resource_quota(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1ResourceQuota read_namespaced_resource_quota(name, namespace, pretty=pretty)
 
 
 
@@ -14772,11 +14909,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the ResourceQuota
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_resource_quota(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_resource_quota(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_resource_quota: %s\n" % e)
@@ -14789,8 +14924,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the ResourceQuota | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -14895,7 +15028,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_secret**
-> V1Secret read_namespaced_secret(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1Secret read_namespaced_secret(name, namespace, pretty=pretty)
 
 
 
@@ -14938,11 +15071,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the Secret
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_secret(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_secret(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_secret: %s\n" % e)
@@ -14955,8 +15086,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the Secret | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -14980,7 +15109,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_service**
-> V1Service read_namespaced_service(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1Service read_namespaced_service(name, namespace, pretty=pretty)
 
 
 
@@ -15023,11 +15152,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the Service
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_service(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_service(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_service: %s\n" % e)
@@ -15040,8 +15167,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the Service | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -15065,7 +15190,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_service_account**
-> V1ServiceAccount read_namespaced_service_account(name, namespace, pretty=pretty, exact=exact, export=export)
+> V1ServiceAccount read_namespaced_service_account(name, namespace, pretty=pretty)
 
 
 
@@ -15108,11 +15233,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the ServiceAccount
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_service_account(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_service_account(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_namespaced_service_account: %s\n" % e)
@@ -15125,8 +15248,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the ServiceAccount | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -15231,7 +15352,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_node**
-> V1Node read_node(name, pretty=pretty, exact=exact, export=export)
+> V1Node read_node(name, pretty=pretty)
 
 
 
@@ -15273,11 +15394,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     api_instance = kubernetes_asyncio.client.CoreV1Api(api_client)
     name = 'name_example' # str | name of the Node
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_node(name, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_node(name, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_node: %s\n" % e)
@@ -15289,8 +15408,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the Node | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -15393,7 +15510,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_persistent_volume**
-> V1PersistentVolume read_persistent_volume(name, pretty=pretty, exact=exact, export=export)
+> V1PersistentVolume read_persistent_volume(name, pretty=pretty)
 
 
 
@@ -15435,11 +15552,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     api_instance = kubernetes_asyncio.client.CoreV1Api(api_client)
     name = 'name_example' # str | name of the PersistentVolume
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_persistent_volume(name, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_persistent_volume(name, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling CoreV1Api->read_persistent_volume: %s\n" % e)
@@ -15451,8 +15566,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the PersistentVolume | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -16409,6 +16522,94 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**V1Pod**](V1Pod.md)
+
+### Authorization
+
+[BearerToken](../README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**201** | Created |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **replace_namespaced_pod_ephemeralcontainers**
+> V1EphemeralContainers replace_namespaced_pod_ephemeralcontainers(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
+
+
+
+replace ephemeralcontainers of the specified Pod
+
+### Example
+
+* Api Key Authentication (BearerToken):
+```python
+from __future__ import print_function
+import time
+import kubernetes_asyncio.client
+from kubernetes_asyncio.client.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to http://localhost
+# See configuration.py for a list of all supported configuration parameters.
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost"
+)
+
+# The kubernetes_asyncio.client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: BearerToken
+configuration = kubernetes_asyncio.client.Configuration(
+    host = "http://localhost",
+    api_key = {
+        'authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API kubernetes_asyncio.client
+with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = kubernetes_asyncio.client.CoreV1Api(api_client)
+    name = 'name_example' # str | name of the EphemeralContainers
+namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
+body = kubernetes_asyncio.client.V1EphemeralContainers() # V1EphemeralContainers | 
+pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
+dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+
+    try:
+        api_response = api_instance.replace_namespaced_pod_ephemeralcontainers(name, namespace, body, pretty=pretty, dry_run=dry_run, field_manager=field_manager)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling CoreV1Api->replace_namespaced_pod_ephemeralcontainers: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **str**| name of the EphemeralContainers | 
+ **namespace** | **str**| object name and auth scope, such as for teams and projects | 
+ **body** | [**V1EphemeralContainers**](V1EphemeralContainers.md)|  | 
+ **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
+ **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
+ **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
+
+### Return type
+
+[**V1EphemeralContainers**](V1EphemeralContainers.md)
 
 ### Authorization
 
