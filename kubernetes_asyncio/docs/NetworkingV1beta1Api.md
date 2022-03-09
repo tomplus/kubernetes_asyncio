@@ -1209,7 +1209,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_ingress_class**
-> V1beta1IngressClass read_ingress_class(name, pretty=pretty, exact=exact, export=export)
+> V1beta1IngressClass read_ingress_class(name, pretty=pretty)
 
 
 
@@ -1251,11 +1251,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     api_instance = kubernetes_asyncio.client.NetworkingV1beta1Api(api_client)
     name = 'name_example' # str | name of the IngressClass
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_ingress_class(name, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_ingress_class(name, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling NetworkingV1beta1Api->read_ingress_class: %s\n" % e)
@@ -1267,8 +1265,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the IngressClass | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
@@ -1292,7 +1288,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **read_namespaced_ingress**
-> NetworkingV1beta1Ingress read_namespaced_ingress(name, namespace, pretty=pretty, exact=exact, export=export)
+> NetworkingV1beta1Ingress read_namespaced_ingress(name, namespace, pretty=pretty)
 
 
 
@@ -1335,11 +1331,9 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     name = 'name_example' # str | name of the Ingress
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
-exact = True # bool | Should the export be exact.  Exact export maintains cluster-specific fields like 'Namespace'. Deprecated. Planned for removal in 1.18. (optional)
-export = True # bool | Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. (optional)
 
     try:
-        api_response = api_instance.read_namespaced_ingress(name, namespace, pretty=pretty, exact=exact, export=export)
+        api_response = api_instance.read_namespaced_ingress(name, namespace, pretty=pretty)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling NetworkingV1beta1Api->read_namespaced_ingress: %s\n" % e)
@@ -1352,8 +1346,6 @@ Name | Type | Description  | Notes
  **name** | **str**| name of the Ingress | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
- **exact** | **bool**| Should the export be exact.  Exact export maintains cluster-specific fields like &#39;Namespace&#39;. Deprecated. Planned for removal in 1.18. | [optional] 
- **export** | **bool**| Should this value be exported.  Export strips fields that a user can not specify. Deprecated. Planned for removal in 1.18. | [optional] 
 
 ### Return type
 
