@@ -5538,7 +5538,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_namespaced_service_account_token**
-> V1TokenRequest create_namespaced_service_account_token(name, namespace, body, dry_run=dry_run, field_manager=field_manager, pretty=pretty)
+> AuthenticationV1TokenRequest create_namespaced_service_account_token(name, namespace, body, dry_run=dry_run, field_manager=field_manager, pretty=pretty)
 
 
 
@@ -5580,7 +5580,7 @@ with kubernetes_asyncio.client.ApiClient(configuration) as api_client:
     api_instance = kubernetes_asyncio.client.CoreV1Api(api_client)
     name = 'name_example' # str | name of the TokenRequest
 namespace = 'namespace_example' # str | object name and auth scope, such as for teams and projects
-body = kubernetes_asyncio.client.V1TokenRequest() # V1TokenRequest | 
+body = kubernetes_asyncio.client.AuthenticationV1TokenRequest() # AuthenticationV1TokenRequest | 
 dry_run = 'dry_run_example' # str | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
 field_manager = 'field_manager_example' # str | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
 pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
@@ -5598,14 +5598,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str**| name of the TokenRequest | 
  **namespace** | **str**| object name and auth scope, such as for teams and projects | 
- **body** | [**V1TokenRequest**](V1TokenRequest.md)|  | 
+ **body** | [**AuthenticationV1TokenRequest**](AuthenticationV1TokenRequest.md)|  | 
  **dry_run** | **str**| When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | [optional] 
  **field_manager** | **str**| fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | [optional] 
  **pretty** | **str**| If &#39;true&#39;, then the output is pretty printed. | [optional] 
 
 ### Return type
 
-[**V1TokenRequest**](V1TokenRequest.md)
+[**AuthenticationV1TokenRequest**](AuthenticationV1TokenRequest.md)
 
 ### Authorization
 
