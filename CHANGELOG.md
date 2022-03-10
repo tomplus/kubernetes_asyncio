@@ -1,3 +1,7 @@
+# v21.7.1
+
+* fix: add missing change in latest regnerated lib ([#184](https://github.com/tomplus/kubernetes_asyncio/pull/184), [@tomplus](https://github.com/tomplus))
+
 # v21.7.0
 
 ### API Change
