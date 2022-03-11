@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -51,7 +54,7 @@ class V1LeaseSpec(object):
     def __init__(self, acquire_time=None, holder_identity=None, lease_duration_seconds=None, lease_transitions=None, renew_time=None, local_vars_configuration=None):  # noqa: E501
         """V1LeaseSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._acquire_time = None
@@ -90,7 +93,7 @@ class V1LeaseSpec(object):
         acquireTime is a time when the current lease was acquired.  # noqa: E501
 
         :param acquire_time: The acquire_time of this V1LeaseSpec.  # noqa: E501
-        :type: datetime
+        :type acquire_time: datetime
         """
 
         self._acquire_time = acquire_time
@@ -113,7 +116,7 @@ class V1LeaseSpec(object):
         holderIdentity contains the identity of the holder of a current lease.  # noqa: E501
 
         :param holder_identity: The holder_identity of this V1LeaseSpec.  # noqa: E501
-        :type: str
+        :type holder_identity: str
         """
 
         self._holder_identity = holder_identity
@@ -136,7 +139,7 @@ class V1LeaseSpec(object):
         leaseDurationSeconds is a duration that candidates for a lease need to wait to force acquire it. This is measure against time of last observed RenewTime.  # noqa: E501
 
         :param lease_duration_seconds: The lease_duration_seconds of this V1LeaseSpec.  # noqa: E501
-        :type: int
+        :type lease_duration_seconds: int
         """
 
         self._lease_duration_seconds = lease_duration_seconds
@@ -159,7 +162,7 @@ class V1LeaseSpec(object):
         leaseTransitions is the number of transitions of a lease between holders.  # noqa: E501
 
         :param lease_transitions: The lease_transitions of this V1LeaseSpec.  # noqa: E501
-        :type: int
+        :type lease_transitions: int
         """
 
         self._lease_transitions = lease_transitions
@@ -182,32 +185,40 @@ class V1LeaseSpec(object):
         renewTime is a time when the current holder of a lease has last updated the lease.  # noqa: E501
 
         :param renew_time: The renew_time of this V1LeaseSpec.  # noqa: E501
-        :type: datetime
+        :type renew_time: datetime
         """
 
         self._renew_time = renew_time
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

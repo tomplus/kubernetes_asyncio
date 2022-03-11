@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -49,7 +52,7 @@ class V1PersistentVolumeClaimStatus(object):
     def __init__(self, access_modes=None, capacity=None, conditions=None, phase=None, local_vars_configuration=None):  # noqa: E501
         """V1PersistentVolumeClaimStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._access_modes = None
@@ -85,7 +88,7 @@ class V1PersistentVolumeClaimStatus(object):
         AccessModes contains the actual access modes the volume backing the PVC has. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1  # noqa: E501
 
         :param access_modes: The access_modes of this V1PersistentVolumeClaimStatus.  # noqa: E501
-        :type: list[str]
+        :type access_modes: list[str]
         """
 
         self._access_modes = access_modes
@@ -108,7 +111,7 @@ class V1PersistentVolumeClaimStatus(object):
         Represents the actual resources of the underlying volume.  # noqa: E501
 
         :param capacity: The capacity of this V1PersistentVolumeClaimStatus.  # noqa: E501
-        :type: dict(str, str)
+        :type capacity: dict(str, str)
         """
 
         self._capacity = capacity
@@ -131,7 +134,7 @@ class V1PersistentVolumeClaimStatus(object):
         Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.  # noqa: E501
 
         :param conditions: The conditions of this V1PersistentVolumeClaimStatus.  # noqa: E501
-        :type: list[V1PersistentVolumeClaimCondition]
+        :type conditions: list[V1PersistentVolumeClaimCondition]
         """
 
         self._conditions = conditions
@@ -154,32 +157,40 @@ class V1PersistentVolumeClaimStatus(object):
         Phase represents the current phase of PersistentVolumeClaim.  # noqa: E501
 
         :param phase: The phase of this V1PersistentVolumeClaimStatus.  # noqa: E501
-        :type: str
+        :type phase: str
         """
 
         self._phase = phase
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

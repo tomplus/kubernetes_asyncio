@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -59,7 +62,7 @@ class VersionInfo(object):
     def __init__(self, build_date=None, compiler=None, git_commit=None, git_tree_state=None, git_version=None, go_version=None, major=None, minor=None, platform=None, local_vars_configuration=None):  # noqa: E501
         """VersionInfo - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._build_date = None
@@ -99,7 +102,7 @@ class VersionInfo(object):
 
 
         :param build_date: The build_date of this VersionInfo.  # noqa: E501
-        :type: str
+        :type build_date: str
         """
         if self.local_vars_configuration.client_side_validation and build_date is None:  # noqa: E501
             raise ValueError("Invalid value for `build_date`, must not be `None`")  # noqa: E501
@@ -122,7 +125,7 @@ class VersionInfo(object):
 
 
         :param compiler: The compiler of this VersionInfo.  # noqa: E501
-        :type: str
+        :type compiler: str
         """
         if self.local_vars_configuration.client_side_validation and compiler is None:  # noqa: E501
             raise ValueError("Invalid value for `compiler`, must not be `None`")  # noqa: E501
@@ -145,7 +148,7 @@ class VersionInfo(object):
 
 
         :param git_commit: The git_commit of this VersionInfo.  # noqa: E501
-        :type: str
+        :type git_commit: str
         """
         if self.local_vars_configuration.client_side_validation and git_commit is None:  # noqa: E501
             raise ValueError("Invalid value for `git_commit`, must not be `None`")  # noqa: E501
@@ -168,7 +171,7 @@ class VersionInfo(object):
 
 
         :param git_tree_state: The git_tree_state of this VersionInfo.  # noqa: E501
-        :type: str
+        :type git_tree_state: str
         """
         if self.local_vars_configuration.client_side_validation and git_tree_state is None:  # noqa: E501
             raise ValueError("Invalid value for `git_tree_state`, must not be `None`")  # noqa: E501
@@ -191,7 +194,7 @@ class VersionInfo(object):
 
 
         :param git_version: The git_version of this VersionInfo.  # noqa: E501
-        :type: str
+        :type git_version: str
         """
         if self.local_vars_configuration.client_side_validation and git_version is None:  # noqa: E501
             raise ValueError("Invalid value for `git_version`, must not be `None`")  # noqa: E501
@@ -214,7 +217,7 @@ class VersionInfo(object):
 
 
         :param go_version: The go_version of this VersionInfo.  # noqa: E501
-        :type: str
+        :type go_version: str
         """
         if self.local_vars_configuration.client_side_validation and go_version is None:  # noqa: E501
             raise ValueError("Invalid value for `go_version`, must not be `None`")  # noqa: E501
@@ -237,7 +240,7 @@ class VersionInfo(object):
 
 
         :param major: The major of this VersionInfo.  # noqa: E501
-        :type: str
+        :type major: str
         """
         if self.local_vars_configuration.client_side_validation and major is None:  # noqa: E501
             raise ValueError("Invalid value for `major`, must not be `None`")  # noqa: E501
@@ -260,7 +263,7 @@ class VersionInfo(object):
 
 
         :param minor: The minor of this VersionInfo.  # noqa: E501
-        :type: str
+        :type minor: str
         """
         if self.local_vars_configuration.client_side_validation and minor is None:  # noqa: E501
             raise ValueError("Invalid value for `minor`, must not be `None`")  # noqa: E501
@@ -283,34 +286,42 @@ class VersionInfo(object):
 
 
         :param platform: The platform of this VersionInfo.  # noqa: E501
-        :type: str
+        :type platform: str
         """
         if self.local_vars_configuration.client_side_validation and platform is None:  # noqa: E501
             raise ValueError("Invalid value for `platform`, must not be `None`")  # noqa: E501
 
         self._platform = platform
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

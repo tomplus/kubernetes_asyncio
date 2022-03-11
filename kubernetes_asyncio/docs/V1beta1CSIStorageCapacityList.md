@@ -1,6 +1,7 @@
 # V1beta1CSIStorageCapacityList
 
 CSIStorageCapacityList is a collection of CSIStorageCapacity objects.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -1,6 +1,7 @@
 # V1beta1CustomResourceConversion
 
 CustomResourceConversion describes how to convert different versions of a CR.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

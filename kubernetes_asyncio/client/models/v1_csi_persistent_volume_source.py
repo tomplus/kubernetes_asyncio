@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -59,7 +62,7 @@ class V1CSIPersistentVolumeSource(object):
     def __init__(self, controller_expand_secret_ref=None, controller_publish_secret_ref=None, driver=None, fs_type=None, node_publish_secret_ref=None, node_stage_secret_ref=None, read_only=None, volume_attributes=None, volume_handle=None, local_vars_configuration=None):  # noqa: E501
         """V1CSIPersistentVolumeSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._controller_expand_secret_ref = None
@@ -106,7 +109,7 @@ class V1CSIPersistentVolumeSource(object):
 
 
         :param controller_expand_secret_ref: The controller_expand_secret_ref of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: V1SecretReference
+        :type controller_expand_secret_ref: V1SecretReference
         """
 
         self._controller_expand_secret_ref = controller_expand_secret_ref
@@ -127,7 +130,7 @@ class V1CSIPersistentVolumeSource(object):
 
 
         :param controller_publish_secret_ref: The controller_publish_secret_ref of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: V1SecretReference
+        :type controller_publish_secret_ref: V1SecretReference
         """
 
         self._controller_publish_secret_ref = controller_publish_secret_ref
@@ -150,7 +153,7 @@ class V1CSIPersistentVolumeSource(object):
         Driver is the name of the driver to use for this volume. Required.  # noqa: E501
 
         :param driver: The driver of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: str
+        :type driver: str
         """
         if self.local_vars_configuration.client_side_validation and driver is None:  # noqa: E501
             raise ValueError("Invalid value for `driver`, must not be `None`")  # noqa: E501
@@ -175,7 +178,7 @@ class V1CSIPersistentVolumeSource(object):
         Filesystem type to mount. Must be a filesystem type supported by the host operating system. Ex. \"ext4\", \"xfs\", \"ntfs\".  # noqa: E501
 
         :param fs_type: The fs_type of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: str
+        :type fs_type: str
         """
 
         self._fs_type = fs_type
@@ -196,7 +199,7 @@ class V1CSIPersistentVolumeSource(object):
 
 
         :param node_publish_secret_ref: The node_publish_secret_ref of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: V1SecretReference
+        :type node_publish_secret_ref: V1SecretReference
         """
 
         self._node_publish_secret_ref = node_publish_secret_ref
@@ -217,7 +220,7 @@ class V1CSIPersistentVolumeSource(object):
 
 
         :param node_stage_secret_ref: The node_stage_secret_ref of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: V1SecretReference
+        :type node_stage_secret_ref: V1SecretReference
         """
 
         self._node_stage_secret_ref = node_stage_secret_ref
@@ -240,7 +243,7 @@ class V1CSIPersistentVolumeSource(object):
         Optional: The value to pass to ControllerPublishVolumeRequest. Defaults to false (read/write).  # noqa: E501
 
         :param read_only: The read_only of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: bool
+        :type read_only: bool
         """
 
         self._read_only = read_only
@@ -263,7 +266,7 @@ class V1CSIPersistentVolumeSource(object):
         Attributes of the volume to publish.  # noqa: E501
 
         :param volume_attributes: The volume_attributes of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: dict(str, str)
+        :type volume_attributes: dict(str, str)
         """
 
         self._volume_attributes = volume_attributes
@@ -286,34 +289,42 @@ class V1CSIPersistentVolumeSource(object):
         VolumeHandle is the unique volume name returned by the CSI volume plugin’s CreateVolume to refer to the volume on all subsequent calls. Required.  # noqa: E501
 
         :param volume_handle: The volume_handle of this V1CSIPersistentVolumeSource.  # noqa: E501
-        :type: str
+        :type volume_handle: str
         """
         if self.local_vars_configuration.client_side_validation and volume_handle is None:  # noqa: E501
             raise ValueError("Invalid value for `volume_handle`, must not be `None`")  # noqa: E501
 
         self._volume_handle = volume_handle
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

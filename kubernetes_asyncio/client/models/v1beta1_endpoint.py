@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -55,7 +58,7 @@ class V1beta1Endpoint(object):
     def __init__(self, addresses=None, conditions=None, hints=None, hostname=None, node_name=None, target_ref=None, topology=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1Endpoint - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._addresses = None
@@ -99,7 +102,7 @@ class V1beta1Endpoint(object):
         addresses of this endpoint. The contents of this field are interpreted according to the corresponding EndpointSlice addressType field. Consumers must handle different types of addresses in the context of their own capabilities. This must contain at least one address but no more than 100.  # noqa: E501
 
         :param addresses: The addresses of this V1beta1Endpoint.  # noqa: E501
-        :type: list[str]
+        :type addresses: list[str]
         """
         if self.local_vars_configuration.client_side_validation and addresses is None:  # noqa: E501
             raise ValueError("Invalid value for `addresses`, must not be `None`")  # noqa: E501
@@ -122,7 +125,7 @@ class V1beta1Endpoint(object):
 
 
         :param conditions: The conditions of this V1beta1Endpoint.  # noqa: E501
-        :type: V1beta1EndpointConditions
+        :type conditions: V1beta1EndpointConditions
         """
 
         self._conditions = conditions
@@ -143,7 +146,7 @@ class V1beta1Endpoint(object):
 
 
         :param hints: The hints of this V1beta1Endpoint.  # noqa: E501
-        :type: V1beta1EndpointHints
+        :type hints: V1beta1EndpointHints
         """
 
         self._hints = hints
@@ -166,7 +169,7 @@ class V1beta1Endpoint(object):
         hostname of this endpoint. This field may be used by consumers of endpoints to distinguish endpoints from each other (e.g. in DNS names). Multiple endpoints which use the same hostname should be considered fungible (e.g. multiple A values in DNS). Must be lowercase and pass DNS Label (RFC 1123) validation.  # noqa: E501
 
         :param hostname: The hostname of this V1beta1Endpoint.  # noqa: E501
-        :type: str
+        :type hostname: str
         """
 
         self._hostname = hostname
@@ -189,7 +192,7 @@ class V1beta1Endpoint(object):
         nodeName represents the name of the Node hosting this endpoint. This can be used to determine endpoints local to a Node. This field can be enabled with the EndpointSliceNodeName feature gate.  # noqa: E501
 
         :param node_name: The node_name of this V1beta1Endpoint.  # noqa: E501
-        :type: str
+        :type node_name: str
         """
 
         self._node_name = node_name
@@ -210,7 +213,7 @@ class V1beta1Endpoint(object):
 
 
         :param target_ref: The target_ref of this V1beta1Endpoint.  # noqa: E501
-        :type: V1ObjectReference
+        :type target_ref: V1ObjectReference
         """
 
         self._target_ref = target_ref
@@ -233,32 +236,40 @@ class V1beta1Endpoint(object):
         topology contains arbitrary topology information associated with the endpoint. These key/value pairs must conform with the label format. https://kubernetes.io/docs/concepts/overview/working-with-objects/labels Topology may include a maximum of 16 key/value pairs. This includes, but is not limited to the following well known keys: * kubernetes.io/hostname: the value indicates the hostname of the node   where the endpoint is located. This should match the corresponding   node label. * topology.kubernetes.io/zone: the value indicates the zone where the   endpoint is located. This should match the corresponding node label. * topology.kubernetes.io/region: the value indicates the region where the   endpoint is located. This should match the corresponding node label. This field is deprecated and will be removed in future api versions.  # noqa: E501
 
         :param topology: The topology of this V1beta1Endpoint.  # noqa: E501
-        :type: dict(str, str)
+        :type topology: dict(str, str)
         """
 
         self._topology = topology
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

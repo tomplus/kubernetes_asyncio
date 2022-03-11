@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -42,7 +45,7 @@ class V1PodStatus(object):
         'nominated_node_name': 'str',
         'phase': 'str',
         'pod_ip': 'str',
-        'pod_i_ps': 'list[V1PodIP]',
+        'pod_ips': 'list[V1PodIP]',
         'qos_class': 'str',
         'reason': 'str',
         'start_time': 'datetime'
@@ -58,16 +61,16 @@ class V1PodStatus(object):
         'nominated_node_name': 'nominatedNodeName',
         'phase': 'phase',
         'pod_ip': 'podIP',
-        'pod_i_ps': 'podIPs',
+        'pod_ips': 'podIPs',
         'qos_class': 'qosClass',
         'reason': 'reason',
         'start_time': 'startTime'
     }
 
-    def __init__(self, conditions=None, container_statuses=None, ephemeral_container_statuses=None, host_ip=None, init_container_statuses=None, message=None, nominated_node_name=None, phase=None, pod_ip=None, pod_i_ps=None, qos_class=None, reason=None, start_time=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, conditions=None, container_statuses=None, ephemeral_container_statuses=None, host_ip=None, init_container_statuses=None, message=None, nominated_node_name=None, phase=None, pod_ip=None, pod_ips=None, qos_class=None, reason=None, start_time=None, local_vars_configuration=None):  # noqa: E501
         """V1PodStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._conditions = None
@@ -79,7 +82,7 @@ class V1PodStatus(object):
         self._nominated_node_name = None
         self._phase = None
         self._pod_ip = None
-        self._pod_i_ps = None
+        self._pod_ips = None
         self._qos_class = None
         self._reason = None
         self._start_time = None
@@ -103,8 +106,8 @@ class V1PodStatus(object):
             self.phase = phase
         if pod_ip is not None:
             self.pod_ip = pod_ip
-        if pod_i_ps is not None:
-            self.pod_i_ps = pod_i_ps
+        if pod_ips is not None:
+            self.pod_ips = pod_ips
         if qos_class is not None:
             self.qos_class = qos_class
         if reason is not None:
@@ -130,7 +133,7 @@ class V1PodStatus(object):
         Current service state of pod. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-conditions  # noqa: E501
 
         :param conditions: The conditions of this V1PodStatus.  # noqa: E501
-        :type: list[V1PodCondition]
+        :type conditions: list[V1PodCondition]
         """
 
         self._conditions = conditions
@@ -153,7 +156,7 @@ class V1PodStatus(object):
         The list has one entry per container in the manifest. Each entry is currently the output of `docker inspect`. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status  # noqa: E501
 
         :param container_statuses: The container_statuses of this V1PodStatus.  # noqa: E501
-        :type: list[V1ContainerStatus]
+        :type container_statuses: list[V1ContainerStatus]
         """
 
         self._container_statuses = container_statuses
@@ -176,7 +179,7 @@ class V1PodStatus(object):
         Status for any ephemeral containers that have run in this pod. This field is alpha-level and is only populated by servers that enable the EphemeralContainers feature.  # noqa: E501
 
         :param ephemeral_container_statuses: The ephemeral_container_statuses of this V1PodStatus.  # noqa: E501
-        :type: list[V1ContainerStatus]
+        :type ephemeral_container_statuses: list[V1ContainerStatus]
         """
 
         self._ephemeral_container_statuses = ephemeral_container_statuses
@@ -199,7 +202,7 @@ class V1PodStatus(object):
         IP address of the host to which the pod is assigned. Empty if not yet scheduled.  # noqa: E501
 
         :param host_ip: The host_ip of this V1PodStatus.  # noqa: E501
-        :type: str
+        :type host_ip: str
         """
 
         self._host_ip = host_ip
@@ -222,7 +225,7 @@ class V1PodStatus(object):
         The list has one entry per init container in the manifest. The most recent successful init container will have ready = true, the most recently started container will have startTime set. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-and-container-status  # noqa: E501
 
         :param init_container_statuses: The init_container_statuses of this V1PodStatus.  # noqa: E501
-        :type: list[V1ContainerStatus]
+        :type init_container_statuses: list[V1ContainerStatus]
         """
 
         self._init_container_statuses = init_container_statuses
@@ -245,7 +248,7 @@ class V1PodStatus(object):
         A human readable message indicating details about why the pod is in this condition.  # noqa: E501
 
         :param message: The message of this V1PodStatus.  # noqa: E501
-        :type: str
+        :type message: str
         """
 
         self._message = message
@@ -268,7 +271,7 @@ class V1PodStatus(object):
         nominatedNodeName is set only when this pod preempts other pods on the node, but it cannot be scheduled right away as preemption victims receive their graceful termination periods. This field does not guarantee that the pod will be scheduled on this node. Scheduler may decide to place the pod elsewhere if other nodes become available sooner. Scheduler may also decide to give the resources on this node to a higher priority pod that is created after preemption. As a result, this field may be different than PodSpec.nodeName when the pod is scheduled.  # noqa: E501
 
         :param nominated_node_name: The nominated_node_name of this V1PodStatus.  # noqa: E501
-        :type: str
+        :type nominated_node_name: str
         """
 
         self._nominated_node_name = nominated_node_name
@@ -291,7 +294,7 @@ class V1PodStatus(object):
         The phase of a Pod is a simple, high-level summary of where the Pod is in its lifecycle. The conditions array, the reason and message fields, and the individual container status arrays contain more detail about the pod's status. There are five possible phase values:  Pending: The pod has been accepted by the Kubernetes system, but one or more of the container images has not been created. This includes time before being scheduled as well as time spent downloading images over the network, which could take a while. Running: The pod has been bound to a node, and all of the containers have been created. At least one container is still running, or is in the process of starting or restarting. Succeeded: All containers in the pod have terminated in success, and will not be restarted. Failed: All containers in the pod have terminated, and at least one container has terminated in failure. The container either exited with non-zero status or was terminated by the system. Unknown: For some reason the state of the pod could not be obtained, typically due to an error in communicating with the host of the pod.  More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#pod-phase  # noqa: E501
 
         :param phase: The phase of this V1PodStatus.  # noqa: E501
-        :type: str
+        :type phase: str
         """
 
         self._phase = phase
@@ -314,33 +317,33 @@ class V1PodStatus(object):
         IP address allocated to the pod. Routable at least within the cluster. Empty if not yet allocated.  # noqa: E501
 
         :param pod_ip: The pod_ip of this V1PodStatus.  # noqa: E501
-        :type: str
+        :type pod_ip: str
         """
 
         self._pod_ip = pod_ip
 
     @property
-    def pod_i_ps(self):
-        """Gets the pod_i_ps of this V1PodStatus.  # noqa: E501
+    def pod_ips(self):
+        """Gets the pod_ips of this V1PodStatus.  # noqa: E501
 
         podIPs holds the IP addresses allocated to the pod. If this field is specified, the 0th entry must match the podIP field. Pods may be allocated at most 1 value for each of IPv4 and IPv6. This list is empty if no IPs have been allocated yet.  # noqa: E501
 
-        :return: The pod_i_ps of this V1PodStatus.  # noqa: E501
+        :return: The pod_ips of this V1PodStatus.  # noqa: E501
         :rtype: list[V1PodIP]
         """
-        return self._pod_i_ps
+        return self._pod_ips
 
-    @pod_i_ps.setter
-    def pod_i_ps(self, pod_i_ps):
-        """Sets the pod_i_ps of this V1PodStatus.
+    @pod_ips.setter
+    def pod_ips(self, pod_ips):
+        """Sets the pod_ips of this V1PodStatus.
 
         podIPs holds the IP addresses allocated to the pod. If this field is specified, the 0th entry must match the podIP field. Pods may be allocated at most 1 value for each of IPv4 and IPv6. This list is empty if no IPs have been allocated yet.  # noqa: E501
 
-        :param pod_i_ps: The pod_i_ps of this V1PodStatus.  # noqa: E501
-        :type: list[V1PodIP]
+        :param pod_ips: The pod_ips of this V1PodStatus.  # noqa: E501
+        :type pod_ips: list[V1PodIP]
         """
 
-        self._pod_i_ps = pod_i_ps
+        self._pod_ips = pod_ips
 
     @property
     def qos_class(self):
@@ -360,7 +363,7 @@ class V1PodStatus(object):
         The Quality of Service (QOS) classification assigned to the pod based on resource requirements See PodQOSClass type for available QOS classes More info: https://git.k8s.io/community/contributors/design-proposals/node/resource-qos.md  # noqa: E501
 
         :param qos_class: The qos_class of this V1PodStatus.  # noqa: E501
-        :type: str
+        :type qos_class: str
         """
 
         self._qos_class = qos_class
@@ -383,7 +386,7 @@ class V1PodStatus(object):
         A brief CamelCase message indicating details about why the pod is in this state. e.g. 'Evicted'  # noqa: E501
 
         :param reason: The reason of this V1PodStatus.  # noqa: E501
-        :type: str
+        :type reason: str
         """
 
         self._reason = reason
@@ -406,32 +409,40 @@ class V1PodStatus(object):
         RFC 3339 date and time at which the object was acknowledged by the Kubelet. This is before the Kubelet pulled the container image(s) for the pod.  # noqa: E501
 
         :param start_time: The start_time of this V1PodStatus.  # noqa: E501
-        :type: datetime
+        :type start_time: datetime
         """
 
         self._start_time = start_time
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

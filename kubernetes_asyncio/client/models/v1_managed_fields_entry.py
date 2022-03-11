@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -53,7 +56,7 @@ class V1ManagedFieldsEntry(object):
     def __init__(self, api_version=None, fields_type=None, fields_v1=None, manager=None, operation=None, time=None, local_vars_configuration=None):  # noqa: E501
         """V1ManagedFieldsEntry - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._api_version = None
@@ -95,7 +98,7 @@ class V1ManagedFieldsEntry(object):
         APIVersion defines the version of this resource that this field set applies to. The format is \"group/version\" just like the top-level APIVersion field. It is necessary to track the version of a field set because it cannot be automatically converted.  # noqa: E501
 
         :param api_version: The api_version of this V1ManagedFieldsEntry.  # noqa: E501
-        :type: str
+        :type api_version: str
         """
 
         self._api_version = api_version
@@ -118,7 +121,7 @@ class V1ManagedFieldsEntry(object):
         FieldsType is the discriminator for the different fields format and version. There is currently only one possible value: \"FieldsV1\"  # noqa: E501
 
         :param fields_type: The fields_type of this V1ManagedFieldsEntry.  # noqa: E501
-        :type: str
+        :type fields_type: str
         """
 
         self._fields_type = fields_type
@@ -141,7 +144,7 @@ class V1ManagedFieldsEntry(object):
         FieldsV1 holds the first JSON version format as described in the \"FieldsV1\" type.  # noqa: E501
 
         :param fields_v1: The fields_v1 of this V1ManagedFieldsEntry.  # noqa: E501
-        :type: object
+        :type fields_v1: object
         """
 
         self._fields_v1 = fields_v1
@@ -164,7 +167,7 @@ class V1ManagedFieldsEntry(object):
         Manager is an identifier of the workflow managing these fields.  # noqa: E501
 
         :param manager: The manager of this V1ManagedFieldsEntry.  # noqa: E501
-        :type: str
+        :type manager: str
         """
 
         self._manager = manager
@@ -187,7 +190,7 @@ class V1ManagedFieldsEntry(object):
         Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.  # noqa: E501
 
         :param operation: The operation of this V1ManagedFieldsEntry.  # noqa: E501
-        :type: str
+        :type operation: str
         """
 
         self._operation = operation
@@ -210,32 +213,40 @@ class V1ManagedFieldsEntry(object):
         Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'  # noqa: E501
 
         :param time: The time of this V1ManagedFieldsEntry.  # noqa: E501
-        :type: datetime
+        :type time: datetime
         """
 
         self._time = time
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

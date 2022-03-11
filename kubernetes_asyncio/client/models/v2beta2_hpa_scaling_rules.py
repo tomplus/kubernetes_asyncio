@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -47,7 +50,7 @@ class V2beta2HPAScalingRules(object):
     def __init__(self, policies=None, select_policy=None, stabilization_window_seconds=None, local_vars_configuration=None):  # noqa: E501
         """V2beta2HPAScalingRules - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._policies = None
@@ -80,7 +83,7 @@ class V2beta2HPAScalingRules(object):
         policies is a list of potential scaling polices which can be used during scaling. At least one policy must be specified, otherwise the HPAScalingRules will be discarded as invalid  # noqa: E501
 
         :param policies: The policies of this V2beta2HPAScalingRules.  # noqa: E501
-        :type: list[V2beta2HPAScalingPolicy]
+        :type policies: list[V2beta2HPAScalingPolicy]
         """
 
         self._policies = policies
@@ -103,7 +106,7 @@ class V2beta2HPAScalingRules(object):
         selectPolicy is used to specify which policy should be used. If not set, the default value MaxPolicySelect is used.  # noqa: E501
 
         :param select_policy: The select_policy of this V2beta2HPAScalingRules.  # noqa: E501
-        :type: str
+        :type select_policy: str
         """
 
         self._select_policy = select_policy
@@ -126,32 +129,40 @@ class V2beta2HPAScalingRules(object):
         StabilizationWindowSeconds is the number of seconds for which past recommendations should be considered while scaling up or scaling down. StabilizationWindowSeconds must be greater than or equal to zero and less than or equal to 3600 (one hour). If not set, use the default values: - For scale up: 0 (i.e. no stabilization is done). - For scale down: 300 (i.e. the stabilization window is 300 seconds long).  # noqa: E501
 
         :param stabilization_window_seconds: The stabilization_window_seconds of this V2beta2HPAScalingRules.  # noqa: E501
-        :type: int
+        :type stabilization_window_seconds: int
         """
 
         self._stabilization_window_seconds = stabilization_window_seconds
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

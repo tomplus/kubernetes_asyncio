@@ -1,6 +1,7 @@
 # V1beta1QueuingConfiguration
 
 QueuingConfiguration holds the configuration parameters for queuing
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

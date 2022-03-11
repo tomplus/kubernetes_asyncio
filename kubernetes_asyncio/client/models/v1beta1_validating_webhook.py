@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -61,7 +64,7 @@ class V1beta1ValidatingWebhook(object):
     def __init__(self, admission_review_versions=None, client_config=None, failure_policy=None, match_policy=None, name=None, namespace_selector=None, object_selector=None, rules=None, side_effects=None, timeout_seconds=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1ValidatingWebhook - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._admission_review_versions = None
@@ -113,7 +116,7 @@ class V1beta1ValidatingWebhook(object):
         AdmissionReviewVersions is an ordered list of preferred `AdmissionReview` versions the Webhook expects. API server will try to use first version in the list which it supports. If none of the versions specified in this list supported by API server, validation will fail for this object. If a persisted webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail and be subject to the failure policy. Default to `['v1beta1']`.  # noqa: E501
 
         :param admission_review_versions: The admission_review_versions of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: list[str]
+        :type admission_review_versions: list[str]
         """
 
         self._admission_review_versions = admission_review_versions
@@ -134,7 +137,7 @@ class V1beta1ValidatingWebhook(object):
 
 
         :param client_config: The client_config of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: AdmissionregistrationV1beta1WebhookClientConfig
+        :type client_config: AdmissionregistrationV1beta1WebhookClientConfig
         """
         if self.local_vars_configuration.client_side_validation and client_config is None:  # noqa: E501
             raise ValueError("Invalid value for `client_config`, must not be `None`")  # noqa: E501
@@ -159,7 +162,7 @@ class V1beta1ValidatingWebhook(object):
         FailurePolicy defines how unrecognized errors from the admission endpoint are handled - allowed values are Ignore or Fail. Defaults to Ignore.  # noqa: E501
 
         :param failure_policy: The failure_policy of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: str
+        :type failure_policy: str
         """
 
         self._failure_policy = failure_policy
@@ -182,7 +185,7 @@ class V1beta1ValidatingWebhook(object):
         matchPolicy defines how the \"rules\" list is used to match incoming requests. Allowed values are \"Exact\" or \"Equivalent\".  - Exact: match a request only if it exactly matches a specified rule. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, but \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would not be sent to the webhook.  - Equivalent: match a request if modifies a resource listed in rules, even via another API group or version. For example, if deployments can be modified via apps/v1, apps/v1beta1, and extensions/v1beta1, and \"rules\" only included `apiGroups:[\"apps\"], apiVersions:[\"v1\"], resources: [\"deployments\"]`, a request to apps/v1beta1 or extensions/v1beta1 would be converted to apps/v1 and sent to the webhook.  Defaults to \"Exact\"  # noqa: E501
 
         :param match_policy: The match_policy of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: str
+        :type match_policy: str
         """
 
         self._match_policy = match_policy
@@ -205,7 +208,7 @@ class V1beta1ValidatingWebhook(object):
         The name of the admission webhook. Name should be fully qualified, e.g., imagepolicy.kubernetes.io, where \"imagepolicy\" is the name of the webhook, and kubernetes.io is the name of the organization. Required.  # noqa: E501
 
         :param name: The name of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: str
+        :type name: str
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
@@ -228,7 +231,7 @@ class V1beta1ValidatingWebhook(object):
 
 
         :param namespace_selector: The namespace_selector of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: V1LabelSelector
+        :type namespace_selector: V1LabelSelector
         """
 
         self._namespace_selector = namespace_selector
@@ -249,7 +252,7 @@ class V1beta1ValidatingWebhook(object):
 
 
         :param object_selector: The object_selector of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: V1LabelSelector
+        :type object_selector: V1LabelSelector
         """
 
         self._object_selector = object_selector
@@ -272,7 +275,7 @@ class V1beta1ValidatingWebhook(object):
         Rules describes what operations on what resources/subresources the webhook cares about. The webhook cares about an operation if it matches _any_ Rule. However, in order to prevent ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks from putting the cluster in a state which cannot be recovered from without completely disabling the plugin, ValidatingAdmissionWebhooks and MutatingAdmissionWebhooks are never called on admission requests for ValidatingWebhookConfiguration and MutatingWebhookConfiguration objects.  # noqa: E501
 
         :param rules: The rules of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: list[V1beta1RuleWithOperations]
+        :type rules: list[V1beta1RuleWithOperations]
         """
 
         self._rules = rules
@@ -295,7 +298,7 @@ class V1beta1ValidatingWebhook(object):
         SideEffects states whether this webhook has side effects. Acceptable values are: Unknown, None, Some, NoneOnDryRun Webhooks with side effects MUST implement a reconciliation system, since a request may be rejected by a future step in the admission chain and the side effects therefore need to be undone. Requests with the dryRun attribute will be auto-rejected if they match a webhook with sideEffects == Unknown or Some. Defaults to Unknown.  # noqa: E501
 
         :param side_effects: The side_effects of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: str
+        :type side_effects: str
         """
 
         self._side_effects = side_effects
@@ -318,32 +321,40 @@ class V1beta1ValidatingWebhook(object):
         TimeoutSeconds specifies the timeout for this webhook. After the timeout passes, the webhook call will be ignored or the API call will fail based on the failure policy. The timeout value must be between 1 and 30 seconds. Default to 30 seconds.  # noqa: E501
 
         :param timeout_seconds: The timeout_seconds of this V1beta1ValidatingWebhook.  # noqa: E501
-        :type: int
+        :type timeout_seconds: int
         """
 
         self._timeout_seconds = timeout_seconds
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

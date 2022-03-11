@@ -1,6 +1,7 @@
 # NetworkingV1beta1IngressSpec
 
 IngressSpec describes the Ingress the user wishes to exist.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

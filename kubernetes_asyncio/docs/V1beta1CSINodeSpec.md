@@ -1,6 +1,7 @@
 # V1beta1CSINodeSpec
 
 CSINodeSpec holds information about the specification of all CSI drivers installed on a node
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

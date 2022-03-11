@@ -20,7 +20,7 @@ from types import SimpleNamespace
 
 from kubernetes_asyncio import client
 
-PYDOC_RETURN_LABEL = ":return:"
+PYDOC_RETURN_LABEL = ":rtype:"
 PYDOC_FOLLOW_PARAM = ":param bool follow:"
 
 # Removing this suffix from return type name should give us event's object
@@ -33,6 +33,7 @@ TYPE_LIST_SUFFIX = "List"
 
 def _find_return_type(func):
     for line in pydoc.getdoc(func).splitlines():
+        print(line)
         if line.startswith(PYDOC_RETURN_LABEL):
             return line[len(PYDOC_RETURN_LABEL):].strip()
     return ""

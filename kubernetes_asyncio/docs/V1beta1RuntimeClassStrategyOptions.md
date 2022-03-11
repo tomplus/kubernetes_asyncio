@@ -1,6 +1,7 @@
 # V1beta1RuntimeClassStrategyOptions
 
 RuntimeClassStrategyOptions define the strategy that will dictate the allowable RuntimeClasses for a pod.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

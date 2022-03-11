@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -47,7 +50,7 @@ class V1PersistentVolumeStatus(object):
     def __init__(self, message=None, phase=None, reason=None, local_vars_configuration=None):  # noqa: E501
         """V1PersistentVolumeStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._message = None
@@ -80,7 +83,7 @@ class V1PersistentVolumeStatus(object):
         A human-readable message indicating details about why the volume is in this state.  # noqa: E501
 
         :param message: The message of this V1PersistentVolumeStatus.  # noqa: E501
-        :type: str
+        :type message: str
         """
 
         self._message = message
@@ -103,7 +106,7 @@ class V1PersistentVolumeStatus(object):
         Phase indicates if a volume is available, bound to a claim, or released by a claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#phase  # noqa: E501
 
         :param phase: The phase of this V1PersistentVolumeStatus.  # noqa: E501
-        :type: str
+        :type phase: str
         """
 
         self._phase = phase
@@ -126,32 +129,40 @@ class V1PersistentVolumeStatus(object):
         Reason is a brief CamelCase string that describes any failure and is meant for machine parsing and tidy display in the CLI.  # noqa: E501
 
         :param reason: The reason of this V1PersistentVolumeStatus.  # noqa: E501
-        :type: str
+        :type reason: str
         """
 
         self._reason = reason
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

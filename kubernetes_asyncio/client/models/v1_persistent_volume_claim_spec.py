@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -55,7 +58,7 @@ class V1PersistentVolumeClaimSpec(object):
     def __init__(self, access_modes=None, data_source=None, resources=None, selector=None, storage_class_name=None, volume_mode=None, volume_name=None, local_vars_configuration=None):  # noqa: E501
         """V1PersistentVolumeClaimSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._access_modes = None
@@ -100,7 +103,7 @@ class V1PersistentVolumeClaimSpec(object):
         AccessModes contains the desired access modes the volume should have. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes-1  # noqa: E501
 
         :param access_modes: The access_modes of this V1PersistentVolumeClaimSpec.  # noqa: E501
-        :type: list[str]
+        :type access_modes: list[str]
         """
 
         self._access_modes = access_modes
@@ -121,7 +124,7 @@ class V1PersistentVolumeClaimSpec(object):
 
 
         :param data_source: The data_source of this V1PersistentVolumeClaimSpec.  # noqa: E501
-        :type: V1TypedLocalObjectReference
+        :type data_source: V1TypedLocalObjectReference
         """
 
         self._data_source = data_source
@@ -142,7 +145,7 @@ class V1PersistentVolumeClaimSpec(object):
 
 
         :param resources: The resources of this V1PersistentVolumeClaimSpec.  # noqa: E501
-        :type: V1ResourceRequirements
+        :type resources: V1ResourceRequirements
         """
 
         self._resources = resources
@@ -163,7 +166,7 @@ class V1PersistentVolumeClaimSpec(object):
 
 
         :param selector: The selector of this V1PersistentVolumeClaimSpec.  # noqa: E501
-        :type: V1LabelSelector
+        :type selector: V1LabelSelector
         """
 
         self._selector = selector
@@ -186,7 +189,7 @@ class V1PersistentVolumeClaimSpec(object):
         Name of the StorageClass required by the claim. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#class-1  # noqa: E501
 
         :param storage_class_name: The storage_class_name of this V1PersistentVolumeClaimSpec.  # noqa: E501
-        :type: str
+        :type storage_class_name: str
         """
 
         self._storage_class_name = storage_class_name
@@ -209,7 +212,7 @@ class V1PersistentVolumeClaimSpec(object):
         volumeMode defines what type of volume is required by the claim. Value of Filesystem is implied when not included in claim spec.  # noqa: E501
 
         :param volume_mode: The volume_mode of this V1PersistentVolumeClaimSpec.  # noqa: E501
-        :type: str
+        :type volume_mode: str
         """
 
         self._volume_mode = volume_mode
@@ -232,32 +235,40 @@ class V1PersistentVolumeClaimSpec(object):
         VolumeName is the binding reference to the PersistentVolume backing this claim.  # noqa: E501
 
         :param volume_name: The volume_name of this V1PersistentVolumeClaimSpec.  # noqa: E501
-        :type: str
+        :type volume_name: str
         """
 
         self._volume_name = volume_name
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

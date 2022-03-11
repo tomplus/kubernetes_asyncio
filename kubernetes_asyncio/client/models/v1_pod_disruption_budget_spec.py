@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -47,7 +50,7 @@ class V1PodDisruptionBudgetSpec(object):
     def __init__(self, max_unavailable=None, min_available=None, selector=None, local_vars_configuration=None):  # noqa: E501
         """V1PodDisruptionBudgetSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._max_unavailable = None
@@ -80,7 +83,7 @@ class V1PodDisruptionBudgetSpec(object):
         An eviction is allowed if at most \"maxUnavailable\" pods selected by \"selector\" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with \"minAvailable\".  # noqa: E501
 
         :param max_unavailable: The max_unavailable of this V1PodDisruptionBudgetSpec.  # noqa: E501
-        :type: object
+        :type max_unavailable: object
         """
 
         self._max_unavailable = max_unavailable
@@ -103,7 +106,7 @@ class V1PodDisruptionBudgetSpec(object):
         An eviction is allowed if at least \"minAvailable\" pods selected by \"selector\" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying \"100%\".  # noqa: E501
 
         :param min_available: The min_available of this V1PodDisruptionBudgetSpec.  # noqa: E501
-        :type: object
+        :type min_available: object
         """
 
         self._min_available = min_available
@@ -124,32 +127,40 @@ class V1PodDisruptionBudgetSpec(object):
 
 
         :param selector: The selector of this V1PodDisruptionBudgetSpec.  # noqa: E501
-        :type: V1LabelSelector
+        :type selector: V1LabelSelector
         """
 
         self._selector = selector
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -61,7 +64,7 @@ class V1PodSecurityContext(object):
     def __init__(self, fs_group=None, fs_group_change_policy=None, run_as_group=None, run_as_non_root=None, run_as_user=None, se_linux_options=None, seccomp_profile=None, supplemental_groups=None, sysctls=None, windows_options=None, local_vars_configuration=None):  # noqa: E501
         """V1PodSecurityContext - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._fs_group = None
@@ -115,7 +118,7 @@ class V1PodSecurityContext(object):
         A special supplemental group that applies to all containers in a pod. Some volume types allow the Kubelet to change the ownership of that volume to be owned by the pod:  1. The owning GID will be the FSGroup 2. The setgid bit is set (new files created in the volume will be owned by FSGroup) 3. The permission bits are OR'd with rw-rw----  If unset, the Kubelet will not modify the ownership and permissions of any volume.  # noqa: E501
 
         :param fs_group: The fs_group of this V1PodSecurityContext.  # noqa: E501
-        :type: int
+        :type fs_group: int
         """
 
         self._fs_group = fs_group
@@ -138,7 +141,7 @@ class V1PodSecurityContext(object):
         fsGroupChangePolicy defines behavior of changing ownership and permission of the volume before being exposed inside Pod. This field will only apply to volume types which support fsGroup based ownership(and permissions). It will have no effect on ephemeral volume types such as: secret, configmaps and emptydir. Valid values are \"OnRootMismatch\" and \"Always\". If not specified, \"Always\" is used.  # noqa: E501
 
         :param fs_group_change_policy: The fs_group_change_policy of this V1PodSecurityContext.  # noqa: E501
-        :type: str
+        :type fs_group_change_policy: str
         """
 
         self._fs_group_change_policy = fs_group_change_policy
@@ -161,7 +164,7 @@ class V1PodSecurityContext(object):
         The GID to run the entrypoint of the container process. Uses runtime default if unset. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.  # noqa: E501
 
         :param run_as_group: The run_as_group of this V1PodSecurityContext.  # noqa: E501
-        :type: int
+        :type run_as_group: int
         """
 
         self._run_as_group = run_as_group
@@ -184,7 +187,7 @@ class V1PodSecurityContext(object):
         Indicates that the container must run as a non-root user. If true, the Kubelet will validate the image at runtime to ensure that it does not run as UID 0 (root) and fail to start the container if it does. If unset or false, no such validation will be performed. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence.  # noqa: E501
 
         :param run_as_non_root: The run_as_non_root of this V1PodSecurityContext.  # noqa: E501
-        :type: bool
+        :type run_as_non_root: bool
         """
 
         self._run_as_non_root = run_as_non_root
@@ -207,7 +210,7 @@ class V1PodSecurityContext(object):
         The UID to run the entrypoint of the container process. Defaults to user specified in image metadata if unspecified. May also be set in SecurityContext.  If set in both SecurityContext and PodSecurityContext, the value specified in SecurityContext takes precedence for that container.  # noqa: E501
 
         :param run_as_user: The run_as_user of this V1PodSecurityContext.  # noqa: E501
-        :type: int
+        :type run_as_user: int
         """
 
         self._run_as_user = run_as_user
@@ -228,7 +231,7 @@ class V1PodSecurityContext(object):
 
 
         :param se_linux_options: The se_linux_options of this V1PodSecurityContext.  # noqa: E501
-        :type: V1SELinuxOptions
+        :type se_linux_options: V1SELinuxOptions
         """
 
         self._se_linux_options = se_linux_options
@@ -249,7 +252,7 @@ class V1PodSecurityContext(object):
 
 
         :param seccomp_profile: The seccomp_profile of this V1PodSecurityContext.  # noqa: E501
-        :type: V1SeccompProfile
+        :type seccomp_profile: V1SeccompProfile
         """
 
         self._seccomp_profile = seccomp_profile
@@ -272,7 +275,7 @@ class V1PodSecurityContext(object):
         A list of groups applied to the first process run in each container, in addition to the container's primary GID.  If unspecified, no groups will be added to any container.  # noqa: E501
 
         :param supplemental_groups: The supplemental_groups of this V1PodSecurityContext.  # noqa: E501
-        :type: list[int]
+        :type supplemental_groups: list[int]
         """
 
         self._supplemental_groups = supplemental_groups
@@ -295,7 +298,7 @@ class V1PodSecurityContext(object):
         Sysctls hold a list of namespaced sysctls used for the pod. Pods with unsupported sysctls (by the container runtime) might fail to launch.  # noqa: E501
 
         :param sysctls: The sysctls of this V1PodSecurityContext.  # noqa: E501
-        :type: list[V1Sysctl]
+        :type sysctls: list[V1Sysctl]
         """
 
         self._sysctls = sysctls
@@ -316,32 +319,40 @@ class V1PodSecurityContext(object):
 
 
         :param windows_options: The windows_options of this V1PodSecurityContext.  # noqa: E501
-        :type: V1WindowsSecurityContextOptions
+        :type windows_options: V1WindowsSecurityContextOptions
         """
 
         self._windows_options = windows_options
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

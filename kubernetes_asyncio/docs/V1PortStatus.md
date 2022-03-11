@@ -1,5 +1,6 @@
 # V1PortStatus
 
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

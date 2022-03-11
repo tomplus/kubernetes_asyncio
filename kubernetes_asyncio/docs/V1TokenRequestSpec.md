@@ -1,6 +1,7 @@
 # V1TokenRequestSpec
 
 TokenRequestSpec contains kubernetes_asyncio.client provided parameters of a token request.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

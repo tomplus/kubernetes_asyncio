@@ -97,6 +97,7 @@ from kubernetes_asyncio.client.exceptions import OpenApiException
 from kubernetes_asyncio.client.exceptions import ApiTypeError
 from kubernetes_asyncio.client.exceptions import ApiValueError
 from kubernetes_asyncio.client.exceptions import ApiKeyError
+from kubernetes_asyncio.client.exceptions import ApiAttributeError
 from kubernetes_asyncio.client.exceptions import ApiException
 # import models into sdk package
 from kubernetes_asyncio.client.models.admissionregistration_v1_service_reference import AdmissionregistrationV1ServiceReference
