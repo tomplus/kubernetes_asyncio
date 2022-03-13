@@ -15,10 +15,10 @@
 import sys
 
 # Kubernetes branch to get the OpenAPI spec from.
-KUBERNETES_BRANCH = "v1.21.7"
+KUBERNETES_BRANCH = "v1.22.6"
 
 # client version for packaging and releasing.
-CLIENT_VERSION = "21.7.0-snapshot"
+CLIENT_VERSION = "22.6.0-snapshot"
 
 # Name of the release package
 PACKAGE_NAME = "kubernetes_asyncio"
