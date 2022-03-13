@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -101,7 +104,7 @@ class V1PersistentVolumeSpec(object):
     def __init__(self, access_modes=None, aws_elastic_block_store=None, azure_disk=None, azure_file=None, capacity=None, cephfs=None, cinder=None, claim_ref=None, csi=None, fc=None, flex_volume=None, flocker=None, gce_persistent_disk=None, glusterfs=None, host_path=None, iscsi=None, local=None, mount_options=None, nfs=None, node_affinity=None, persistent_volume_reclaim_policy=None, photon_persistent_disk=None, portworx_volume=None, quobyte=None, rbd=None, scale_io=None, storage_class_name=None, storageos=None, volume_mode=None, vsphere_volume=None, local_vars_configuration=None):  # noqa: E501
         """V1PersistentVolumeSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._access_modes = None
@@ -215,7 +218,7 @@ class V1PersistentVolumeSpec(object):
         AccessModes contains all ways the volume can be mounted. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#access-modes  # noqa: E501
 
         :param access_modes: The access_modes of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: list[str]
+        :type access_modes: list[str]
         """
 
         self._access_modes = access_modes
@@ -236,7 +239,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param aws_elastic_block_store: The aws_elastic_block_store of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1AWSElasticBlockStoreVolumeSource
+        :type aws_elastic_block_store: V1AWSElasticBlockStoreVolumeSource
         """
 
         self._aws_elastic_block_store = aws_elastic_block_store
@@ -257,7 +260,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param azure_disk: The azure_disk of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1AzureDiskVolumeSource
+        :type azure_disk: V1AzureDiskVolumeSource
         """
 
         self._azure_disk = azure_disk
@@ -278,7 +281,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param azure_file: The azure_file of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1AzureFilePersistentVolumeSource
+        :type azure_file: V1AzureFilePersistentVolumeSource
         """
 
         self._azure_file = azure_file
@@ -301,7 +304,7 @@ class V1PersistentVolumeSpec(object):
         A description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity  # noqa: E501
 
         :param capacity: The capacity of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: dict(str, str)
+        :type capacity: dict(str, str)
         """
 
         self._capacity = capacity
@@ -322,7 +325,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param cephfs: The cephfs of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1CephFSPersistentVolumeSource
+        :type cephfs: V1CephFSPersistentVolumeSource
         """
 
         self._cephfs = cephfs
@@ -343,7 +346,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param cinder: The cinder of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1CinderPersistentVolumeSource
+        :type cinder: V1CinderPersistentVolumeSource
         """
 
         self._cinder = cinder
@@ -364,7 +367,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param claim_ref: The claim_ref of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1ObjectReference
+        :type claim_ref: V1ObjectReference
         """
 
         self._claim_ref = claim_ref
@@ -385,7 +388,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param csi: The csi of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1CSIPersistentVolumeSource
+        :type csi: V1CSIPersistentVolumeSource
         """
 
         self._csi = csi
@@ -406,7 +409,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param fc: The fc of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1FCVolumeSource
+        :type fc: V1FCVolumeSource
         """
 
         self._fc = fc
@@ -427,7 +430,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param flex_volume: The flex_volume of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1FlexPersistentVolumeSource
+        :type flex_volume: V1FlexPersistentVolumeSource
         """
 
         self._flex_volume = flex_volume
@@ -448,7 +451,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param flocker: The flocker of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1FlockerVolumeSource
+        :type flocker: V1FlockerVolumeSource
         """
 
         self._flocker = flocker
@@ -469,7 +472,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param gce_persistent_disk: The gce_persistent_disk of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1GCEPersistentDiskVolumeSource
+        :type gce_persistent_disk: V1GCEPersistentDiskVolumeSource
         """
 
         self._gce_persistent_disk = gce_persistent_disk
@@ -490,7 +493,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param glusterfs: The glusterfs of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1GlusterfsPersistentVolumeSource
+        :type glusterfs: V1GlusterfsPersistentVolumeSource
         """
 
         self._glusterfs = glusterfs
@@ -511,7 +514,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param host_path: The host_path of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1HostPathVolumeSource
+        :type host_path: V1HostPathVolumeSource
         """
 
         self._host_path = host_path
@@ -532,7 +535,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param iscsi: The iscsi of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1ISCSIPersistentVolumeSource
+        :type iscsi: V1ISCSIPersistentVolumeSource
         """
 
         self._iscsi = iscsi
@@ -553,7 +556,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param local: The local of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1LocalVolumeSource
+        :type local: V1LocalVolumeSource
         """
 
         self._local = local
@@ -576,7 +579,7 @@ class V1PersistentVolumeSpec(object):
         A list of mount options, e.g. [\"ro\", \"soft\"]. Not validated - mount will simply fail if one is invalid. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#mount-options  # noqa: E501
 
         :param mount_options: The mount_options of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: list[str]
+        :type mount_options: list[str]
         """
 
         self._mount_options = mount_options
@@ -597,7 +600,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param nfs: The nfs of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1NFSVolumeSource
+        :type nfs: V1NFSVolumeSource
         """
 
         self._nfs = nfs
@@ -618,7 +621,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param node_affinity: The node_affinity of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1VolumeNodeAffinity
+        :type node_affinity: V1VolumeNodeAffinity
         """
 
         self._node_affinity = node_affinity
@@ -641,7 +644,7 @@ class V1PersistentVolumeSpec(object):
         What happens to a persistent volume when released from its claim. Valid options are Retain (default for manually created PersistentVolumes), Delete (default for dynamically provisioned PersistentVolumes), and Recycle (deprecated). Recycle must be supported by the volume plugin underlying this PersistentVolume. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#reclaiming  # noqa: E501
 
         :param persistent_volume_reclaim_policy: The persistent_volume_reclaim_policy of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: str
+        :type persistent_volume_reclaim_policy: str
         """
 
         self._persistent_volume_reclaim_policy = persistent_volume_reclaim_policy
@@ -662,7 +665,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param photon_persistent_disk: The photon_persistent_disk of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1PhotonPersistentDiskVolumeSource
+        :type photon_persistent_disk: V1PhotonPersistentDiskVolumeSource
         """
 
         self._photon_persistent_disk = photon_persistent_disk
@@ -683,7 +686,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param portworx_volume: The portworx_volume of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1PortworxVolumeSource
+        :type portworx_volume: V1PortworxVolumeSource
         """
 
         self._portworx_volume = portworx_volume
@@ -704,7 +707,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param quobyte: The quobyte of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1QuobyteVolumeSource
+        :type quobyte: V1QuobyteVolumeSource
         """
 
         self._quobyte = quobyte
@@ -725,7 +728,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param rbd: The rbd of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1RBDPersistentVolumeSource
+        :type rbd: V1RBDPersistentVolumeSource
         """
 
         self._rbd = rbd
@@ -746,7 +749,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param scale_io: The scale_io of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1ScaleIOPersistentVolumeSource
+        :type scale_io: V1ScaleIOPersistentVolumeSource
         """
 
         self._scale_io = scale_io
@@ -769,7 +772,7 @@ class V1PersistentVolumeSpec(object):
         Name of StorageClass to which this persistent volume belongs. Empty value means that this volume does not belong to any StorageClass.  # noqa: E501
 
         :param storage_class_name: The storage_class_name of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: str
+        :type storage_class_name: str
         """
 
         self._storage_class_name = storage_class_name
@@ -790,7 +793,7 @@ class V1PersistentVolumeSpec(object):
 
 
         :param storageos: The storageos of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1StorageOSPersistentVolumeSource
+        :type storageos: V1StorageOSPersistentVolumeSource
         """
 
         self._storageos = storageos
@@ -813,7 +816,7 @@ class V1PersistentVolumeSpec(object):
         volumeMode defines if a volume is intended to be used with a formatted filesystem or to remain in raw block state. Value of Filesystem is implied when not included in spec.  # noqa: E501
 
         :param volume_mode: The volume_mode of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: str
+        :type volume_mode: str
         """
 
         self._volume_mode = volume_mode
@@ -834,32 +837,40 @@ class V1PersistentVolumeSpec(object):
 
 
         :param vsphere_volume: The vsphere_volume of this V1PersistentVolumeSpec.  # noqa: E501
-        :type: V1VsphereVirtualDiskVolumeSource
+        :type vsphere_volume: V1VsphereVirtualDiskVolumeSource
         """
 
         self._vsphere_volume = vsphere_volume
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -47,7 +50,7 @@ class V1beta1CustomResourceDefinitionStatus(object):
     def __init__(self, accepted_names=None, conditions=None, stored_versions=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1CustomResourceDefinitionStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._accepted_names = None
@@ -78,7 +81,7 @@ class V1beta1CustomResourceDefinitionStatus(object):
 
 
         :param accepted_names: The accepted_names of this V1beta1CustomResourceDefinitionStatus.  # noqa: E501
-        :type: V1beta1CustomResourceDefinitionNames
+        :type accepted_names: V1beta1CustomResourceDefinitionNames
         """
 
         self._accepted_names = accepted_names
@@ -101,7 +104,7 @@ class V1beta1CustomResourceDefinitionStatus(object):
         conditions indicate state for particular aspects of a CustomResourceDefinition  # noqa: E501
 
         :param conditions: The conditions of this V1beta1CustomResourceDefinitionStatus.  # noqa: E501
-        :type: list[V1beta1CustomResourceDefinitionCondition]
+        :type conditions: list[V1beta1CustomResourceDefinitionCondition]
         """
 
         self._conditions = conditions
@@ -124,32 +127,40 @@ class V1beta1CustomResourceDefinitionStatus(object):
         storedVersions lists all versions of CustomResources that were ever persisted. Tracking these versions allows a migration path for stored versions in etcd. The field is mutable so a migration controller can finish a migration to another version (ensuring no old objects are left in storage), and then remove the rest of the versions from this list. Versions may not be removed from `spec.versions` while they exist in this list.  # noqa: E501
 
         :param stored_versions: The stored_versions of this V1beta1CustomResourceDefinitionStatus.  # noqa: E501
-        :type: list[str]
+        :type stored_versions: list[str]
         """
 
         self._stored_versions = stored_versions
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

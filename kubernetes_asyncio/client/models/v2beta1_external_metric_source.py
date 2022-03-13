@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -49,7 +52,7 @@ class V2beta1ExternalMetricSource(object):
     def __init__(self, metric_name=None, metric_selector=None, target_average_value=None, target_value=None, local_vars_configuration=None):  # noqa: E501
         """V2beta1ExternalMetricSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._metric_name = None
@@ -84,7 +87,7 @@ class V2beta1ExternalMetricSource(object):
         metricName is the name of the metric in question.  # noqa: E501
 
         :param metric_name: The metric_name of this V2beta1ExternalMetricSource.  # noqa: E501
-        :type: str
+        :type metric_name: str
         """
         if self.local_vars_configuration.client_side_validation and metric_name is None:  # noqa: E501
             raise ValueError("Invalid value for `metric_name`, must not be `None`")  # noqa: E501
@@ -107,7 +110,7 @@ class V2beta1ExternalMetricSource(object):
 
 
         :param metric_selector: The metric_selector of this V2beta1ExternalMetricSource.  # noqa: E501
-        :type: V1LabelSelector
+        :type metric_selector: V1LabelSelector
         """
 
         self._metric_selector = metric_selector
@@ -130,7 +133,7 @@ class V2beta1ExternalMetricSource(object):
         targetAverageValue is the target per-pod value of global metric (as a quantity). Mutually exclusive with TargetValue.  # noqa: E501
 
         :param target_average_value: The target_average_value of this V2beta1ExternalMetricSource.  # noqa: E501
-        :type: str
+        :type target_average_value: str
         """
 
         self._target_average_value = target_average_value
@@ -153,32 +156,40 @@ class V2beta1ExternalMetricSource(object):
         targetValue is the target value of the metric (as a quantity). Mutually exclusive with TargetAverageValue.  # noqa: E501
 
         :param target_value: The target_value of this V2beta1ExternalMetricSource.  # noqa: E501
-        :type: str
+        :type target_value: str
         """
 
         self._target_value = target_value
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

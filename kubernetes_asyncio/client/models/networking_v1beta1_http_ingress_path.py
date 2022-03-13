@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -47,7 +50,7 @@ class NetworkingV1beta1HTTPIngressPath(object):
     def __init__(self, backend=None, path=None, path_type=None, local_vars_configuration=None):  # noqa: E501
         """NetworkingV1beta1HTTPIngressPath - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._backend = None
@@ -77,7 +80,7 @@ class NetworkingV1beta1HTTPIngressPath(object):
 
 
         :param backend: The backend of this NetworkingV1beta1HTTPIngressPath.  # noqa: E501
-        :type: NetworkingV1beta1IngressBackend
+        :type backend: NetworkingV1beta1IngressBackend
         """
         if self.local_vars_configuration.client_side_validation and backend is None:  # noqa: E501
             raise ValueError("Invalid value for `backend`, must not be `None`")  # noqa: E501
@@ -102,7 +105,7 @@ class NetworkingV1beta1HTTPIngressPath(object):
         Path is matched against the path of an incoming request. Currently it can contain characters disallowed from the conventional \"path\" part of a URL as defined by RFC 3986. Paths must begin with a '/'. When unspecified, all paths from incoming requests are matched.  # noqa: E501
 
         :param path: The path of this NetworkingV1beta1HTTPIngressPath.  # noqa: E501
-        :type: str
+        :type path: str
         """
 
         self._path = path
@@ -125,32 +128,40 @@ class NetworkingV1beta1HTTPIngressPath(object):
         PathType determines the interpretation of the Path matching. PathType can be one of the following values: * Exact: Matches the URL path exactly. * Prefix: Matches based on a URL path prefix split by '/'. Matching is   done on a path element by element basis. A path element refers is the   list of labels in the path split by the '/' separator. A request is a   match for path p if every p is an element-wise prefix of p of the   request path. Note that if the last element of the path is a substring   of the last element in request path, it is not a match (e.g. /foo/bar   matches /foo/bar/baz, but does not match /foo/barbaz). * ImplementationSpecific: Interpretation of the Path matching is up to   the IngressClass. Implementations can treat this as a separate PathType   or treat it identically to Prefix or Exact path types. Implementations are required to support all path types. Defaults to ImplementationSpecific.  # noqa: E501
 
         :param path_type: The path_type of this NetworkingV1beta1HTTPIngressPath.  # noqa: E501
-        :type: str
+        :type path_type: str
         """
 
         self._path_type = path_type
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

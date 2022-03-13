@@ -1,6 +1,7 @@
 # V1beta1TokenReviewSpec
 
 TokenReviewSpec is a description of the token authentication request.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -53,7 +56,7 @@ class V1VolumeMount(object):
     def __init__(self, mount_path=None, mount_propagation=None, name=None, read_only=None, sub_path=None, sub_path_expr=None, local_vars_configuration=None):  # noqa: E501
         """V1VolumeMount - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._mount_path = None
@@ -93,7 +96,7 @@ class V1VolumeMount(object):
         Path within the container at which the volume should be mounted.  Must not contain ':'.  # noqa: E501
 
         :param mount_path: The mount_path of this V1VolumeMount.  # noqa: E501
-        :type: str
+        :type mount_path: str
         """
         if self.local_vars_configuration.client_side_validation and mount_path is None:  # noqa: E501
             raise ValueError("Invalid value for `mount_path`, must not be `None`")  # noqa: E501
@@ -118,7 +121,7 @@ class V1VolumeMount(object):
         mountPropagation determines how mounts are propagated from the host to container and the other way around. When not set, MountPropagationNone is used. This field is beta in 1.10.  # noqa: E501
 
         :param mount_propagation: The mount_propagation of this V1VolumeMount.  # noqa: E501
-        :type: str
+        :type mount_propagation: str
         """
 
         self._mount_propagation = mount_propagation
@@ -141,7 +144,7 @@ class V1VolumeMount(object):
         This must match the Name of a Volume.  # noqa: E501
 
         :param name: The name of this V1VolumeMount.  # noqa: E501
-        :type: str
+        :type name: str
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
@@ -166,7 +169,7 @@ class V1VolumeMount(object):
         Mounted read-only if true, read-write otherwise (false or unspecified). Defaults to false.  # noqa: E501
 
         :param read_only: The read_only of this V1VolumeMount.  # noqa: E501
-        :type: bool
+        :type read_only: bool
         """
 
         self._read_only = read_only
@@ -189,7 +192,7 @@ class V1VolumeMount(object):
         Path within the volume from which the container's volume should be mounted. Defaults to \"\" (volume's root).  # noqa: E501
 
         :param sub_path: The sub_path of this V1VolumeMount.  # noqa: E501
-        :type: str
+        :type sub_path: str
         """
 
         self._sub_path = sub_path
@@ -212,32 +215,40 @@ class V1VolumeMount(object):
         Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to \"\" (volume's root). SubPathExpr and SubPath are mutually exclusive.  # noqa: E501
 
         :param sub_path_expr: The sub_path_expr of this V1VolumeMount.  # noqa: E501
-        :type: str
+        :type sub_path_expr: str
         """
 
         self._sub_path_expr = sub_path_expr
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

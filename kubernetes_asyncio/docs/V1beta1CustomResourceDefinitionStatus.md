@@ -1,6 +1,7 @@
 # V1beta1CustomResourceDefinitionStatus
 
 CustomResourceDefinitionStatus indicates the state of the CustomResourceDefinition
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

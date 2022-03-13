@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -49,7 +52,7 @@ class V1VolumeProjection(object):
     def __init__(self, config_map=None, downward_api=None, secret=None, service_account_token=None, local_vars_configuration=None):  # noqa: E501
         """V1VolumeProjection - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._config_map = None
@@ -83,7 +86,7 @@ class V1VolumeProjection(object):
 
 
         :param config_map: The config_map of this V1VolumeProjection.  # noqa: E501
-        :type: V1ConfigMapProjection
+        :type config_map: V1ConfigMapProjection
         """
 
         self._config_map = config_map
@@ -104,7 +107,7 @@ class V1VolumeProjection(object):
 
 
         :param downward_api: The downward_api of this V1VolumeProjection.  # noqa: E501
-        :type: V1DownwardAPIProjection
+        :type downward_api: V1DownwardAPIProjection
         """
 
         self._downward_api = downward_api
@@ -125,7 +128,7 @@ class V1VolumeProjection(object):
 
 
         :param secret: The secret of this V1VolumeProjection.  # noqa: E501
-        :type: V1SecretProjection
+        :type secret: V1SecretProjection
         """
 
         self._secret = secret
@@ -146,32 +149,40 @@ class V1VolumeProjection(object):
 
 
         :param service_account_token: The service_account_token of this V1VolumeProjection.  # noqa: E501
-        :type: V1ServiceAccountTokenProjection
+        :type service_account_token: V1ServiceAccountTokenProjection
         """
 
         self._service_account_token = service_account_token
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

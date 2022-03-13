@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -47,7 +50,7 @@ class V1beta1CustomResourceConversion(object):
     def __init__(self, conversion_review_versions=None, strategy=None, webhook_client_config=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1CustomResourceConversion - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._conversion_review_versions = None
@@ -79,7 +82,7 @@ class V1beta1CustomResourceConversion(object):
         conversionReviewVersions is an ordered list of preferred `ConversionReview` versions the Webhook expects. The API server will use the first version in the list which it supports. If none of the versions specified in this list are supported by API server, conversion will fail for the custom resource. If a persisted Webhook configuration specifies allowed versions and does not include any versions known to the API Server, calls to the webhook will fail. Defaults to `[\"v1beta1\"]`.  # noqa: E501
 
         :param conversion_review_versions: The conversion_review_versions of this V1beta1CustomResourceConversion.  # noqa: E501
-        :type: list[str]
+        :type conversion_review_versions: list[str]
         """
 
         self._conversion_review_versions = conversion_review_versions
@@ -102,7 +105,7 @@ class V1beta1CustomResourceConversion(object):
         strategy specifies how custom resources are converted between versions. Allowed values are: - `None`: The converter only change the apiVersion and would not touch any other field in the custom resource. - `Webhook`: API Server will call to an external webhook to do the conversion. Additional information   is needed for this option. This requires spec.preserveUnknownFields to be false, and spec.conversion.webhookClientConfig to be set.  # noqa: E501
 
         :param strategy: The strategy of this V1beta1CustomResourceConversion.  # noqa: E501
-        :type: str
+        :type strategy: str
         """
         if self.local_vars_configuration.client_side_validation and strategy is None:  # noqa: E501
             raise ValueError("Invalid value for `strategy`, must not be `None`")  # noqa: E501
@@ -125,32 +128,40 @@ class V1beta1CustomResourceConversion(object):
 
 
         :param webhook_client_config: The webhook_client_config of this V1beta1CustomResourceConversion.  # noqa: E501
-        :type: ApiextensionsV1beta1WebhookClientConfig
+        :type webhook_client_config: ApiextensionsV1beta1WebhookClientConfig
         """
 
         self._webhook_client_config = webhook_client_config
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

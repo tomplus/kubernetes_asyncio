@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -59,7 +62,7 @@ class V1ContainerStatus(object):
     def __init__(self, container_id=None, image=None, image_id=None, last_state=None, name=None, ready=None, restart_count=None, started=None, state=None, local_vars_configuration=None):  # noqa: E501
         """V1ContainerStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._container_id = None
@@ -105,7 +108,7 @@ class V1ContainerStatus(object):
         Container's ID in the format 'docker://<container_id>'.  # noqa: E501
 
         :param container_id: The container_id of this V1ContainerStatus.  # noqa: E501
-        :type: str
+        :type container_id: str
         """
 
         self._container_id = container_id
@@ -128,7 +131,7 @@ class V1ContainerStatus(object):
         The image the container is running. More info: https://kubernetes.io/docs/concepts/containers/images  # noqa: E501
 
         :param image: The image of this V1ContainerStatus.  # noqa: E501
-        :type: str
+        :type image: str
         """
         if self.local_vars_configuration.client_side_validation and image is None:  # noqa: E501
             raise ValueError("Invalid value for `image`, must not be `None`")  # noqa: E501
@@ -153,7 +156,7 @@ class V1ContainerStatus(object):
         ImageID of the container's image.  # noqa: E501
 
         :param image_id: The image_id of this V1ContainerStatus.  # noqa: E501
-        :type: str
+        :type image_id: str
         """
         if self.local_vars_configuration.client_side_validation and image_id is None:  # noqa: E501
             raise ValueError("Invalid value for `image_id`, must not be `None`")  # noqa: E501
@@ -176,7 +179,7 @@ class V1ContainerStatus(object):
 
 
         :param last_state: The last_state of this V1ContainerStatus.  # noqa: E501
-        :type: V1ContainerState
+        :type last_state: V1ContainerState
         """
 
         self._last_state = last_state
@@ -199,7 +202,7 @@ class V1ContainerStatus(object):
         This must be a DNS_LABEL. Each container in a pod must have a unique name. Cannot be updated.  # noqa: E501
 
         :param name: The name of this V1ContainerStatus.  # noqa: E501
-        :type: str
+        :type name: str
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
@@ -224,7 +227,7 @@ class V1ContainerStatus(object):
         Specifies whether the container has passed its readiness probe.  # noqa: E501
 
         :param ready: The ready of this V1ContainerStatus.  # noqa: E501
-        :type: bool
+        :type ready: bool
         """
         if self.local_vars_configuration.client_side_validation and ready is None:  # noqa: E501
             raise ValueError("Invalid value for `ready`, must not be `None`")  # noqa: E501
@@ -249,7 +252,7 @@ class V1ContainerStatus(object):
         The number of times the container has been restarted, currently based on the number of dead containers that have not yet been removed. Note that this is calculated from dead containers. But those containers are subject to garbage collection. This value will get capped at 5 by GC.  # noqa: E501
 
         :param restart_count: The restart_count of this V1ContainerStatus.  # noqa: E501
-        :type: int
+        :type restart_count: int
         """
         if self.local_vars_configuration.client_side_validation and restart_count is None:  # noqa: E501
             raise ValueError("Invalid value for `restart_count`, must not be `None`")  # noqa: E501
@@ -274,7 +277,7 @@ class V1ContainerStatus(object):
         Specifies whether the container has passed its startup probe. Initialized as false, becomes true after startupProbe is considered successful. Resets to false when the container is restarted, or if kubelet loses state temporarily. Is always true when no startupProbe is defined.  # noqa: E501
 
         :param started: The started of this V1ContainerStatus.  # noqa: E501
-        :type: bool
+        :type started: bool
         """
 
         self._started = started
@@ -295,32 +298,40 @@ class V1ContainerStatus(object):
 
 
         :param state: The state of this V1ContainerStatus.  # noqa: E501
-        :type: V1ContainerState
+        :type state: V1ContainerState
         """
 
         self._state = state
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

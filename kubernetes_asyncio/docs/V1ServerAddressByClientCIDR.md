@@ -1,6 +1,7 @@
 # V1ServerAddressByClientCIDR
 
 ServerAddressByClientCIDR helps the kubernetes_asyncio.client to determine the server address that they should use, depending on the kubernetes_asyncio.clientCIDR that they match.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

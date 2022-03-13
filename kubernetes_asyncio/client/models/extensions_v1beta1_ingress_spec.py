@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -49,7 +52,7 @@ class ExtensionsV1beta1IngressSpec(object):
     def __init__(self, backend=None, ingress_class_name=None, rules=None, tls=None, local_vars_configuration=None):  # noqa: E501
         """ExtensionsV1beta1IngressSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._backend = None
@@ -83,7 +86,7 @@ class ExtensionsV1beta1IngressSpec(object):
 
 
         :param backend: The backend of this ExtensionsV1beta1IngressSpec.  # noqa: E501
-        :type: ExtensionsV1beta1IngressBackend
+        :type backend: ExtensionsV1beta1IngressBackend
         """
 
         self._backend = backend
@@ -106,7 +109,7 @@ class ExtensionsV1beta1IngressSpec(object):
         IngressClassName is the name of the IngressClass cluster resource. The associated IngressClass defines which controller will implement the resource. This replaces the deprecated `kubernetes.io/ingress.class` annotation. For backwards compatibility, when that annotation is set, it must be given precedence over this field. The controller may emit a warning if the field and annotation have different values. Implementations of this API should ignore Ingresses without a class specified. An IngressClass resource may be marked as default, which can be used to set a default value for this field. For more information, refer to the IngressClass documentation.  # noqa: E501
 
         :param ingress_class_name: The ingress_class_name of this ExtensionsV1beta1IngressSpec.  # noqa: E501
-        :type: str
+        :type ingress_class_name: str
         """
 
         self._ingress_class_name = ingress_class_name
@@ -129,7 +132,7 @@ class ExtensionsV1beta1IngressSpec(object):
         A list of host rules used to configure the Ingress. If unspecified, or no rule matches, all traffic is sent to the default backend.  # noqa: E501
 
         :param rules: The rules of this ExtensionsV1beta1IngressSpec.  # noqa: E501
-        :type: list[ExtensionsV1beta1IngressRule]
+        :type rules: list[ExtensionsV1beta1IngressRule]
         """
 
         self._rules = rules
@@ -152,32 +155,40 @@ class ExtensionsV1beta1IngressSpec(object):
         TLS configuration. Currently the Ingress only supports a single TLS port, 443. If multiple members of this list specify different hosts, they will be multiplexed on the same port according to the hostname specified through the SNI TLS extension, if the ingress controller fulfilling the ingress supports SNI.  # noqa: E501
 
         :param tls: The tls of this ExtensionsV1beta1IngressSpec.  # noqa: E501
-        :type: list[ExtensionsV1beta1IngressTLS]
+        :type tls: list[ExtensionsV1beta1IngressTLS]
         """
 
         self._tls = tls
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

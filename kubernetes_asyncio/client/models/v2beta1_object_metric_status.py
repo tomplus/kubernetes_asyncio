@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -51,7 +54,7 @@ class V2beta1ObjectMetricStatus(object):
     def __init__(self, average_value=None, current_value=None, metric_name=None, selector=None, target=None, local_vars_configuration=None):  # noqa: E501
         """V2beta1ObjectMetricStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._average_value = None
@@ -87,7 +90,7 @@ class V2beta1ObjectMetricStatus(object):
         averageValue is the current value of the average of the metric across all relevant pods (as a quantity)  # noqa: E501
 
         :param average_value: The average_value of this V2beta1ObjectMetricStatus.  # noqa: E501
-        :type: str
+        :type average_value: str
         """
 
         self._average_value = average_value
@@ -110,7 +113,7 @@ class V2beta1ObjectMetricStatus(object):
         currentValue is the current value of the metric (as a quantity).  # noqa: E501
 
         :param current_value: The current_value of this V2beta1ObjectMetricStatus.  # noqa: E501
-        :type: str
+        :type current_value: str
         """
         if self.local_vars_configuration.client_side_validation and current_value is None:  # noqa: E501
             raise ValueError("Invalid value for `current_value`, must not be `None`")  # noqa: E501
@@ -135,7 +138,7 @@ class V2beta1ObjectMetricStatus(object):
         metricName is the name of the metric in question.  # noqa: E501
 
         :param metric_name: The metric_name of this V2beta1ObjectMetricStatus.  # noqa: E501
-        :type: str
+        :type metric_name: str
         """
         if self.local_vars_configuration.client_side_validation and metric_name is None:  # noqa: E501
             raise ValueError("Invalid value for `metric_name`, must not be `None`")  # noqa: E501
@@ -158,7 +161,7 @@ class V2beta1ObjectMetricStatus(object):
 
 
         :param selector: The selector of this V2beta1ObjectMetricStatus.  # noqa: E501
-        :type: V1LabelSelector
+        :type selector: V1LabelSelector
         """
 
         self._selector = selector
@@ -179,34 +182,42 @@ class V2beta1ObjectMetricStatus(object):
 
 
         :param target: The target of this V2beta1ObjectMetricStatus.  # noqa: E501
-        :type: V2beta1CrossVersionObjectReference
+        :type target: V2beta1CrossVersionObjectReference
         """
         if self.local_vars_configuration.client_side_validation and target is None:  # noqa: E501
             raise ValueError("Invalid value for `target`, must not be `None`")  # noqa: E501
 
         self._target = target
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

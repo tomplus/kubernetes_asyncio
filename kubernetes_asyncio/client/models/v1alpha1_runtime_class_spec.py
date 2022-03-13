@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -47,7 +50,7 @@ class V1alpha1RuntimeClassSpec(object):
     def __init__(self, overhead=None, runtime_handler=None, scheduling=None, local_vars_configuration=None):  # noqa: E501
         """V1alpha1RuntimeClassSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._overhead = None
@@ -77,7 +80,7 @@ class V1alpha1RuntimeClassSpec(object):
 
 
         :param overhead: The overhead of this V1alpha1RuntimeClassSpec.  # noqa: E501
-        :type: V1alpha1Overhead
+        :type overhead: V1alpha1Overhead
         """
 
         self._overhead = overhead
@@ -100,7 +103,7 @@ class V1alpha1RuntimeClassSpec(object):
         RuntimeHandler specifies the underlying runtime and configuration that the CRI implementation will use to handle pods of this class. The possible values are specific to the node & CRI configuration.  It is assumed that all handlers are available on every node, and handlers of the same name are equivalent on every node. For example, a handler called \"runc\" might specify that the runc OCI runtime (using native Linux containers) will be used to run the containers in a pod. The RuntimeHandler must be lowercase, conform to the DNS Label (RFC 1123) requirements, and is immutable.  # noqa: E501
 
         :param runtime_handler: The runtime_handler of this V1alpha1RuntimeClassSpec.  # noqa: E501
-        :type: str
+        :type runtime_handler: str
         """
         if self.local_vars_configuration.client_side_validation and runtime_handler is None:  # noqa: E501
             raise ValueError("Invalid value for `runtime_handler`, must not be `None`")  # noqa: E501
@@ -123,32 +126,40 @@ class V1alpha1RuntimeClassSpec(object):
 
 
         :param scheduling: The scheduling of this V1alpha1RuntimeClassSpec.  # noqa: E501
-        :type: V1alpha1Scheduling
+        :type scheduling: V1alpha1Scheduling
         """
 
         self._scheduling = scheduling
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -20,7 +20,7 @@ from types import SimpleNamespace
 
 from kubernetes_asyncio import client
 
-PYDOC_RETURN_LABEL = ":return:"
+PYDOC_RETURN_LABEL = ":rtype:"
 PYDOC_FOLLOW_PARAM = ":param bool follow:"
 
 # Removing this suffix from return type name should give us event's object

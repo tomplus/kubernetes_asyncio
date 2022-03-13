@@ -1,6 +1,7 @@
 # V1LocalVolumeSource
 
 Local represents directly-attached storage with node affinity (Beta feature)
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

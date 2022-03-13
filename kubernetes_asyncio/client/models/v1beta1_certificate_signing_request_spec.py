@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -55,7 +58,7 @@ class V1beta1CertificateSigningRequestSpec(object):
     def __init__(self, extra=None, groups=None, request=None, signer_name=None, uid=None, usages=None, username=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1CertificateSigningRequestSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._extra = None
@@ -99,7 +102,7 @@ class V1beta1CertificateSigningRequestSpec(object):
         Extra information about the requesting user. See user.Info interface for details.  # noqa: E501
 
         :param extra: The extra of this V1beta1CertificateSigningRequestSpec.  # noqa: E501
-        :type: dict(str, list[str])
+        :type extra: dict(str, list[str])
         """
 
         self._extra = extra
@@ -122,7 +125,7 @@ class V1beta1CertificateSigningRequestSpec(object):
         Group information about the requesting user. See user.Info interface for details.  # noqa: E501
 
         :param groups: The groups of this V1beta1CertificateSigningRequestSpec.  # noqa: E501
-        :type: list[str]
+        :type groups: list[str]
         """
 
         self._groups = groups
@@ -145,7 +148,7 @@ class V1beta1CertificateSigningRequestSpec(object):
         Base64-encoded PKCS#10 CSR data  # noqa: E501
 
         :param request: The request of this V1beta1CertificateSigningRequestSpec.  # noqa: E501
-        :type: str
+        :type request: str
         """
         if self.local_vars_configuration.client_side_validation and request is None:  # noqa: E501
             raise ValueError("Invalid value for `request`, must not be `None`")  # noqa: E501
@@ -173,7 +176,7 @@ class V1beta1CertificateSigningRequestSpec(object):
         Requested signer for the request. It is a qualified name in the form: `scope-hostname.io/name`. If empty, it will be defaulted:  1. If it's a kubelet client certificate, it is assigned     \"kubernetes.io/kube-apiserver-client-kubelet\".  2. If it's a kubelet serving certificate, it is assigned     \"kubernetes.io/kubelet-serving\".  3. Otherwise, it is assigned \"kubernetes.io/legacy-unknown\". Distribution of trust for signers happens out of band. You can select on this field using `spec.signerName`.  # noqa: E501
 
         :param signer_name: The signer_name of this V1beta1CertificateSigningRequestSpec.  # noqa: E501
-        :type: str
+        :type signer_name: str
         """
 
         self._signer_name = signer_name
@@ -196,7 +199,7 @@ class V1beta1CertificateSigningRequestSpec(object):
         UID information about the requesting user. See user.Info interface for details.  # noqa: E501
 
         :param uid: The uid of this V1beta1CertificateSigningRequestSpec.  # noqa: E501
-        :type: str
+        :type uid: str
         """
 
         self._uid = uid
@@ -219,7 +222,7 @@ class V1beta1CertificateSigningRequestSpec(object):
         allowedUsages specifies a set of usage contexts the key will be valid for. See: https://tools.ietf.org/html/rfc5280#section-4.2.1.3      https://tools.ietf.org/html/rfc5280#section-4.2.1.12 Valid values are:  \"signing\",  \"digital signature\",  \"content commitment\",  \"key encipherment\",  \"key agreement\",  \"data encipherment\",  \"cert sign\",  \"crl sign\",  \"encipher only\",  \"decipher only\",  \"any\",  \"server auth\",  \"client auth\",  \"code signing\",  \"email protection\",  \"s/mime\",  \"ipsec end system\",  \"ipsec tunnel\",  \"ipsec user\",  \"timestamping\",  \"ocsp signing\",  \"microsoft sgc\",  \"netscape sgc\"  # noqa: E501
 
         :param usages: The usages of this V1beta1CertificateSigningRequestSpec.  # noqa: E501
-        :type: list[str]
+        :type usages: list[str]
         """
 
         self._usages = usages
@@ -242,32 +245,40 @@ class V1beta1CertificateSigningRequestSpec(object):
         Information about the requesting user. See user.Info interface for details.  # noqa: E501
 
         :param username: The username of this V1beta1CertificateSigningRequestSpec.  # noqa: E501
-        :type: str
+        :type username: str
         """
 
         self._username = username
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -55,7 +58,7 @@ class V1JobStatus(object):
     def __init__(self, active=None, completed_indexes=None, completion_time=None, conditions=None, failed=None, start_time=None, succeeded=None, local_vars_configuration=None):  # noqa: E501
         """V1JobStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._active = None
@@ -100,7 +103,7 @@ class V1JobStatus(object):
         The number of actively running pods.  # noqa: E501
 
         :param active: The active of this V1JobStatus.  # noqa: E501
-        :type: int
+        :type active: int
         """
 
         self._active = active
@@ -123,7 +126,7 @@ class V1JobStatus(object):
         CompletedIndexes holds the completed indexes when .spec.completionMode = \"Indexed\" in a text format. The indexes are represented as decimal integers separated by commas. The numbers are listed in increasing order. Three or more consecutive numbers are compressed and represented by the first and last element of the series, separated by a hyphen. For example, if the completed indexes are 1, 3, 4, 5 and 7, they are represented as \"1,3-5,7\".  # noqa: E501
 
         :param completed_indexes: The completed_indexes of this V1JobStatus.  # noqa: E501
-        :type: str
+        :type completed_indexes: str
         """
 
         self._completed_indexes = completed_indexes
@@ -146,7 +149,7 @@ class V1JobStatus(object):
         Represents time when the job was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. The completion time is only set when the job finishes successfully.  # noqa: E501
 
         :param completion_time: The completion_time of this V1JobStatus.  # noqa: E501
-        :type: datetime
+        :type completion_time: datetime
         """
 
         self._completion_time = completion_time
@@ -169,7 +172,7 @@ class V1JobStatus(object):
         The latest available observations of an object's current state. When a Job fails, one of the conditions will have type \"Failed\" and status true. When a Job is suspended, one of the conditions will have type \"Suspended\" and status true; when the Job is resumed, the status of this condition will become false. When a Job is completed, one of the conditions will have type \"Complete\" and status true. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/  # noqa: E501
 
         :param conditions: The conditions of this V1JobStatus.  # noqa: E501
-        :type: list[V1JobCondition]
+        :type conditions: list[V1JobCondition]
         """
 
         self._conditions = conditions
@@ -192,7 +195,7 @@ class V1JobStatus(object):
         The number of pods which reached phase Failed.  # noqa: E501
 
         :param failed: The failed of this V1JobStatus.  # noqa: E501
-        :type: int
+        :type failed: int
         """
 
         self._failed = failed
@@ -215,7 +218,7 @@ class V1JobStatus(object):
         Represents time when the job controller started processing a job. When a Job is created in the suspended state, this field is not set until the first time it is resumed. This field is reset every time a Job is resumed from suspension. It is represented in RFC3339 form and is in UTC.  # noqa: E501
 
         :param start_time: The start_time of this V1JobStatus.  # noqa: E501
-        :type: datetime
+        :type start_time: datetime
         """
 
         self._start_time = start_time
@@ -238,32 +241,40 @@ class V1JobStatus(object):
         The number of pods which reached phase Succeeded.  # noqa: E501
 
         :param succeeded: The succeeded of this V1JobStatus.  # noqa: E501
-        :type: int
+        :type succeeded: int
         """
 
         self._succeeded = succeeded
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

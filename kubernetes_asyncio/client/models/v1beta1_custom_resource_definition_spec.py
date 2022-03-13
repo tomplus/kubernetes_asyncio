@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -61,7 +64,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
     def __init__(self, additional_printer_columns=None, conversion=None, group=None, names=None, preserve_unknown_fields=None, scope=None, subresources=None, validation=None, version=None, versions=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1CustomResourceDefinitionSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._additional_printer_columns = None
@@ -112,7 +115,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
         additionalPrinterColumns specifies additional columns returned in Table output. See https://kubernetes.io/docs/reference/using-api/api-concepts/#receiving-resources-as-tables for details. If present, this field configures columns for all versions. Top-level and per-version columns are mutually exclusive. If no top-level or per-version columns are specified, a single column displaying the age of the custom resource is used.  # noqa: E501
 
         :param additional_printer_columns: The additional_printer_columns of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: list[V1beta1CustomResourceColumnDefinition]
+        :type additional_printer_columns: list[V1beta1CustomResourceColumnDefinition]
         """
 
         self._additional_printer_columns = additional_printer_columns
@@ -133,7 +136,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
 
 
         :param conversion: The conversion of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: V1beta1CustomResourceConversion
+        :type conversion: V1beta1CustomResourceConversion
         """
 
         self._conversion = conversion
@@ -156,7 +159,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
         group is the API group of the defined custom resource. The custom resources are served under `/apis/<group>/...`. Must match the name of the CustomResourceDefinition (in the form `<names.plural>.<group>`).  # noqa: E501
 
         :param group: The group of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: str
+        :type group: str
         """
         if self.local_vars_configuration.client_side_validation and group is None:  # noqa: E501
             raise ValueError("Invalid value for `group`, must not be `None`")  # noqa: E501
@@ -179,7 +182,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
 
 
         :param names: The names of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: V1beta1CustomResourceDefinitionNames
+        :type names: V1beta1CustomResourceDefinitionNames
         """
         if self.local_vars_configuration.client_side_validation and names is None:  # noqa: E501
             raise ValueError("Invalid value for `names`, must not be `None`")  # noqa: E501
@@ -204,7 +207,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
         preserveUnknownFields indicates that object fields which are not specified in the OpenAPI schema should be preserved when persisting to storage. apiVersion, kind, metadata and known fields inside metadata are always preserved. If false, schemas must be defined for all versions. Defaults to true in v1beta for backwards compatibility. Deprecated: will be required to be false in v1. Preservation of unknown fields can be specified in the validation schema using the `x-kubernetes-preserve-unknown-fields: true` extension. See https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#pruning-versus-preserving-unknown-fields for details.  # noqa: E501
 
         :param preserve_unknown_fields: The preserve_unknown_fields of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: bool
+        :type preserve_unknown_fields: bool
         """
 
         self._preserve_unknown_fields = preserve_unknown_fields
@@ -227,7 +230,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
         scope indicates whether the defined custom resource is cluster- or namespace-scoped. Allowed values are `Cluster` and `Namespaced`. Default is `Namespaced`.  # noqa: E501
 
         :param scope: The scope of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: str
+        :type scope: str
         """
         if self.local_vars_configuration.client_side_validation and scope is None:  # noqa: E501
             raise ValueError("Invalid value for `scope`, must not be `None`")  # noqa: E501
@@ -250,7 +253,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
 
 
         :param subresources: The subresources of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: V1beta1CustomResourceSubresources
+        :type subresources: V1beta1CustomResourceSubresources
         """
 
         self._subresources = subresources
@@ -271,7 +274,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
 
 
         :param validation: The validation of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: V1beta1CustomResourceValidation
+        :type validation: V1beta1CustomResourceValidation
         """
 
         self._validation = validation
@@ -294,7 +297,7 @@ class V1beta1CustomResourceDefinitionSpec(object):
         version is the API version of the defined custom resource. The custom resources are served under `/apis/<group>/<version>/...`. Must match the name of the first item in the `versions` list if `version` and `versions` are both specified. Optional if `versions` is specified. Deprecated: use `versions` instead.  # noqa: E501
 
         :param version: The version of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: str
+        :type version: str
         """
 
         self._version = version
@@ -317,32 +320,40 @@ class V1beta1CustomResourceDefinitionSpec(object):
         versions is the list of all API versions of the defined custom resource. Optional if `version` is specified. The name of the first item in the `versions` list must match the `version` field if `version` and `versions` are both specified. Version names are used to compute the order in which served versions are listed in API discovery. If the version string is \"kube-like\", it will sort above non \"kube-like\" version strings, which are ordered lexicographically. \"Kube-like\" versions start with a \"v\", then are followed by a number (the major version), then optionally the string \"alpha\" or \"beta\" and another number (the minor version). These are sorted first by GA > beta > alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10.  # noqa: E501
 
         :param versions: The versions of this V1beta1CustomResourceDefinitionSpec.  # noqa: E501
-        :type: list[V1beta1CustomResourceDefinitionVersion]
+        :type versions: list[V1beta1CustomResourceDefinitionVersion]
         """
 
         self._versions = versions
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

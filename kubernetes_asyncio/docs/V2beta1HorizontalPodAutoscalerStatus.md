@@ -1,6 +1,7 @@
 # V2beta1HorizontalPodAutoscalerStatus
 
 HorizontalPodAutoscalerStatus describes the current status of a horizontal pod autoscaler.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

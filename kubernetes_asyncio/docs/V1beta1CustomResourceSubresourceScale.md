@@ -1,6 +1,7 @@
 # V1beta1CustomResourceSubresourceScale
 
 CustomResourceSubresourceScale defines how to serve the scale subresource for CustomResources.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

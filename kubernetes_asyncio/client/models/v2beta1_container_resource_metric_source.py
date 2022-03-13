@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -49,7 +52,7 @@ class V2beta1ContainerResourceMetricSource(object):
     def __init__(self, container=None, name=None, target_average_utilization=None, target_average_value=None, local_vars_configuration=None):  # noqa: E501
         """V2beta1ContainerResourceMetricSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._container = None
@@ -83,7 +86,7 @@ class V2beta1ContainerResourceMetricSource(object):
         container is the name of the container in the pods of the scaling target  # noqa: E501
 
         :param container: The container of this V2beta1ContainerResourceMetricSource.  # noqa: E501
-        :type: str
+        :type container: str
         """
         if self.local_vars_configuration.client_side_validation and container is None:  # noqa: E501
             raise ValueError("Invalid value for `container`, must not be `None`")  # noqa: E501
@@ -108,7 +111,7 @@ class V2beta1ContainerResourceMetricSource(object):
         name is the name of the resource in question.  # noqa: E501
 
         :param name: The name of this V2beta1ContainerResourceMetricSource.  # noqa: E501
-        :type: str
+        :type name: str
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
@@ -133,7 +136,7 @@ class V2beta1ContainerResourceMetricSource(object):
         targetAverageUtilization is the target value of the average of the resource metric across all relevant pods, represented as a percentage of the requested value of the resource for the pods.  # noqa: E501
 
         :param target_average_utilization: The target_average_utilization of this V2beta1ContainerResourceMetricSource.  # noqa: E501
-        :type: int
+        :type target_average_utilization: int
         """
 
         self._target_average_utilization = target_average_utilization
@@ -156,32 +159,40 @@ class V2beta1ContainerResourceMetricSource(object):
         targetAverageValue is the target value of the average of the resource metric across all relevant pods, as a raw value (instead of as a percentage of the request), similar to the \"pods\" metric source type.  # noqa: E501
 
         :param target_average_value: The target_average_value of this V2beta1ContainerResourceMetricSource.  # noqa: E501
-        :type: str
+        :type target_average_value: str
         """
 
         self._target_average_value = target_average_value
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

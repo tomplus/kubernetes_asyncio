@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -89,7 +92,7 @@ class V1beta1PodSecurityPolicySpec(object):
     def __init__(self, allow_privilege_escalation=None, allowed_csi_drivers=None, allowed_capabilities=None, allowed_flex_volumes=None, allowed_host_paths=None, allowed_proc_mount_types=None, allowed_unsafe_sysctls=None, default_add_capabilities=None, default_allow_privilege_escalation=None, forbidden_sysctls=None, fs_group=None, host_ipc=None, host_network=None, host_pid=None, host_ports=None, privileged=None, read_only_root_filesystem=None, required_drop_capabilities=None, run_as_group=None, run_as_user=None, runtime_class=None, se_linux=None, supplemental_groups=None, volumes=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1PodSecurityPolicySpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._allow_privilege_escalation = None
@@ -181,7 +184,7 @@ class V1beta1PodSecurityPolicySpec(object):
         allowPrivilegeEscalation determines if a pod can request to allow privilege escalation. If unspecified, defaults to true.  # noqa: E501
 
         :param allow_privilege_escalation: The allow_privilege_escalation of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: bool
+        :type allow_privilege_escalation: bool
         """
 
         self._allow_privilege_escalation = allow_privilege_escalation
@@ -204,7 +207,7 @@ class V1beta1PodSecurityPolicySpec(object):
         AllowedCSIDrivers is an allowlist of inline CSI drivers that must be explicitly set to be embedded within a pod spec. An empty value indicates that any CSI driver can be used for inline ephemeral volumes. This is a beta field, and is only honored if the API server enables the CSIInlineVolume feature gate.  # noqa: E501
 
         :param allowed_csi_drivers: The allowed_csi_drivers of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[V1beta1AllowedCSIDriver]
+        :type allowed_csi_drivers: list[V1beta1AllowedCSIDriver]
         """
 
         self._allowed_csi_drivers = allowed_csi_drivers
@@ -227,7 +230,7 @@ class V1beta1PodSecurityPolicySpec(object):
         allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.  # noqa: E501
 
         :param allowed_capabilities: The allowed_capabilities of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[str]
+        :type allowed_capabilities: list[str]
         """
 
         self._allowed_capabilities = allowed_capabilities
@@ -250,7 +253,7 @@ class V1beta1PodSecurityPolicySpec(object):
         allowedFlexVolumes is an allowlist of Flexvolumes.  Empty or nil indicates that all Flexvolumes may be used.  This parameter is effective only when the usage of the Flexvolumes is allowed in the \"volumes\" field.  # noqa: E501
 
         :param allowed_flex_volumes: The allowed_flex_volumes of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[V1beta1AllowedFlexVolume]
+        :type allowed_flex_volumes: list[V1beta1AllowedFlexVolume]
         """
 
         self._allowed_flex_volumes = allowed_flex_volumes
@@ -273,7 +276,7 @@ class V1beta1PodSecurityPolicySpec(object):
         allowedHostPaths is an allowlist of host paths. Empty indicates that all host paths may be used.  # noqa: E501
 
         :param allowed_host_paths: The allowed_host_paths of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[V1beta1AllowedHostPath]
+        :type allowed_host_paths: list[V1beta1AllowedHostPath]
         """
 
         self._allowed_host_paths = allowed_host_paths
@@ -296,7 +299,7 @@ class V1beta1PodSecurityPolicySpec(object):
         AllowedProcMountTypes is an allowlist of allowed ProcMountTypes. Empty or nil indicates that only the DefaultProcMountType may be used. This requires the ProcMountType feature flag to be enabled.  # noqa: E501
 
         :param allowed_proc_mount_types: The allowed_proc_mount_types of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[str]
+        :type allowed_proc_mount_types: list[str]
         """
 
         self._allowed_proc_mount_types = allowed_proc_mount_types
@@ -319,7 +322,7 @@ class V1beta1PodSecurityPolicySpec(object):
         allowedUnsafeSysctls is a list of explicitly allowed unsafe sysctls, defaults to none. Each entry is either a plain sysctl name or ends in \"*\" in which case it is considered as a prefix of allowed sysctls. Single * means all unsafe sysctls are allowed. Kubelet has to allowlist all allowed unsafe sysctls explicitly to avoid rejection.  Examples: e.g. \"foo/*\" allows \"foo/bar\", \"foo/baz\", etc. e.g. \"foo.*\" allows \"foo.bar\", \"foo.baz\", etc.  # noqa: E501
 
         :param allowed_unsafe_sysctls: The allowed_unsafe_sysctls of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[str]
+        :type allowed_unsafe_sysctls: list[str]
         """
 
         self._allowed_unsafe_sysctls = allowed_unsafe_sysctls
@@ -342,7 +345,7 @@ class V1beta1PodSecurityPolicySpec(object):
         defaultAddCapabilities is the default set of capabilities that will be added to the container unless the pod spec specifically drops the capability.  You may not list a capability in both defaultAddCapabilities and requiredDropCapabilities. Capabilities added here are implicitly allowed, and need not be included in the allowedCapabilities list.  # noqa: E501
 
         :param default_add_capabilities: The default_add_capabilities of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[str]
+        :type default_add_capabilities: list[str]
         """
 
         self._default_add_capabilities = default_add_capabilities
@@ -365,7 +368,7 @@ class V1beta1PodSecurityPolicySpec(object):
         defaultAllowPrivilegeEscalation controls the default setting for whether a process can gain more privileges than its parent process.  # noqa: E501
 
         :param default_allow_privilege_escalation: The default_allow_privilege_escalation of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: bool
+        :type default_allow_privilege_escalation: bool
         """
 
         self._default_allow_privilege_escalation = default_allow_privilege_escalation
@@ -388,7 +391,7 @@ class V1beta1PodSecurityPolicySpec(object):
         forbiddenSysctls is a list of explicitly forbidden sysctls, defaults to none. Each entry is either a plain sysctl name or ends in \"*\" in which case it is considered as a prefix of forbidden sysctls. Single * means all sysctls are forbidden.  Examples: e.g. \"foo/*\" forbids \"foo/bar\", \"foo/baz\", etc. e.g. \"foo.*\" forbids \"foo.bar\", \"foo.baz\", etc.  # noqa: E501
 
         :param forbidden_sysctls: The forbidden_sysctls of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[str]
+        :type forbidden_sysctls: list[str]
         """
 
         self._forbidden_sysctls = forbidden_sysctls
@@ -409,7 +412,7 @@ class V1beta1PodSecurityPolicySpec(object):
 
 
         :param fs_group: The fs_group of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: V1beta1FSGroupStrategyOptions
+        :type fs_group: V1beta1FSGroupStrategyOptions
         """
         if self.local_vars_configuration.client_side_validation and fs_group is None:  # noqa: E501
             raise ValueError("Invalid value for `fs_group`, must not be `None`")  # noqa: E501
@@ -434,7 +437,7 @@ class V1beta1PodSecurityPolicySpec(object):
         hostIPC determines if the policy allows the use of HostIPC in the pod spec.  # noqa: E501
 
         :param host_ipc: The host_ipc of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: bool
+        :type host_ipc: bool
         """
 
         self._host_ipc = host_ipc
@@ -457,7 +460,7 @@ class V1beta1PodSecurityPolicySpec(object):
         hostNetwork determines if the policy allows the use of HostNetwork in the pod spec.  # noqa: E501
 
         :param host_network: The host_network of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: bool
+        :type host_network: bool
         """
 
         self._host_network = host_network
@@ -480,7 +483,7 @@ class V1beta1PodSecurityPolicySpec(object):
         hostPID determines if the policy allows the use of HostPID in the pod spec.  # noqa: E501
 
         :param host_pid: The host_pid of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: bool
+        :type host_pid: bool
         """
 
         self._host_pid = host_pid
@@ -503,7 +506,7 @@ class V1beta1PodSecurityPolicySpec(object):
         hostPorts determines which host port ranges are allowed to be exposed.  # noqa: E501
 
         :param host_ports: The host_ports of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[V1beta1HostPortRange]
+        :type host_ports: list[V1beta1HostPortRange]
         """
 
         self._host_ports = host_ports
@@ -526,7 +529,7 @@ class V1beta1PodSecurityPolicySpec(object):
         privileged determines if a pod can request to be run as privileged.  # noqa: E501
 
         :param privileged: The privileged of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: bool
+        :type privileged: bool
         """
 
         self._privileged = privileged
@@ -549,7 +552,7 @@ class V1beta1PodSecurityPolicySpec(object):
         readOnlyRootFilesystem when set to true will force containers to run with a read only root file system.  If the container specifically requests to run with a non-read only root file system the PSP should deny the pod. If set to false the container may run with a read only root file system if it wishes but it will not be forced to.  # noqa: E501
 
         :param read_only_root_filesystem: The read_only_root_filesystem of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: bool
+        :type read_only_root_filesystem: bool
         """
 
         self._read_only_root_filesystem = read_only_root_filesystem
@@ -572,7 +575,7 @@ class V1beta1PodSecurityPolicySpec(object):
         requiredDropCapabilities are the capabilities that will be dropped from the container.  These are required to be dropped and cannot be added.  # noqa: E501
 
         :param required_drop_capabilities: The required_drop_capabilities of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[str]
+        :type required_drop_capabilities: list[str]
         """
 
         self._required_drop_capabilities = required_drop_capabilities
@@ -593,7 +596,7 @@ class V1beta1PodSecurityPolicySpec(object):
 
 
         :param run_as_group: The run_as_group of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: V1beta1RunAsGroupStrategyOptions
+        :type run_as_group: V1beta1RunAsGroupStrategyOptions
         """
 
         self._run_as_group = run_as_group
@@ -614,7 +617,7 @@ class V1beta1PodSecurityPolicySpec(object):
 
 
         :param run_as_user: The run_as_user of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: V1beta1RunAsUserStrategyOptions
+        :type run_as_user: V1beta1RunAsUserStrategyOptions
         """
         if self.local_vars_configuration.client_side_validation and run_as_user is None:  # noqa: E501
             raise ValueError("Invalid value for `run_as_user`, must not be `None`")  # noqa: E501
@@ -637,7 +640,7 @@ class V1beta1PodSecurityPolicySpec(object):
 
 
         :param runtime_class: The runtime_class of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: V1beta1RuntimeClassStrategyOptions
+        :type runtime_class: V1beta1RuntimeClassStrategyOptions
         """
 
         self._runtime_class = runtime_class
@@ -658,7 +661,7 @@ class V1beta1PodSecurityPolicySpec(object):
 
 
         :param se_linux: The se_linux of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: V1beta1SELinuxStrategyOptions
+        :type se_linux: V1beta1SELinuxStrategyOptions
         """
         if self.local_vars_configuration.client_side_validation and se_linux is None:  # noqa: E501
             raise ValueError("Invalid value for `se_linux`, must not be `None`")  # noqa: E501
@@ -681,7 +684,7 @@ class V1beta1PodSecurityPolicySpec(object):
 
 
         :param supplemental_groups: The supplemental_groups of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: V1beta1SupplementalGroupsStrategyOptions
+        :type supplemental_groups: V1beta1SupplementalGroupsStrategyOptions
         """
         if self.local_vars_configuration.client_side_validation and supplemental_groups is None:  # noqa: E501
             raise ValueError("Invalid value for `supplemental_groups`, must not be `None`")  # noqa: E501
@@ -706,32 +709,40 @@ class V1beta1PodSecurityPolicySpec(object):
         volumes is an allowlist of volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.  # noqa: E501
 
         :param volumes: The volumes of this V1beta1PodSecurityPolicySpec.  # noqa: E501
-        :type: list[str]
+        :type volumes: list[str]
         """
 
         self._volumes = volumes
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

@@ -1,6 +1,7 @@
 # V2beta1MetricSpec
 
 MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once).
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

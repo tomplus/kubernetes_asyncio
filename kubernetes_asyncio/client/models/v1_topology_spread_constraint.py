@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -49,7 +52,7 @@ class V1TopologySpreadConstraint(object):
     def __init__(self, label_selector=None, max_skew=None, topology_key=None, when_unsatisfiable=None, local_vars_configuration=None):  # noqa: E501
         """V1TopologySpreadConstraint - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._label_selector = None
@@ -80,7 +83,7 @@ class V1TopologySpreadConstraint(object):
 
 
         :param label_selector: The label_selector of this V1TopologySpreadConstraint.  # noqa: E501
-        :type: V1LabelSelector
+        :type label_selector: V1LabelSelector
         """
 
         self._label_selector = label_selector
@@ -103,7 +106,7 @@ class V1TopologySpreadConstraint(object):
         MaxSkew describes the degree to which pods may be unevenly distributed. When `whenUnsatisfiable=DoNotSchedule`, it is the maximum permitted difference between the number of matching pods in the target topology and the global minimum. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 1/1/0: | zone1 | zone2 | zone3 | |   P   |   P   |       | - if MaxSkew is 1, incoming pod can only be scheduled to zone3 to become 1/1/1; scheduling it onto zone1(zone2) would make the ActualSkew(2-0) on zone1(zone2) violate MaxSkew(1). - if MaxSkew is 2, incoming pod can be scheduled onto any zone. When `whenUnsatisfiable=ScheduleAnyway`, it is used to give higher precedence to topologies that satisfy it. It's a required field. Default value is 1 and 0 is not allowed.  # noqa: E501
 
         :param max_skew: The max_skew of this V1TopologySpreadConstraint.  # noqa: E501
-        :type: int
+        :type max_skew: int
         """
         if self.local_vars_configuration.client_side_validation and max_skew is None:  # noqa: E501
             raise ValueError("Invalid value for `max_skew`, must not be `None`")  # noqa: E501
@@ -128,7 +131,7 @@ class V1TopologySpreadConstraint(object):
         TopologyKey is the key of node labels. Nodes that have a label with this key and identical values are considered to be in the same topology. We consider each <key, value> as a \"bucket\", and try to put balanced number of pods into each bucket. It's a required field.  # noqa: E501
 
         :param topology_key: The topology_key of this V1TopologySpreadConstraint.  # noqa: E501
-        :type: str
+        :type topology_key: str
         """
         if self.local_vars_configuration.client_side_validation and topology_key is None:  # noqa: E501
             raise ValueError("Invalid value for `topology_key`, must not be `None`")  # noqa: E501
@@ -153,34 +156,42 @@ class V1TopologySpreadConstraint(object):
         WhenUnsatisfiable indicates how to deal with a pod if it doesn't satisfy the spread constraint. - DoNotSchedule (default) tells the scheduler not to schedule it. - ScheduleAnyway tells the scheduler to schedule the pod in any location,   but giving higher precedence to topologies that would help reduce the   skew. A constraint is considered \"Unsatisfiable\" for an incoming pod if and only if every possible node assigment for that pod would violate \"MaxSkew\" on some topology. For example, in a 3-zone cluster, MaxSkew is set to 1, and pods with the same labelSelector spread as 3/1/1: | zone1 | zone2 | zone3 | | P P P |   P   |   P   | If WhenUnsatisfiable is set to DoNotSchedule, incoming pod can only be scheduled to zone2(zone3) to become 3/2/1(3/1/2) as ActualSkew(2-1) on zone2(zone3) satisfies MaxSkew(1). In other words, the cluster can still be imbalanced, but scheduler won't make it *more* imbalanced. It's a required field.  # noqa: E501
 
         :param when_unsatisfiable: The when_unsatisfiable of this V1TopologySpreadConstraint.  # noqa: E501
-        :type: str
+        :type when_unsatisfiable: str
         """
         if self.local_vars_configuration.client_side_validation and when_unsatisfiable is None:  # noqa: E501
             raise ValueError("Invalid value for `when_unsatisfiable`, must not be `None`")  # noqa: E501
 
         self._when_unsatisfiable = when_unsatisfiable
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

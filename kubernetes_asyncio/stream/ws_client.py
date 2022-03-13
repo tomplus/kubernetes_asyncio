@@ -34,9 +34,11 @@ def get_websocket_url(url):
 
 class WsResponse(RESTResponse):
 
-    def __init__(self, data):
+    def __init__(self, status, data):
+        self.status = status
         self.data = data
         self.headers = {}
+        self.reason = None
 
     def getheaders(self):
         return self.headers
@@ -85,7 +87,7 @@ class WsApiClient(ApiClient):
                             if channel in [STDOUT_CHANNEL, STDERR_CHANNEL]:
                                 resp_all += data
 
-            return WsResponse(resp_all.encode('utf-8'))
+            return WsResponse(200, resp_all.encode('utf-8'))
 
         else:
 

@@ -44,7 +44,7 @@ class WatchTest(TestCase):
 
         fake_api = Mock()
         fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
-        fake_api.get_namespaces.__doc__ = ':return: V1NamespaceList'
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         watch = kubernetes_asyncio.watch.Watch()
         count = 0
@@ -81,7 +81,7 @@ class WatchTest(TestCase):
 
         fake_api = Mock()
         fake_api.read_namespaced_pod_log = CoroutineMock(return_value=fake_resp)
-        fake_api.read_namespaced_pod_log.__doc__ = ':param bool follow:\n:return: str'
+        fake_api.read_namespaced_pod_log.__doc__ = ':param bool follow:\n:rtype: str'
 
         watch = kubernetes_asyncio.watch.Watch()
         count = 1
@@ -118,7 +118,7 @@ class WatchTest(TestCase):
         # Fake the K8s resource object to watch.
         fake_api = Mock()
         fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
-        fake_api.get_namespaces.__doc__ = ':return: V1NamespaceList'
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         # Iteration must cease after all valid responses were received.
         watch = kubernetes_asyncio.watch.Watch()
@@ -220,7 +220,7 @@ class WatchTest(TestCase):
         fake_resp.content.readline.side_effect = KeyError("expected")
         fake_api = Mock()
         fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
-        fake_api.get_namespaces.__doc__ = ':return: V1NamespaceList'
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         with self.assertRaises(KeyError):
             watch = kubernetes_asyncio.watch.Watch()
@@ -244,7 +244,7 @@ class WatchTest(TestCase):
 
         fake_api = Mock()
         fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
-        fake_api.get_namespaces.__doc__ = ':return: V1NamespaceList'
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         watch = kubernetes_asyncio.watch.Watch()
         async with watch.stream(fake_api.get_namespaces) as stream:
@@ -266,7 +266,7 @@ class WatchTest(TestCase):
 
         fake_api = Mock()
         fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
-        fake_api.get_namespaces.__doc__ = ':return: V1NamespaceList'
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         watch = kubernetes_asyncio.watch.Watch()
         async with watch.stream(fake_api.get_namespaces, resource_version='10') as stream:

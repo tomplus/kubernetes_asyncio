@@ -10,9 +10,12 @@
 """
 
 
+try:
+    from inspect import getfullargspec
+except ImportError:
+    from inspect import getargspec as getfullargspec
 import pprint
 import re  # noqa: F401
-
 import six
 
 from kubernetes_asyncio.client.configuration import Configuration
@@ -45,7 +48,7 @@ class V1beta1FSGroupStrategyOptions(object):
     def __init__(self, ranges=None, rule=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1FSGroupStrategyOptions - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration()
+            local_vars_configuration = Configuration.get_default_copy()
         self.local_vars_configuration = local_vars_configuration
 
         self._ranges = None
@@ -75,7 +78,7 @@ class V1beta1FSGroupStrategyOptions(object):
         ranges are the allowed ranges of fs groups.  If you would like to force a single fs group then supply a single range with the same start and end. Required for MustRunAs.  # noqa: E501
 
         :param ranges: The ranges of this V1beta1FSGroupStrategyOptions.  # noqa: E501
-        :type: list[V1beta1IDRange]
+        :type ranges: list[V1beta1IDRange]
         """
 
         self._ranges = ranges
@@ -98,32 +101,40 @@ class V1beta1FSGroupStrategyOptions(object):
         rule is the strategy that will dictate what FSGroup is used in the SecurityContext.  # noqa: E501
 
         :param rule: The rule of this V1beta1FSGroupStrategyOptions.  # noqa: E501
-        :type: str
+        :type rule: str
         """
 
         self._rule = rule
 
-    def to_dict(self):
+    def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
 
+        def convert(x):
+            if hasattr(x, "to_dict"):
+                args = getfullargspec(x.to_dict).args
+                if len(args) == 1:
+                    return x.to_dict()
+                else:
+                    return x.to_dict(serialize)
+            else:
+                return x
+
         for attr, _ in six.iteritems(self.openapi_types):
             value = getattr(self, attr)
+            attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
                 result[attr] = list(map(
-                    lambda x: x.to_dict() if hasattr(x, "to_dict") else x,
+                    lambda x: convert(x),
                     value
                 ))
-            elif hasattr(value, "to_dict"):
-                result[attr] = value.to_dict()
             elif isinstance(value, dict):
                 result[attr] = dict(map(
-                    lambda item: (item[0], item[1].to_dict())
-                    if hasattr(item[1], "to_dict") else item,
+                    lambda item: (item[0], convert(item[1])),
                     value.items()
                 ))
             else:
-                result[attr] = value
+                result[attr] = convert(value)
 
         return result
 

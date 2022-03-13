@@ -1,6 +1,7 @@
 # V1beta1RunAsUserStrategyOptions
 
 RunAsUserStrategyOptions defines the strategy type and any options used to create the strategy.
+
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
