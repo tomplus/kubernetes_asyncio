@@ -29,6 +29,7 @@ class OpenIDRequestor:
             connector=self._get_connector(),
             auth=aiohttp.BasicAuth(self._client_id, self._client_secret),
             raise_for_status=True,
+            trust_env=True
         )
 
     async def refresh_token(self, refresh_token):
