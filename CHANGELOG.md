@@ -8,6 +8,7 @@
   - correct return types if multiple responses are defined
   - subclass Python exceptions
   - fix Python UTF-8 Encoding Issue
+* feat: add support for aiohttp proxy config using env vars ([#173](https://github.com/tomplus/kubernetes_asyncio/pull/173), [@icamposrivera](https://github.com/icamposrivera))
 
 ### API Change
 - Kube-apiserver: Fixes handling of CRD schemas containing literal null values in enums (#104988, @liggitt) [SIG API Machinery, Apps and Network]
