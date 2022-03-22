@@ -80,7 +80,7 @@ class InClusterConfigLoader(object):
         configuration = Configuration()
         configuration.host = self.host
         configuration.ssl_ca_cert = self.ssl_ca_cert
-        configuration.api_key['authorization'] = "bearer " + self.token
+        configuration.api_key['BearerToken'] = "Bearer " + self.token
         Configuration.set_default(configuration)
 
 
