@@ -1,3 +1,7 @@
+# v22.6.1
+
+* fix: passing Bearer token in authorization header ([#190](https://github.com/tomplus/kubernetes_asyncio/pull/190), [@tomplus](https://github.com/tomplus))
+
 # v22.6.0
 
 * feat: regenerate library with OpenAPI Generator v5.4.0 ([#185](https://github.com/tomplus/kubernetes_asyncio/pull/185), [@tomplus](https://github.com/tomplus))
