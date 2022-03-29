@@ -1,3 +1,7 @@
+# v22.6.2
+
+* fix: add patch to update read buffer size ([#192](https://github.com/tomplus/kubernetes_asyncio/pull/192), [@tomplus](https://github.com/tomplus))
+
 # v22.6.1
 
 * fix: passing Bearer token in authorization header ([#190](https://github.com/tomplus/kubernetes_asyncio/pull/190), [@tomplus](https://github.com/tomplus))
