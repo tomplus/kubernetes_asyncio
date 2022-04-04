@@ -41,9 +41,14 @@ class InClusterConfigLoader(object):
         self._cert_filename = cert_filename
         self._environ = environ
 
-    def load_and_set(self):
+    def load_and_set(self, client_configuration=None):
         self._load_config()
-        self._set_config()
+        if client_configuration:
+            self._set_config(client_configuration)
+        else:
+            configuration = Configuration()
+            self._set_config(configuration)
+            Configuration.set_default(configuration)
 
     def _load_config(self):
         if (SERVICE_HOST_ENV_NAME not in self._environ or
@@ -76,18 +81,20 @@ class InClusterConfigLoader(object):
 
         self.ssl_ca_cert = self._cert_filename
 
-    def _set_config(self):
-        configuration = Configuration()
+    def _set_config(self, configuration):
         configuration.host = self.host
         configuration.ssl_ca_cert = self.ssl_ca_cert
         configuration.api_key['BearerToken'] = "Bearer " + self.token
-        Configuration.set_default(configuration)
 
 
-def load_incluster_config():
+def load_incluster_config(client_configuration=None):
     """Use the service account kubernetes gives to pods to connect to kubernetes
     cluster. It's intended for clients that expect to be running inside a pod
     running on kubernetes. It will raise an exception if called from a process
-    not running in a kubernetes environment."""
+    not running in a kubernetes environment.
+
+    :param client_configuration: The kubernetes.client.Configuration to
+    set configs to.
+    """
     InClusterConfigLoader(token_filename=SERVICE_TOKEN_FILENAME,
-                          cert_filename=SERVICE_CERT_FILENAME).load_and_set()
+                          cert_filename=SERVICE_CERT_FILENAME).load_and_set(client_configuration)
