@@ -16,6 +16,8 @@ import os
 import tempfile
 import unittest
 
+from kubernetes_asyncio.client import Configuration
+
 from .config_exception import ConfigException
 from .incluster_config import (
     SERVICE_HOST_ENV_NAME, SERVICE_PORT_ENV_NAME, InClusterConfigLoader,
@@ -127,6 +129,16 @@ class InClusterConfigTest(unittest.TestCase):
         loader = self.get_test_loader(
             token_filename=self._create_file_with_temp_content())
         self._should_fail_load(loader, "empty token file provided")
+
+    def test_client_config(self):
+        cert_filename = self._create_file_with_temp_content(_TEST_CERT)
+        loader = self.get_test_loader(cert_filename=cert_filename)
+        loader._load_config()
+        client_config = Configuration()
+        loader._set_config(client_config)
+        self.assertEqual("https://" + _TEST_HOST_PORT, client_config.host)
+        self.assertEqual(cert_filename, client_config.ssl_ca_cert)
+        self.assertEqual("Bearer " + _TEST_TOKEN, client_config.api_key['BearerToken'])
 
 
 if __name__ == '__main__':
