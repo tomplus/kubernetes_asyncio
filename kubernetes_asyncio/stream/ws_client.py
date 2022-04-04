@@ -49,6 +49,11 @@ class WsResponse(RESTResponse):
 
 class WsApiClient(ApiClient):
 
+    def __init__(self, configuration=None, header_name=None, header_value=None,
+                 cookie=None, pool_threads=1, heartbeat=None):
+        super().__init__(configuration, header_name, header_value, cookie, pool_threads)
+        self.heartbeat = heartbeat
+
     async def request(self, method, url, query_params=None, headers=None,
                       post_params=None, body=None, _preload_content=True,
                       _request_timeout=None):
@@ -77,7 +82,7 @@ class WsApiClient(ApiClient):
         if _preload_content:
 
             resp_all = ''
-            async with self.rest_client.pool_manager.ws_connect(url, headers=headers) as ws:
+            async with self.rest_client.pool_manager.ws_connect(url, headers=headers, heartbeat=self.heartbeat) as ws:
                 async for msg in ws:
                     msg = msg.data.decode('utf-8')
                     if len(msg) > 1:
@@ -91,4 +96,4 @@ class WsApiClient(ApiClient):
 
         else:
 
-            return await self.rest_client.pool_manager.ws_connect(url, headers=headers)
+            return await self.rest_client.pool_manager.ws_connect(url, headers=headers, heartbeat=self.heartbeat)
