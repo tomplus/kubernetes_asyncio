@@ -1,3 +1,8 @@
+# v22.6.3
+
+* feat: configurable heartbeat value for WsApiClient ([#195](https://github.com/tomplus/kubernetes_asyncio/pull/195), [@GlassOfWhiskey](https://github.com/GlassOfWhiskey))
+* feat: added optional explicit config parameter to InClusterConfigLoader ([#196](https://github.com/tomplus/kubernetes_asyncio/pull/196), [@GlassOfWhiskey](https://github.com/GlassOfWhiskey))
+
 # v22.6.2
 
 * fix: add patch to update read buffer size ([#192](https://github.com/tomplus/kubernetes_asyncio/pull/192), [@tomplus](https://github.com/tomplus))
