@@ -56,6 +56,10 @@ class CustomObjectsApi(object):
         :type body: object
         :param pretty: If 'true', then the output is pretty printed.
         :type pretty: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -94,6 +98,10 @@ class CustomObjectsApi(object):
         :type body: object
         :param pretty: If 'true', then the output is pretty printed.
         :type pretty: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -125,7 +133,9 @@ class CustomObjectsApi(object):
             'version',
             'plural',
             'body',
-            'pretty'
+            'pretty',
+            'dry_run',
+            'field_manager'
         ]
         all_params.extend(
             [
@@ -177,6 +187,10 @@ class CustomObjectsApi(object):
         query_params = []
         if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
             query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -237,6 +251,10 @@ class CustomObjectsApi(object):
         :type body: object
         :param pretty: If 'true', then the output is pretty printed.
         :type pretty: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -277,6 +295,10 @@ class CustomObjectsApi(object):
         :type body: object
         :param pretty: If 'true', then the output is pretty printed.
         :type pretty: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -309,7 +331,9 @@ class CustomObjectsApi(object):
             'namespace',
             'plural',
             'body',
-            'pretty'
+            'pretty',
+            'dry_run',
+            'field_manager'
         ]
         all_params.extend(
             [
@@ -367,6 +391,10 @@ class CustomObjectsApi(object):
         query_params = []
         if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
             query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -429,6 +457,8 @@ class CustomObjectsApi(object):
         :type orphan_dependents: bool
         :param propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
         :type propagation_policy: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
         :param body:
         :type body: V1DeleteOptions
         :param async_req: Whether to execute the request asynchronously.
@@ -473,6 +503,8 @@ class CustomObjectsApi(object):
         :type orphan_dependents: bool
         :param propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
         :type propagation_policy: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
         :param body:
         :type body: V1DeleteOptions
         :param async_req: Whether to execute the request asynchronously.
@@ -509,6 +541,7 @@ class CustomObjectsApi(object):
             'grace_period_seconds',
             'orphan_dependents',
             'propagation_policy',
+            'dry_run',
             'body'
         ]
         all_params.extend(
@@ -567,6 +600,8 @@ class CustomObjectsApi(object):
             query_params.append(('orphanDependents', local_var_params['orphan_dependents']))  # noqa: E501
         if 'propagation_policy' in local_var_params and local_var_params['propagation_policy'] is not None:  # noqa: E501
             query_params.append(('propagationPolicy', local_var_params['propagation_policy']))  # noqa: E501
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -590,6 +625,423 @@ class CustomObjectsApi(object):
 
         return self.api_client.call_api(
             '/apis/{group}/{version}/{plural}/{name}', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def delete_collection_cluster_custom_object(self, group, version, plural, **kwargs):  # noqa: E501
+        """delete_collection_cluster_custom_object  # noqa: E501
+
+        Delete collection of cluster scoped custom objects  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_collection_cluster_custom_object(group, version, plural, async_req=True)
+        >>> result = thread.get()
+
+        :param group: The custom resource's group name (required)
+        :type group: str
+        :param version: The custom resource's version (required)
+        :type version: str
+        :param plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
+        :type plural: str
+        :param pretty: If 'true', then the output is pretty printed.
+        :type pretty: str
+        :param grace_period_seconds: The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+        :type grace_period_seconds: int
+        :param orphan_dependents: Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
+        :type orphan_dependents: bool
+        :param propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
+        :type propagation_policy: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param body:
+        :type body: V1DeleteOptions
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: object
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.delete_collection_cluster_custom_object_with_http_info(group, version, plural, **kwargs)  # noqa: E501
+
+    def delete_collection_cluster_custom_object_with_http_info(self, group, version, plural, **kwargs):  # noqa: E501
+        """delete_collection_cluster_custom_object  # noqa: E501
+
+        Delete collection of cluster scoped custom objects  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_collection_cluster_custom_object_with_http_info(group, version, plural, async_req=True)
+        >>> result = thread.get()
+
+        :param group: The custom resource's group name (required)
+        :type group: str
+        :param version: The custom resource's version (required)
+        :type version: str
+        :param plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
+        :type plural: str
+        :param pretty: If 'true', then the output is pretty printed.
+        :type pretty: str
+        :param grace_period_seconds: The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+        :type grace_period_seconds: int
+        :param orphan_dependents: Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
+        :type orphan_dependents: bool
+        :param propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
+        :type propagation_policy: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param body:
+        :type body: V1DeleteOptions
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'group',
+            'version',
+            'plural',
+            'pretty',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'dry_run',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_collection_cluster_custom_object" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'group' is set
+        if self.api_client.client_side_validation and ('group' not in local_var_params or  # noqa: E501
+                                                        local_var_params['group'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `group` when calling `delete_collection_cluster_custom_object`")  # noqa: E501
+        # verify the required parameter 'version' is set
+        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
+                                                        local_var_params['version'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `version` when calling `delete_collection_cluster_custom_object`")  # noqa: E501
+        # verify the required parameter 'plural' is set
+        if self.api_client.client_side_validation and ('plural' not in local_var_params or  # noqa: E501
+                                                        local_var_params['plural'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `plural` when calling `delete_collection_cluster_custom_object`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'group' in local_var_params:
+            path_params['group'] = local_var_params['group']  # noqa: E501
+        if 'version' in local_var_params:
+            path_params['version'] = local_var_params['version']  # noqa: E501
+        if 'plural' in local_var_params:
+            path_params['plural'] = local_var_params['plural']  # noqa: E501
+
+        query_params = []
+        if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
+            query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'grace_period_seconds' in local_var_params and local_var_params['grace_period_seconds'] is not None:  # noqa: E501
+            query_params.append(('gracePeriodSeconds', local_var_params['grace_period_seconds']))  # noqa: E501
+        if 'orphan_dependents' in local_var_params and local_var_params['orphan_dependents'] is not None:  # noqa: E501
+            query_params.append(('orphanDependents', local_var_params['orphan_dependents']))  # noqa: E501
+        if 'propagation_policy' in local_var_params and local_var_params['propagation_policy'] is not None:  # noqa: E501
+            query_params.append(('propagationPolicy', local_var_params['propagation_policy']))  # noqa: E501
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['BearerToken']  # noqa: E501
+
+        response_types_map = {
+            200: "object",
+            401: None,
+        }
+
+        return self.api_client.call_api(
+            '/apis/{group}/{version}/{plural}', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_types_map=response_types_map,
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats,
+            _request_auth=local_var_params.get('_request_auth'))
+
+    def delete_collection_namespaced_custom_object(self, group, version, namespace, plural, **kwargs):  # noqa: E501
+        """delete_collection_namespaced_custom_object  # noqa: E501
+
+        Delete collection of namespace scoped custom objects  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_collection_namespaced_custom_object(group, version, namespace, plural, async_req=True)
+        >>> result = thread.get()
+
+        :param group: The custom resource's group name (required)
+        :type group: str
+        :param version: The custom resource's version (required)
+        :type version: str
+        :param namespace: The custom resource's namespace (required)
+        :type namespace: str
+        :param plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
+        :type plural: str
+        :param pretty: If 'true', then the output is pretty printed.
+        :type pretty: str
+        :param grace_period_seconds: The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+        :type grace_period_seconds: int
+        :param orphan_dependents: Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
+        :type orphan_dependents: bool
+        :param propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
+        :type propagation_policy: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param body:
+        :type body: V1DeleteOptions
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: object
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.delete_collection_namespaced_custom_object_with_http_info(group, version, namespace, plural, **kwargs)  # noqa: E501
+
+    def delete_collection_namespaced_custom_object_with_http_info(self, group, version, namespace, plural, **kwargs):  # noqa: E501
+        """delete_collection_namespaced_custom_object  # noqa: E501
+
+        Delete collection of namespace scoped custom objects  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_collection_namespaced_custom_object_with_http_info(group, version, namespace, plural, async_req=True)
+        >>> result = thread.get()
+
+        :param group: The custom resource's group name (required)
+        :type group: str
+        :param version: The custom resource's version (required)
+        :type version: str
+        :param namespace: The custom resource's namespace (required)
+        :type namespace: str
+        :param plural: The custom resource's plural name. For TPRs this would be lowercase plural kind. (required)
+        :type plural: str
+        :param pretty: If 'true', then the output is pretty printed.
+        :type pretty: str
+        :param grace_period_seconds: The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+        :type grace_period_seconds: int
+        :param orphan_dependents: Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object's finalizers list. Either this field or PropagationPolicy may be set, but not both.
+        :type orphan_dependents: bool
+        :param propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
+        :type propagation_policy: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param body:
+        :type body: V1DeleteOptions
+        :param async_req: Whether to execute the request asynchronously.
+        :type async_req: bool, optional
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :type _return_http_data_only: bool, optional
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :type _preload_content: bool, optional
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :type _request_auth: dict, optional
+        :type _content_type: string, optional: force content-type for the request
+        :return: Returns the result object.
+                 If the method is called asynchronously,
+                 returns the request thread.
+        :rtype: tuple(object, status_code(int), headers(HTTPHeaderDict))
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'group',
+            'version',
+            'namespace',
+            'plural',
+            'pretty',
+            'grace_period_seconds',
+            'orphan_dependents',
+            'propagation_policy',
+            'dry_run',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout',
+                '_request_auth',
+                '_content_type',
+                '_headers'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method delete_collection_namespaced_custom_object" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'group' is set
+        if self.api_client.client_side_validation and ('group' not in local_var_params or  # noqa: E501
+                                                        local_var_params['group'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `group` when calling `delete_collection_namespaced_custom_object`")  # noqa: E501
+        # verify the required parameter 'version' is set
+        if self.api_client.client_side_validation and ('version' not in local_var_params or  # noqa: E501
+                                                        local_var_params['version'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `version` when calling `delete_collection_namespaced_custom_object`")  # noqa: E501
+        # verify the required parameter 'namespace' is set
+        if self.api_client.client_side_validation and ('namespace' not in local_var_params or  # noqa: E501
+                                                        local_var_params['namespace'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `namespace` when calling `delete_collection_namespaced_custom_object`")  # noqa: E501
+        # verify the required parameter 'plural' is set
+        if self.api_client.client_side_validation and ('plural' not in local_var_params or  # noqa: E501
+                                                        local_var_params['plural'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `plural` when calling `delete_collection_namespaced_custom_object`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'group' in local_var_params:
+            path_params['group'] = local_var_params['group']  # noqa: E501
+        if 'version' in local_var_params:
+            path_params['version'] = local_var_params['version']  # noqa: E501
+        if 'namespace' in local_var_params:
+            path_params['namespace'] = local_var_params['namespace']  # noqa: E501
+        if 'plural' in local_var_params:
+            path_params['plural'] = local_var_params['plural']  # noqa: E501
+
+        query_params = []
+        if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
+            query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'grace_period_seconds' in local_var_params and local_var_params['grace_period_seconds'] is not None:  # noqa: E501
+            query_params.append(('gracePeriodSeconds', local_var_params['grace_period_seconds']))  # noqa: E501
+        if 'orphan_dependents' in local_var_params and local_var_params['orphan_dependents'] is not None:  # noqa: E501
+            query_params.append(('orphanDependents', local_var_params['orphan_dependents']))  # noqa: E501
+        if 'propagation_policy' in local_var_params and local_var_params['propagation_policy'] is not None:  # noqa: E501
+            query_params.append(('propagationPolicy', local_var_params['propagation_policy']))  # noqa: E501
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+
+        header_params = dict(local_var_params.get('_headers', {}))
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['BearerToken']  # noqa: E501
+
+        response_types_map = {
+            200: "object",
+            401: None,
+        }
+
+        return self.api_client.call_api(
+            '/apis/{group}/{version}/namespaces/{namespace}/{plural}', 'DELETE',
             path_params,
             query_params,
             header_params,
@@ -631,6 +1083,8 @@ class CustomObjectsApi(object):
         :type orphan_dependents: bool
         :param propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
         :type propagation_policy: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
         :param body:
         :type body: V1DeleteOptions
         :param async_req: Whether to execute the request asynchronously.
@@ -677,6 +1131,8 @@ class CustomObjectsApi(object):
         :type orphan_dependents: bool
         :param propagation_policy: Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
         :type propagation_policy: str
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
         :param body:
         :type body: V1DeleteOptions
         :param async_req: Whether to execute the request asynchronously.
@@ -714,6 +1170,7 @@ class CustomObjectsApi(object):
             'grace_period_seconds',
             'orphan_dependents',
             'propagation_policy',
+            'dry_run',
             'body'
         ]
         all_params.extend(
@@ -778,6 +1235,8 @@ class CustomObjectsApi(object):
             query_params.append(('orphanDependents', local_var_params['orphan_dependents']))  # noqa: E501
         if 'propagation_policy' in local_var_params and local_var_params['propagation_policy'] is not None:  # noqa: E501
             query_params.append(('propagationPolicy', local_var_params['propagation_policy']))  # noqa: E501
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -1899,6 +2358,8 @@ class CustomObjectsApi(object):
         :type plural: str
         :param pretty: If 'true', then the output is pretty printed.
         :type pretty: str
+        :param allow_watch_bookmarks: allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+        :type allow_watch_bookmarks: bool
         :param _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :type _continue: str
         :param field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -1909,6 +2370,8 @@ class CustomObjectsApi(object):
         :type limit: int
         :param resource_version: When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
         :type resource_version: str
+        :param resource_version_match: resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+        :type resource_version_match: str
         :param timeout_seconds: Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
         :type timeout_seconds: int
         :param watch: Watch for changes to the described resources and return them as a stream of add, update, and remove notifications.
@@ -1949,6 +2412,8 @@ class CustomObjectsApi(object):
         :type plural: str
         :param pretty: If 'true', then the output is pretty printed.
         :type pretty: str
+        :param allow_watch_bookmarks: allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+        :type allow_watch_bookmarks: bool
         :param _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :type _continue: str
         :param field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -1959,6 +2424,8 @@ class CustomObjectsApi(object):
         :type limit: int
         :param resource_version: When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
         :type resource_version: str
+        :param resource_version_match: resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+        :type resource_version_match: str
         :param timeout_seconds: Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
         :type timeout_seconds: int
         :param watch: Watch for changes to the described resources and return them as a stream of add, update, and remove notifications.
@@ -1994,11 +2461,13 @@ class CustomObjectsApi(object):
             'version',
             'plural',
             'pretty',
+            'allow_watch_bookmarks',
             '_continue',
             'field_selector',
             'label_selector',
             'limit',
             'resource_version',
+            'resource_version_match',
             'timeout_seconds',
             'watch'
         ]
@@ -2048,6 +2517,8 @@ class CustomObjectsApi(object):
         query_params = []
         if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
             query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'allow_watch_bookmarks' in local_var_params and local_var_params['allow_watch_bookmarks'] is not None:  # noqa: E501
+            query_params.append(('allowWatchBookmarks', local_var_params['allow_watch_bookmarks']))  # noqa: E501
         if '_continue' in local_var_params and local_var_params['_continue'] is not None:  # noqa: E501
             query_params.append(('continue', local_var_params['_continue']))  # noqa: E501
         if 'field_selector' in local_var_params and local_var_params['field_selector'] is not None:  # noqa: E501
@@ -2058,6 +2529,8 @@ class CustomObjectsApi(object):
             query_params.append(('limit', local_var_params['limit']))  # noqa: E501
         if 'resource_version' in local_var_params and local_var_params['resource_version'] is not None:  # noqa: E501
             query_params.append(('resourceVersion', local_var_params['resource_version']))  # noqa: E501
+        if 'resource_version_match' in local_var_params and local_var_params['resource_version_match'] is not None:  # noqa: E501
+            query_params.append(('resourceVersionMatch', local_var_params['resource_version_match']))  # noqa: E501
         if 'timeout_seconds' in local_var_params and local_var_params['timeout_seconds'] is not None:  # noqa: E501
             query_params.append(('timeoutSeconds', local_var_params['timeout_seconds']))  # noqa: E501
         if 'watch' in local_var_params and local_var_params['watch'] is not None:  # noqa: E501
@@ -2118,6 +2591,8 @@ class CustomObjectsApi(object):
         :type plural: str
         :param pretty: If 'true', then the output is pretty printed.
         :type pretty: str
+        :param allow_watch_bookmarks: allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+        :type allow_watch_bookmarks: bool
         :param _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :type _continue: str
         :param field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -2128,6 +2603,8 @@ class CustomObjectsApi(object):
         :type limit: int
         :param resource_version: When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
         :type resource_version: str
+        :param resource_version_match: resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+        :type resource_version_match: str
         :param timeout_seconds: Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
         :type timeout_seconds: int
         :param watch: Watch for changes to the described resources and return them as a stream of add, update, and remove notifications.
@@ -2170,6 +2647,8 @@ class CustomObjectsApi(object):
         :type plural: str
         :param pretty: If 'true', then the output is pretty printed.
         :type pretty: str
+        :param allow_watch_bookmarks: allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server's discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+        :type allow_watch_bookmarks: bool
         :param _continue: The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
         :type _continue: str
         :param field_selector: A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -2180,6 +2659,8 @@ class CustomObjectsApi(object):
         :type limit: int
         :param resource_version: When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it's 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
         :type resource_version: str
+        :param resource_version_match: resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+        :type resource_version_match: str
         :param timeout_seconds: Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
         :type timeout_seconds: int
         :param watch: Watch for changes to the described resources and return them as a stream of add, update, and remove notifications.
@@ -2216,11 +2697,13 @@ class CustomObjectsApi(object):
             'namespace',
             'plural',
             'pretty',
+            'allow_watch_bookmarks',
             '_continue',
             'field_selector',
             'label_selector',
             'limit',
             'resource_version',
+            'resource_version_match',
             'timeout_seconds',
             'watch'
         ]
@@ -2276,6 +2759,8 @@ class CustomObjectsApi(object):
         query_params = []
         if 'pretty' in local_var_params and local_var_params['pretty'] is not None:  # noqa: E501
             query_params.append(('pretty', local_var_params['pretty']))  # noqa: E501
+        if 'allow_watch_bookmarks' in local_var_params and local_var_params['allow_watch_bookmarks'] is not None:  # noqa: E501
+            query_params.append(('allowWatchBookmarks', local_var_params['allow_watch_bookmarks']))  # noqa: E501
         if '_continue' in local_var_params and local_var_params['_continue'] is not None:  # noqa: E501
             query_params.append(('continue', local_var_params['_continue']))  # noqa: E501
         if 'field_selector' in local_var_params and local_var_params['field_selector'] is not None:  # noqa: E501
@@ -2286,6 +2771,8 @@ class CustomObjectsApi(object):
             query_params.append(('limit', local_var_params['limit']))  # noqa: E501
         if 'resource_version' in local_var_params and local_var_params['resource_version'] is not None:  # noqa: E501
             query_params.append(('resourceVersion', local_var_params['resource_version']))  # noqa: E501
+        if 'resource_version_match' in local_var_params and local_var_params['resource_version_match'] is not None:  # noqa: E501
+            query_params.append(('resourceVersionMatch', local_var_params['resource_version_match']))  # noqa: E501
         if 'timeout_seconds' in local_var_params and local_var_params['timeout_seconds'] is not None:  # noqa: E501
             query_params.append(('timeoutSeconds', local_var_params['timeout_seconds']))  # noqa: E501
         if 'watch' in local_var_params and local_var_params['watch'] is not None:  # noqa: E501
@@ -2346,6 +2833,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: The JSON schema of the Resource to patch. (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2384,6 +2877,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: The JSON schema of the Resource to patch. (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2415,7 +2914,10 @@ class CustomObjectsApi(object):
             'version',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager',
+            'force'
         ]
         all_params.extend(
             [
@@ -2471,6 +2973,12 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
+        if 'force' in local_var_params and local_var_params['force'] is not None:  # noqa: E501
+            query_params.append(('force', local_var_params['force']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -2535,6 +3043,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2573,6 +3087,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2604,7 +3124,10 @@ class CustomObjectsApi(object):
             'version',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager',
+            'force'
         ]
         all_params.extend(
             [
@@ -2660,6 +3183,12 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
+        if 'force' in local_var_params and local_var_params['force'] is not None:  # noqa: E501
+            query_params.append(('force', local_var_params['force']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -2724,6 +3253,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2762,6 +3297,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2793,7 +3334,10 @@ class CustomObjectsApi(object):
             'version',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager',
+            'force'
         ]
         all_params.extend(
             [
@@ -2849,6 +3393,12 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
+        if 'force' in local_var_params and local_var_params['force'] is not None:  # noqa: E501
+            query_params.append(('force', local_var_params['force']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -2915,6 +3465,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: The JSON schema of the Resource to patch. (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2955,6 +3511,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: The JSON schema of the Resource to patch. (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -2987,7 +3549,10 @@ class CustomObjectsApi(object):
             'namespace',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager',
+            'force'
         ]
         all_params.extend(
             [
@@ -3049,6 +3614,12 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
+        if 'force' in local_var_params and local_var_params['force'] is not None:  # noqa: E501
+            query_params.append(('force', local_var_params['force']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -3115,6 +3686,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3155,6 +3732,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -3187,7 +3770,10 @@ class CustomObjectsApi(object):
             'namespace',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager',
+            'force'
         ]
         all_params.extend(
             [
@@ -3249,6 +3835,12 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
+        if 'force' in local_var_params and local_var_params['force'] is not None:  # noqa: E501
+            query_params.append(('force', local_var_params['force']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -3265,7 +3857,7 @@ class CustomObjectsApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json-patch+json', 'application/merge-patch+json'],
+                ['application/json-patch+json', 'application/merge-patch+json', 'application/apply-patch+yaml'],
                 'PATCH', body_params))  # noqa: E501
 
         # Authentication setting
@@ -3315,6 +3907,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3355,6 +3953,12 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+        :type field_manager: str
+        :param force: Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+        :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -3387,7 +3991,10 @@ class CustomObjectsApi(object):
             'namespace',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager',
+            'force'
         ]
         all_params.extend(
             [
@@ -3449,6 +4056,12 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
+        if 'force' in local_var_params and local_var_params['force'] is not None:  # noqa: E501
+            query_params.append(('force', local_var_params['force']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -3465,7 +4078,7 @@ class CustomObjectsApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json-patch+json', 'application/merge-patch+json'],
+                ['application/json-patch+json', 'application/merge-patch+json', 'application/apply-patch+yaml'],
                 'PATCH', body_params))  # noqa: E501
 
         # Authentication setting
@@ -3513,6 +4126,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: The JSON schema of the Resource to replace. (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3551,6 +4168,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: The JSON schema of the Resource to replace. (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -3582,7 +4203,9 @@ class CustomObjectsApi(object):
             'version',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager'
         ]
         all_params.extend(
             [
@@ -3638,6 +4261,10 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -3696,6 +4323,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3734,6 +4365,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -3765,7 +4400,9 @@ class CustomObjectsApi(object):
             'version',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager'
         ]
         all_params.extend(
             [
@@ -3821,6 +4458,10 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -3880,6 +4521,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3918,6 +4563,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -3949,7 +4598,9 @@ class CustomObjectsApi(object):
             'version',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager'
         ]
         all_params.extend(
             [
@@ -4005,6 +4656,10 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -4066,6 +4721,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: The JSON schema of the Resource to replace. (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4106,6 +4765,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: The JSON schema of the Resource to replace. (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -4138,7 +4801,9 @@ class CustomObjectsApi(object):
             'namespace',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager'
         ]
         all_params.extend(
             [
@@ -4200,6 +4865,10 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -4260,6 +4929,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4300,6 +4973,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -4332,7 +5009,9 @@ class CustomObjectsApi(object):
             'namespace',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager'
         ]
         all_params.extend(
             [
@@ -4394,6 +5073,10 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
@@ -4455,6 +5138,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4495,6 +5182,10 @@ class CustomObjectsApi(object):
         :type name: str
         :param body: (required)
         :type body: object
+        :param dry_run: When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+        :type dry_run: str
+        :param field_manager: fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+        :type field_manager: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
         :param _return_http_data_only: response data without head status code
@@ -4527,7 +5218,9 @@ class CustomObjectsApi(object):
             'namespace',
             'plural',
             'name',
-            'body'
+            'body',
+            'dry_run',
+            'field_manager'
         ]
         all_params.extend(
             [
@@ -4589,6 +5282,10 @@ class CustomObjectsApi(object):
             path_params['name'] = local_var_params['name']  # noqa: E501
 
         query_params = []
+        if 'dry_run' in local_var_params and local_var_params['dry_run'] is not None:  # noqa: E501
+            query_params.append(('dryRun', local_var_params['dry_run']))  # noqa: E501
+        if 'field_manager' in local_var_params and local_var_params['field_manager'] is not None:  # noqa: E501
+            query_params.append(('fieldManager', local_var_params['field_manager']))  # noqa: E501
 
         header_params = dict(local_var_params.get('_headers', {}))
 
