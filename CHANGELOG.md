@@ -1,3 +1,7 @@
+# v22.6.4
+
+* fix regenerate library with correct crd spec ([#198](https://github.com/tomplus/kubernetes_asyncio/pull/198), [@tomplus](https://github.com/tomplus))
+
 # v22.6.3
 
 * feat: configurable heartbeat value for WsApiClient ([#195](https://github.com/tomplus/kubernetes_asyncio/pull/195), [@GlassOfWhiskey](https://github.com/GlassOfWhiskey))
