@@ -1,0 +1,37 @@
+# This workflows will test the build of the Python package into a software
+# distribution and a wheel, and if a tag is pushed, also upload it to PyPI.
+#
+name: Publish to PyPI
+
+on: [push, pull_request]
+
+jobs:
+  publish-to-pypi:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+
+      - name: pip install build
+        run: |
+          pip install build
+          pip list
+
+      - name: build --sdist --wheel .
+        run: |
+          python -m build --sdist --wheel .
+          ls -l dist
+          sha256sum dist/* | tee SHA256SUMS
+
+      - name: Publish to PyPI
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          # The pypi_api_token GitHub secret is configured in
+          # https://github.com/tomplus/kubernetes_asyncio/settings/secrets/actions
+          # with the value of a PyPI API token created at
+          # https://pypi.org/manage/project/kubernetes-asyncio/settings/.
+          #
+          password: ${{ secrets.pypi_api_token }}
