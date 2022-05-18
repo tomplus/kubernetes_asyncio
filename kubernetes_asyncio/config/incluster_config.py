@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import datetime
 import os
 
 from kubernetes_asyncio.client import Configuration
@@ -22,6 +23,8 @@ SERVICE_HOST_ENV_NAME = "KUBERNETES_SERVICE_HOST"
 SERVICE_PORT_ENV_NAME = "KUBERNETES_SERVICE_PORT"
 SERVICE_TOKEN_FILENAME = "/var/run/secrets/kubernetes.io/serviceaccount/token"
 SERVICE_CERT_FILENAME = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+
+TOKEN_REFRESH_PERIOD = datetime.timedelta(minutes=1)
 
 
 def _join_host_port(host, port):
@@ -35,11 +38,15 @@ def _join_host_port(host, port):
 
 class InClusterConfigLoader(object):
 
-    def __init__(self, token_filename,
-                 cert_filename, environ=os.environ):
+    def __init__(self,
+                 token_filename,
+                 cert_filename,
+                 try_refresh_token=True,
+                 environ=os.environ):
         self._token_filename = token_filename
         self._cert_filename = cert_filename
         self._environ = environ
+        self._try_refresh_token = try_refresh_token
 
     def load_and_set(self, client_configuration=None):
         self._load_config()
@@ -64,12 +71,9 @@ class InClusterConfigLoader(object):
                                          self._environ[SERVICE_PORT_ENV_NAME]))
 
         if not os.path.isfile(self._token_filename):
-            raise ConfigException("Service token file does not exists.")
+            raise ConfigException("Service token file does not exist.")
 
-        with open(self._token_filename) as f:
-            self.token = f.read()
-            if not self.token:
-                raise ConfigException("Token file exists but empty.")
+        self._read_token_file()
 
         if not os.path.isfile(self._cert_filename):
             raise ConfigException(
@@ -84,10 +88,29 @@ class InClusterConfigLoader(object):
     def _set_config(self, configuration):
         configuration.host = self.host
         configuration.ssl_ca_cert = self.ssl_ca_cert
-        configuration.api_key['BearerToken'] = "Bearer " + self.token
+        if self.token is not None:
+            configuration.api_key['BearerToken'] = self.token
+        if not self._try_refresh_token:
+            return
+
+        def load_token_from_file(configuration, *args):
+            if self.token_expires_at <= datetime.datetime.now():
+                self._read_token_file()
+                configuration.api_key['BearerToken'] = self.token
+
+        configuration.refresh_api_key_hook = load_token_from_file
+
+    def _read_token_file(self):
+        with open(self._token_filename) as f:
+            content = f.read()
+            if not content:
+                raise ConfigException("Token file exists but empty.")
+            self.token = "Bearer " + content
+            self.token_expires_at = datetime.datetime.now(
+            ) + TOKEN_REFRESH_PERIOD
 
 
-def load_incluster_config(client_configuration=None):
+def load_incluster_config(client_configuration=None, try_refresh_token=True):
     """Use the service account kubernetes gives to pods to connect to kubernetes
     cluster. It's intended for clients that expect to be running inside a pod
     running on kubernetes. It will raise an exception if called from a process
@@ -96,5 +119,7 @@ def load_incluster_config(client_configuration=None):
     :param client_configuration: The kubernetes.client.Configuration to
     set configs to.
     """
-    InClusterConfigLoader(token_filename=SERVICE_TOKEN_FILENAME,
-                          cert_filename=SERVICE_CERT_FILENAME).load_and_set(client_configuration)
+    InClusterConfigLoader(
+        token_filename=SERVICE_TOKEN_FILENAME,
+        cert_filename=SERVICE_CERT_FILENAME,
+        try_refresh_token=try_refresh_token).load_and_set(client_configuration)

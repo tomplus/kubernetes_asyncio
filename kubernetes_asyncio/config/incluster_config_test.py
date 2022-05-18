@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import datetime
 import os
 import tempfile
 import unittest
@@ -25,6 +26,7 @@ from .incluster_config import (
 )
 
 _TEST_TOKEN = "temp_token"
+_TEST_NEW_TOKEN = "temp_new_token"
 _TEST_CERT = "temp_cert"
 _TEST_HOST = "127.0.0.1"
 _TEST_PORT = "80"
@@ -66,6 +68,7 @@ class InClusterConfigTest(unittest.TestCase):
         return InClusterConfigLoader(
             token_filename=token_filename,
             cert_filename=cert_filename,
+            try_refresh_token=True,
             environ=environ)
 
     def test_join_host_port(self):
@@ -80,7 +83,29 @@ class InClusterConfigTest(unittest.TestCase):
         loader._load_config()
         self.assertEqual("https://" + _TEST_HOST_PORT, loader.host)
         self.assertEqual(cert_filename, loader.ssl_ca_cert)
-        self.assertEqual(_TEST_TOKEN, loader.token)
+        self.assertEqual('Bearer ' + _TEST_TOKEN, loader.token)
+
+    def test_refresh_token(self):
+        loader = self.get_test_loader()
+        config = Configuration()
+        loader.load_and_set(config)
+
+        self.assertEqual('Bearer ' + _TEST_TOKEN,
+                         config.get_api_key_with_prefix('BearerToken'))
+        self.assertEqual('Bearer ' + _TEST_TOKEN, loader.token)
+        self.assertIsNotNone(loader.token_expires_at)
+
+        old_token_expires_at = loader.token_expires_at
+        loader._token_filename = self._create_file_with_temp_content(
+            _TEST_NEW_TOKEN)
+        self.assertEqual('Bearer ' + _TEST_TOKEN,
+                         config.get_api_key_with_prefix('BearerToken'))
+
+        loader.token_expires_at = datetime.datetime.now()
+        self.assertEqual('Bearer ' + _TEST_NEW_TOKEN,
+                         config.get_api_key_with_prefix('BearerToken'))
+        self.assertEqual('Bearer ' + _TEST_NEW_TOKEN, loader.token)
+        self.assertGreater(loader.token_expires_at, old_token_expires_at)
 
     def _should_fail_load(self, config_loader, reason):
         try:
