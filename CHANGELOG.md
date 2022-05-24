@@ -1,3 +1,7 @@
+# v22.6.5
+
+* feat: periodically refresh ServiceAccount tokens ([#205](https://github.com/tomplus/kubernetes_asyncio/pull/205), [@JacobHenner](https://github.com/JacobHenner))
+
 # v22.6.4
 
 * fix regenerate library with correct crd spec ([#198](https://github.com/tomplus/kubernetes_asyncio/pull/198), [@tomplus](https://github.com/tomplus))
@@ -632,7 +636,7 @@ To read the full CHANGELOG visit [here](https://raw.githubusercontent.com/kubern
 # v12.1.0
 
 * feat: add function to create objects from dict ([#143](https://github.com/tomplus/kubernetes_asyncio/pull/143), [@tomplus](https://github.com/tomplus))
-* feat: Increase aiohttp read buffer to 2MiB ([#138](https://github.com/tomplus/kubernetes_asyncio/pull/138), [@acobHenner](https://github.com/JacobHenner))
+* feat: Increase aiohttp read buffer to 2MiB ([#138](https://github.com/tomplus/kubernetes_asyncio/pull/138), [@JacobHenner](https://github.com/JacobHenner))
 * fix: Missing `create_from_yaml_single_item` import ([#133](https://github.com/tomplus/kubernetes_asyncio/pull/133), [@VideoSystemsTech](https://github.com/VideoSystemsTech))
 * fix: show warning if config not loaded #127 ([#127](https://github.com/tomplus/kubernetes_asyncio/pull/127),   [@tomplus](https://github.com/tomplus))
 
