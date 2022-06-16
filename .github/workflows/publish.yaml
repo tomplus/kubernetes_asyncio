@@ -12,6 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
+        with:
+          python-version: "3.x"
 
       - name: pip install build
         run: |
@@ -29,9 +31,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           user: __token__
-          # The pypi_api_token GitHub secret is configured in
-          # https://github.com/tomplus/kubernetes_asyncio/settings/secrets/actions
-          # with the value of a PyPI API token created at
-          # https://pypi.org/manage/project/kubernetes-asyncio/settings/.
-          #
           password: ${{ secrets.pypi_api_token }}
