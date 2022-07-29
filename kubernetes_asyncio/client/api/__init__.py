@@ -48,7 +48,6 @@ from kubernetes_asyncio.client.api.networking_api import NetworkingApi
 from kubernetes_asyncio.client.api.networking_v1_api import NetworkingV1Api
 from kubernetes_asyncio.client.api.node_api import NodeApi
 from kubernetes_asyncio.client.api.node_v1_api import NodeV1Api
-from kubernetes_asyncio.client.api.node_v1alpha1_api import NodeV1alpha1Api
 from kubernetes_asyncio.client.api.node_v1beta1_api import NodeV1beta1Api
 from kubernetes_asyncio.client.api.openid_api import OpenidApi
 from kubernetes_asyncio.client.api.policy_api import PolicyApi
@@ -60,6 +59,5 @@ from kubernetes_asyncio.client.api.scheduling_api import SchedulingApi
 from kubernetes_asyncio.client.api.scheduling_v1_api import SchedulingV1Api
 from kubernetes_asyncio.client.api.storage_api import StorageApi
 from kubernetes_asyncio.client.api.storage_v1_api import StorageV1Api
-from kubernetes_asyncio.client.api.storage_v1alpha1_api import StorageV1alpha1Api
 from kubernetes_asyncio.client.api.storage_v1beta1_api import StorageV1beta1Api
 from kubernetes_asyncio.client.api.version_api import VersionApi
