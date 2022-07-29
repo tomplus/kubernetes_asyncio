@@ -28,9 +28,9 @@ import yaml
 from kubernetes_asyncio.client import ApiClient, Configuration
 
 from .config_exception import ConfigException
-from .dateutil import UTC, parse_rfc3339
 from .exec_provider import ExecProvider
 from .google_auth import google_auth_credentials
+from .k8s_dateutil import UTC, parse_rfc3339
 from .openid import OpenIDRequestor
 
 EXPIRY_SKEW_PREVENTION_DELAY = datetime.timedelta(minutes=5)
@@ -242,6 +242,8 @@ class KubeConfigLoader(object):
                 self._config_persister(self._config.value)
 
         self.token = "Bearer %s" % config['access-token']
+        if 'expiry' in self.provider['config']:
+            self.expiry = parse_rfc3339(self.provider['config']['expiry'])
         return self.token
 
     async def _load_oid_token(self):
@@ -312,10 +314,31 @@ class KubeConfigLoader(object):
     async def _load_from_exec_plugin(self):
         try:
             status = await ExecProvider(self._user['exec']).run()
-            if 'token' not in status:
-                logging.error('exec: missing token field in plugin output')
+            if 'token' in status:
+                self.token = "Bearer %s" % status['token']
+            elif 'clientCertificateData' in status:
+                if 'clientKeyData' not in status:
+                    logging.error('exec: missing clientKeyData field in '
+                                  'plugin output')
+                    return None
+                self.cert_file = FileOrData(
+                    status, None,
+                    data_key_name='clientCertificateData',
+                    file_base_path=self._config_base_path,
+                    base64_file_content=False,
+                    temp_file_path=self._temp_file_path).as_file()
+                self.key_file = FileOrData(
+                    status, None,
+                    data_key_name='clientKeyData',
+                    file_base_path=self._config_base_path,
+                    base64_file_content=False,
+                    temp_file_path=self._temp_file_path).as_file()
+            else:
+                logging.error('exec: missing token or clientCertificateData '
+                              'field in plugin output')
                 return None
-            self.token = "Bearer %s" % status['token']
+            if 'expirationTimestamp' in status:
+                self.expiry = parse_rfc3339(status['expirationTimestamp'])
             return True
         except Exception as e:
             logging.error(str(e))
@@ -368,6 +391,12 @@ class KubeConfigLoader(object):
 
         if 'token' in self.__dict__:
             client_configuration.api_key['BearerToken'] = self.token
+
+            def _refresh_api_key(client_configuration):
+                if ('expiry' in self.__dict__ and _is_expired(self.expiry)):
+                    self._load_authentication()
+                    self._set_config(client_configuration)
+            client_configuration.refresh_api_key_hook = _refresh_api_key
 
         # copy these keys directly from self to configuration object
         keys = ['host', 'ssl_ca_cert', 'cert_file', 'key_file', 'verify_ssl']

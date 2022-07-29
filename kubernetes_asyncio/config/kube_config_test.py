@@ -19,12 +19,15 @@ import shutil
 import tempfile
 from types import SimpleNamespace
 
+import mock
 import yaml
 from asynctest import Mock, TestCase, main, patch
 from six import PY3
 
-from .config_exception import ConfigException
-from .kube_config import (
+from kubernetes_asyncio.client.configuration import Configuration
+from kubernetes_asyncio.config.config_exception import ConfigException
+from kubernetes_asyncio.config.k8s_dateutil import format_rfc3339
+from kubernetes_asyncio.config.kube_config import (
     ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode, FileOrData, KubeConfigLoader,
     KubeConfigMerger, list_kube_config_contexts, load_kube_config,
     load_kube_config_from_dict, new_client_from_config,
@@ -35,6 +38,12 @@ BEARER_TOKEN_FORMAT = "Bearer %s"
 
 NON_EXISTING_FILE = "zz_non_existing_file_472398324"
 
+EXPIRY_DATETIME_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+# should be less than kube_config.EXPIRY_SKEW_PREVENTION_DELAY
+PAST_EXPIRY_TIMEDELTA = 2
+# should be more than kube_config.EXPIRY_SKEW_PREVENTION_DELAY
+FUTURE_EXPIRY_TIMEDELTA = 60
+
 
 def _base64(string):
     return base64.standard_b64encode(string.encode()).decode()
@@ -42,6 +51,17 @@ def _base64(string):
 
 def _unpadded_base64(string):
     return base64.b64encode(string.encode()).decode().rstrip('')
+
+
+def _format_expiry_datetime(dt):
+    return dt.strftime(EXPIRY_DATETIME_FORMAT)
+
+
+def _get_expiry(loader, active_context):
+    expired_gcp_conf = (item for item in loader._config.value.get("users")
+                        if item.get("name") == active_context)
+    return next(expired_gcp_conf).get("user").get("auth-provider") \
+        .get("config").get("expiry")
 
 
 def _raise_exception(st):
@@ -63,6 +83,9 @@ TEST_USERNAME = "me"
 TEST_PASSWORD = "pass"
 # token for me:pass
 TEST_BASIC_TOKEN = "Basic bWU6cGFzcw=="
+DATETIME_EXPIRY_PAST = datetime.datetime.utcnow() - datetime.timedelta(minutes=PAST_EXPIRY_TIMEDELTA)
+DATETIME_EXPIRY_FUTURE = datetime.datetime.utcnow() - datetime.timedelta(minutes=FUTURE_EXPIRY_TIMEDELTA)
+TEST_TOKEN_EXPIRY_PAST = _format_expiry_datetime(DATETIME_EXPIRY_PAST)
 
 TEST_SSL_HOST = "https://test-host"
 TEST_CERTIFICATE_AUTH = "cert-auth"
@@ -280,9 +303,12 @@ class TestConfigNode(BaseTestCase):
 class FakeConfig:
 
     FILE_KEYS = ["ssl_ca_cert", "key_file", "cert_file"]
+    IGNORE_KEYS = ["refresh_api_key_hook"]
 
     def __init__(self, token=None, **kwargs):
         self.api_key = {}
+        # Provided by the OpenAPI-generated Configuration class
+        self.refresh_api_key_hook = None
         if token:
             self.api_key['BearerToken'] = token
 
@@ -292,6 +318,8 @@ class FakeConfig:
         if len(self.__dict__) != len(other.__dict__):
             return
         for k, v in self.__dict__.items():
+            if k in self.IGNORE_KEYS:
+                continue
             if k not in other.__dict__:
                 return
             if k in self.FILE_KEYS:
@@ -618,6 +646,7 @@ class TestKubeConfigLoader(BaseTestCase):
             host=TEST_HOST,
             token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64)
         actual = FakeConfig()
+        self.assertIsNone(actual.refresh_api_key_hook)
         await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="gcp",
@@ -637,18 +666,30 @@ class TestKubeConfigLoader(BaseTestCase):
                          loader.token)
 
     async def test_load_gcp_token_with_refresh(self):
-
-        cred = SimpleNamespace(
-            token=TEST_ANOTHER_DATA_BASE64,
-            expiry=datetime.datetime.now()
+        cred_old = SimpleNamespace(
+            token=TEST_DATA_BASE64,
+            expiry=DATETIME_EXPIRY_PAST
         )
+
+        cred_new = SimpleNamespace(
+            token=TEST_ANOTHER_DATA_BASE64,
+            expiry=DATETIME_EXPIRY_FUTURE
+        )
+        fake_config = FakeConfig()
+        _get_google_credentials = mock.Mock()
+        _get_google_credentials.side_effect = [cred_old, cred_new]
 
         loader = KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="expired_gcp",
-            get_google_credentials=lambda: cred)
-        res = await loader.load_gcp_token()
-        self.assertTrue(res)
+            get_google_credentials=_get_google_credentials)
+        loader.load_and_set(fake_config)
+        original_expiry = _get_expiry(loader, "expired_gcp_refresh")
+        # Refresh the GCP token
+        fake_config.refresh_api_key_hook(fake_config)
+        new_expiry = _get_expiry(loader, "expired_gcp_refresh")
+
+        self.assertTrue(new_expiry > original_expiry)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_ANOTHER_DATA_BASE64,
                          loader.token)
 
@@ -742,6 +783,38 @@ class TestKubeConfigLoader(BaseTestCase):
             active_context="exec_cred_user").load_and_set(actual)
         self.assertEqual(expected, actual)
 
+    @mock.patch('kubernetes.config.kube_config.ExecProvider.run')
+    async def test_user_exec_auth_with_expiry(self, mock):
+        expired_token = "expired"
+        current_token = "current"
+        mock.side_effect = [
+            {
+                "token": expired_token,
+                "expirationTimestamp": format_rfc3339(DATETIME_EXPIRY_PAST)
+            },
+            {
+                "token": current_token,
+                "expirationTimestamp": format_rfc3339(DATETIME_EXPIRY_FUTURE)
+            }
+        ]
+
+        fake_config = FakeConfig()
+        self.assertIsNone(fake_config.refresh_api_key_hook)
+
+        await KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="exec_cred_user").load_and_set(fake_config)
+        # The kube config should use the first token returned from the
+        # exec provider.
+        self.assertEqual(fake_config.api_key["authorization"],
+                         BEARER_TOKEN_FORMAT % expired_token)
+        # Should now be populated with a method to refresh expired tokens.
+        self.assertIsNotNone(fake_config.refresh_api_key_hook)
+        # Refresh the token; the kube config should be updated.
+        fake_config.refresh_api_key_hook(fake_config)
+        self.assertEqual(fake_config.api_key["authorization"],
+                         BEARER_TOKEN_FORMAT % current_token)
+                   
     async def test_user_pass(self):
         expected = FakeConfig(host=TEST_HOST, token=TEST_BASIC_TOKEN)
         actual = FakeConfig()
@@ -948,6 +1021,33 @@ class TestKubeConfigLoader(BaseTestCase):
 
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
                          loader.token)
+
+
+class TestKubernetesClientConfiguration(BaseTestCase):
+    # Verifies properties of kubernetes.client.Configuration.
+    # These tests guard against changes to the upstream configuration class,
+    # since GCP and Exec authorization use refresh_api_key_hook to refresh
+    # their tokens regularly.
+
+    def test_refresh_api_key_hook_exists(self):
+        self.assertTrue(hasattr(Configuration(), 'refresh_api_key_hook'))
+
+    def test_get_api_key_calls_refresh_api_key_hook(self):
+        identifier = 'authorization'
+        expected_token = 'expected_token'
+        old_token = 'old_token'
+        config = Configuration(
+            api_key={identifier: old_token},
+            api_key_prefix={identifier: 'Bearer'}
+        )
+
+        def refresh_api_key_hook(client_config):
+            self.assertEqual(client_config, config)
+            client_config.api_key[identifier] = expected_token
+        config.refresh_api_key_hook = refresh_api_key_hook
+
+        self.assertEqual('Bearer ' + expected_token,
+                         config.get_api_key_with_prefix(identifier))
 
 
 class TestKubeConfigMerger(BaseTestCase):
