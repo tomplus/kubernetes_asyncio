@@ -46,7 +46,6 @@ client/api/networking_api.py
 client/api/networking_v1_api.py
 client/api/node_api.py
 client/api/node_v1_api.py
-client/api/node_v1alpha1_api.py
 client/api/node_v1beta1_api.py
 client/api/openid_api.py
 client/api/policy_api.py
@@ -58,7 +57,6 @@ client/api/scheduling_api.py
 client/api/scheduling_v1_api.py
 client/api/storage_api.py
 client/api/storage_v1_api.py
-client/api/storage_v1alpha1_api.py
 client/api/storage_v1beta1_api.py
 client/api/version_api.py
 client/api/well_known_api.py
@@ -149,6 +147,8 @@ client/models/v1_csi_node_driver.py
 client/models/v1_csi_node_list.py
 client/models/v1_csi_node_spec.py
 client/models/v1_csi_persistent_volume_source.py
+client/models/v1_csi_storage_capacity.py
+client/models/v1_csi_storage_capacity_list.py
 client/models/v1_csi_volume_source.py
 client/models/v1_custom_resource_column_definition.py
 client/models/v1_custom_resource_conversion.py
@@ -275,6 +275,7 @@ client/models/v1_network_policy_list.py
 client/models/v1_network_policy_peer.py
 client/models/v1_network_policy_port.py
 client/models/v1_network_policy_spec.py
+client/models/v1_network_policy_status.py
 client/models/v1_nfs_volume_source.py
 client/models/v1_node.py
 client/models/v1_node_address.py
@@ -459,13 +460,6 @@ client/models/v1_watch_event.py
 client/models/v1_webhook_conversion.py
 client/models/v1_weighted_pod_affinity_term.py
 client/models/v1_windows_security_context_options.py
-client/models/v1alpha1_csi_storage_capacity.py
-client/models/v1alpha1_csi_storage_capacity_list.py
-client/models/v1alpha1_overhead.py
-client/models/v1alpha1_runtime_class.py
-client/models/v1alpha1_runtime_class_list.py
-client/models/v1alpha1_runtime_class_spec.py
-client/models/v1alpha1_scheduling.py
 client/models/v1alpha1_server_storage_version.py
 client/models/v1alpha1_storage_version.py
 client/models/v1alpha1_storage_version_condition.py
@@ -680,7 +674,6 @@ docs/NetworkingApi.md
 docs/NetworkingV1Api.md
 docs/NodeApi.md
 docs/NodeV1Api.md
-docs/NodeV1alpha1Api.md
 docs/NodeV1beta1Api.md
 docs/OpenidApi.md
 docs/PolicyApi.md
@@ -693,7 +686,6 @@ docs/SchedulingV1Api.md
 docs/StorageApi.md
 docs/StorageV1Api.md
 docs/StorageV1TokenRequest.md
-docs/StorageV1alpha1Api.md
 docs/StorageV1beta1Api.md
 docs/V1APIGroup.md
 docs/V1APIGroupList.md
@@ -722,6 +714,8 @@ docs/V1CSINodeDriver.md
 docs/V1CSINodeList.md
 docs/V1CSINodeSpec.md
 docs/V1CSIPersistentVolumeSource.md
+docs/V1CSIStorageCapacity.md
+docs/V1CSIStorageCapacityList.md
 docs/V1CSIVolumeSource.md
 docs/V1Capabilities.md
 docs/V1CephFSPersistentVolumeSource.md
@@ -890,6 +884,7 @@ docs/V1NetworkPolicyList.md
 docs/V1NetworkPolicyPeer.md
 docs/V1NetworkPolicyPort.md
 docs/V1NetworkPolicySpec.md
+docs/V1NetworkPolicyStatus.md
 docs/V1Node.md
 docs/V1NodeAddress.md
 docs/V1NodeAffinity.md
@@ -1073,13 +1068,6 @@ docs/V1WatchEvent.md
 docs/V1WebhookConversion.md
 docs/V1WeightedPodAffinityTerm.md
 docs/V1WindowsSecurityContextOptions.md
-docs/V1alpha1CSIStorageCapacity.md
-docs/V1alpha1CSIStorageCapacityList.md
-docs/V1alpha1Overhead.md
-docs/V1alpha1RuntimeClass.md
-docs/V1alpha1RuntimeClassList.md
-docs/V1alpha1RuntimeClassSpec.md
-docs/V1alpha1Scheduling.md
 docs/V1alpha1ServerStorageVersion.md
 docs/V1alpha1StorageVersion.md
 docs/V1alpha1StorageVersionCondition.md
@@ -1297,7 +1285,6 @@ test/test_networking_api.py
 test/test_networking_v1_api.py
 test/test_node_api.py
 test/test_node_v1_api.py
-test/test_node_v1alpha1_api.py
 test/test_node_v1beta1_api.py
 test/test_openid_api.py
 test/test_policy_api.py
@@ -1310,7 +1297,6 @@ test/test_scheduling_v1_api.py
 test/test_storage_api.py
 test/test_storage_v1_api.py
 test/test_storage_v1_token_request.py
-test/test_storage_v1alpha1_api.py
 test/test_storage_v1beta1_api.py
 test/test_v1_affinity.py
 test/test_v1_aggregation_rule.py
@@ -1380,6 +1366,8 @@ test/test_v1_csi_node_driver.py
 test/test_v1_csi_node_list.py
 test/test_v1_csi_node_spec.py
 test/test_v1_csi_persistent_volume_source.py
+test/test_v1_csi_storage_capacity.py
+test/test_v1_csi_storage_capacity_list.py
 test/test_v1_csi_volume_source.py
 test/test_v1_custom_resource_column_definition.py
 test/test_v1_custom_resource_conversion.py
@@ -1506,6 +1494,7 @@ test/test_v1_network_policy_list.py
 test/test_v1_network_policy_peer.py
 test/test_v1_network_policy_port.py
 test/test_v1_network_policy_spec.py
+test/test_v1_network_policy_status.py
 test/test_v1_nfs_volume_source.py
 test/test_v1_node.py
 test/test_v1_node_address.py
@@ -1690,13 +1679,6 @@ test/test_v1_watch_event.py
 test/test_v1_webhook_conversion.py
 test/test_v1_weighted_pod_affinity_term.py
 test/test_v1_windows_security_context_options.py
-test/test_v1alpha1_csi_storage_capacity.py
-test/test_v1alpha1_csi_storage_capacity_list.py
-test/test_v1alpha1_overhead.py
-test/test_v1alpha1_runtime_class.py
-test/test_v1alpha1_runtime_class_list.py
-test/test_v1alpha1_runtime_class_spec.py
-test/test_v1alpha1_scheduling.py
 test/test_v1alpha1_server_storage_version.py
 test/test_v1alpha1_storage_version.py
 test/test_v1alpha1_storage_version_condition.py
