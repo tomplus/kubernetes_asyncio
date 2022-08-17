@@ -1,3 +1,7 @@
+# v24.2.1
+
+* fixed watch.stream bug of not working with apis with follow kwarg ([#216](https://github.com/tomplus/kubernetes_asyncio/pull/216), [@mcreng](https://github.com/mcreng))
+
 # v24.2.0
 
 Kubernetes API Version: v1.24.2
