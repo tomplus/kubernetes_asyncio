@@ -16,7 +16,7 @@ from setuptools import setup
 
 # Do not edit these constants. They will be updated automatically
 # by scripts/update-client.sh.
-CLIENT_VERSION = "24.2.0"
+CLIENT_VERSION = "24.2.1"
 PACKAGE_NAME = "kubernetes_asyncio"
 DEVELOPMENT_STATUS = "5 - Production/Stable"
 
