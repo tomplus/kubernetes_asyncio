@@ -1,3 +1,7 @@
+# v24.2.2
+
+* fix: config reader handles bool types ([#218](https://github.com/tomplus/kubernetes_asyncio/pull/218), [@tomplus](https://github.com/tomplus))
+
 # v24.2.1
 
 * fixed watch.stream bug of not working with apis with follow kwarg ([#216](https://github.com/tomplus/kubernetes_asyncio/pull/216), [@mcreng](https://github.com/mcreng))
