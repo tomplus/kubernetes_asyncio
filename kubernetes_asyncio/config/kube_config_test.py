@@ -401,6 +401,13 @@ class TestKubeConfigLoader(BaseTestCase):
                 }
             },
             {
+                "name": "ssl_verification",
+                "context": {
+                    "cluster": "ssl_verification",
+                    "user": "ssl"
+                }
+            },
+            {
                 "name": "ssl-no_file",
                 "context": {
                     "cluster": "ssl-no_file",
@@ -461,7 +468,14 @@ class TestKubeConfigLoader(BaseTestCase):
                 "name": "no_ssl_verification",
                 "cluster": {
                     "server": TEST_SSL_HOST,
-                    "insecure-skip-tls-verify": "true",
+                    "insecure-skip-tls-verify": True,
+                }
+            },
+            {
+                "name": "ssl_verification",
+                "cluster": {
+                    "server": TEST_SSL_HOST,
+                    "insecure-skip-tls-verify": False,
                 }
             },
         ],
@@ -793,6 +807,21 @@ class TestKubeConfigLoader(BaseTestCase):
         await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="no_ssl_verification").load_and_set(actual)
+        self.assertEqual(expected, actual)
+
+    async def test_ssl_verification(self):
+        expected = FakeConfig(
+            host=TEST_SSL_HOST,
+            token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
+            cert_file=self._create_temp_file(TEST_CLIENT_CERT),
+            key_file=self._create_temp_file(TEST_CLIENT_KEY),
+            verify_ssl=True,
+            ssl_ca_cert=None,
+        )
+        actual = FakeConfig()
+        await KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="ssl_verification").load_and_set(actual)
         self.assertEqual(expected, actual)
 
     def test_list_contexts(self):
