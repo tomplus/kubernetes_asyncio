@@ -8,21 +8,20 @@ async def main():
     # utility. If no argument provided, the config will be loaded from
     # default location.
     await config.load_kube_config()
+    async with client.ApiClient() as api:
 
-    v1 = client.CoreV1Api()
-    count = 10
-    w = watch.Watch()
+        v1 = client.CoreV1Api(api)
+        count = 10
+        w = watch.Watch()
 
-    async for event in w.stream(v1.list_namespace, timeout_seconds=10):
-        print("Event: {} {}".format(event['type'], event['object'].metadata.name))
-        count -= 1
-        if not count:
-            w.stop()
+        async for event in w.stream(v1.list_namespace, timeout_seconds=10):
+            print("Event: {} {}".format(event['type'], event['object'].metadata.name))
+            count -= 1
+            if not count:
+                w.stop()
 
-    print("Ended.")
-    # An explicit close is necessary to stop the stream
-    # or use async context manager like in example4.py
-    w.close()
+        print("Ended.")
+        await w.close()
 
 
 if __name__ == '__main__':
