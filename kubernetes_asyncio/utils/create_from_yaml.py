@@ -70,7 +70,7 @@ async def create_from_yaml(
                                                  **kwargs)
                 k8s_objects.append(created)
             except FailToCreateError as failure:
-                api_exceptions.extend(failure)
+                api_exceptions.append(failure)
 
     # In case we have exceptions waiting for us, raise them
     if api_exceptions:
