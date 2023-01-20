@@ -77,7 +77,7 @@ like streaming, watching or reading configuration. Because of an early stage of 
 ## Versions
 
 This library is versioned in the same way as the synchronous library.
-The scehma version has been changed with version v18.20.0. Now, first
+The schema version has been changed with version v18.20.0. Now, first
 two numbers from version are Kubernetes version (v.1.18.20). The last
 number is for changes in the library not directly connected with K8s.
 
