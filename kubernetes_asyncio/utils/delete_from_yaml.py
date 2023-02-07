@@ -17,7 +17,8 @@ import re
 from os import path
 
 import yaml
-from kubernetes import client
+
+from kubernetes_asyncio import client
 
 DEFAULT_DELETION_BODY = client.V1DeleteOptions(
     propagation_policy="Background",
