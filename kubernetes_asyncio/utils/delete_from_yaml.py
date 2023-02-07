@@ -26,7 +26,6 @@ DEFAULT_DELETION_BODY = client.V1DeleteOptions(
 )
 
 
-def delete_from_yaml(
 async def delete_from_yaml(
     k8s_client,
     yaml_file,
@@ -59,7 +58,7 @@ async def delete_from_yaml(
     with open(path.abspath(yaml_file)) as f:
         yml_document_all = yaml.safe_load_all(f)
         failures = []
-        for yml_document in yml_document_all:
+        for yml_document in reversed(list(yml_document_all)):
             try:
                 # call delete from dict function
                 await delete_from_dict(
