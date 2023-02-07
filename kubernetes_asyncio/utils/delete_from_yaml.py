@@ -27,6 +27,7 @@ DEFAULT_DELETION_BODY = client.V1DeleteOptions(
 
 
 def delete_from_yaml(
+async def delete_from_yaml(
     k8s_client,
     yaml_file,
     verbose=False,
