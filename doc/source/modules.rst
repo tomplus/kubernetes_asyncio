@@ -5,4 +5,3 @@ kubernetes_asyncio
    :maxdepth: 4
 
    kubernetes_asyncio
-   setup

@@ -55,9 +55,6 @@ venv/
 # Django stuff:
 *.log
 
-# Sphinx documentation
-docs/build/
-
 # PyBuilder
 target/
 

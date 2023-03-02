@@ -21,13 +21,13 @@ sys.path.insert(0, os.path.abspath('../..'))
 source_parsers = {
 }
 
-source_suffix = ['.rst', '.md']
+source_suffix = ['.rst']
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'myst_parser',
+    # 'myst_parser',
     # 'sphinx.ext.intersphinx',
 ]
 
@@ -43,7 +43,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'kubernetes-python-client'
+project = u'kubernetes-asyncio'
 copyright = u'2017, Kubernetes'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
@@ -64,7 +64,7 @@ pygments_style = 'sphinx'
 # html_theme = '_theme'
 # html_static_path = ['static']
 
-html_theme = 'sphinx_rtd_theme'
+# html_theme = 'sphinx_rtd_theme'
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = '%sdoc' % project
