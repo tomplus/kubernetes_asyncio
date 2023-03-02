@@ -26,10 +26,14 @@ source_suffix = ['.rst']
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
+    'autoapi.extension',
     'sphinx.ext.autodoc',
     # 'myst_parser',
     # 'sphinx.ext.intersphinx',
 ]
+
+autoapi_type = 'python'
+autoapi_dirs = ['../../kubernetes_asyncio/']
 
 
 # autodoc generation is a bit aggressive and a nuisance when doing heavy
