@@ -2995,7 +2995,7 @@ class CustomObjectsApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json-patch+json', 'application/merge-patch+json'],
+                ['application/merge-patch+json'],
                 'PATCH', body_params))  # noqa: E501
 
         # Authentication setting
@@ -3205,7 +3205,7 @@ class CustomObjectsApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json-patch+json', 'application/merge-patch+json'],
+                ['application/merge-patch+json'],
                 'PATCH', body_params))  # noqa: E501
 
         # Authentication setting
@@ -3415,7 +3415,7 @@ class CustomObjectsApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json-patch+json', 'application/merge-patch+json'],
+                ['application/merge-patch+json'],
                 'PATCH', body_params))  # noqa: E501
 
         # Authentication setting
@@ -3636,7 +3636,7 @@ class CustomObjectsApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json-patch+json', 'application/merge-patch+json'],
+                ['application/merge-patch+json'],
                 'PATCH', body_params))  # noqa: E501
 
         # Authentication setting
@@ -3857,7 +3857,7 @@ class CustomObjectsApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json-patch+json', 'application/merge-patch+json', 'application/apply-patch+yaml'],
+                ['application/merge-patch+json'],
                 'PATCH', body_params))  # noqa: E501
 
         # Authentication setting
@@ -4078,7 +4078,7 @@ class CustomObjectsApi(object):
         # HTTP header `Content-Type`
         header_params['Content-Type'] = local_var_params.get('_content_type',
             self.api_client.select_header_content_type(
-                ['application/json-patch+json', 'application/merge-patch+json', 'application/apply-patch+yaml'],
+                ['application/merge-patch+json'],
                 'PATCH', body_params))  # noqa: E501
 
         # Authentication setting
