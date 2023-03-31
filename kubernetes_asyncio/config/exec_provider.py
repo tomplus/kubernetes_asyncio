@@ -54,7 +54,8 @@ class ExecProvider(object):
         # Validate the run can be executed on Windows
         if type(asyncio.get_event_loop()).__name__ == '_WindowsSelectorEventLoop':
             raise ConfigException(
-                'exec: _WindowsSelectorEventLoop does NOT support subprocesses, see README.md')
+                'exec: _WindowsSelectorEventLoop does NOT support subprocesses, see README.md'
+            )
 
         kubernetes_exec_info = {
             'apiVersion': self.api_version,
