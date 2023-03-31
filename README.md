@@ -77,7 +77,7 @@ like streaming, watching or reading configuration. Because of an early stage of 
 ### Microsoft Windows
 In case this library is used against Kubernetes cluster using [client-go credentials plugin](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#client-go-credential-plugins), the default asyncio event loop is  [SelectorEventLoop](https://docs.python.org/3/library/asyncio-eventloop.html#event-loop-implementations). This event loop selector, however, does NOT support [pipes and subprocesses](https://bugs.python.org/issue37373), so `exec_provider.py::ExecProvider` is failing. In order to avoid failures the [ProactorEventLoop](https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.ProactorEventLoop) has to be selected. The ProactorEventLoop can be enabled via [WindowsProactorEventLoopPolicy](https://docs.python.org/3/library/asyncio-policy.html#asyncio.WindowsProactorEventLoopPolicy). 
 
-Application's code needs to contain followin code:
+Application's code needs to contain following code:
 
 ```python
 import asyncio
