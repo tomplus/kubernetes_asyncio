@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import asyncio
 import asyncio.subprocess
 import json
 import os
@@ -50,6 +51,12 @@ class ExecProvider(object):
             self.env.update(additional_vars)
 
     async def run(self, previous_response=None):
+        # Validate the run can be executed on Windows
+        if type(asyncio.get_event_loop()).__name__ == '_WindowsSelectorEventLoop':
+            raise ConfigException(
+                'exec: _WindowsSelectorEventLoop does NOT support subprocesses, see README.md'
+            )
+
         kubernetes_exec_info = {
             'apiVersion': self.api_version,
             'kind': 'ExecCredential',
