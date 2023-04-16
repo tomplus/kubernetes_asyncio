@@ -13,7 +13,6 @@
 # under the License.
 
 import uuid
-
 from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client import api_client

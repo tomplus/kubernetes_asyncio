@@ -18,12 +18,10 @@ import os
 import shutil
 import tempfile
 from types import SimpleNamespace
+from unittest import IsolatedAsyncioTestCase
+from unittest.mock import Mock, patch
 
 import yaml
-
-from unittest import IsolatedAsyncioTestCase
-from unittest.mock import patch, Mock
-
 from six import PY3
 
 from .config_exception import ConfigException

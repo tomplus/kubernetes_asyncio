@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from unittest import IsolatedAsyncioTestCase
-from unittest.mock import patch, Mock
+from unittest.mock import Mock, patch
 
 from kubernetes_asyncio import client
 from kubernetes_asyncio.stream import WsApiClient

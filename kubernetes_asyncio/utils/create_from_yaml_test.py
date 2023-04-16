@@ -15,7 +15,6 @@
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock
 
-
 from kubernetes_asyncio.utils import create_from_dict, create_from_yaml
 
 

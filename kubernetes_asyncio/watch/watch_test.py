@@ -14,9 +14,8 @@
 
 import asyncio
 import json
-
 from unittest import IsolatedAsyncioTestCase
-from unittest.mock import call, AsyncMock, Mock
+from unittest.mock import AsyncMock, Mock, call
 
 import kubernetes_asyncio
 from kubernetes_asyncio.watch import Watch

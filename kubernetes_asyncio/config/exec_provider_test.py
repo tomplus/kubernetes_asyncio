@@ -14,9 +14,8 @@
 
 import json
 import sys
-
 from unittest import IsolatedAsyncioTestCase
-from unittest.mock import ANY, patch, AsyncMock
+from unittest.mock import ANY, AsyncMock, patch
 
 from .config_exception import ConfigException
 from .exec_provider import ExecProvider
