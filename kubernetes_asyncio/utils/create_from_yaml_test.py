@@ -12,16 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from asynctest import CoroutineMock, TestCase
+from unittest import IsolatedAsyncioTestCase
+from unittest.mock import AsyncMock
+
 
 from kubernetes_asyncio.utils import create_from_dict, create_from_yaml
 
 
-class CreateFromYamlTest(TestCase):
+class CreateFromYamlTest(IsolatedAsyncioTestCase):
 
     async def test_create_from_yaml(self):
-        api_client = CoroutineMock()
-        api_client.call_api = CoroutineMock()
+        api_client = AsyncMock()
+        api_client.call_api = AsyncMock()
         api_client.call_api.return_value = 'mock-value'
 
         created = await create_from_yaml(api_client, 'examples/nginx-deployment.yaml')
@@ -34,8 +36,8 @@ class CreateFromYamlTest(TestCase):
         self.assertEqual(created, [['mock-value']])
 
     async def test_create_from_dict(self):
-        api_client = CoroutineMock()
-        api_client.call_api = CoroutineMock()
+        api_client = AsyncMock()
+        api_client.call_api = AsyncMock()
         api_client.call_api.return_value = 'mock-value'
 
         created = await create_from_dict(api_client, {
@@ -54,8 +56,3 @@ class CreateFromYamlTest(TestCase):
 
         # returned values
         self.assertEqual(created, ['mock-value'])
-
-
-if __name__ == '__main__':
-    import asynctest
-    asynctest.main()

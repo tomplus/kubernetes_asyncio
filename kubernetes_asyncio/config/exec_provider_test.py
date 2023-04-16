@@ -15,14 +15,15 @@
 import json
 import sys
 
-from asynctest import ANY, TestCase, mock, patch
+from unittest import IsolatedAsyncioTestCase
+from unittest.mock import ANY, patch, AsyncMock
 
 from .config_exception import ConfigException
 from .exec_provider import ExecProvider
 from .kube_config import ConfigNode
 
 
-class ExecProviderTest(TestCase):
+class ExecProviderTest(IsolatedAsyncioTestCase):
 
     def setUp(self):
         self.input_ok = ConfigNode('test', {
@@ -44,9 +45,9 @@ class ExecProviderTest(TestCase):
         process_patch = patch('kubernetes_asyncio.config.exec_provider.asyncio.create_subprocess_exec')
         self.exec_mock = process_patch.start()
         self.process_mock = self.exec_mock.return_value
-        self.process_mock.stdout.read = mock.CoroutineMock(return_value=self.output_ok)
-        self.process_mock.stderr.read = mock.CoroutineMock(return_value='')
-        self.process_mock.wait = mock.CoroutineMock(return_value=0)
+        self.process_mock.stdout.read = AsyncMock(return_value=self.output_ok)
+        self.process_mock.stderr.read = AsyncMock(return_value='')
+        self.process_mock.wait = AsyncMock(return_value=0)
 
     def tearDown(self):
         patch.stopall()

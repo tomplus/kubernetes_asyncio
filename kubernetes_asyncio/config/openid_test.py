@@ -6,7 +6,9 @@ from aiohttp import web
 from aiohttp.test_utils import (
     TestClient as _TestClient, TestServer as _TestServer,
 )
-from asynctest import TestCase, patch
+from unittest import IsolatedAsyncioTestCase
+from unittest.mock import patch
+
 
 from .config_exception import ConfigException
 from .openid import OpenIDRequestor
@@ -31,7 +33,9 @@ def respond_json(data):
 
 @contextmanager
 def working_client():
-    loop = asyncio.get_event_loop()
+    #loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
     app = web.Application()
 
@@ -47,7 +51,11 @@ def working_client():
 
 @contextmanager
 def fail_well_known_client():
-    loop = asyncio.get_event_loop()
+#    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+
     app = web.Application()
 
     app.router.add_get('/.well-known/openid-configuration', make_responder(web.Response(status=500)))
@@ -60,7 +68,10 @@ def fail_well_known_client():
 
 @contextmanager
 def fail_token_request_client():
-    loop = asyncio.get_event_loop()
+#    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
     app = web.Application()
 
     app.router.add_get('/.well-known/openid-configuration', respond_json({'token_endpoint': '/token'}))
@@ -73,7 +84,7 @@ def fail_token_request_client():
         yield client
 
 
-class OpenIDRequestorTest(TestCase):
+class OpenIDRequestorTest(IsolatedAsyncioTestCase):
 
     def setUp(self):
         self.requestor = OpenIDRequestor(

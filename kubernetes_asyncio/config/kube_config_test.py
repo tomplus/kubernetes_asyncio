@@ -20,7 +20,10 @@ import tempfile
 from types import SimpleNamespace
 
 import yaml
-from asynctest import Mock, TestCase, main, patch
+
+from unittest import IsolatedAsyncioTestCase
+from unittest.mock import patch, Mock
+
 from six import PY3
 
 from .config_exception import ConfigException
@@ -87,7 +90,7 @@ async def _return_async_value(val):
     return val
 
 
-class BaseTestCase(TestCase):
+class BaseTestCase(IsolatedAsyncioTestCase):
 
     def setUp(self):
         self._temp_files = []
@@ -1139,7 +1142,3 @@ class TestKubeConfigMerger(BaseTestCase):
 
         # new token
         self.assertEqual(provider.value['id-token'], "token-changed")
-
-
-if __name__ == '__main__':
-    main()

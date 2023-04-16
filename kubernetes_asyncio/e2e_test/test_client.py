@@ -15,7 +15,7 @@
 import time
 import uuid
 
-import asynctest
+from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.client.api import core_v1_api
@@ -28,7 +28,7 @@ def short_uuid():
     return id[-12:]
 
 
-class TestClient(asynctest.TestCase):
+class TestClient(IsolatedAsyncioTestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -229,7 +229,3 @@ class TestClient(asynctest.TestCase):
             node = await api.read_node(name=item.metadata.name)
             self.assertTrue(len(node.metadata.labels) > 0)
             self.assertTrue(isinstance(node.metadata.labels, dict))
-
-
-if __name__ == '__main__':
-    asynctest.main()

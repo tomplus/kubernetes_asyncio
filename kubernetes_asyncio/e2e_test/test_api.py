@@ -15,7 +15,7 @@
 import os
 import uuid
 
-import asynctest
+from unittest import IsolatedAsyncioTestCase
 import yaml
 
 from kubernetes_asyncio import utils
@@ -25,7 +25,7 @@ from kubernetes_asyncio.client.models import v1_delete_options
 from kubernetes_asyncio.e2e_test import base
 
 
-class TestClientApi(asynctest.TestCase):
+class TestClientApi(IsolatedAsyncioTestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -136,7 +136,3 @@ spec:
 
         options = v1_delete_options.V1DeleteOptions()
         resp = await api.delete_namespaced_daemon_set(name, 'default', body=options)
-
-
-if __name__ == '__main__':
-    asynctest.main()

@@ -15,17 +15,18 @@
 import asyncio
 import json
 
-from asynctest import CoroutineMock, Mock, TestCase, call
+from unittest import IsolatedAsyncioTestCase
+from unittest.mock import call, AsyncMock, Mock
 
 import kubernetes_asyncio
 from kubernetes_asyncio.watch import Watch
 
 
-class WatchTest(TestCase):
+class WatchTest(IsolatedAsyncioTestCase):
 
     async def test_watch_with_decode(self):
-        fake_resp = CoroutineMock()
-        fake_resp.content.readline = CoroutineMock()
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
         side_effects = [
             {
@@ -43,7 +44,7 @@ class WatchTest(TestCase):
         fake_resp.content.readline.side_effect = side_effects
 
         fake_api = Mock()
-        fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
         fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         watch = kubernetes_asyncio.watch.Watch()
@@ -71,8 +72,8 @@ class WatchTest(TestCase):
         self.assertEqual(watch.resource_version, '2')
 
     async def test_watch_for_follow(self):
-        fake_resp = CoroutineMock()
-        fake_resp.content.readline = CoroutineMock()
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
         side_effects = ['log_line_1', 'log_line_2']
         side_effects = [_.encode('utf8') for _ in side_effects]
@@ -80,7 +81,7 @@ class WatchTest(TestCase):
         fake_resp.content.readline.side_effect = side_effects
 
         fake_api = Mock()
-        fake_api.read_namespaced_pod_log = CoroutineMock(return_value=fake_resp)
+        fake_api.read_namespaced_pod_log = AsyncMock(return_value=fake_resp)
         fake_api.read_namespaced_pod_log.__doc__ = ':param follow:\n:type follow: bool\n:rtype: str'
 
         watch = kubernetes_asyncio.watch.Watch()
@@ -106,8 +107,8 @@ class WatchTest(TestCase):
         """
         # Mock the readline return value to first return a valid response
         # followed by an empty response.
-        fake_resp = CoroutineMock()
-        fake_resp.content.readline = CoroutineMock()
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
         side_effects = [
             {"type": "ADDED", "object": {"metadata": {"name": "test0"}, "spec": {}, "status": {}}},
             {"type": "ADDED", "object": {"metadata": {"name": "test1"}, "spec": {}, "status": {}}},
@@ -117,7 +118,7 @@ class WatchTest(TestCase):
 
         # Fake the K8s resource object to watch.
         fake_api = Mock()
-        fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
         fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         # Iteration must cease after all valid responses were received.
@@ -215,11 +216,11 @@ class WatchTest(TestCase):
         self.assertEqual("1", w.resource_version)
 
     async def test_watch_with_exception(self):
-        fake_resp = CoroutineMock()
-        fake_resp.content.readline = CoroutineMock()
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
         fake_resp.content.readline.side_effect = KeyError("expected")
         fake_api = Mock()
-        fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
         fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         with self.assertRaises(KeyError):
@@ -228,8 +229,8 @@ class WatchTest(TestCase):
                 pass
 
     async def test_watch_timeout(self):
-        fake_resp = CoroutineMock()
-        fake_resp.content.readline = CoroutineMock()
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
 
         mock_event = {"type": "ADDED",
@@ -243,7 +244,7 @@ class WatchTest(TestCase):
                                                   b""]
 
         fake_api = Mock()
-        fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
         fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         watch = kubernetes_asyncio.watch.Watch()
@@ -257,15 +258,15 @@ class WatchTest(TestCase):
         fake_resp.release.assert_called_once_with()
 
     async def test_watch_timeout_with_resource_version(self):
-        fake_resp = CoroutineMock()
-        fake_resp.content.readline = CoroutineMock()
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
 
         fake_resp.content.readline.side_effect = [asyncio.TimeoutError(),
                                                   b""]
 
         fake_api = Mock()
-        fake_api.get_namespaces = CoroutineMock(return_value=fake_resp)
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
         fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
 
         watch = kubernetes_asyncio.watch.Watch()
@@ -280,8 +281,3 @@ class WatchTest(TestCase):
 
         fake_resp.release.assert_called_once_with()
         self.assertEqual(watch.resource_version, '10')
-
-
-if __name__ == '__main__':
-    import asynctest
-    asynctest.main()

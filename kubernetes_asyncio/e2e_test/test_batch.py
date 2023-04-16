@@ -14,14 +14,14 @@
 
 import uuid
 
-import asynctest
+from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.client.api import batch_v1_api
 from kubernetes_asyncio.e2e_test import base
 
 
-class TestClientBatch(asynctest.TestCase):
+class TestClientBatch(IsolatedAsyncioTestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -57,7 +57,3 @@ class TestClientBatch(asynctest.TestCase):
 
         resp = await api.delete_namespaced_job(
             name=name, body={}, namespace='default')
-
-
-if __name__ == '__main__':
-    asynctest.main()
