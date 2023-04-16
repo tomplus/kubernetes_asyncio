@@ -33,12 +33,8 @@ def respond_json(data):
 
 @contextmanager
 def working_client():
-    #loop = asyncio.get_event_loop()
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-
+    loop = asyncio.get_event_loop()
     app = web.Application()
-
     app.router.add_get('/.well-known/openid-configuration', respond_json({'token_endpoint': '/token'}))
     app.router.add_post('/token', respond_json({'id-token': 'id-token-data', 'refresh-token': 'refresh-token-data'}))
 
@@ -51,13 +47,8 @@ def working_client():
 
 @contextmanager
 def fail_well_known_client():
-#    loop = asyncio.get_event_loop()
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-
-
+    loop = asyncio.get_event_loop()
     app = web.Application()
-
     app.router.add_get('/.well-known/openid-configuration', make_responder(web.Response(status=500)))
 
     with patch('kubernetes_asyncio.config.openid.aiohttp.ClientSession') as _client_session:
@@ -68,12 +59,8 @@ def fail_well_known_client():
 
 @contextmanager
 def fail_token_request_client():
-#    loop = asyncio.get_event_loop()
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-
+    loop = asyncio.get_event_loop()
     app = web.Application()
-
     app.router.add_get('/.well-known/openid-configuration', respond_json({'token_endpoint': '/token'}))
     app.router.add_post('/token', make_responder(web.Response(status=500)))
 
