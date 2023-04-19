@@ -12,7 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from asynctest import CoroutineMock, TestCase, patch
+from unittest import IsolatedAsyncioTestCase
+from unittest.mock import Mock, patch
 
 from kubernetes_asyncio import client
 from kubernetes_asyncio.stream import WsApiClient
@@ -39,7 +40,7 @@ class WsMock:
         return WsResponse(200, (chr(1) + 'mock').encode('utf-8'))
 
 
-class WSClientTest(TestCase):
+class WSClientTest(IsolatedAsyncioTestCase):
 
     def test_websocket_client(self):
         for url, ws_url in [
@@ -55,7 +56,7 @@ class WSClientTest(TestCase):
             self.assertEqual(get_websocket_url(url), ws_url)
 
     async def test_exec_ws(self):
-        mock = CoroutineMock()
+        mock = Mock()
         mock.RESTClientObject.return_value.pool_manager = mock
         mock.ws_connect.return_value = WsMock()
         with patch('kubernetes_asyncio.client.api_client.rest', mock):
@@ -82,7 +83,7 @@ class WSClientTest(TestCase):
             )
 
     async def test_exec_ws_with_heartbeat(self):
-        mock = CoroutineMock()
+        mock = Mock()
         mock.RESTClientObject.return_value.pool_manager = mock
         mock.ws_connect.return_value = WsMock()
         with patch('kubernetes_asyncio.client.api_client.rest', mock):
@@ -107,8 +108,3 @@ class WSClientTest(TestCase):
                 },
                 heartbeat=30
             )
-
-
-if __name__ == '__main__':
-    import asynctest
-    asynctest.main()

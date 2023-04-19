@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from asynctest import TestCase, main
+from unittest import IsolatedAsyncioTestCase
 
 from .google_auth import google_auth_credentials
 
 
-class TestGoogleAuth(TestCase):
+class TestGoogleAuth(IsolatedAsyncioTestCase):
 
     async def test_google_auth_credentials(self):
 
@@ -36,7 +36,3 @@ class TestGoogleAuth(TestCase):
 
         with self.assertRaisesRegex(ValueError, "cmd-path, cmd-args are required."):
             await google_auth_credentials({})
-
-
-if __name__ == '__main__':
-    main()
