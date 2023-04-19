@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
 
     steps:
     - uses: actions/checkout@v3
@@ -32,21 +32,22 @@ jobs:
 
     - name: Run unit tests
       run: |
-        py.test -vvv -s --ignore=kubernetes_asyncio/e2e_test --cov-report=xml --cov=kubernetes_asyncio
+        # splitted into 2 steps because of problem with event-loop in aiohttp
+        py.test -vvv -s --ignore=kubernetes_asyncio/e2e_test --ignore=kubernetes_asyncio/test --cov-report=xml --cov=kubernetes_asyncio
+        py.test -vvv -s --cov-report=xml --cov=kubernetes_asyncio2 kubernetes_asyncio/test --cov-append
 
     - name: Run e2e tests
       run: |
         scripts/kube-init.sh py.test -vvv -s kubernetes_asyncio/e2e_test
 
     - name: Lint with flake8 and isort (only on the latest version of Python)
-      if: matrix.python-version == 3.10
+      if: matrix.python-version == 3.11
       run: |
         flake8
         isort -c --diff .
 
     - name: Send coverage report
-      if: matrix.python-version == 3.10
-      env:
-        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-      run: |
-        codecov
+      uses: codecov/codecov-action@v3
+      if: matrix.python-version == 3.11
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}

@@ -26,7 +26,8 @@ def get_e2e_configuration():
     config.host = None
     if os.path.exists(
             os.path.expanduser(kube_config.KUBE_CONFIG_DEFAULT_LOCATION)):
-        loop = asyncio.get_event_loop()
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
         loop.run_until_complete(kube_config.load_kube_config(client_configuration=config))
     else:
         print('Unable to load config from %s' %
