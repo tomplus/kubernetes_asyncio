@@ -48,6 +48,7 @@ class InClusterConfigTest(unittest.TestCase):
     def tearDown(self):
         for f in self._temp_files:
             os.remove(f)
+        Configuration.set_default(None)
 
     def _create_file_with_temp_content(self, content=""):
         handler, name = tempfile.mkstemp()
