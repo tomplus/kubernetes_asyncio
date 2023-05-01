@@ -48,6 +48,7 @@ class InClusterConfigTest(unittest.TestCase):
     def tearDown(self):
         for f in self._temp_files:
             os.remove(f)
+        Configuration.set_default(None)
 
     def _create_file_with_temp_content(self, content=""):
         handler, name = tempfile.mkstemp()
@@ -104,6 +105,38 @@ class InClusterConfigTest(unittest.TestCase):
         loader.token_expires_at = datetime.datetime.now()
         self.assertEqual('Bearer ' + _TEST_NEW_TOKEN,
                          config.get_api_key_with_prefix('BearerToken'))
+        self.assertEqual('Bearer ' + _TEST_NEW_TOKEN, loader.token)
+        self.assertGreater(loader.token_expires_at, old_token_expires_at)
+
+    def test_refresh_token_default_config_with_copies(self):
+        loader = self.get_test_loader()
+        loader.load_and_set()
+
+        configs = [
+            Configuration.get_default_copy(),
+            Configuration.get_default_copy(),
+        ]
+
+        for config in configs:
+            self.assertEqual('Bearer ' + _TEST_TOKEN,
+                             config.get_api_key_with_prefix('BearerToken'))
+        self.assertEqual('Bearer ' + _TEST_TOKEN, loader.token)
+        self.assertIsNotNone(loader.token_expires_at)
+
+        old_token_expires_at = loader.token_expires_at
+        loader._token_filename = self._create_file_with_temp_content(
+            _TEST_NEW_TOKEN)
+
+        for config in configs:
+            self.assertEqual('Bearer ' + _TEST_TOKEN,
+                             config.get_api_key_with_prefix('BearerToken'))
+
+        loader.token_expires_at = datetime.datetime.now()
+
+        for config in configs:
+            self.assertEqual('Bearer ' + _TEST_NEW_TOKEN,
+                             config.get_api_key_with_prefix('BearerToken'))
+
         self.assertEqual('Bearer ' + _TEST_NEW_TOKEN, loader.token)
         self.assertGreater(loader.token_expires_at, old_token_expires_at)
 
