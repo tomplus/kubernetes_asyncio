@@ -1,3 +1,11 @@
+# v24.2.3
+
+* fix: refreshing incluster configuration ([#254](https://github.com/tomplus/kubernetes_asyncio/pull/254), [@tomplus](https://github.com/tomplus))
+* chore: remove deprecated packages asynctest, codecov ([#251](https://github.com/tomplus/kubernetes_asyncio/pull/251), [@tomplus](https://github.com/tomplus)) 
+* feat: Proactor event loop on Windows ([#248](https://github.com/tomplus/kubernetes_asyncio/pull/248), [@lejmr](https://github.com/lejmr)) 
+* doc: Update README.md ([#236](https://github.com/tomplus/kubernetes_asyncio/pull/236), [@epDHowwD](https://github.com/epDHowwD)) 
+* fix: Don't use shlex.split on cmd-path ([#224](https://github.com/tomplus/kubernetes_asyncio/pull/224), [@hrichardlee](https://github.com/hrichardlee)) 
+
 # v24.2.2
 
 * fix: config reader handles bool types ([#218](https://github.com/tomplus/kubernetes_asyncio/pull/218), [@tomplus](https://github.com/tomplus))
