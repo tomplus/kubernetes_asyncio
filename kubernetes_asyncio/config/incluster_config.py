@@ -96,6 +96,10 @@ class InClusterConfigLoader(object):
         def load_token_from_file(configuration, *args):
             if self.token_expires_at <= datetime.datetime.now():
                 self._read_token_file()
+
+            # expiration time is stored InClusterConfigLoader,
+            # thus some copies of Configuration can be outdated.
+            if configuration.api_key['BearerToken'] != self.token:
                 configuration.api_key['BearerToken'] = self.token
 
         configuration.refresh_api_key_hook = load_token_from_file
