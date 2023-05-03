@@ -137,13 +137,15 @@ class RESTClientObject(object):
 
         # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
         if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
-            if re.search('json', headers['Content-Type'], re.IGNORECASE):
+            if (re.search('json', headers['Content-Type'], re.IGNORECASE) or
+                    headers['Content-Type'] == 'application/apply-patch+yaml'):
                 if headers['Content-Type'] == 'application/json-patch+json':
                     if not isinstance(body, list):
                         headers['Content-Type'] = 'application/strategic-merge-patch+json'
+                request_body = None
                 if body is not None:
-                    body = json.dumps(body)
-                args["data"] = body
+                    request_body = json.dumps(body)
+                args["data"] = request_body
             elif headers['Content-Type'] == 'application/x-www-form-urlencoded':  # noqa: E501
                 args["data"] = aiohttp.FormData(post_params)
             elif headers['Content-Type'] == 'multipart/form-data':
