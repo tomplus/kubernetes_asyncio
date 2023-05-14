@@ -37,7 +37,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
     async def test_cluster_custom_resources(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
 
             with self.assertRaises(ResourceNotFoundError):
                 await client.resources.get(api_version='apps.example.com/v1', kind='ClusterChangeMe')
@@ -235,7 +235,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
     async def test_namespaced_custom_resources(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
 
             with self.assertRaises(ResourceNotFoundError):
                 await client.resources.get(api_version='apps.example.com/v1', kind='ChangeMe')
@@ -335,7 +335,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
     async def test_service_apis(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
             api = await client.resources.get(api_version='v1', kind='Service')
 
             name = 'frontend-' + short_uuid()
@@ -380,7 +380,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
     async def test_replication_controller_apis(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
 
             api = await client.resources.get(
                 api_version='v1', kind='ReplicationController')
@@ -418,7 +418,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
     async def test_configmap_apis(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
             api = await client.resources.get(api_version='v1', kind='ConfigMap')
 
             name = 'test-configmap-' + short_uuid()
@@ -459,7 +459,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
     async def test_node_apis(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
 
             api = await client.resources.get(api_version='v1', kind='Node')
             nodes = await api.get()
@@ -471,7 +471,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
     # but only retrieves object metadata
     async def test_node_apis_partial_object_metadata(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
             api = await client.resources.get(api_version='v1', kind='Node')
 
             params = {
@@ -490,7 +490,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
     async def test_server_side_apply_api(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
             api = await client.resources.get(api_version='v1', kind='Pod')
 
             name = 'pod-' + short_uuid()
@@ -525,12 +525,12 @@ class TestDynamicClientSerialization(unittest.IsolatedAsyncioTestCase):
 
     async def test_dict_type(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
             self.assertEqual(client.serialize_body(self.pod_manifest), self.pod_manifest)
 
     async def test_resource_instance_type(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
             inst = ResourceInstance(client, self.pod_manifest)
             self.assertEqual(client.serialize_body(inst), self.pod_manifest)
 
@@ -548,6 +548,6 @@ class TestDynamicClientSerialization(unittest.IsolatedAsyncioTestCase):
 
         # method will return original object when it doesn't know how to proceed
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
             serialized = client.serialize_body(res)
         self.assertDictEqual(serialized, res.to_dict())

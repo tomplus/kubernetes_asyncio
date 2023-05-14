@@ -29,15 +29,14 @@ async def main():
     config = Configuration()
     await kube_config.load_kube_config(client_configuration=config)
     async with api_client.ApiClient(configuration=config) as apic:
-        client = await DynamicClient.newclient(apic)
+        async with await DynamicClient(apic) as client:
+            # fetching the node api
+            api = await client.resources.get(api_version="v1", kind="Node")
 
-        # fetching the node api
-        api = await client.resources.get(api_version="v1", kind="Node")
+            # Creating a custom header
+            params = {'header_params': {'Accept': 'application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io'}}
 
-        # Creating a custom header
-        params = {'header_params': {'Accept': 'application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io'}}
-
-        resp = await api.get(**params)
+            resp = await api.get(**params)
 
     # Printing the kind and apiVersion after passing new header params.
     print("VERSION\t\t\t\tKIND")

@@ -43,7 +43,7 @@ class Discoverer(object):
         Subclasses implement the abstract methods with different loading strategies.
     """
 
-    def __init__(self, client, cache_file):
+    def __init__(self, client, cache_file=None):
         self.client = client
         default_cache_id = self.client.configuration.host
         default_cache_id = default_cache_id.encode('utf-8')
@@ -55,13 +55,15 @@ class Discoverer(object):
             default_cachefile_name = 'osrcp-{0}.json'.format(hashlib.md5(default_cache_id).hexdigest())
         self.__cache_file = cache_file or os.path.join(tempfile.gettempdir(), default_cachefile_name)
 
-    async def _ainit(self):
-        await self.__init_cache()
+    def __await__(self):
+        async def closure():
+            await self.__init_cache()
+            return self
 
-    @classmethod
-    async def create(cls, client, cache_file=None):
-        self = cls(client=client, cache_file=cache_file)
-        await self._ainit()
+        return closure().__await__()
+
+    async def __aenter__(self):
+        await self.__init_cache()
         return self
 
     async def __init_cache(self, refresh=False):

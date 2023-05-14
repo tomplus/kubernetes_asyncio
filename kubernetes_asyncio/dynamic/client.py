@@ -71,16 +71,25 @@ class DynamicClient(object):
         the kubernetes API
     """
 
-    def __init__(self, client, cache_file=None):
+    def __init__(self, client, cache_file=None, discoverer=None):
         self.cache_file = cache_file
         self.client = client
         self.configuration = client.configuration
+        self.discoverer = discoverer or LazyDiscoverer
 
-    async def _ainit(self, discoverer=None):
-        # Setting default here to delay evaluation of LazyDiscoverer class
-        # until constructor is called
-        discoverer = discoverer or LazyDiscoverer
-        self.__discoverer = await discoverer.create(self, self.cache_file)
+    def __await__(self):
+        async def closure():
+            self.__discoverer = await self.discoverer(self, self.cache_file)
+            return self
+
+        return closure().__await__()
+
+    async def __aenter__(self):
+        self.__discoverer = await self.discoverer(self, self.cache_file)
+        return self
+
+    async def __aexit__(self, *args, **kwargs):
+        return
 
     @property
     def resources(self):
@@ -89,12 +98,6 @@ class DynamicClient(object):
     @property
     def version(self):
         return self.__discoverer.version
-
-    @classmethod
-    async def newclient(cls, client, cache_file=None, discoverer=None) -> "DynamicClient":
-        self = DynamicClient(client=client, cache_file=cache_file)
-        await self._ainit(discoverer=discoverer)
-        return self
 
     @staticmethod
     def ensure_namespace(resource, namespace, body):

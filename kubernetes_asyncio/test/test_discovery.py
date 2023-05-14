@@ -17,7 +17,6 @@ import unittest
 
 from kubernetes_asyncio.e2e_test import base
 from kubernetes_asyncio.client import api_client
-
 from kubernetes_asyncio.dynamic import DynamicClient
 
 
@@ -29,13 +28,13 @@ class TestDiscoverer(unittest.IsolatedAsyncioTestCase):
 
     async def test_init_cache_from_file(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
 
             await client.resources.get(api_version='v1', kind='Node')
             mtime1 = os.path.getmtime(client.resources._Discoverer__cache_file)
 
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
 
             await client.resources.get(api_version='v1', kind='Node')
             mtime2 = os.path.getmtime(client.resources._Discoverer__cache_file)
@@ -45,20 +44,20 @@ class TestDiscoverer(unittest.IsolatedAsyncioTestCase):
 
     async def test_cache_decoder_resource_and_subresource(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
 
             # first invalidate cache
             await client.resources.invalidate_cache()
 
         # do Discoverer.__init__
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
             # the resources of client will use _cache['resources'] in memory
             deploy1 = await client.resources.get(kind='Deployment', api_version="apps/v1")
 
         # do Discoverer.__init__
         # async with api_client.ApiClient(configuration=self.config) as apic:
-            client2 = await DynamicClient.newclient(apic)
+            client2 = await DynamicClient(apic)
             # the resources of client will use _cache['resources'] decode from cache file
             deploy2 = await client2.resources.get(kind='Deployment', api_version="apps/v1")
 

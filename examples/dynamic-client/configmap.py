@@ -31,7 +31,7 @@ async def main():
     config = Configuration()
     await kube_config.load_kube_config(client_configuration=config)
     async with api_client.ApiClient(configuration=config) as apic:
-        client = await DynamicClient.newclient(apic)
+        client = await DynamicClient(apic)
 
         # fetching the configmap api
         api = await client.resources.get(api_version="v1", kind="ConfigMap")
