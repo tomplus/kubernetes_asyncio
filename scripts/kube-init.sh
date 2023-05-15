@@ -47,7 +47,7 @@ fi
 docker --version
 
 # Get the latest stable version of kubernetes
-K8S_VERSION=$(curl -sS https://dl.k8s.io/release/stable.txt)
+K8S_VERSION=$(curl -sSL https://dl.k8s.io/release/stable.txt)
 echo "K8S_VERSION : ${K8S_VERSION}"
 
 echo "Starting docker service"
