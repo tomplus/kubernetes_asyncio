@@ -38,7 +38,7 @@ jobs:
 
     - name: Run e2e tests
       run: |
-        apt-get install -y conntrack
+        sudo apt-get install -y conntrack
         scripts/kube-init.sh py.test -vvv -s kubernetes_asyncio/e2e_test
 
     - name: Lint with flake8 and isort (only on the latest version of Python)
