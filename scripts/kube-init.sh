@@ -92,7 +92,8 @@ export MINIKUBE_DRIVER=${MINIKUBE_DRIVER:-none}
 # Used bootstrapper to be kubeadm for the most recent k8s version
 # since localkube is depreciated and only supported up to version 1.10.0
 echo "Starting minikube"
-sudo --preserve-env=MINIKUBE_HOME --preserve-env=HOME minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr -v8 --wait=all
+#sudo --preserve-env=MINIKUBE_HOME --preserve-env=HOME minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr -v8 --wait=all
+sudo --preserve-env=MINIKUBE_HOME --preserve-env=HOME minikube start --bootstrapper=kubeadm --logtostderr -v8 --wait=all
 
 # Update ownership for configs/certs
 sudo chown -R $USER /home/runner/.minikube /home/runner/.kube
