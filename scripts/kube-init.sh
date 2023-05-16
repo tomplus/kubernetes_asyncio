@@ -85,8 +85,8 @@ echo "Set up minikube"
 export MINIKUBE_WANTUPDATENOTIFICATION=false
 export MINIKUBE_WANTREPORTERRORPROMPT=false
 export CHANGE_MINIKUBE_NONE_USER=true
-sudo mkdir -p $HOME/.kube
-sudo mkdir -p $HOME/.minikube
+mkdir -p $HOME/.kube
+mkdir -p $HOME/.minikube
 export MINIKUBE_HOME=$HOME
 export MINIKUBE_DRIVER=${MINIKUBE_DRIVER:-none}
 # Used bootstrapper to be kubeadm for the most recent k8s version
@@ -96,7 +96,7 @@ echo "Starting minikube"
 minikube start --bootstrapper=kubeadm --logtostderr -v8 --wait=all
 
 # Update ownership for configs/certs
-sudo chown -R $USER /home/runner/.minikube /home/runner/.kube
+#sudo chown -R $USER /home/runner/.minikube /home/runner/.kube
 
 echo "Dump kube config"
 kubectl config view
@@ -104,7 +104,7 @@ kubectl config view
 # check if kubectl can access the api server that Minikube has created
 kubectl get po &> /dev/null
 if [ $? -eq 1 ]; then
-  sudo minikube logs
+  minikube logs
   echo "minikube did not start"
   exit 1
 fi
