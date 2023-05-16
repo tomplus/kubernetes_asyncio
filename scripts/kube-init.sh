@@ -61,18 +61,18 @@ wget -O kubectl "http://storage.googleapis.com/kubernetes-release/release/${K8S_
 sudo chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 
-echo "Download  CRI tools"
-CRI_VERSION="v1.27.0"
-wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$CRI_VERSION/crictl-$CRI_VERSION-linux-amd64.tar.gz
-sudo tar zxvf crictl-$CRI_VERSION-linux-amd64.tar.gz -C /usr/local/bin
-rm -f crictl-$CRI_VERSION-linux-amd64.tar.gz
+#echo "Download  CRI tools"
+#CRI_VERSION="v1.27.0"
+#wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$CRI_VERSION/crictl-$CRI_VERSION-linux-amd64.tar.gz
+#sudo tar zxvf crictl-$CRI_VERSION-linux-amd64.tar.gz -C /usr/local/bin
+#rm -f crictl-$CRI_VERSION-linux-amd64.tar.gz
 
-echo "Download CRI Dockerd"
-CRI_DOCKERD_VERSION="0.3.2"
-RELEASE_CODENAME=$(lsb_release --short --codename)
-wget https://github.com/Mirantis/cri-dockerd/releases/download/v$CRI_DOCKERD_VERSION/cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
-sudo dpkg -i cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
-rm -f cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
+#echo "Download CRI Dockerd"
+#CRI_DOCKERD_VERSION="0.3.2"
+#RELEASE_CODENAME=$(lsb_release --short --codename)
+#wget https://github.com/Mirantis/cri-dockerd/releases/download/v$CRI_DOCKERD_VERSION/cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
+#sudo dpkg -i cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
+#rm -f cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
 
 echo "Download localkube from minikube project"
 wget -O minikube "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
@@ -85,18 +85,18 @@ echo "Set up minikube"
 export MINIKUBE_WANTUPDATENOTIFICATION=false
 export MINIKUBE_WANTREPORTERRORPROMPT=false
 export CHANGE_MINIKUBE_NONE_USER=true
-mkdir -p $HOME/.kube
-mkdir -p $HOME/.minikube
+sudo mkdir -p $HOME/.kube
+sudo mkdir -p $HOME/.minikube
 export MINIKUBE_HOME=$HOME
 export MINIKUBE_DRIVER=${MINIKUBE_DRIVER:-none}
 # Used bootstrapper to be kubeadm for the most recent k8s version
 # since localkube is depreciated and only supported up to version 1.10.0
 echo "Starting minikube"
 #sudo --preserve-env=MINIKUBE_HOME --preserve-env=HOME minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr -v8 --wait=all
-minikube start --bootstrapper=kubeadm --logtostderr -v8 --wait=all
+sudo --preserve-env=MINIKUBE_HOME --preserve-env=HOME minikube start --bootstrapper=kubeadm --logtostderr -v8 --wait=all --force
 
 # Update ownership for configs/certs
-#sudo chown -R $USER /home/runner/.minikube /home/runner/.kube
+sudo chown -R $USER /home/runner/.minikube /home/runner/.kube
 
 echo "Dump kube config"
 kubectl config view
@@ -104,7 +104,7 @@ kubectl config view
 # check if kubectl can access the api server that Minikube has created
 kubectl get po &> /dev/null
 if [ $? -eq 1 ]; then
-  minikube logs
+  sudo minikube logs
   echo "minikube did not start"
   exit 1
 fi
