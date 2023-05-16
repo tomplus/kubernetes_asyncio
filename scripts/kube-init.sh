@@ -50,6 +50,10 @@ docker --version
 K8S_VERSION=$(curl -sSL https://dl.k8s.io/release/stable.txt)
 echo "K8S_VERSION : ${K8S_VERSION}"
 
+# but minikube returns: Specified Kubernetes version 1.27.1 is newer than the newest supported version: v1.27.0-rc.0. 
+K8S_VERSION="1.26.3"
+echo "K8S_VERSION : ${K8S_VERSION}"
+
 echo "Starting docker service"
 sudo systemctl enable docker.service
 sudo systemctl start docker.service --ignore-dependencies
@@ -60,19 +64,6 @@ echo "Download Kubernetes CLI"
 wget -O kubectl "http://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl"
 sudo chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
-
-#echo "Download  CRI tools"
-#CRI_VERSION="v1.27.0"
-#wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$CRI_VERSION/crictl-$CRI_VERSION-linux-amd64.tar.gz
-#sudo tar zxvf crictl-$CRI_VERSION-linux-amd64.tar.gz -C /usr/local/bin
-#rm -f crictl-$CRI_VERSION-linux-amd64.tar.gz
-
-#echo "Download CRI Dockerd"
-#CRI_DOCKERD_VERSION="0.3.2"
-#RELEASE_CODENAME=$(lsb_release --short --codename)
-#wget https://github.com/Mirantis/cri-dockerd/releases/download/v$CRI_DOCKERD_VERSION/cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
-#sudo dpkg -i cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
-#rm -f cri-dockerd_$CRI_DOCKERD_VERSION.3-0.ubuntu-${RELEASE_CODENAME}_amd64.deb
 
 echo "Download localkube from minikube project"
 wget -O minikube "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
