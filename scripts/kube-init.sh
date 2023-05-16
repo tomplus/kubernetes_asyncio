@@ -67,6 +67,12 @@ wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$CRI_VERSION
 sudo tar zxvf crictl-$CRI_VERSION-linux-amd64.tar.gz -C /usr/local/bin
 rm -f crictl-$CRI_VERSION-linux-amd64.tar.gz
 
+echo "Download CRI Dockerd"
+CRI_DOCKERD_VERSION="0.3.2"
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v$CRI_DOCKERD_VERSION/cri-dockerd-$CRI_DOCKERD_VERSION.amd64.tgz
+sudo tar zxvf cri-dockerd-$CRI_DOCKERD_VERSION.amd64.tgz --strip-components=1 -C /usr/local/bin
+rm -f cri-dockerd-$CRI_DOCKERD_VERSION.amd64.tgz
+
 echo "Download localkube from minikube project"
 wget -O minikube "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
 sudo chmod +x minikube
