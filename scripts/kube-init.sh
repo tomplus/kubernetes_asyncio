@@ -61,6 +61,12 @@ wget -O kubectl "http://storage.googleapis.com/kubernetes-release/release/${K8S_
 sudo chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 
+echo "Download  CRI tools"
+CRI_VERSION="v1.27.0"
+wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$CRI_VERSION/crictl-$CRI_VERSION-linux-amd64.tar.gz
+sudo tar zxvf crictl-$CRI_VERSION-linux-amd64.tar.gz -C /usr/local/bin
+rm -f crictl-$CRI_VERSION-linux-amd64.tar.gz
+
 echo "Download localkube from minikube project"
 wget -O minikube "https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64"
 sudo chmod +x minikube
