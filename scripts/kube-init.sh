@@ -47,10 +47,11 @@ fi
 docker --version
 
 # Get the latest stable version of kubernetes
-#K8S_VERSION=$(curl -sS https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-# Problem with 1.24.0 in minikube, https://github.com/kubernetes/minikube/issues/14128
-# pin to previous version
-K8S_VERSION=1.23.6
+K8S_VERSION=$(curl -sSL https://dl.k8s.io/release/stable.txt)
+echo "K8S_VERSION : ${K8S_VERSION}"
+
+# but minikube returns: Specified Kubernetes version 1.27.1 is newer than the newest supported version: v1.27.0-rc.0. 
+K8S_VERSION="v1.26.3"
 echo "K8S_VERSION : ${K8S_VERSION}"
 
 echo "Starting docker service"
@@ -61,6 +62,10 @@ sudo docker ps
 
 echo "Download Kubernetes CLI"
 wget -O kubectl "http://storage.googleapis.com/kubernetes-release/release/${K8S_VERSION}/bin/linux/amd64/kubectl"
+if [ $? -ne 0 ]; then
+    echo "failed to download kubectl"
+    exit 1
+fi
 sudo chmod +x kubectl
 sudo mv kubectl /usr/local/bin/
 
@@ -78,11 +83,11 @@ export CHANGE_MINIKUBE_NONE_USER=true
 sudo mkdir -p $HOME/.kube
 sudo mkdir -p $HOME/.minikube
 export MINIKUBE_HOME=$HOME
-export MINIKUBE_DRIVER=${MINIKUBE_DRIVER:-none}
+export MINIKUBE_DRIVER=${MINIKUBE_DRIVER:-docker}
 # Used bootstrapper to be kubeadm for the most recent k8s version
 # since localkube is depreciated and only supported up to version 1.10.0
 echo "Starting minikube"
-sudo --preserve-env=MINIKUBE_HOME --preserve-env=HOME minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr -v8 --wait=all
+sudo --preserve-env=MINIKUBE_HOME --preserve-env=HOME minikube start --vm-driver=$MINIKUBE_DRIVER --bootstrapper=kubeadm --kubernetes-version=$K8S_VERSION --logtostderr --wait=all --force
 
 # Update ownership for configs/certs
 sudo chown -R $USER /home/runner/.minikube /home/runner/.kube
