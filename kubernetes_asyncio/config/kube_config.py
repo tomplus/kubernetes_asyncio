@@ -208,7 +208,7 @@ class KubeConfigLoader(object):
 
         if 'exec' in self._user:
             logging.debug('Try to use exec provider')
-            res_exec_plugin = await self._load_from_exec_plugin()
+            res_exec_plugin = await self.load_from_exec_plugin()
             if res_exec_plugin:
                 return
 
@@ -309,13 +309,17 @@ class KubeConfigLoader(object):
 
         return None
 
-    async def _load_from_exec_plugin(self):
+    async def load_from_exec_plugin(self):
         try:
+            if hasattr(self, 'exec_plugin_expiry') and not _is_expired(self.exec_plugin_expiry):
+                return True
             status = await ExecProvider(self._user['exec']).run()
             if 'token' not in status:
                 logging.error('exec: missing token field in plugin output')
                 return None
             self.token = "Bearer %s" % status['token']
+            if 'expirationTimestamp' in status:
+                self.exec_plugin_expiry = parse_rfc3339(status['expirationTimestamp'])
             return True
         except Exception as e:
             logging.error(str(e))
@@ -617,16 +621,20 @@ async def refresh_token(loader, client_configuration=None, interval=60):
     :param interval: how often check if token is up-to-date
 
     """
-    if loader.provider != 'gcp':
-        return
 
     if client_configuration is None:
-        client_configuration = Configuration()
+        raise NotImplementedError
 
-    while 1:
-        await asyncio.sleep(interval)
-        await loader.load_gcp_token()
-        client_configuration.api_key['BearerToken'] = loader.token
+    if loader.provider == 'gcp':
+        while 1:
+            await asyncio.sleep(interval)
+            await loader.load_gcp_token()
+            client_configuration.api_key['BearerToken'] = loader.token
+    elif 'exec' in loader._user:
+        while 1:
+            await asyncio.sleep(interval)
+            await loader.load_from_exec_plugin()
+            client_configuration.api_key['BearerToken'] = loader.token
 
 
 async def new_client_from_config(config_file=None, context=None, persist_config=True,

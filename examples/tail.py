@@ -14,7 +14,7 @@ import argparse
 import asyncio
 
 from kubernetes_asyncio import client, config
-from kubernetes_asyncio.client.api_client import ApiClient
+from kubernetes_asyncio.client.api_client import ApiClient, Configuration
 
 
 def parse_args():
@@ -51,8 +51,9 @@ async def print_pod_log(v1_api, pod, namespace, container, lines, follow):
 async def main():
     args = parse_args()
 
-    loader = await config.load_kube_config()
-    api = ApiClient()
+    client_configuration = Configuration()
+    loader = await config.load_kube_config(client_configuration=client_configuration)
+    api = ApiClient(configuration=client_configuration)
     v1_api = client.CoreV1Api(api)
     ret = await v1_api.list_namespaced_pod(args.namespace)
     cmd = []
@@ -72,7 +73,9 @@ async def main():
 
     if args.follow:
         # autorefresh gcp token
-        cmd.append(config.refresh_token(loader))
+        cmd.append(config.refresh_token(
+            loader=loader,
+            client_configuration=client_configuration))
 
     await asyncio.wait(cmd)
     await api.close()

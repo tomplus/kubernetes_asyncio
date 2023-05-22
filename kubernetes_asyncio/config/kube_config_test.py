@@ -961,7 +961,7 @@ class TestKubeConfigLoader(BaseTestCase):
             active_context="non_existing_user").load_and_set(actual)
         self.assertEqual(expected, actual)
 
-    async def test_refresh_token(self):
+    async def test_refresh_gcp_token(self):
         loader = KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="gcp",
@@ -978,6 +978,27 @@ class TestKubeConfigLoader(BaseTestCase):
 
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
                          loader.token)
+
+    async def test_refresh_exec_token(self):
+        class MockKubeConfigLoader(KubeConfigLoader):
+            async def load_from_exec_plugin(self):
+                self.token = TEST_ANOTHER_DATA_BASE64
+
+        loader = MockKubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="exec_cred_user")
+        mock_sleep = patch('asyncio.sleep').start()
+        mock_sleep.side_effect = [0, AssertionError]
+
+        mock_config = Mock()
+        mock_config.api_key = {}
+
+        loader.exec_plugin_expiry = datetime.datetime.now()
+
+        with self.assertRaises(AssertionError):
+            await refresh_token(loader, mock_config)
+
+        self.assertEqual(TEST_ANOTHER_DATA_BASE64, mock_config.api_key["BearerToken"])
 
 
 class TestKubeConfigMerger(BaseTestCase):
