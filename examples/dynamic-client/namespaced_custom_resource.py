@@ -28,29 +28,6 @@ from kubernetes_asyncio.dynamic import DynamicClient
 from kubernetes_asyncio.dynamic.exceptions import ResourceNotFoundError
 
 
-async def list_ingressroute_for_all_namespaces(group, version, plural):
-    custom_object_api = CustomObjectsApi()
-
-    list_of_ingress_routes = custom_object_api.list_cluster_custom_object(
-        group, version, plural
-    )
-    print(
-        "%s\t\t\t%s\t\t\t%s\t\t%s\t\t\t\t%s"
-        % ("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
-    )
-    for item in list_of_ingress_routes["items"]:
-        print(
-            "%s\t%s\t\t%s\t%s\t%s"
-            % (
-                item["metadata"]["name"],
-                item["metadata"]["namespace"],
-                item["spec"]["virtualhost"]["fqdn"],
-                item["spec"]["virtualhost"]["tls"],
-                item["spec"]["strategy"]
-            )
-        )
-
-
 async def create_namespace(namespace_api, name):
     namespace_manifest = {
         "apiVersion": "v1",
@@ -199,10 +176,24 @@ async def main():
         print("\n[INFO] custom resources `ingress-route-*` created\n")
 
         # Listing the `ingress-route-*` custom resources
+        routes = await ingressroute_api.get()
 
-        await list_ingressroute_for_all_namespaces(
-            group="apps.example.com", version="v1", plural="ingressroutes"
+        print(
+            "%s\t\t\t%s\t\t\t%s\t\t%s\t\t\t\t%s"
+            % ("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
         )
+
+        for item in routes["items"]:
+            print(
+                "%s\t%s\t\t%s\t%s\t%s"
+                % (
+                    item["metadata"]["name"],
+                    item["metadata"]["namespace"],
+                    item["spec"]["virtualhost"]["fqdn"],
+                    item["spec"]["virtualhost"]["tls"],
+                    item["spec"]["strategy"]
+                )
+            )
 
         # Patching the ingressroutes custom resources
 
@@ -219,9 +210,25 @@ async def main():
         print(
             "\n[INFO] custom resources `ingress-route-*` patched to update the strategy\n"
         )
-        await list_ingressroute_for_all_namespaces(
-            group="apps.example.com", version="v1", plural="ingressroutes"
+
+        routes = await ingressroute_api.get()
+
+        print(
+            "%s\t\t\t%s\t\t\t%s\t\t%s\t\t\t\t%s"
+            % ("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
         )
+
+        for item in routes["items"]:
+            print(
+                "%s\t%s\t\t%s\t%s\t%s"
+                % (
+                    item["metadata"]["name"],
+                    item["metadata"]["namespace"],
+                    item["spec"]["virtualhost"]["fqdn"],
+                    item["spec"]["virtualhost"]["tls"],
+                    item["spec"]["strategy"]
+                )
+            )
 
         # Deleting the ingressroutes custom resources
 

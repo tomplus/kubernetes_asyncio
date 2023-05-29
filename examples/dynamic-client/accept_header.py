@@ -29,7 +29,7 @@ async def main():
     config = Configuration()
     await kube_config.load_kube_config(client_configuration=config)
     async with api_client.ApiClient(configuration=config) as apic:
-        async with await DynamicClient(apic) as client:
+        async with DynamicClient(apic) as client:
             # fetching the node api
             api = await client.resources.get(api_version="v1", kind="Node")
 
