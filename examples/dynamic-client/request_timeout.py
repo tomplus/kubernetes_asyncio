@@ -66,8 +66,10 @@ async def main():
             name=configmap_name, namespace="default", label_selector="foo=bar", _request_time=60
         )
 
-        print("NAME:\n%s\n" % (configmap_list.metadata.name))
-        print("DATA:\n%s\n" % (configmap_list.data))
+        print(f"NAME:\n{configmap_list.metadata.name}\n")
+        print(f"DATA:\n{configmap_list.data}\n")
+
+        await api.delete(name=configmap_name, namespace="default", _request_time=60)
 
 
 if __name__ == "__main__":
