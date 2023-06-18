@@ -142,10 +142,9 @@ class RESTClientObject(object):
                 if headers['Content-Type'] == 'application/json-patch+json':
                     if not isinstance(body, list):
                         headers['Content-Type'] = 'application/strategic-merge-patch+json'
-                request_body = None
                 if body is not None:
-                    request_body = json.dumps(body)
-                args["data"] = request_body
+                    body = json.dumps(body)
+                args["data"] = body
             elif headers['Content-Type'] == 'application/x-www-form-urlencoded':  # noqa: E501
                 args["data"] = aiohttp.FormData(post_params)
             elif headers['Content-Type'] == 'multipart/form-data':

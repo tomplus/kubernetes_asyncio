@@ -210,10 +210,13 @@ class DynamicClient(object):
         if not watcher:
             watcher = watch.Watch()
 
+        # Use field selector to query for named instance so the watch parameter is handled properly.
+        if name:
+            field_selector = f"metadata.name={name}"
+
         async for event in watcher.stream(
             resource.get,
             namespace=namespace,
-            name=name,
             field_selector=field_selector,
             label_selector=label_selector,
             resource_version=resource_version,

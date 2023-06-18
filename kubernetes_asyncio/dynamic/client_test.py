@@ -446,6 +446,11 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
                 name=name, namespace='default', label_selector="e2e-test=true")
             self.assertEqual(name, resp.metadata.name)
 
+            count = 0
+            async for _ in client.watch(api, timeout=10, namespace="default", name=name):
+                count += 1
+            self.assertTrue(count > 0, msg="no events received for watch")
+
             test_configmap['data']['config.json'] = "{}"
             await api.patch(name=name, namespace='default', body=test_configmap)
 
