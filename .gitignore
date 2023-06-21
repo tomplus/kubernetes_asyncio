@@ -68,3 +68,4 @@ target/
 
 # rest.py is patched
 kubernetes_asyncio/client/rest.py.orig
+my-publish.sh

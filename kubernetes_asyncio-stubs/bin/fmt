@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+poetry run black codegen kubernetes-stubs kubernetes_ext
+poetry run isort codegen kubernetes-stubs kubernetes_ext
