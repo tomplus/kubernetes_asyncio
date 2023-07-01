@@ -35,7 +35,7 @@ class TestDynamicClient(IsolatedAsyncioTestCase):
 
     async def test_pod_apis(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
-            client = await DynamicClient.newclient(apic)
+            client = await DynamicClient(apic)
 
             pod_resource = await client.resources.get(kind='Pod', api_version='v1')
 
