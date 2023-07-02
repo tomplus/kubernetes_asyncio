@@ -58,6 +58,40 @@ To list all pods:
 More complicated examples, like asynchronous multiple watch or tail logs from pods,
 you can find in `examples/` folder.
 
+There is also support for DynamicClient which will query the cluster for all supported
+resources.  This allows for dynamic resource selection at runtime.
+The above example using DynamicClient would look like this:
+::
+
+    import asyncio
+    from kubernetes_asyncio import config
+    from kubernetes_asyncio.client.api_client import ApiClient
+    from kubernetes_asyncio.dynamic import DynamicClient
+
+
+    async def main():
+        # Configs can be set in Configuration class directly or using helper
+        # utility. If no argument provided, the config will be loaded from
+        # default location.
+        await config.load_kube_config()
+
+        # use the context manager to close http sessions automatically
+        async with ApiClient() as api:
+            client = await DynamicClient(api)
+            v1 = await client.resources.get(api_version="v1", kind="Pod")
+            print("Listing pods with their IPs:")
+            ret = await v1.get()
+
+            for i in ret.items:
+                print(i.status.pod_ip, i.metadata.namespace, i.metadata.name)
+
+
+    if __name__ == '__main__':
+        loop = asyncio.new_event_loop()
+        loop.run_until_complete(main())
+        loop.close()
+
+Additional examples are in the `examples/dynamic-client` folder.
 
 Versions
 --------
