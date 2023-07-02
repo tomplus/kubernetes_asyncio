@@ -500,15 +500,15 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
             name = 'pod-' + short_uuid()
             pod_manifest = {
-                    'apiVersion': 'apps/v1',
-                    'kind': 'Deployment',
-                    'metadata': {'labels': {'name': name},
-                                 'name': name},
-                    'spec': {'template': {'spec': {'containers': [{
-                                'image': 'nginx',
-                                'name': 'nginx',
-                                'ports': [{'containerPort': 80,
-                                           'protocol': 'TCP'}]}]}}}}
+                'apiVersion': 'apps/v1',
+                'kind': 'Deployment',
+                'metadata': {'labels': {'name': name},
+                             'name': name},
+                'spec': {'template': {'spec': {'containers': [{
+                    'image': 'nginx',
+                    'name': 'nginx',
+                    'ports': [{'containerPort': 80,
+                               'protocol': 'TCP'}]}]}}}}
 
             resp = await api.server_side_apply(
                 namespace='default', body=pod_manifest,
