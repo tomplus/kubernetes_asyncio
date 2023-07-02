@@ -15,9 +15,9 @@
 import os
 import unittest
 
-from kubernetes_asyncio.e2e_test import base
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.dynamic import DynamicClient
+from kubernetes_asyncio.e2e_test import base
 
 
 class TestDiscoverer(unittest.IsolatedAsyncioTestCase):

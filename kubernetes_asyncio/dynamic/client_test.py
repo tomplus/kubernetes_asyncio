@@ -16,12 +16,11 @@ import asyncio
 import unittest
 import uuid
 
-from kubernetes_asyncio.e2e_test import base
 from kubernetes_asyncio.client import api_client
-
 from kubernetes_asyncio.dynamic import DynamicClient
-from kubernetes_asyncio.dynamic.resource import ResourceInstance, ResourceField
 from kubernetes_asyncio.dynamic.exceptions import ResourceNotFoundError
+from kubernetes_asyncio.dynamic.resource import ResourceField, ResourceInstance
+from kubernetes_asyncio.e2e_test import base
 
 
 def short_uuid():
