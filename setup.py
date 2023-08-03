@@ -51,6 +51,7 @@ setup(
         'kubernetes_asyncio',
         'kubernetes_asyncio.client',
         'kubernetes_asyncio.config',
+        'kubernetes_asyncio.dynamic',
         'kubernetes_asyncio.watch',
         'kubernetes_asyncio.client.api',
         'kubernetes_asyncio.stream',

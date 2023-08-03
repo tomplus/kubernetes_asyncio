@@ -18,6 +18,7 @@ __version__ = "24.2.0+snapshot"
 
 import kubernetes_asyncio.client
 import kubernetes_asyncio.config
+import kubernetes_asyncio.dynamic
 import kubernetes_asyncio.stream
 import kubernetes_asyncio.utils
 import kubernetes_asyncio.watch
