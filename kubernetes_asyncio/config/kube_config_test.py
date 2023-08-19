@@ -72,6 +72,7 @@ TEST_CLIENT_KEY = "client-key"
 TEST_CLIENT_KEY_BASE64 = _base64(TEST_CLIENT_KEY)
 TEST_CLIENT_CERT = "client-cert"
 TEST_CLIENT_CERT_BASE64 = _base64(TEST_CLIENT_CERT)
+TEST_TLS_SERVER_NAME = "kubernetes.io"
 
 TEST_OIDC_TOKEN = "test-oidc-token"
 TEST_OIDC_INFO = "{\"name\": \"test\"}"
@@ -443,6 +444,13 @@ class TestKubeConfigLoader(BaseTestCase):
                     "user": "exec_cred_user_certificate"
                 }
             },
+            {
+                "name": "tls-server-name",
+                "context": {
+                    "cluster": "tls-server-name",
+                    "user": "ssl"
+                }
+            },
         ],
         "clusters": [
             {
@@ -486,6 +494,16 @@ class TestKubeConfigLoader(BaseTestCase):
                 "cluster": {
                     "server": TEST_SSL_HOST,
                     "insecure-skip-tls-verify": False,
+                }
+            },
+            {
+                "name": "tls-server-name",
+                "cluster": {
+                    "server": TEST_SSL_HOST,
+                    "certificate-authority-data":
+                        TEST_CERTIFICATE_AUTH_BASE64,
+                    "insecure-skip-tls-verify": False,
+                    "tls-server-name": TEST_TLS_SERVER_NAME,
                 }
             },
         ],
@@ -861,6 +879,22 @@ class TestKubeConfigLoader(BaseTestCase):
         await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
             active_context="ssl_verification").load_and_set(actual)
+        self.assertEqual(expected, actual)
+
+    async def test_tls_server_name(self):
+        expected = FakeConfig(
+            host=TEST_SSL_HOST,
+            token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
+            cert_file=self._create_temp_file(TEST_CLIENT_CERT),
+            key_file=self._create_temp_file(TEST_CLIENT_KEY),
+            ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH),
+            verify_ssl=True,
+            tls_server_name=TEST_TLS_SERVER_NAME
+        )
+        actual = FakeConfig()
+        await KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="tls-server-name").load_and_set(actual)
         self.assertEqual(expected, actual)
 
     def test_list_contexts(self):
