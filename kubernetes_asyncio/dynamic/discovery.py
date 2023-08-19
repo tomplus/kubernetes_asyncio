@@ -33,6 +33,7 @@ from .exceptions import (
 from .resource import Resource, ResourceList
 
 DISCOVERY_PREFIX = 'apis'
+logger = logging.getLogger(__name__)
 
 
 class Discoverer(object):
@@ -78,7 +79,7 @@ class Discoverer(object):
                     # Version mismatch, need to refresh cache
                     await self.invalidate_cache()
             except Exception as e:
-                logging.error("load cache error: %s", e)
+                logger.error("load cache error: %s", e)
                 await self.invalidate_cache()
         await self._load_server_info()
         await self.discover()
