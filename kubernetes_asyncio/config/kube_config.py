@@ -176,10 +176,10 @@ class KubeConfigLoader(object):
             self.provider = self._user['auth-provider']['name']
 
         logger.debug('kubeconfig loader - current-context %s, cluster %s, user %s, provider %s',
-                      context_name,
-                      self._current_context['context']['cluster'],
-                      self._current_context['context'].safe_get('user'),
-                      self.provider)
+                     context_name,
+                     self._current_context['context']['cluster'],
+                     self._current_context['context'].safe_get('user'),
+                     self.provider)
 
     async def _load_authentication(self):
         """Read authentication from kube-config user section if exists.
