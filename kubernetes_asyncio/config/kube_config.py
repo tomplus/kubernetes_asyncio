@@ -38,6 +38,7 @@ KUBE_CONFIG_DEFAULT_LOCATION = os.environ.get('KUBECONFIG', '~/.kube/config')
 ENV_KUBECONFIG_PATH_SEPARATOR = ';' if platform.system() == 'Windows' else ':'
 PROVIDER_TYPE_OIDC = 'oidc'
 _temp_files = {}
+logger = logging.getLogger(__name__)
 
 
 def _cleanup_temp_files():
@@ -174,7 +175,7 @@ class KubeConfigLoader(object):
         if self._user is not None and 'auth-provider' in self._user and 'name' in self._user['auth-provider']:
             self.provider = self._user['auth-provider']['name']
 
-        logging.debug('kubeconfig loader - current-context %s, cluster %s, user %s, provider %s',
+        logger.debug('kubeconfig loader - current-context %s, cluster %s, user %s, provider %s',
                       context_name,
                       self._current_context['context']['cluster'],
                       self._current_context['context'].safe_get('user'),
@@ -195,7 +196,7 @@ class KubeConfigLoader(object):
         """
 
         if not self._user:
-            logging.debug('No user section in current context.')
+            logger.debug('No user section in current context.')
             return
 
         if self.provider == 'gcp':
@@ -207,16 +208,16 @@ class KubeConfigLoader(object):
             return
 
         if 'exec' in self._user:
-            logging.debug('Try to use exec provider')
+            logger.debug('Try to use exec provider')
             res_exec_plugin = await self.load_from_exec_plugin()
             if res_exec_plugin:
                 return
 
-        logging.debug('Try to load user token')
+        logger.debug('Try to load user token')
         if self._load_user_token():
             return
 
-        logging.debug('Try to use username and password')
+        logger.debug('Try to use username and password')
         self._load_user_pass_token()
 
     async def load_gcp_token(self):
@@ -315,14 +316,14 @@ class KubeConfigLoader(object):
                 return True
             status = await ExecProvider(self._user['exec']).run()
             if 'token' not in status:
-                logging.error('exec: missing token field in plugin output')
+                logger.error('exec: missing token field in plugin output')
                 return None
             self.token = "Bearer %s" % status['token']
             if 'expirationTimestamp' in status:
                 self.exec_plugin_expiry = parse_rfc3339(status['expirationTimestamp'])
             return True
         except Exception as e:
-            logging.error(str(e))
+            logger.error(str(e))
 
     def _load_user_token(self):
         base_path = self._get_base_path(self._user.path)
@@ -483,7 +484,7 @@ class KubeConfigMerger:
                     file_loaded = True
         self.config_saved = copy.deepcopy(self.config_files)
         if not file_loaded:
-            logging.warning('Config not found: %s', paths)
+            logger.warning('Config not found: %s', paths)
 
     @property
     def config(self):
