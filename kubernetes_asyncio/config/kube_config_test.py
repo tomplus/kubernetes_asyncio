@@ -436,6 +436,13 @@ class TestKubeConfigLoader(BaseTestCase):
                     "user": "exec_cred_user"
                 }
             },
+            {
+                "name": "exec_cred_user_certificate",
+                "context": {
+                    "cluster": "ssl",
+                    "user": "exec_cred_user_certificate"
+                }
+            },
         ],
         "clusters": [
             {
@@ -462,7 +469,9 @@ class TestKubeConfigLoader(BaseTestCase):
                 "name": "ssl",
                 "cluster": {
                     "server": TEST_SSL_HOST,
-                    "certificate-authority-data": TEST_CERTIFICATE_AUTH_BASE64,
+                    "certificate-authority-data":
+                        TEST_CERTIFICATE_AUTH_BASE64,
+                    "insecure-skip-tls-verify": False,
                 }
             },
             {
@@ -598,6 +607,16 @@ class TestKubeConfigLoader(BaseTestCase):
                         "apiVersion": "client.authentication.k8s.io/v1beta1",
                         "command": "aws-iam-authenticator",
                         "args": ["token", "-i", "dummy-cluster"]
+                    }
+                }
+            },
+            {
+                "name": "exec_cred_user_certificate",
+                "user": {
+                    "exec": {
+                        "apiVersion": "client.authentication.k8s.io/v1beta1",
+                        "command": "custom-certificate-authenticator",
+                        "args": []
                     }
                 }
             },
@@ -757,6 +776,25 @@ class TestKubeConfigLoader(BaseTestCase):
             active_context="exec_cred_user").load_and_set(actual)
         self.assertEqual(expected, actual)
 
+    @patch('kubernetes_asyncio.config.kube_config.ExecProvider.run')
+    async def test_user_exec_auth_certificates(self, mock):
+        mock.return_value = {
+            "clientCertificateData": TEST_CLIENT_CERT,
+            "clientKeyData": TEST_CLIENT_KEY,
+        }
+        expected = FakeConfig(
+            host=TEST_SSL_HOST,
+            cert_file=self._create_temp_file(TEST_CLIENT_CERT),
+            key_file=self._create_temp_file(TEST_CLIENT_KEY),
+            ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH),
+            verify_ssl=True)
+        actual = FakeConfig()
+        await KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="exec_cred_user_certificate").load_and_set(actual)
+        self.assertEqual(expected, actual)
+
+
     async def test_user_pass(self):
         expected = FakeConfig(host=TEST_HOST, token=TEST_BASIC_TOKEN)
         actual = FakeConfig()
@@ -787,7 +825,8 @@ class TestKubeConfigLoader(BaseTestCase):
             token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
             cert_file=self._create_temp_file(TEST_CLIENT_CERT),
             key_file=self._create_temp_file(TEST_CLIENT_KEY),
-            ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH)
+            ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH),
+            verify_ssl=True,
         )
         actual = FakeConfig()
         await KubeConfigLoader(
@@ -900,7 +939,8 @@ class TestKubeConfigLoader(BaseTestCase):
             token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
             cert_file=self._create_temp_file(TEST_CLIENT_CERT),
             key_file=self._create_temp_file(TEST_CLIENT_KEY),
-            ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH)
+            ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH),
+            verify_ssl=True,
         )
         actual = FakeConfig()
 
