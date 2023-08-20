@@ -794,7 +794,6 @@ class TestKubeConfigLoader(BaseTestCase):
             active_context="exec_cred_user_certificate").load_and_set(actual)
         self.assertEqual(expected, actual)
 
-
     async def test_user_pass(self):
         expected = FakeConfig(host=TEST_HOST, token=TEST_BASIC_TOKEN)
         actual = FakeConfig()
