@@ -20,11 +20,9 @@ from kubernetes_asyncio.client.api.authorization_v1_api import AuthorizationV1Ap
 from kubernetes_asyncio.client.api.autoscaling_api import AutoscalingApi
 from kubernetes_asyncio.client.api.autoscaling_v1_api import AutoscalingV1Api
 from kubernetes_asyncio.client.api.autoscaling_v2_api import AutoscalingV2Api
-from kubernetes_asyncio.client.api.autoscaling_v2beta1_api import AutoscalingV2beta1Api
 from kubernetes_asyncio.client.api.autoscaling_v2beta2_api import AutoscalingV2beta2Api
 from kubernetes_asyncio.client.api.batch_api import BatchApi
 from kubernetes_asyncio.client.api.batch_v1_api import BatchV1Api
-from kubernetes_asyncio.client.api.batch_v1beta1_api import BatchV1beta1Api
 from kubernetes_asyncio.client.api.certificates_api import CertificatesApi
 from kubernetes_asyncio.client.api.certificates_v1_api import CertificatesV1Api
 from kubernetes_asyncio.client.api.coordination_api import CoordinationApi
@@ -34,10 +32,8 @@ from kubernetes_asyncio.client.api.core_v1_api import CoreV1Api
 from kubernetes_asyncio.client.api.custom_objects_api import CustomObjectsApi
 from kubernetes_asyncio.client.api.discovery_api import DiscoveryApi
 from kubernetes_asyncio.client.api.discovery_v1_api import DiscoveryV1Api
-from kubernetes_asyncio.client.api.discovery_v1beta1_api import DiscoveryV1beta1Api
 from kubernetes_asyncio.client.api.events_api import EventsApi
 from kubernetes_asyncio.client.api.events_v1_api import EventsV1Api
-from kubernetes_asyncio.client.api.events_v1beta1_api import EventsV1beta1Api
 from kubernetes_asyncio.client.api.flowcontrol_apiserver_api import FlowcontrolApiserverApi
 from kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta1_api import FlowcontrolApiserverV1beta1Api
 from kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta2_api import FlowcontrolApiserverV1beta2Api
@@ -46,13 +42,12 @@ from kubernetes_asyncio.client.api.internal_apiserver_v1alpha1_api import Intern
 from kubernetes_asyncio.client.api.logs_api import LogsApi
 from kubernetes_asyncio.client.api.networking_api import NetworkingApi
 from kubernetes_asyncio.client.api.networking_v1_api import NetworkingV1Api
+from kubernetes_asyncio.client.api.networking_v1alpha1_api import NetworkingV1alpha1Api
 from kubernetes_asyncio.client.api.node_api import NodeApi
 from kubernetes_asyncio.client.api.node_v1_api import NodeV1Api
-from kubernetes_asyncio.client.api.node_v1beta1_api import NodeV1beta1Api
 from kubernetes_asyncio.client.api.openid_api import OpenidApi
 from kubernetes_asyncio.client.api.policy_api import PolicyApi
 from kubernetes_asyncio.client.api.policy_v1_api import PolicyV1Api
-from kubernetes_asyncio.client.api.policy_v1beta1_api import PolicyV1beta1Api
 from kubernetes_asyncio.client.api.rbac_authorization_api import RbacAuthorizationApi
 from kubernetes_asyncio.client.api.rbac_authorization_v1_api import RbacAuthorizationV1Api
 from kubernetes_asyncio.client.api.scheduling_api import SchedulingApi
