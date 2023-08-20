@@ -317,6 +317,8 @@ class KubeConfigLoader(object):
             status = await ExecProvider(self._user['exec']).run()
             if 'token' in status:
                 self.token = "Bearer %s" % status['token']
+                if 'expirationTimestamp' in status:
+                    self.exec_plugin_expiry = parse_rfc3339(status['expirationTimestamp'])
             elif 'clientCertificateData' in status:
                 # https://kubernetes.io/docs/reference/access-authn-authz/authentication/#input-and-output-formats
                 # Plugin has provided certificates instead of a token.
@@ -340,8 +342,6 @@ class KubeConfigLoader(object):
                 logging.error('exec: missing token or clientCertificateData '
                               'field in plugin output')
                 return None
-            if 'expirationTimestamp' in status:
-                self.exec_plugin_expiry = parse_rfc3339(status['expirationTimestamp'])
             return True
         except Exception as e:
             logging.error(str(e))
