@@ -314,13 +314,34 @@ class KubeConfigLoader(object):
         try:
             if hasattr(self, 'exec_plugin_expiry') and not _is_expired(self.exec_plugin_expiry):
                 return True
+            base_path = self._get_base_path(self._cluster.path)
             status = await ExecProvider(self._user['exec']).run()
-            if 'token' not in status:
-                logger.error('exec: missing token field in plugin output')
-                return None
-            self.token = "Bearer %s" % status['token']
-            if 'expirationTimestamp' in status:
-                self.exec_plugin_expiry = parse_rfc3339(status['expirationTimestamp'])
+            if 'token' in status:
+                self.token = "Bearer %s" % status['token']
+                if 'expirationTimestamp' in status:
+                    self.exec_plugin_expiry = parse_rfc3339(status['expirationTimestamp'])
+            elif 'clientCertificateData' in status:
+                # https://kubernetes.io/docs/reference/access-authn-authz/authentication/#input-and-output-formats
+                # Plugin has provided certificates instead of a token.
+                if 'clientKeyData' not in status:
+                    logger.error('exec: missing clientKeyData field in '
+                                 'plugin output')
+                    return None
+                self.cert_file = FileOrData(
+                    status, None,
+                    data_key_name='clientCertificateData',
+                    file_base_path=base_path,
+                    base64_file_content=False,
+                    temp_file_path=self._temp_file_path).as_file()
+                self.key_file = FileOrData(
+                    status, None,
+                    data_key_name='clientKeyData',
+                    file_base_path=base_path,
+                    base64_file_content=False,
+                    temp_file_path=self._temp_file_path).as_file()
+            else:
+                logger.error('exec: missing token or clientCertificateData '
+                             'field in plugin output')
             return True
         except Exception as e:
             logger.error(str(e))
@@ -358,14 +379,18 @@ class KubeConfigLoader(object):
                     self._cluster, 'certificate-authority',
                     file_base_path=base_path,
                     temp_file_path=self._temp_file_path).as_file()
-                self.cert_file = FileOrData(
-                    self._user, 'client-certificate',
-                    file_base_path=base_path,
-                    temp_file_path=self._temp_file_path).as_file()
-                self.key_file = FileOrData(
-                    self._user, 'client-key',
-                    file_base_path=base_path,
-                    temp_file_path=self._temp_file_path).as_file()
+                if 'cert_file' not in self.__dict__:
+                    # cert_file could have been provided by
+                    # _load_from_exec_plugin; only load from the _user
+                    # section if we need it.
+                    self.cert_file = FileOrData(
+                        self._user, 'client-certificate',
+                        file_base_path=base_path,
+                        temp_file_path=self._temp_file_path).as_file()
+                    self.key_file = FileOrData(
+                        self._user, 'client-key',
+                        file_base_path=base_path,
+                        temp_file_path=self._temp_file_path).as_file()
         if 'insecure-skip-tls-verify' in self._cluster:
             self.verify_ssl = not self._cluster['insecure-skip-tls-verify']
 
