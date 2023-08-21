@@ -71,7 +71,14 @@ class RESTClientObject(object):
         # https pool manager
         self.pool_manager = aiohttp.ClientSession(
             connector=connector,
-            trust_env=True
+            trust_env=True,
+            # Watch events containing large resource objects can exceed
+            # aiohttp's default read buffer size.
+            #
+            # There is no hard-limit defined by k8s, but the etcd default
+            # maximum request size is 1.5MiB.
+            # https://github.com/kubernetes/kubernetes/issues/19781
+            read_bufsize=2**21
         )
 
     async def close(self):
@@ -130,7 +137,13 @@ class RESTClientObject(object):
 
         # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
         if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
-            if re.search('json', headers['Content-Type'], re.IGNORECASE):
+            if (
+                re.search("json", headers["Content-Type"], re.IGNORECASE)
+                or headers["Content-Type"] == "application/apply-patch+yaml"
+            ):
+                if headers['Content-Type'] == 'application/json-patch+json':
+                    if not isinstance(body, list):
+                        headers['Content-Type'] = 'application/strategic-merge-patch+json'
                 if body is not None:
                     body = json.dumps(body)
                 args["data"] = body
