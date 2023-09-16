@@ -2,6 +2,7 @@
 
 ![Build status](https://github.com/tomplus/kubernetes_asyncio/workflows/Tests/badge.svg)
 [![PyPI version](https://badge.fury.io/py/kubernetes_asyncio.svg)](https://badge.fury.io/py/kubernetes_asyncio)
+[![Docs](https://readthedocs.org/projects/kubernetes-asyncio/badge/)](https://kubernetes-asyncio.readthedocs.io/)
 [![codecov](https://codecov.io/gh/tomplus/kubernetes_asyncio/branch/master/graph/badge.svg)](https://codecov.io/gh/tomplus/kubernetes_asyncio)
 [![pypi supported versions](https://img.shields.io/pypi/pyversions/kubernetes_asyncio.svg)](https://pypi.python.org/pypi/kubernetes_asyncio)
 [![Client Capabilities](https://img.shields.io/badge/Kubernetes%20client-Silver-blue.svg?style=flat&colorB=C0C0C0&colorA=306CE8)](http://bit.ly/kubernetes-client-capabilities-badge)
@@ -9,7 +10,8 @@
 
 Asynchronous (AsyncIO) client library for the [Kubernetes](http://kubernetes.io/) API.
 
-This library is created in the same way as official https://github.com/kubernetes-client/python but uses asynchronous version of OpenAPI Generator.
+This library is created in the same way as official https://github.com/kubernetes-client/python but
+uses asynchronous version of [OpenAPI generator](https://github.com/openapitools/openapi-generator).
 My motivation is described here: https://github.com/kubernetes-client/python/pull/324
 
 ## Installation
@@ -21,11 +23,6 @@ pip install kubernetes_asyncio
 ```
 
 It requires Python 3.6+
-
-## OpenAPI generator
-
-Starting from v9.0.0 [OpenAPI generator](https://github.com/openapitools/openapi-generator) is used to generate code instead of
-swagger-codegen. This change should be transparent from the client point of view.
 
 ## Example
 
@@ -63,6 +60,9 @@ if __name__ == '__main__':
 More complicated examples, like asynchronous multiple watch or tail logs from pods,
 you can find in `examples/` folder.
 
+## Documentation
+
+https://kubernetes-asyncio.readthedocs.io/
 
 ## Compatibility
 
