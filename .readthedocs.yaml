@@ -10,4 +10,4 @@ sphinx:
 
 python:
   install:
-    sphinx_rtd_theme
+    - sphinx_rtd_theme
