@@ -26,6 +26,7 @@ Submodules
    kubernetes_asyncio.client.api.auditregistration_v1alpha1_api
    kubernetes_asyncio.client.api.authentication_api
    kubernetes_asyncio.client.api.authentication_v1_api
+   kubernetes_asyncio.client.api.authentication_v1alpha1_api
    kubernetes_asyncio.client.api.authentication_v1beta1_api
    kubernetes_asyncio.client.api.authorization_api
    kubernetes_asyncio.client.api.authorization_v1_api
@@ -41,6 +42,7 @@ Submodules
    kubernetes_asyncio.client.api.batch_v2alpha1_api
    kubernetes_asyncio.client.api.certificates_api
    kubernetes_asyncio.client.api.certificates_v1_api
+   kubernetes_asyncio.client.api.certificates_v1alpha1_api
    kubernetes_asyncio.client.api.certificates_v1beta1_api
    kubernetes_asyncio.client.api.coordination_api
    kubernetes_asyncio.client.api.coordination_v1_api
@@ -61,11 +63,13 @@ Submodules
    kubernetes_asyncio.client.api.flowcontrol_apiserver_v1alpha1_api
    kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta1_api
    kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta2_api
+   kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta3_api
    kubernetes_asyncio.client.api.internal_apiserver_api
    kubernetes_asyncio.client.api.internal_apiserver_v1alpha1_api
    kubernetes_asyncio.client.api.logs_api
    kubernetes_asyncio.client.api.networking_api
    kubernetes_asyncio.client.api.networking_v1_api
+   kubernetes_asyncio.client.api.networking_v1alpha1_api
    kubernetes_asyncio.client.api.networking_v1beta1_api
    kubernetes_asyncio.client.api.node_api
    kubernetes_asyncio.client.api.node_v1_api
@@ -79,6 +83,9 @@ Submodules
    kubernetes_asyncio.client.api.rbac_authorization_v1_api
    kubernetes_asyncio.client.api.rbac_authorization_v1alpha1_api
    kubernetes_asyncio.client.api.rbac_authorization_v1beta1_api
+   kubernetes_asyncio.client.api.resource_api
+   kubernetes_asyncio.client.api.resource_v1alpha1_api
+   kubernetes_asyncio.client.api.resource_v1alpha2_api
    kubernetes_asyncio.client.api.scheduling_api
    kubernetes_asyncio.client.api.scheduling_v1_api
    kubernetes_asyncio.client.api.scheduling_v1alpha1_api

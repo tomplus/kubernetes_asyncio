@@ -11,6 +11,7 @@ Submodules
    kubernetes_asyncio.e2e_test.test_api
    kubernetes_asyncio.e2e_test.test_batch
    kubernetes_asyncio.e2e_test.test_client
+   kubernetes_asyncio.e2e_test.test_dynamic_client
 
 Module contents
 ---------------
