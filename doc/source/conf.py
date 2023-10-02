@@ -27,6 +27,7 @@ source_suffix = ['.rst']
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx_rtd_theme',
     # 'myst_parser',
     # 'sphinx.ext.intersphinx',
 ]
@@ -64,7 +65,7 @@ pygments_style = 'sphinx'
 # html_theme = '_theme'
 # html_static_path = ['static']
 
-# html_theme = 'sphinx_rtd_theme'
+html_theme = 'sphinx_rtd_theme'
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = '%sdoc' % project
