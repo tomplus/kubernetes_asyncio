@@ -159,6 +159,7 @@ Submodules
    kubernetes_asyncio.client.models.v1_horizontal_pod_autoscaler_spec
    kubernetes_asyncio.client.models.v1_horizontal_pod_autoscaler_status
    kubernetes_asyncio.client.models.v1_host_alias
+   kubernetes_asyncio.client.models.v1_host_ip
    kubernetes_asyncio.client.models.v1_host_path_volume_source
    kubernetes_asyncio.client.models.v1_http_get_action
    kubernetes_asyncio.client.models.v1_http_header
@@ -224,7 +225,6 @@ Submodules
    kubernetes_asyncio.client.models.v1_network_policy_peer
    kubernetes_asyncio.client.models.v1_network_policy_port
    kubernetes_asyncio.client.models.v1_network_policy_spec
-   kubernetes_asyncio.client.models.v1_network_policy_status
    kubernetes_asyncio.client.models.v1_nfs_volume_source
    kubernetes_asyncio.client.models.v1_node
    kubernetes_asyncio.client.models.v1_node_address
@@ -279,6 +279,7 @@ Submodules
    kubernetes_asyncio.client.models.v1_pod_os
    kubernetes_asyncio.client.models.v1_pod_readiness_gate
    kubernetes_asyncio.client.models.v1_pod_resource_claim
+   kubernetes_asyncio.client.models.v1_pod_resource_claim_status
    kubernetes_asyncio.client.models.v1_pod_scheduling_gate
    kubernetes_asyncio.client.models.v1_pod_security_context
    kubernetes_asyncio.client.models.v1_pod_spec
@@ -348,6 +349,8 @@ Submodules
    kubernetes_asyncio.client.models.v1_security_context
    kubernetes_asyncio.client.models.v1_self_subject_access_review
    kubernetes_asyncio.client.models.v1_self_subject_access_review_spec
+   kubernetes_asyncio.client.models.v1_self_subject_review
+   kubernetes_asyncio.client.models.v1_self_subject_review_status
    kubernetes_asyncio.client.models.v1_self_subject_rules_review
    kubernetes_asyncio.client.models.v1_self_subject_rules_review_spec
    kubernetes_asyncio.client.models.v1_server_address_by_client_cidr
@@ -451,6 +454,7 @@ Submodules
    kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy_spec
    kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy_status
    kubernetes_asyncio.client.models.v1alpha1_validation
+   kubernetes_asyncio.client.models.v1alpha1_variable
    kubernetes_asyncio.client.models.v1alpha2_allocation_result
    kubernetes_asyncio.client.models.v1alpha2_pod_scheduling_context
    kubernetes_asyncio.client.models.v1alpha2_pod_scheduling_context_list
@@ -470,8 +474,26 @@ Submodules
    kubernetes_asyncio.client.models.v1alpha2_resource_class_list
    kubernetes_asyncio.client.models.v1alpha2_resource_class_parameters_reference
    kubernetes_asyncio.client.models.v1alpha2_resource_handle
+   kubernetes_asyncio.client.models.v1beta1_audit_annotation
+   kubernetes_asyncio.client.models.v1beta1_expression_warning
+   kubernetes_asyncio.client.models.v1beta1_match_condition
+   kubernetes_asyncio.client.models.v1beta1_match_resources
+   kubernetes_asyncio.client.models.v1beta1_named_rule_with_operations
+   kubernetes_asyncio.client.models.v1beta1_param_kind
+   kubernetes_asyncio.client.models.v1beta1_param_ref
    kubernetes_asyncio.client.models.v1beta1_self_subject_review
    kubernetes_asyncio.client.models.v1beta1_self_subject_review_status
+   kubernetes_asyncio.client.models.v1beta1_type_checking
+   kubernetes_asyncio.client.models.v1beta1_validating_admission_policy
+   kubernetes_asyncio.client.models.v1beta1_validating_admission_policy_binding
+   kubernetes_asyncio.client.models.v1beta1_validating_admission_policy_binding_list
+   kubernetes_asyncio.client.models.v1beta1_validating_admission_policy_binding_spec
+   kubernetes_asyncio.client.models.v1beta1_validating_admission_policy_list
+   kubernetes_asyncio.client.models.v1beta1_validating_admission_policy_spec
+   kubernetes_asyncio.client.models.v1beta1_validating_admission_policy_status
+   kubernetes_asyncio.client.models.v1beta1_validation
+   kubernetes_asyncio.client.models.v1beta1_variable
+   kubernetes_asyncio.client.models.v1beta2_exempt_priority_level_configuration
    kubernetes_asyncio.client.models.v1beta2_flow_distinguisher_method
    kubernetes_asyncio.client.models.v1beta2_flow_schema
    kubernetes_asyncio.client.models.v1beta2_flow_schema_condition
@@ -494,6 +516,7 @@ Submodules
    kubernetes_asyncio.client.models.v1beta2_service_account_subject
    kubernetes_asyncio.client.models.v1beta2_subject
    kubernetes_asyncio.client.models.v1beta2_user_subject
+   kubernetes_asyncio.client.models.v1beta3_exempt_priority_level_configuration
    kubernetes_asyncio.client.models.v1beta3_flow_distinguisher_method
    kubernetes_asyncio.client.models.v1beta3_flow_schema
    kubernetes_asyncio.client.models.v1beta3_flow_schema_condition
