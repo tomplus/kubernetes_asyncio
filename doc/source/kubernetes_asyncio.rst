@@ -9,6 +9,7 @@ Subpackages
 
    kubernetes_asyncio.client
    kubernetes_asyncio.config
+   kubernetes_asyncio.dynamic
    kubernetes_asyncio.e2e_test
    kubernetes_asyncio.stream
    kubernetes_asyncio.test

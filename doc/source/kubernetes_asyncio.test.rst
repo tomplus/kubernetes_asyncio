@@ -10,6 +10,7 @@ Submodules
    kubernetes_asyncio.test.test_admissionregistration_api
    kubernetes_asyncio.test.test_admissionregistration_v1_api
    kubernetes_asyncio.test.test_admissionregistration_v1alpha1_api
+   kubernetes_asyncio.test.test_admissionregistration_v1beta1_api
    kubernetes_asyncio.test.test_apiextensions_api
    kubernetes_asyncio.test.test_apiextensions_v1_api
    kubernetes_asyncio.test.test_apiregistration_api
