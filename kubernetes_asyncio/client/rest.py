@@ -17,6 +17,10 @@ import re
 import ssl
 
 import aiohttp
+try:
+    import aiohttp_retry
+except:
+    aiohttp_retry = None
 # python 2 and python 3 compatibility library
 from six.moves.urllib.parse import urlencode
 
@@ -67,6 +71,7 @@ class RESTClientObject(object):
 
         self.proxy = configuration.proxy
         self.proxy_headers = configuration.proxy_headers
+        self.retries = configuration.retries
 
         # https pool manager
         self.pool_manager = aiohttp.ClientSession(
@@ -177,7 +182,20 @@ class RESTClientObject(object):
                          declared content type."""
                 raise ApiException(status=0, reason=msg)
 
-        r = await self.pool_manager.request(**args)
+        if aiohttp_retry and method in ["HEAD", "GET", "PUT", "DELETE", "OPTIONS", "TRACE"]:
+            pool_manager = aiohttp_retry.RetryClient(
+                client_session=self.pool_manager,
+                retry_options=aiohttp_retry.ExponentialRetry(
+                    attempts=self.retries,
+                    factor=0.0,  # backoff disabled by default as per sync client
+                    start_timeout=0.0,  # retry immediately as per sync client
+                    max_timeout=120.0
+                )
+            )
+        else:
+            pool_manager = self.pool_manager
+
+        r = await pool_manager.request(**args)
         if _preload_content:
 
             data = await r.read()
