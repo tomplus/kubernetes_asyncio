@@ -104,7 +104,7 @@ class Watch(object):
 
         # If possible, compile the JSON response into a Python native response
         # type, eg `V1Namespace` or `V1Pod`,`ExtensionsV1beta1Deployment`, ...
-        if response_type:
+        if response_type and js['type'].lower() != 'bookmark':
             js['object'] = self._api_client.deserialize(
                 response=SimpleNamespace(data=json.dumps(js['raw_object'])),
                 response_type=response_type
@@ -120,6 +120,8 @@ class Watch(object):
                     and 'metadata' in js['object']
                     and 'resourceVersion' in js['object']['metadata']):
                 self.resource_version = js['object']['metadata']['resourceVersion']
+        elif js['type'].lower() == 'bookmark':
+            self.resource_version = js['object']['metadata']['resourceVersion']
 
         return js
 
