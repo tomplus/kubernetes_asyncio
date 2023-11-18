@@ -1,3 +1,8 @@
+# v28.2.1
+
+* feat: add bookmark support in watcher ([#291](https://github.com/tomplus/kubernetes_asyncio/pull/291), [@tkauf15k](https://github.com/tkauf15k))
+
+
 # v28.2.0
 
 Kubernetes API Version: v1.28.2
