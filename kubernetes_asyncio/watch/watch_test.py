@@ -280,3 +280,17 @@ class WatchTest(IsolatedAsyncioTestCase):
 
         fake_resp.release.assert_called_once_with()
         self.assertEqual(watch.resource_version, '10')
+
+    def test_unmarshal_bookmark_succeeds_and_preserves_resource_version(self):
+        w = Watch()
+        event = w.unmarshal_event('{"type": "BOOKMARK", "object": {"apiVersion":'
+                                  '"test.com/v1beta1","kind":"foo","metadata":'
+                                  '{"name": "bar", "resourceVersion": "1"}}}',
+                                  'object')
+        self.assertEqual("BOOKMARK", event['type'])
+
+        # make sure the resource version is preserved,
+        # and the watcher's resource_version is updated
+        self.assertTrue(isinstance(event['object'], dict))
+        self.assertEqual("1", event['object']['metadata']['resourceVersion'])
+        self.assertEqual("1", w.resource_version)
