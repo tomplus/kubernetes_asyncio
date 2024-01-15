@@ -39,7 +39,7 @@ from kubernetes_asyncio.client.api.discovery_v1_api import DiscoveryV1Api
 from kubernetes_asyncio.client.api.events_api import EventsApi
 from kubernetes_asyncio.client.api.events_v1_api import EventsV1Api
 from kubernetes_asyncio.client.api.flowcontrol_apiserver_api import FlowcontrolApiserverApi
-from kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta2_api import FlowcontrolApiserverV1beta2Api
+from kubernetes_asyncio.client.api.flowcontrol_apiserver_v1_api import FlowcontrolApiserverV1Api
 from kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta3_api import FlowcontrolApiserverV1beta3Api
 from kubernetes_asyncio.client.api.internal_apiserver_api import InternalApiserverApi
 from kubernetes_asyncio.client.api.internal_apiserver_v1alpha1_api import InternalApiserverV1alpha1Api
@@ -60,4 +60,5 @@ from kubernetes_asyncio.client.api.scheduling_api import SchedulingApi
 from kubernetes_asyncio.client.api.scheduling_v1_api import SchedulingV1Api
 from kubernetes_asyncio.client.api.storage_api import StorageApi
 from kubernetes_asyncio.client.api.storage_v1_api import StorageV1Api
+from kubernetes_asyncio.client.api.storage_v1alpha1_api import StorageV1alpha1Api
 from kubernetes_asyncio.client.api.version_api import VersionApi
