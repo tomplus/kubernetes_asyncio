@@ -22,7 +22,7 @@ async def main():
     print("Ended.")
     # An explicit close is necessary to stop the stream
     # or use async context manager like in example4.py
-    w.close()
+    await w.close()
 
 
 if __name__ == '__main__':
