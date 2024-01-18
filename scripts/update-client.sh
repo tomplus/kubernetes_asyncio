@@ -68,9 +68,9 @@ echo ">>> fix generated rest client for patching with strategic merge..."
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch.diff"
 echo ">>> fix generated rest client by increasing aiohttp read buffer to 2MiB..."
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch_read_bufsize.diff"
-echo ">>> fix generated rest client to support customer server hostname TLS verification..."
+echo ">>> fix generated rest client and configuration to support customer server hostname TLS verification..."
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_server_hostname_patch.diff"
-
+patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_tls_server_name_patch.diff"
 
 echo ">>> Remove invalid tests (workaround https://github.com/OpenAPITools/openapi-generator/issues/5377)"
 grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm

@@ -42,7 +42,7 @@ Submodules
    kubernetes_asyncio.test.test_events_api
    kubernetes_asyncio.test.test_events_v1_api
    kubernetes_asyncio.test.test_flowcontrol_apiserver_api
-   kubernetes_asyncio.test.test_flowcontrol_apiserver_v1beta2_api
+   kubernetes_asyncio.test.test_flowcontrol_apiserver_v1_api
    kubernetes_asyncio.test.test_flowcontrol_apiserver_v1beta3_api
    kubernetes_asyncio.test.test_internal_apiserver_api
    kubernetes_asyncio.test.test_internal_apiserver_v1alpha1_api
@@ -63,6 +63,7 @@ Submodules
    kubernetes_asyncio.test.test_scheduling_v1_api
    kubernetes_asyncio.test.test_storage_api
    kubernetes_asyncio.test.test_storage_v1_api
+   kubernetes_asyncio.test.test_storage_v1alpha1_api
    kubernetes_asyncio.test.test_version_api
    kubernetes_asyncio.test.test_well_known_api
 

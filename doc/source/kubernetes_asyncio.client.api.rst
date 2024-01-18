@@ -60,6 +60,7 @@ Submodules
    kubernetes_asyncio.client.api.extensions_api
    kubernetes_asyncio.client.api.extensions_v1beta1_api
    kubernetes_asyncio.client.api.flowcontrol_apiserver_api
+   kubernetes_asyncio.client.api.flowcontrol_apiserver_v1_api
    kubernetes_asyncio.client.api.flowcontrol_apiserver_v1alpha1_api
    kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta1_api
    kubernetes_asyncio.client.api.flowcontrol_apiserver_v1beta2_api
