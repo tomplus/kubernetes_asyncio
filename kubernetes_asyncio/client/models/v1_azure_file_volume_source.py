@@ -50,7 +50,7 @@ class V1AzureFileVolumeSource(object):
     def __init__(self, read_only=None, secret_name=None, share_name=None, local_vars_configuration=None):  # noqa: E501
         """V1AzureFileVolumeSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._read_only = None

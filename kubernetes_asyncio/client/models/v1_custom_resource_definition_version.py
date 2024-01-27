@@ -60,7 +60,7 @@ class V1CustomResourceDefinitionVersion(object):
     def __init__(self, additional_printer_columns=None, deprecated=None, deprecation_warning=None, name=None, schema=None, served=None, storage=None, subresources=None, local_vars_configuration=None):  # noqa: E501
         """V1CustomResourceDefinitionVersion - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._additional_printer_columns = None

@@ -50,7 +50,7 @@ class V1EndpointSubset(object):
     def __init__(self, addresses=None, not_ready_addresses=None, ports=None, local_vars_configuration=None):  # noqa: E501
         """V1EndpointSubset - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._addresses = None

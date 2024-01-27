@@ -82,7 +82,7 @@ class V1ServiceSpec(object):
     def __init__(self, allocate_load_balancer_node_ports=None, cluster_ip=None, cluster_ips=None, external_ips=None, external_name=None, external_traffic_policy=None, health_check_node_port=None, internal_traffic_policy=None, ip_families=None, ip_family_policy=None, load_balancer_class=None, load_balancer_ip=None, load_balancer_source_ranges=None, ports=None, publish_not_ready_addresses=None, selector=None, session_affinity=None, session_affinity_config=None, type=None, local_vars_configuration=None):  # noqa: E501
         """V1ServiceSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._allocate_load_balancer_node_ports = None

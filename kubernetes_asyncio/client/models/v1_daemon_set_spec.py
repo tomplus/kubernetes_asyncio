@@ -54,7 +54,7 @@ class V1DaemonSetSpec(object):
     def __init__(self, min_ready_seconds=None, revision_history_limit=None, selector=None, template=None, update_strategy=None, local_vars_configuration=None):  # noqa: E501
         """V1DaemonSetSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._min_ready_seconds = None

@@ -66,7 +66,7 @@ class V1ValidatingWebhook(object):
     def __init__(self, admission_review_versions=None, client_config=None, failure_policy=None, match_conditions=None, match_policy=None, name=None, namespace_selector=None, object_selector=None, rules=None, side_effects=None, timeout_seconds=None, local_vars_configuration=None):  # noqa: E501
         """V1ValidatingWebhook - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._admission_review_versions = None

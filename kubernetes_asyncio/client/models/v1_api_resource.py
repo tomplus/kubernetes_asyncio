@@ -64,7 +64,7 @@ class V1APIResource(object):
     def __init__(self, categories=None, group=None, kind=None, name=None, namespaced=None, short_names=None, singular_name=None, storage_version_hash=None, verbs=None, version=None, local_vars_configuration=None):  # noqa: E501
         """V1APIResource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._categories = None

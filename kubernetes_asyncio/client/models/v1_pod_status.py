@@ -76,7 +76,7 @@ class V1PodStatus(object):
     def __init__(self, conditions=None, container_statuses=None, ephemeral_container_statuses=None, host_ip=None, host_ips=None, init_container_statuses=None, message=None, nominated_node_name=None, phase=None, pod_ip=None, pod_ips=None, qos_class=None, reason=None, resize=None, resource_claim_statuses=None, start_time=None, local_vars_configuration=None):  # noqa: E501
         """V1PodStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._conditions = None

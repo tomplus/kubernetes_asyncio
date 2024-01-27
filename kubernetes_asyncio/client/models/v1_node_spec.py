@@ -58,7 +58,7 @@ class V1NodeSpec(object):
     def __init__(self, config_source=None, external_id=None, pod_cidr=None, pod_cidrs=None, provider_id=None, taints=None, unschedulable=None, local_vars_configuration=None):  # noqa: E501
         """V1NodeSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._config_source = None

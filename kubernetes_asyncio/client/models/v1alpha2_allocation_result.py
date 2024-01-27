@@ -50,7 +50,7 @@ class V1alpha2AllocationResult(object):
     def __init__(self, available_on_nodes=None, resource_handles=None, shareable=None, local_vars_configuration=None):  # noqa: E501
         """V1alpha2AllocationResult - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._available_on_nodes = None

@@ -58,7 +58,7 @@ class V1ObjectReference(object):
     def __init__(self, api_version=None, field_path=None, kind=None, name=None, namespace=None, resource_version=None, uid=None, local_vars_configuration=None):  # noqa: E501
         """V1ObjectReference - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._api_version = None

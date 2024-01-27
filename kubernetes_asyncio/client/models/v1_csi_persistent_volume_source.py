@@ -64,7 +64,7 @@ class V1CSIPersistentVolumeSource(object):
     def __init__(self, controller_expand_secret_ref=None, controller_publish_secret_ref=None, driver=None, fs_type=None, node_expand_secret_ref=None, node_publish_secret_ref=None, node_stage_secret_ref=None, read_only=None, volume_attributes=None, volume_handle=None, local_vars_configuration=None):  # noqa: E501
         """V1CSIPersistentVolumeSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._controller_expand_secret_ref = None

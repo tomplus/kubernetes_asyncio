@@ -254,6 +254,16 @@ conf = client.Configuration(
         cls._default = copy.deepcopy(default)
 
     @classmethod
+    def get_default(cls):
+        """Get default instance of configuration.
+
+        :return: The Configuration object.
+        """
+        if cls._default is None:
+            cls.set_default(Configuration())
+        return cls._default
+
+    @classmethod
     def get_default_copy(cls):
         """Return new instance of configuration.
 

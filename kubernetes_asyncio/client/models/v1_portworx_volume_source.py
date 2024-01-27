@@ -50,7 +50,7 @@ class V1PortworxVolumeSource(object):
     def __init__(self, fs_type=None, read_only=None, volume_id=None, local_vars_configuration=None):  # noqa: E501
         """V1PortworxVolumeSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._fs_type = None
