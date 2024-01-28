@@ -52,7 +52,7 @@ class V1beta3LimitedPriorityLevelConfiguration(object):
     def __init__(self, borrowing_limit_percent=None, lendable_percent=None, limit_response=None, nominal_concurrency_shares=None, local_vars_configuration=None):  # noqa: E501
         """V1beta3LimitedPriorityLevelConfiguration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._borrowing_limit_percent = None

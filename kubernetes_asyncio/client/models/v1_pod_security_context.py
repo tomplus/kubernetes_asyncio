@@ -64,7 +64,7 @@ class V1PodSecurityContext(object):
     def __init__(self, fs_group=None, fs_group_change_policy=None, run_as_group=None, run_as_non_root=None, run_as_user=None, se_linux_options=None, seccomp_profile=None, supplemental_groups=None, sysctls=None, windows_options=None, local_vars_configuration=None):  # noqa: E501
         """V1PodSecurityContext - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._fs_group = None

@@ -66,7 +66,7 @@ class V1ContainerStatus(object):
     def __init__(self, allocated_resources=None, container_id=None, image=None, image_id=None, last_state=None, name=None, ready=None, resources=None, restart_count=None, started=None, state=None, local_vars_configuration=None):  # noqa: E501
         """V1ContainerStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._allocated_resources = None

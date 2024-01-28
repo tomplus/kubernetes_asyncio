@@ -60,7 +60,7 @@ class V1CronJobSpec(object):
     def __init__(self, concurrency_policy=None, failed_jobs_history_limit=None, job_template=None, schedule=None, starting_deadline_seconds=None, successful_jobs_history_limit=None, suspend=None, time_zone=None, local_vars_configuration=None):  # noqa: E501
         """V1CronJobSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._concurrency_policy = None

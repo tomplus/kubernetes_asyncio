@@ -69,6 +69,7 @@ async def main():
 
     if cmd == []:
         print('No matching PODs !')
+        await api.close()
         return
 
     if args.follow:

@@ -50,7 +50,7 @@ class V1GitRepoVolumeSource(object):
     def __init__(self, directory=None, repository=None, revision=None, local_vars_configuration=None):  # noqa: E501
         """V1GitRepoVolumeSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._directory = None

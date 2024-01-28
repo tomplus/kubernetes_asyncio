@@ -60,7 +60,7 @@ class V1CSIDriverSpec(object):
     def __init__(self, attach_required=None, fs_group_policy=None, pod_info_on_mount=None, requires_republish=None, se_linux_mount=None, storage_capacity=None, token_requests=None, volume_lifecycle_modes=None, local_vars_configuration=None):  # noqa: E501
         """V1CSIDriverSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._attach_required = None

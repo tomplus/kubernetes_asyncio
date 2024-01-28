@@ -52,7 +52,7 @@ class V1WindowsSecurityContextOptions(object):
     def __init__(self, gmsa_credential_spec=None, gmsa_credential_spec_name=None, host_process=None, run_as_user_name=None, local_vars_configuration=None):  # noqa: E501
         """V1WindowsSecurityContextOptions - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._gmsa_credential_spec = None

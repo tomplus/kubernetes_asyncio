@@ -56,7 +56,7 @@ class V1CustomResourceDefinitionSpec(object):
     def __init__(self, conversion=None, group=None, names=None, preserve_unknown_fields=None, scope=None, versions=None, local_vars_configuration=None):  # noqa: E501
         """V1CustomResourceDefinitionSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._conversion = None

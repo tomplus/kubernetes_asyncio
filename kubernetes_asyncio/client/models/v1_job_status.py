@@ -66,7 +66,7 @@ class V1JobStatus(object):
     def __init__(self, active=None, completed_indexes=None, completion_time=None, conditions=None, failed=None, failed_indexes=None, ready=None, start_time=None, succeeded=None, terminating=None, uncounted_terminated_pods=None, local_vars_configuration=None):  # noqa: E501
         """V1JobStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._active = None

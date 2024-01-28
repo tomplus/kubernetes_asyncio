@@ -54,7 +54,7 @@ class V1HorizontalPodAutoscalerStatus(object):
     def __init__(self, current_cpu_utilization_percentage=None, current_replicas=None, desired_replicas=None, last_scale_time=None, observed_generation=None, local_vars_configuration=None):  # noqa: E501
         """V1HorizontalPodAutoscalerStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._current_cpu_utilization_percentage = None

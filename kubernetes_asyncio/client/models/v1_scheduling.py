@@ -48,7 +48,7 @@ class V1Scheduling(object):
     def __init__(self, node_selector=None, tolerations=None, local_vars_configuration=None):  # noqa: E501
         """V1Scheduling - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._node_selector = None

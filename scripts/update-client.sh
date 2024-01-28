@@ -72,6 +72,11 @@ echo ">>> fix generated rest client and configuration to support customer server
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_server_hostname_patch.diff"
 patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_tls_server_name_patch.diff"
 
+echo ">>> don't deep-copy configuration for local_vars_configuration in models"
+patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_get_default_patch.diff"
+find "${CLIENT_ROOT}/client/models/" -type f -print0 | xargs -0 sed -i 's/local_vars_configuration = Configuration.get_default_copy()/local_vars_configuration = Configuration.get_default()/g'
+
+
 echo ">>> Remove invalid tests (workaround https://github.com/OpenAPITools/openapi-generator/issues/5377)"
 grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm
 

@@ -52,7 +52,7 @@ class V1NodeConfigStatus(object):
     def __init__(self, active=None, assigned=None, error=None, last_known_good=None, local_vars_configuration=None):  # noqa: E501
         """V1NodeConfigStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._active = None

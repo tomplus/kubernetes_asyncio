@@ -54,7 +54,7 @@ class V1ClusterTrustBundleProjection(object):
     def __init__(self, label_selector=None, name=None, optional=None, path=None, signer_name=None, local_vars_configuration=None):  # noqa: E501
         """V1ClusterTrustBundleProjection - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._label_selector = None

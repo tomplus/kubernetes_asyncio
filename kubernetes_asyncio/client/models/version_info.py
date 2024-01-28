@@ -62,7 +62,7 @@ class VersionInfo(object):
     def __init__(self, build_date=None, compiler=None, git_commit=None, git_tree_state=None, git_version=None, go_version=None, major=None, minor=None, platform=None, local_vars_configuration=None):  # noqa: E501
         """VersionInfo - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._build_date = None
