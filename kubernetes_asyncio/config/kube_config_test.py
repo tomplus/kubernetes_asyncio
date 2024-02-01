@@ -1075,7 +1075,7 @@ class TestKubeConfigLoader(BaseTestCase):
 
 
 class TestKubeConfigMerger(BaseTestCase):
-    TEST_KUBE_CONFIG_PART1 = {
+    TEST_KUBE_CONFIG_SET1 = [{
         "current-context": "no_user",
         "contexts": [
             {
@@ -1094,9 +1094,7 @@ class TestKubeConfigMerger(BaseTestCase):
             },
         ],
         "users": []
-    }
-
-    TEST_KUBE_CONFIG_PART2 = {
+    }, {
         "current-context": "",
         "contexts": [
             {
@@ -1134,10 +1132,8 @@ class TestKubeConfigMerger(BaseTestCase):
                 }
             },
         ]
-    }
-
-    TEST_KUBE_CONFIG_PART3 = {
-        "current-context": "no_user",
+    }, {
+        "current-context": "expired_oidc",
         "contexts": [
             {
                 "name": "expired_oidc",
@@ -1183,19 +1179,50 @@ class TestKubeConfigMerger(BaseTestCase):
                 }
             },
         ]
-    }
+    }]
 
-    def _create_multi_config(self):
+    # 3 parts with different keys/data to merge
+    TEST_KUBE_CONFIG_SET2 = [{
+        "clusters": [
+            {
+                "name": "default",
+                "cluster": {
+                    "server": TEST_HOST
+                }
+            },
+        ],
+    }, {
+        "current-context": "simple_token",
+        "contexts": [
+            {
+                "name": "simple_token",
+                "context": {
+                    "cluster": "default",
+                    "user": "simple_token"
+                }
+            },
+        ],
+    }, {
+        "users": [
+            {
+                "name": "simple_token",
+                "user": {
+                    "token": TEST_DATA_BASE64,
+                    "username": TEST_USERNAME,
+                    "password": TEST_PASSWORD,
+                }
+            },
+        ]
+    }]
+
+    def _create_multi_config(self, parts):
         files = []
-        for part in (
-                self.TEST_KUBE_CONFIG_PART1,
-                self.TEST_KUBE_CONFIG_PART2,
-                self.TEST_KUBE_CONFIG_PART3):
+        for part in parts:
             files.append(self._create_temp_file(yaml.safe_dump(part)))
         return ENV_KUBECONFIG_PATH_SEPARATOR.join(files)
 
     def test_list_kube_config_contexts(self):
-        kubeconfigs = self._create_multi_config()
+        kubeconfigs = self._create_multi_config(self.TEST_KUBE_CONFIG_SET1)
         expected_contexts = [
             {'context': {'cluster': 'default'}, 'name': 'no_user'},
             {'context': {'cluster': 'ssl', 'user': 'ssl'}, 'name': 'ssl'},
@@ -1207,18 +1234,34 @@ class TestKubeConfigMerger(BaseTestCase):
             config_file=kubeconfigs)
 
         self.assertEqual(contexts, expected_contexts)
-        self.assertEqual(active_context, expected_contexts[0])
+        self.assertEqual(active_context, expected_contexts[3])
 
     async def test_new_client_from_config(self):
-        kubeconfigs = self._create_multi_config()
+        kubeconfigs = self._create_multi_config(self.TEST_KUBE_CONFIG_SET1)
         client = await new_client_from_config(
             config_file=kubeconfigs, context="simple_token")
         self.assertEqual(TEST_HOST, client.configuration.host)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
                          client.configuration.api_key['BearerToken'])
 
+    async def test_merge_with_context_in_different_file(self):
+        kubeconfigs = self._create_multi_config(self.TEST_KUBE_CONFIG_SET2)
+        client = await new_client_from_config(config_file=kubeconfigs)
+
+        expected_contexts = [
+            {'context': {'cluster': 'default', 'user': 'simple_token'},
+             'name': 'simple_token'}
+        ]
+        contexts, active_context = list_kube_config_contexts(
+            config_file=kubeconfigs)
+        self.assertEqual(contexts, expected_contexts)
+        self.assertEqual(active_context, expected_contexts[0])
+        self.assertEqual(TEST_HOST, client.configuration.host)
+        self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
+                         client.configuration.api_key['BearerToken'])
+
     def test_save_changes(self):
-        kubeconfigs = self._create_multi_config()
+        kubeconfigs = self._create_multi_config(self.TEST_KUBE_CONFIG_SET1)
 
         # load configuration, update token, save config
         kconf = KubeConfigMerger(kubeconfigs)
