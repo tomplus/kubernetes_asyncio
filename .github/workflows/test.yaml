@@ -47,7 +47,7 @@ jobs:
         isort -c --diff .
 
     - name: Send coverage report
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       if: matrix.python-version == 3.11
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
