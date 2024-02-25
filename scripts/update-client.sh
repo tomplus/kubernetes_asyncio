@@ -64,8 +64,8 @@ sed -i'' "s/^__version__ = .*/__version__ = \\\"${CLIENT_VERSION}\\\"/" "${CLIEN
 sed -i'' "s/^PACKAGE_NAME = .*/PACKAGE_NAME = \\\"${PACKAGE_NAME}\\\"/" "${SCRIPT_ROOT}/../setup.py"
 sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STATUS}\\\"," "${SCRIPT_ROOT}/../setup.py"
 
-echo ">>> fix generated rest client for patching with strategic merge..."
-patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch.diff"
+echo ">>> fix generated api client for patching with strategic merge..."
+patch "${CLIENT_ROOT}/client/api_client.py" "${SCRIPT_ROOT}/api_client_strategic_merge_patch.diff"
 echo ">>> fix generated rest client by increasing aiohttp read buffer to 2MiB..."
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch_read_bufsize.diff"
 echo ">>> fix generated rest client and configuration to support customer server hostname TLS verification..."

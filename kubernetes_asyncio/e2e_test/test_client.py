@@ -120,21 +120,72 @@ class TestClient(IsolatedAsyncioTestCase):
         self.assertEqual(name, resp.metadata.name)
         self.assertTrue(resp.status)
 
-        service_manifest['spec']['ports'] = [
-            {'name': 'new',
-             'port': 8080,
-             'protocol': 'TCP',
-             'targetPort': 8080}
-        ]
+        # strategic merge patch
         resp = await api.patch_namespaced_service(
-            body=service_manifest,
             name=name,
-            namespace='default'
+            namespace="default",
+            body={
+                "spec": {
+                    "ports": [
+                        {
+                            "name": "new",
+                            "port": 8080,
+                            "protocol": "TCP",
+                            "targetPort": 8080,
+                        }
+                    ]
+                }
+            },
         )
-        self.assertEqual(2, len(resp.spec.ports))
+        self.assertEqual(len(resp.spec.ports), 2)
         self.assertTrue(resp.status)
 
-        resp = await api.delete_namespaced_service(name=name, body={}, namespace='default')
+        # json merge patch
+        resp = await api.patch_namespaced_service(
+            name=name,
+            namespace="default",
+            body={
+                "spec": {
+                    "ports": [
+                        {
+                            "name": "new2",
+                            "port": 8080,
+                            "protocol": "TCP",
+                            "targetPort": 8080,
+                        }
+                    ]
+                }
+            },
+            _content_type="application/merge-patch+json",
+        )
+        self.assertEqual(len(resp.spec.ports), 1)
+        self.assertEqual(resp.spec.ports[0].name, "new2")
+        self.assertTrue(resp.status)
+
+        # json patch
+        resp = await api.patch_namespaced_service(
+            name=name,
+            namespace="default",
+            body=[
+                {
+                    "op": "add",
+                    "path": "/spec/ports/0",
+                    "value": {
+                        "name": "new3",
+                        "protocol": "TCP",
+                        "port": 1000,
+                        "targetPort": 1000,
+                    },
+                }
+            ],
+        )
+        self.assertEqual(len(resp.spec.ports), 2)
+        self.assertEqual(resp.spec.ports[0].name, "new3")
+        self.assertEqual(resp.spec.ports[1].name, "new2")
+        self.assertTrue(resp.status)
+        resp = await api.delete_namespaced_service(
+            name=name, body={}, namespace="default"
+        )
 
     async def test_replication_controller_apis(self):
         client = api_client.ApiClient(configuration=self.config)
@@ -207,9 +258,15 @@ class TestClient(IsolatedAsyncioTestCase):
             name=name, namespace='default')
         self.assertEqual(name, resp.metadata.name)
 
-        test_configmap['data']['config.json'] = "{}"
+        # strategic merge patch
         resp = await api.patch_namespaced_config_map(
-            name=name, namespace='default', body=test_configmap)
+            name=name, namespace='default', body={'data': {'key': 'value', 'frontend.cnf': 'patched'}})
+
+        resp = await api.read_namespaced_config_map(
+            name=name, namespace='default')
+        self.assertEqual(resp.data['config.json'], test_configmap['data']['config.json'])
+        self.assertEqual(resp.data['frontend.cnf'], 'patched')
+        self.assertEqual(resp.data['key'], 'value')
 
         resp = await api.delete_namespaced_config_map(
             name=name, body={}, namespace='default')
