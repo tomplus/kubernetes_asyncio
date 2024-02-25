@@ -3,7 +3,6 @@ import asyncio
 from kubernetes_asyncio import client, config
 from kubernetes_asyncio.client.api_client import ApiClient
 
-
 SERVICE_NAME = "example-service"
 SERVICE_NS = "default"
 SERVICE_SPEC = {
