@@ -535,10 +535,13 @@ class ApiClient(object):
 
         content_types = [x.lower() for x in content_types]
 
-        if (method == 'PATCH' and
-                'application/json-patch+json' in content_types and
-                isinstance(body, list)):
-            return 'application/json-patch+json'
+        if method == 'PATCH':
+            if ('application/json-patch+json' in content_types and
+                    isinstance(body, list)):
+                return 'application/json-patch+json'
+            if ('application/strategic-merge-patch+json' in content_types and
+                    isinstance(body, dict)):
+                return 'application/strategic-merge-patch+json'
 
         if 'application/json' in content_types or '*/*' in content_types:
             return 'application/json'
