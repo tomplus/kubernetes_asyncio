@@ -59,11 +59,11 @@ async def main():
         }
 
         # Creating replication-controller `frontend-replication-controller` in the `default` namespace
-        await api.create(
-            body=replication_controller_manifest, namespace="default"
-        )
+        await api.create(body=replication_controller_manifest, namespace="default")
 
-        print("\n[INFO] replication-controller `frontend-replication-controller` created\n")
+        print(
+            "\n[INFO] replication-controller `frontend-replication-controller` created\n"
+        )
 
         # Listing replication-controllers in the `default` namespace
         replication_controller_created = await api.get(name=name, namespace="default")
@@ -81,7 +81,9 @@ async def main():
         # Deleting replication-controller `frontend-service` from the `default` namespace
         await api.delete(name=name, body={}, namespace="default")
 
-        print("[INFO] replication-controller `frontend-replication-controller` deleted\n")
+        print(
+            "[INFO] replication-controller `frontend-replication-controller` deleted\n"
+        )
 
 
 if __name__ == "__main__":

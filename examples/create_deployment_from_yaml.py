@@ -25,12 +25,11 @@ async def main():
     k8s_client = client.ApiClient()
     await utils.create_from_yaml(k8s_client, "nginx-deployment.yaml")
     k8s_api = client.ExtensionsV1beta1Api(k8s_client)
-    deps = await k8s_api.read_namespaced_deployment("nginx-deployment",
-                                                    "default")
+    deps = await k8s_api.read_namespaced_deployment("nginx-deployment", "default")
     print("Deployment {0} created".format(deps.metadata.name))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
     loop.close()

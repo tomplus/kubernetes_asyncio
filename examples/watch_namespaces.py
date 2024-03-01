@@ -14,7 +14,7 @@ async def main():
     w = watch.Watch()
 
     async for event in w.stream(v1.list_namespace, timeout_seconds=10):
-        print("Event: {} {}".format(event['type'], event['object'].metadata.name))
+        print("Event: {} {}".format(event["type"], event["object"].metadata.name))
         count -= 1
         if not count:
             w.stop()
@@ -25,7 +25,7 @@ async def main():
     await w.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
     loop.close()

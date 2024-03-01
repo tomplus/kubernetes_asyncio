@@ -79,7 +79,9 @@ async def main():
                                                     "fqdn": {"type": "string"},
                                                     "tls": {
                                                         "properties": {
-                                                            "secretName": {"type": "string"}
+                                                            "secretName": {
+                                                                "type": "string"
+                                                            }
                                                         },
                                                         "type": "object",
                                                     },
@@ -172,8 +174,12 @@ async def main():
             },
         }
 
-        await ingressroute_api.create(body=ingressroute_manifest_first, namespace=namespace_first)
-        await ingressroute_api.create(body=ingressroute_manifest_second, namespace=namespace_second)
+        await ingressroute_api.create(
+            body=ingressroute_manifest_first, namespace=namespace_first
+        )
+        await ingressroute_api.create(
+            body=ingressroute_manifest_second, namespace=namespace_second
+        )
         print("\n[INFO] custom resources `ingress-route-*` created\n")
 
         # Listing the `ingress-route-*` custom resources
@@ -192,7 +198,7 @@ async def main():
                     item["metadata"]["namespace"],
                     item["spec"]["virtualhost"]["fqdn"],
                     item["spec"]["virtualhost"]["tls"],
-                    item["spec"]["strategy"]
+                    item["spec"]["strategy"],
                 )
             )
 
@@ -202,10 +208,12 @@ async def main():
         ingressroute_manifest_second["spec"]["strategy"] = "WeightedLeastRequest"
 
         await ingressroute_api.patch(
-            body=ingressroute_manifest_first, content_type="application/merge-patch+json"
+            body=ingressroute_manifest_first,
+            content_type="application/merge-patch+json",
         )
         await ingressroute_api.patch(
-            body=ingressroute_manifest_second, content_type="application/merge-patch+json"
+            body=ingressroute_manifest_second,
+            content_type="application/merge-patch+json",
         )
 
         print(
@@ -227,7 +235,7 @@ async def main():
                     item["metadata"]["namespace"],
                     item["spec"]["virtualhost"]["fqdn"],
                     item["spec"]["virtualhost"]["tls"],
-                    item["spec"]["strategy"]
+                    item["spec"]["strategy"],
                 )
             )
 

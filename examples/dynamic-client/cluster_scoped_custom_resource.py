@@ -66,7 +66,9 @@ async def main():
                                                     "fqdn": {"type": "string"},
                                                     "tls": {
                                                         "properties": {
-                                                            "secretName": {"type": "string"}
+                                                            "secretName": {
+                                                                "type": "string"
+                                                            }
                                                         },
                                                         "type": "object",
                                                     },
@@ -100,7 +102,9 @@ async def main():
             "\n[INFO] custom resource definition `ingressroutes.apps.example.com` created\n"
         )
         print("SCOPE\t\tNAME")
-        print(f"{crd_creation_response.spec.scope}\t\t{crd_creation_response.metadata.name}")
+        print(
+            f"{crd_creation_response.spec.scope}\t\t{crd_creation_response.metadata.name}"
+        )
 
         # Fetching the "ingressroutes" CRD api
 
@@ -157,16 +161,24 @@ async def main():
         ingress_routes_list = await ingressroute_api.get()
         print("NAME\t\t\t\tFQDN\t\tTLS\t\t\t\tSTRATEGY")
         for item in ingress_routes_list.items:
-            print(f"{item.metadata.name}\t{item.spec.virtualhost.fqdn}\t{item.spec.virtualhost.tls}\t"
-                  f"{item.spec.strategy}")
+            print(
+                f"{item.metadata.name}\t{item.spec.virtualhost.fqdn}\t{item.spec.virtualhost.tls}\t"
+                f"{item.spec.strategy}"
+            )
 
         # Patching the ingressroutes custom resources
 
         ingressroute_manifest_first["spec"]["strategy"] = "Random"
         ingressroute_manifest_second["spec"]["strategy"] = "WeightedLeastRequest"
 
-        await ingressroute_api.patch(body=ingressroute_manifest_first, content_type="application/merge-patch+json")
-        await ingressroute_api.patch(body=ingressroute_manifest_second, content_type="application/merge-patch+json")
+        await ingressroute_api.patch(
+            body=ingressroute_manifest_first,
+            content_type="application/merge-patch+json",
+        )
+        await ingressroute_api.patch(
+            body=ingressroute_manifest_second,
+            content_type="application/merge-patch+json",
+        )
 
         print(
             "\n[INFO] custom resources `ingress-route-*` patched to update the strategy\n"
@@ -174,8 +186,10 @@ async def main():
         patched_ingress_routes_list = await ingressroute_api.get()
         print("NAME\t\t\t\tFQDN\t\t\tTLS\t\t\tSTRATEGY")
         for item in patched_ingress_routes_list.items:
-            print(f"{item.metadata.name}\t{item.spec.virtualhost.fqdn}\t{item.spec.virtualhost.tls}\t"
-                  f"{item.spec.strategy}")
+            print(
+                f"{item.metadata.name}\t{item.spec.virtualhost.fqdn}\t{item.spec.virtualhost.tls}\t"
+                f"{item.spec.strategy}"
+            )
 
         # Deleting the ingressroutes custom resources
 

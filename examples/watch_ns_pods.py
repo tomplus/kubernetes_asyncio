@@ -1,4 +1,5 @@
 """Watch multiple K8s event streams without threads."""
+
 import asyncio
 
 from kubernetes_asyncio import client, config, watch
@@ -9,7 +10,7 @@ async def watch_namespaces():
         v1 = client.CoreV1Api(api)
         async with watch.Watch().stream(v1.list_namespace) as stream:
             async for event in stream:
-                etype, obj = event['type'], event['object']
+                etype, obj = event["type"], event["object"]
                 print("{} namespace {}".format(etype, obj.metadata.name))
 
 
@@ -18,8 +19,12 @@ async def watch_pods():
         v1 = client.CoreV1Api(api)
         async with watch.Watch().stream(v1.list_pod_for_all_namespaces) as stream:
             async for event in stream:
-                evt, obj = event['type'], event['object']
-                print("{} pod {} in NS {}".format(evt, obj.metadata.name, obj.metadata.namespace))
+                evt, obj = event["type"], event["object"]
+                print(
+                    "{} pod {} in NS {}".format(
+                        evt, obj.metadata.name, obj.metadata.namespace
+                    )
+                )
 
 
 def main():
@@ -40,5 +45,5 @@ def main():
     loop.close()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
