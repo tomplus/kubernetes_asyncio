@@ -35,7 +35,11 @@ async def main():
             api = await client.resources.get(api_version="v1", kind="Node")
 
             # Creating a custom header
-            params = {'header_params': {'Accept': 'application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io'}}
+            params = {
+                "header_params": {
+                    "Accept": "application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io"
+                }
+            }
 
             resp = await api.get(**params)
 

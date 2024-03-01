@@ -74,8 +74,10 @@ async def main():
         deployment_created = await api.get(name=name, namespace="default")
 
         print("NAMESPACE\tNAME\t\t\t\tREVISION\t\t\t\t\t\t\t\t\t\tRESTARTED-AT")
-        print(f"{deployment_created.metadata.namespace}\t\t{deployment_created.metadata.name}\t"
-              f"{deployment_created.metadata.annotations}\t\t{deployment_created.spec.template.metadata.annotations}")
+        print(
+            f"{deployment_created.metadata.namespace}\t\t{deployment_created.metadata.name}\t"
+            f"{deployment_created.metadata.annotations}\t\t{deployment_created.spec.template.metadata.annotations}"
+        )
 
         # Patching the `spec.template.metadata` section to add `kubectl.kubernetes.io/restartedAt` annotation
         # In order to perform a rolling restart on the deployment `nginx-deployment`
@@ -94,8 +96,10 @@ async def main():
 
         print("\n[INFO] deployment `nginx-deployment` restarted\n")
         print("NAMESPACE\tNAME\t\t\t\tREVISION\t\t\t\t\t\t\t\t\tRESTARTED-AT")
-        print(f"{deployment_patched.metadata.namespace}\t\t{deployment_patched.metadata.name}\t"
-              f"{deployment_patched.metadata.annotations}\t{deployment_patched.spec.template.metadata.annotations}")
+        print(
+            f"{deployment_patched.metadata.namespace}\t\t{deployment_patched.metadata.name}\t"
+            f"{deployment_patched.metadata.annotations}\t{deployment_patched.spec.template.metadata.annotations}"
+        )
 
         # Deleting deployment `nginx-deployment` from the `default` namespace
 

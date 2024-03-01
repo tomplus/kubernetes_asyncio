@@ -64,7 +64,10 @@ async def main():
         # Client-side timeout to 60 seconds
 
         configmap_list = await api.get(
-            name=configmap_name, namespace="default", label_selector="foo=bar", _request_time=60
+            name=configmap_name,
+            namespace="default",
+            label_selector="foo=bar",
+            _request_time=60,
         )
 
         print(f"NAME:\n{configmap_list.metadata.name}\n")

@@ -41,7 +41,11 @@ async def main():
         service_manifest = {
             "apiVersion": "v1",
             "kind": "Service",
-            "metadata": {"labels": {"name": name}, "name": name, "resourceversion": "v1"},
+            "metadata": {
+                "labels": {"name": name},
+                "name": name,
+                "resourceversion": "v1",
+            },
             "spec": {
                 "ports": [
                     {"name": "port", "port": 80, "protocol": "TCP", "targetPort": 80}
@@ -71,7 +75,9 @@ async def main():
             {"name": "new", "port": 8080, "protocol": "TCP", "targetPort": 8080}
         ]
 
-        service_patched = await api.patch(body=service_manifest, name=name, namespace="default")
+        service_patched = await api.patch(
+            body=service_manifest, name=name, namespace="default"
+        )
 
         print("\n[INFO] service `frontend-service` patched\n")
         print("%s\t%s\t\t\t%s" % ("NAMESPACE", "NAME", "PORTS"))

@@ -16,33 +16,39 @@ async def main():
     ret = await v1.list_pod_for_all_namespaces()
 
     for i in ret.items:
-        if i.metadata.name.startswith('busybox'):
+        if i.metadata.name.startswith("busybox"):
             pod = i.metadata.name
             namespace = i.metadata.namespace
-            print('Buxy box', pod, 'namespace', namespace)
+            print("Buxy box", pod, "namespace", namespace)
             break
     else:
-        print('Busybox not found !')
+        print("Busybox not found !")
         return
 
     v1_ws = client.CoreV1Api(api_client=WsApiClient())
 
     exec_command = [
-        '/bin/sh',
-        '-c',
-        'echo This message goes to stderr >&2; echo This message goes to stdout']
+        "/bin/sh",
+        "-c",
+        "echo This message goes to stderr >&2; echo This message goes to stdout",
+    ]
 
-    resp = v1_ws.connect_get_namespaced_pod_exec(pod, namespace,
-                                                 command=exec_command,
-                                                 stderr=True, stdin=False,
-                                                 stdout=True, tty=False)
+    resp = v1_ws.connect_get_namespaced_pod_exec(
+        pod,
+        namespace,
+        command=exec_command,
+        stderr=True,
+        stdin=False,
+        stdout=True,
+        tty=False,
+    )
 
     ret = await resp
 
     print("Response: ", ret)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     loop = asyncio.get_event_loop()
     loop.run_until_complete(main())
     loop.close()
