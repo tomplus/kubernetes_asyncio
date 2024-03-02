@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "kubernetes_asyncio-stubs"
+version = "24.2.3"
+description = "Type stubs for the Kubernetes Python API client"
+authors = ["Nikhil Benesch <nikhil.benesch@gmail.com>", "Rami Chowdhury <rami.chowdhury@gmail.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+
+packages = [
+    { include = "kubernetes_asyncio_ext" },
+    { include = "kubernetes_asyncio-stubs" },
+]
+
+[tool.poetry.dev-dependencies]
+black = "^21.6b0"
+isort = "^5.9.2"
+inflection = "^0.5.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
