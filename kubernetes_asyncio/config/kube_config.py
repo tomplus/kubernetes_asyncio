@@ -20,6 +20,7 @@ import datetime
 import json
 import logging
 import os
+import pathlib
 import platform
 import tempfile
 
@@ -34,7 +35,7 @@ from .google_auth import google_auth_credentials
 from .openid import OpenIDRequestor
 
 EXPIRY_SKEW_PREVENTION_DELAY = datetime.timedelta(minutes=5)
-KUBE_CONFIG_DEFAULT_LOCATION = os.environ.get('KUBECONFIG', '~/.kube/config')
+KUBE_CONFIG_DEFAULT_LOCATION = os.environ.get('KUBECONFIG', (pathlib.Path.home() / '.kube/config').as_posix())
 ENV_KUBECONFIG_PATH_SEPARATOR = ';' if platform.system() == 'Windows' else ':'
 PROVIDER_TYPE_OIDC = 'oidc'
 _temp_files = {}
