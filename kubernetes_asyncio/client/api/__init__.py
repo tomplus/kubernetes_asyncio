@@ -61,4 +61,6 @@ from kubernetes_asyncio.client.api.scheduling_v1_api import SchedulingV1Api
 from kubernetes_asyncio.client.api.storage_api import StorageApi
 from kubernetes_asyncio.client.api.storage_v1_api import StorageV1Api
 from kubernetes_asyncio.client.api.storage_v1alpha1_api import StorageV1alpha1Api
+from kubernetes_asyncio.client.api.storagemigration_api import StoragemigrationApi
+from kubernetes_asyncio.client.api.storagemigration_v1alpha1_api import StoragemigrationV1alpha1Api
 from kubernetes_asyncio.client.api.version_api import VersionApi

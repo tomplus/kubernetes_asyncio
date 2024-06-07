@@ -64,6 +64,8 @@ Submodules
    kubernetes_asyncio.test.test_storage_api
    kubernetes_asyncio.test.test_storage_v1_api
    kubernetes_asyncio.test.test_storage_v1alpha1_api
+   kubernetes_asyncio.test.test_storagemigration_api
+   kubernetes_asyncio.test.test_storagemigration_v1alpha1_api
    kubernetes_asyncio.test.test_version_api
    kubernetes_asyncio.test.test_well_known_api
 
