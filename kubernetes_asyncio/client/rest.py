@@ -142,7 +142,10 @@ class RESTClientObject(object):
 
         # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
         if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
-            if re.search('json', headers['Content-Type'], re.IGNORECASE):
+            if (
+                    re.search('json', headers['Content-Type'], re.IGNORECASE)
+                    or headers['Content-Type'] in ["application/apply-patch+yaml"]
+            ):
                 if body is not None:
                     body = json.dumps(body)
                 args["data"] = body
