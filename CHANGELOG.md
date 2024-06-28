@@ -1,3 +1,7 @@
+# v29.0.1
+
+* feat: remove setuptools from requirements ([#318](https://github.com/tomplus/kubernetes_asyncio/pull/318), [@tomplus](https://github.com/tomplus))
+
 # v29.0.0
 
 * feat: Support loading a custom TLS server name from kubeconfig ([#270](https://github.com/tomplus/kubernetes_asyncio/pull/270), [@multani](https://github.com/multani))
