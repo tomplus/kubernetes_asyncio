@@ -1,3 +1,8 @@
+# v30.1.1
+
+* feat: remove setuptools from requirements ([#318](https://github.com/tomplus/kubernetes_asyncio/pull/318), [@tomplus](https://github.com/tomplus))
+* fix: restore rest client ablity to handle "application/apply-patch+yaml" content type ([#317](https://github.com/tomplus/kubernetes_asyncio/pull/317), [@Meallia](https://github.com/Meallia))
+
 # v30.1.0
 
 * feat: add support for different type of patch ([#303]https://github.com/tomplus/kubernetes_asyncio/pull/303), [@tomplus](https://github.com/tomplus)
