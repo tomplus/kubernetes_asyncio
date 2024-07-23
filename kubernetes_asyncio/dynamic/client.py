@@ -214,6 +214,10 @@ class DynamicClient(object):
         if name:
             field_selector = f"metadata.name={name}"
 
+        kwargs = {}
+        if timeout is not None:
+            kwargs['timeout_seconds'] = timeout
+
         async for event in watcher.stream(
             resource.get,
             namespace=namespace,
@@ -221,7 +225,7 @@ class DynamicClient(object):
             label_selector=label_selector,
             resource_version=resource_version,
             serialize=False,
-            timeout_seconds=timeout
+            **kwargs
         ):
             event['object'] = ResourceInstance(resource, event['object'])
             yield event
