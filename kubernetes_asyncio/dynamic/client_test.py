@@ -81,8 +81,6 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
                 },
             }
 
-            await crd_api.delete(name=name)
-
             resp = await crd_api.create(crd_manifest)
             self.assertEqual(name, resp.metadata.name)
             self.assertTrue(resp.status)
