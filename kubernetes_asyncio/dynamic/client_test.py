@@ -42,32 +42,48 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
                 await client.resources.get(api_version='apps.example.com/v1', kind='ClusterChangeMe')
 
             crd_api = await client.resources.get(
-                api_version='apiextensions.k8s.io/v1beta1',
+                api_version='apiextensions.k8s.io/v1',
                 kind='CustomResourceDefinition')
             name = 'clusterchangemes.apps.example.com'
             crd_manifest = {
-                'apiVersion': 'apiextensions.k8s.io/v1beta1',
-                'kind': 'CustomResourceDefinition',
-                'metadata': {
-                    'name': name,
+                "apiVersion": "apiextensions.k8s.io/v1",
+                "kind": "CustomResourceDefinition",
+                "metadata": {
+                    "name": name,
                 },
-                'spec': {
-                    'group': 'apps.example.com',
-                    'names': {
-                        'kind': 'ClusterChangeMe',
-                        'listKind': 'ClusterChangeMeList',
-                        'plural': 'clusterchangemes',
-                        'singular': 'clusterchangeme',
+                "spec": {
+                    "group": "apps.example.com",
+                    "names": {
+                        "kind": "ClusterChangeMe",
+                        "listKind": "ClusterChangeMeList",
+                        "plural": "clusterchangemes",
+                        "singular": "clusterchangeme",
                     },
-                    'scope': 'Cluster',
-                    'version': 'v1',
-                    'subresources': {
-                        'status': {}
-                    }
-                }
+                    "scope": "Cluster",
+                    "versions": [
+                        {
+                            "name": "v1",
+                            "served": True,
+                            "storage": True,
+                            "schema": {
+                                "openAPIV3Schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "spec": {
+                                            "type": "object",
+                                            "properties": {"size": {"type": "integer"}},
+                                        }
+                                    },
+                                }
+                            },
+                        }
+                    ],
+                },
             }
-            resp = await crd_api.create(crd_manifest)
 
+            await crd_api.delete(name=name)
+
+            resp = await crd_api.create(crd_manifest)
             self.assertEqual(name, resp.metadata.name)
             self.assertTrue(resp.status)
 
@@ -99,6 +115,19 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
             resp = await changeme_api.create(body=changeme_manifest)
             self.assertEqual(resp.metadata.name, changeme_name)
 
+            # watch with timeout
+            count = 0
+            async for _ in client.watch(changeme_api, timeout=3, namespace="default", name=changeme_name):
+                count += 1
+            self.assertTrue(count > 0, msg="no events received for watch")
+
+            # without timeout, should be longer than the previous check
+            async def _watch_no_timeout():
+                async for _ in client.watch(changeme_api, namespace="default", name=changeme_name):
+                    pass
+            with self.assertRaises(asyncio.exceptions.TimeoutError):
+                await asyncio.wait_for(_watch_no_timeout(), timeout=5)
+
             resp = await changeme_api.get(name=changeme_name)
             self.assertEqual(resp.metadata.name, changeme_name)
 
@@ -127,111 +156,6 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
             with self.assertRaises(ResourceNotFoundError):
                 await client.resources.get(api_version='apps.example.com/v1', kind='ClusterChangeMe')
 
-    # async def test_async_namespaced_custom_resources(self):
-    #     async with api_client.ApiClient(configuration=self.config) as apic:
-    #         client = await DynamicClient.newclient(apic)
-    #
-    #         with self.assertRaises(ResourceNotFoundError):
-    #             await client.resources.get(api_version='apps.example.com/v1', kind='ChangeMe')
-    #
-    #         crd_api = await client.resources.get(
-    #             api_version='apiextensions.k8s.io/v1beta1',
-    #             kind='CustomResourceDefinition')
-    #
-    #         name = 'changemes.apps.example.com'
-    #
-    #         crd_manifest = {
-    #             'apiVersion': 'apiextensions.k8s.io/v1beta1',
-    #             'kind': 'CustomResourceDefinition',
-    #             'metadata': {
-    #                 'name': name,
-    #             },
-    #             'spec': {
-    #                 'group': 'apps.example.com',
-    #                 'names': {
-    #                     'kind': 'ChangeMe',
-    #                     'listKind': 'ChangeMeList',
-    #                     'plural': 'changemes',
-    #                     'singular': 'changeme',
-    #                 },
-    #                 'scope': 'Namespaced',
-    #                 'version': 'v1',
-    #                 'subresources': {
-    #                     'status': {}
-    #                 }
-    #             }
-    #         }
-    #         async_resp = await crd_api.create(crd_manifest, async_req=True)
-    #
-    #         self.assertEqual(name, async_resp.metadata.name)
-    #         self.assertTrue(async_resp.status)
-    #
-    #         async_resp = await crd_api.get(name=name, async_req=True)
-    #         self.assertEqual(name, async_resp.metadata.name)
-    #         self.assertTrue(async_resp.status)
-    #
-    #         try:
-    #             changeme_api = await client.resources.get(
-    #                 api_version='apps.example.com/v1', kind='ChangeMe')
-    #         except ResourceNotFoundError:
-    #             # Need to wait a sec for the discovery layer to get updated
-    #             await asyncio.sleep(2)
-    #             changeme_api = await client.resources.get(
-    #                 api_version='apps.example.com/v1', kind='ChangeMe')
-    #
-    #         async_resp = await changeme_api.get(async_req=True)
-    #         self.assertEqual(async_resp.items, [])
-    #
-    #         changeme_name = 'custom-resource' + short_uuid()
-    #         changeme_manifest = {
-    #             'apiVersion': 'apps.example.com/v1',
-    #             'kind': 'ChangeMe',
-    #             'metadata': {
-    #                 'name': changeme_name,
-    #             },
-    #             'spec': {}
-    #         }
-    #
-    #         async_resp = await changeme_api.create(body=changeme_manifest, namespace='default', async_req=True)
-    #         self.assertEqual(async_resp.metadata.name, changeme_name)
-    #
-    #         async_resp = await changeme_api.get(name=changeme_name, namespace='default', async_req=True)
-    #         self.assertEqual(async_resp.metadata.name, changeme_name)
-    #
-    #         changeme_manifest['spec']['size'] = 3
-    #         async_resp = await changeme_api.patch(
-    #             body=changeme_manifest,
-    #             namespace='default',
-    #             content_type='application/merge-patch+json',
-    #             async_req=True
-    #         )
-    #         self.assertEqual(async_resp.spec.size, 3)
-    #
-    #         async_resp = await changeme_api.get(name=changeme_name, namespace='default', async_req=True)
-    #         self.assertEqual(async_resp.spec.size, 3)
-    #
-    #         async_resp = await changeme_api.get(namespace='default', async_req=True)
-    #         self.assertEqual(len(async_resp.items), 1)
-    #
-    #         async_resp = await changeme_api.get(async_req=True)
-    #         self.assertEqual(len(async_resp.items), 1)
-    #
-    #         await changeme_api.delete(name=changeme_name, namespace='default', async_req=True)
-    #
-    #         async_resp = await changeme_api.get(namespace='default', async_req=True)
-    #         self.assertEqual(len(async_resp.items), 0)
-    #
-    #         async_resp = await changeme_api.get(async_req=True)
-    #         self.assertEqual(len(async_resp.items), 0)
-    #
-    #         await crd_api.delete(name=name, async_req=True)
-    #
-    #         await asyncio.sleep(2)
-    #         await client.resources.invalidate_cache()
-    #         with self.assertRaises(ResourceNotFoundError):
-    #             await client.resources.get(
-    #                 api_version='apps.example.com/v1', kind='ChangeMe')
-
     async def test_namespaced_custom_resources(self):
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
@@ -240,32 +164,46 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
                 await client.resources.get(api_version='apps.example.com/v1', kind='ChangeMe')
 
             crd_api = await client.resources.get(
-                api_version='apiextensions.k8s.io/v1beta1',
+                api_version='apiextensions.k8s.io/v1',
                 kind='CustomResourceDefinition')
-            name = 'changemes.apps.example.com'
+            name = 'clusterchangemes.apps.example.com'
             crd_manifest = {
-                'apiVersion': 'apiextensions.k8s.io/v1beta1',
-                'kind': 'CustomResourceDefinition',
-                'metadata': {
-                    'name': name,
+                "apiVersion": "apiextensions.k8s.io/v1",
+                "kind": "CustomResourceDefinition",
+                "metadata": {
+                    "name": name,
                 },
-                'spec': {
-                    'group': 'apps.example.com',
-                    'names': {
-                        'kind': 'ChangeMe',
-                        'listKind': 'ChangeMeList',
-                        'plural': 'changemes',
-                        'singular': 'changeme',
+                "spec": {
+                    "group": "apps.example.com",
+                    "names": {
+                        "kind": "ClusterChangeMe",
+                        "listKind": "ClusterChangeMeList",
+                        "plural": "clusterchangemes",
+                        "singular": "clusterchangeme",
                     },
-                    'scope': 'Namespaced',
-                    'version': 'v1',
-                    'subresources': {
-                        'status': {}
-                    }
-                }
+                    "scope": "Namespaced",
+                    "versions": [
+                        {
+                            "name": "v1",
+                            "served": True,
+                            "storage": True,
+                            "schema": {
+                                "openAPIV3Schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "spec": {
+                                            "type": "object",
+                                            "properties": {"size": {"type": "integer"}},
+                                        }
+                                    },
+                                }
+                            },
+                        }
+                    ],
+                },
             }
-            resp = await crd_api.create(crd_manifest)
 
+            resp = await crd_api.create(crd_manifest)
             self.assertEqual(name, resp.metadata.name)
             self.assertTrue(resp.status)
 
@@ -276,18 +214,18 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
             self.assertTrue(resp.status)
 
             try:
-                await client.resources.get(api_version='apps.example.com/v1', kind='ChangeMe')
+                await client.resources.get(api_version='apps.example.com/v1', kind='ClusterChangeMe')
             except ResourceNotFoundError:
                 # Need to wait a sec for the discovery layer to get updated
                 await asyncio.sleep(2)
             changeme_api = await client.resources.get(
-                api_version='apps.example.com/v1', kind='ChangeMe')
+                api_version='apps.example.com/v1', kind='ClusterChangeMe')
             resp = await changeme_api.get()
             self.assertEqual(resp.items, [])
             changeme_name = 'custom-resource' + short_uuid()
             changeme_manifest = {
                 'apiVersion': 'apps.example.com/v1',
-                'kind': 'ChangeMe',
+                'kind': 'ClusterChangeMe',
                 'metadata': {
                     'name': changeme_name,
                 },
@@ -446,7 +384,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(name, resp.metadata.name)
 
             count = 0
-            async for _ in client.watch(api, timeout=10, namespace="default", name=name):
+            async for _ in client.watch(api, timeout=3, namespace="default", name=name):
                 count += 1
             self.assertTrue(count > 0, msg="no events received for watch")
 
