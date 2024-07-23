@@ -104,12 +104,13 @@ class Watch(object):
 
         # If possible, compile the JSON response into a Python native response
         # type, eg `V1Namespace` or `V1Pod`,`ExtensionsV1beta1Deployment`, ...
-        if response_type and js['type'].lower() != 'bookmark':
+        if response_type:
             js['object'] = self._api_client.deserialize(
                 response=SimpleNamespace(data=json.dumps(js['raw_object'])),
                 response_type=response_type
             )
 
+        if js['type'].lower() != 'bookmark':
             # decode and save resource_version to continue watching
             if hasattr(js['object'], 'metadata'):
                 self.resource_version = js['object'].metadata.resource_version
@@ -120,6 +121,7 @@ class Watch(object):
                     and 'metadata' in js['object']
                     and 'resourceVersion' in js['object']['metadata']):
                 self.resource_version = js['object']['metadata']['resourceVersion']
+
         elif js['type'].lower() == 'bookmark':
             self.resource_version = js['object']['metadata']['resourceVersion']
 
@@ -134,6 +136,12 @@ class Watch(object):
         except:  # noqa: E722
             await self.close()
             raise
+
+    def _reconnect(self):
+        self.resp.close()
+        self.resp = None
+        if self.resource_version:
+            self.func.keywords['resource_version'] = self.resource_version
 
     async def next(self):
 
@@ -153,11 +161,12 @@ class Watch(object):
             try:
                 line = await self.resp.content.readline()
             except asyncio.TimeoutError:
+                # This exception can be raised by aiohttp (client timeout)
+                # but we don't retry if server side timeout is applied.
+                # The base scenario would be to restart watching with timeout_seconds
+                # reduced by time spent in previous iterations.
                 if 'timeout_seconds' not in self.func.keywords:
-                    self.resp.close()
-                    self.resp = None
-                    if self.resource_version:
-                        self.func.keywords['resource_version'] = self.resource_version
+                    self._reconnect()
                     continue
                 else:
                     raise
@@ -167,7 +176,9 @@ class Watch(object):
             # Stop the iterator if K8s sends an empty response. This happens when
             # eg the supplied timeout has expired.
             if line == '':
-                raise StopAsyncIteration
+                if 'timeout_seconds' not in self.func.keywords:
+                    self._reconnect()
+                    continue
 
             # Special case for faster log streaming
             if self.return_type == 'str':

@@ -227,6 +227,8 @@ class DynamicClient(object):
             serialize=False,
             **kwargs
         ):
+            if event == "":
+                break
             event['object'] = ResourceInstance(resource, event['object'])
             yield event
 
