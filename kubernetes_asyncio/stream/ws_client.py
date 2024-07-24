@@ -10,6 +10,8 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+import json
+
 from six.moves.urllib.parse import urlencode, urlparse, urlunparse
 
 from kubernetes_asyncio.client import ApiClient
@@ -53,6 +55,16 @@ class WsApiClient(ApiClient):
                  cookie=None, pool_threads=1, heartbeat=None):
         super().__init__(configuration, header_name, header_value, cookie, pool_threads)
         self.heartbeat = heartbeat
+
+    @classmethod
+    def parse_error_data(cls, error_data):
+        """
+        Parse data received on ERROR_CHANNEL and return the command exit code.
+        """
+        error_data_json = json.loads(error_data)
+        if error_data_json.get("status") == "Success":
+            return 0
+        return int(error_data_json["details"]["causes"][0]['message'])
 
     async def request(self, method, url, query_params=None, headers=None,
                       post_params=None, body=None, _preload_content=True,
