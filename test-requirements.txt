@@ -7,5 +7,5 @@ pytest-cov
 pytest-xdist
 randomize>=0.13
 recommonmark
-sphinx>=1.2.1,!=1.3b1,<7.5 # BSD
+sphinx>=1.2.1,!=1.3b1,<8.1 # BSD
 black
