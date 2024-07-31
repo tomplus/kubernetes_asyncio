@@ -1,3 +1,15 @@
+# v30.3.0
+
+* fix: Timeout related fixes ([#320](https://github.com/tomplus/kubernetes_asyncio/pull/320), [@olivier-matz-6wind](https://github.com/olivier-matz-6wind))
+* fix: Fix reconnecting in watch for custom resources ([#321](https://github.com/tomplus/kubernetes_asyncio/pull/321), [@tomplus](https://github.com/tomplus))
+* fix: fix unittests to work with aiohttp 3.10+  ([#326](https://github.com/tomplus/kubernetes_asyncio/pull/326), [@tomplus](https://github.com/tomplus))
+
+### API Change
+
+- Added the feature gates `StrictCostEnforcementForVAP` and `StrictCostEnforcementForWebhooks` to enforce the strct cost calculation for CEL extended libraries. It is strongly recommended to turn on the feature gates as early as possible. ([#124676](https://github.com/kubernetes/kubernetes/pull/124676), [@cici37](https://github.com/cici37)) [SIG API Machinery, Auth, Node and Testing]
+- Improved scheduling performance when many nodes, and prefilter returns 1-2 nodes (e.g. daemonset) 
+  For developers of out-of-tree PostFilter plugins, note that the semantics of NodeToStatusMap are changing: A node with an absent value in the NodeToStatusMap should be interpreted as having an UnschedulableAndUnresolvable status ([#125306](https://github.com/kubernetes/kubernetes/pull/125306), [@gabesaba](https://github.com/gabesaba)) [SIG Scheduling]
+
 # v30.1.1
 
 * feat: remove setuptools from requirements ([#318](https://github.com/tomplus/kubernetes_asyncio/pull/318), [@tomplus](https://github.com/tomplus))
@@ -5,13 +17,13 @@
 
 # v30.1.0
 
-* feat: add support for different type of patch ([#303]https://github.com/tomplus/kubernetes_asyncio/pull/303), [@tomplus](https://github.com/tomplus)
-* feat: models do not copy default configuration ([#300]https://github.com/tomplus/kubernetes_asyncio/pull/300), [@tomplus](https://github.com/tomplus)
-* fix: Make the kube config path os agnostic ([#307]https://github.com/tomplus/kubernetes_asyncio/pull/307), [@shtlrs](https://github.com/shtlrs)
-* fix: improve merging kube-configs ([#301]https://github.com/tomplus/kubernetes_asyncio/pull/301), [@tomplus](https://github.com/tomplus)
-* chore: Add Python 3.12 in CI ([#313]https://github.com/tomplus/kubernetes_asyncio/pull/313), [@Wh1isper](https://github.com/Wh1isper)
-* chore: removed orphaned files ([#306]https://github.com/tomplus/kubernetes_asyncio/pull/306), [@tomplus](https://github.com/tomplus)
-* chore: rename example scripts, reformat with Black ([#304]https://github.com/tomplus/kubernetes_asyncio/pull/304), [@tomplus](https://github.com/tomplus)
+* feat: add support for different type of patch ([#303](https://github.com/tomplus/kubernetes_asyncio/pull/303), [@tomplus](https://github.com/tomplus))
+* feat: models do not copy default configuration ([#300](https://github.com/tomplus/kubernetes_asyncio/pull/300), [@tomplus](https://github.com/tomplus))
+* fix: Make the kube config path os agnostic ([#307](https://github.com/tomplus/kubernetes_asyncio/pull/307), [@shtlrs](https://github.com/shtlrs))
+* fix: improve merging kube-configs ([#301](https://github.com/tomplus/kubernetes_asyncio/pull/301), [@tomplus](https://github.com/tomplus))
+* chore: Add Python 3.12 in CI ([#313](https://github.com/tomplus/kubernetes_asyncio/pull/313), [@Wh1isper](https://github.com/Wh1isper))
+* chore: removed orphaned files ([#306](https://github.com/tomplus/kubernetes_asyncio/pull/306), [@tomplus](https://github.com/tomplus))
+* chore: rename example scripts, reformat with Black ([#304](https://github.com/tomplus/kubernetes_asyncio/pull/304), [@tomplus](https://github.com/tomplus))
 
 ### API Change
 
