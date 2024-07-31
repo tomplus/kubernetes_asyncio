@@ -2,7 +2,7 @@
 
 * fix: Timeout related fixes ([#320](https://github.com/tomplus/kubernetes_asyncio/pull/320), [@olivier-matz-6wind](https://github.com/olivier-matz-6wind))
 * fix: Fix reconnecting in watch for custom resources ([#321](https://github.com/tomplus/kubernetes_asyncio/pull/321), [@tomplus](https://github.com/tomplus))
-
+* fix: fix unittests to work with aiohttp 3.10+  ([#326](https://github.com/tomplus/kubernetes_asyncio/pull/326), [@tomplus](https://github.com/tomplus))
 
 ### API Change
 
