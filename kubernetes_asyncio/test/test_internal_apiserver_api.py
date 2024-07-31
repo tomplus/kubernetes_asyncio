@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.internal_apiserver_api import InternalApiserv
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestInternalApiserverApi(unittest.TestCase):
+class TestInternalApiserverApi(unittest.IsolatedAsyncioTestCase):
     """InternalApiserverApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.internal_apiserver_api.InternalApiserverApi()  # noqa: E501
 
     def tearDown(self):

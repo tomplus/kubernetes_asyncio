@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.events_api import EventsApi  # noqa: E501
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestEventsApi(unittest.TestCase):
+class TestEventsApi(unittest.IsolatedAsyncioTestCase):
     """EventsApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.events_api.EventsApi()  # noqa: E501
 
     def tearDown(self):
