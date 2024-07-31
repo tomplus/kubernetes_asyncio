@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.discovery_api import DiscoveryApi  # noqa: E5
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestDiscoveryApi(unittest.TestCase):
+class TestDiscoveryApi(unittest.IsolatedAsyncioTestCase):
     """DiscoveryApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.discovery_api.DiscoveryApi()  # noqa: E501
 
     def tearDown(self):

@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.networking_api import NetworkingApi  # noqa: 
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestNetworkingApi(unittest.TestCase):
+class TestNetworkingApi(unittest.IsolatedAsyncioTestCase):
     """NetworkingApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.networking_api.NetworkingApi()  # noqa: E501
 
     def tearDown(self):
