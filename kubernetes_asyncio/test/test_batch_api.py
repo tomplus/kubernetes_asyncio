@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.batch_api import BatchApi  # noqa: E501
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestBatchApi(unittest.TestCase):
+class TestBatchApi(unittest.IsolatedAsyncioTestCase):
     """BatchApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.batch_api.BatchApi()  # noqa: E501
 
     def tearDown(self):

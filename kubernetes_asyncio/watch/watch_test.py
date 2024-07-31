@@ -127,7 +127,7 @@ class WatchTest(IsolatedAsyncioTestCase):
             cnt += 1
         self.assertEqual(cnt, len(side_effects))
 
-    def test_unmarshal_with_float_object(self):
+    async def test_unmarshal_with_float_object(self):
         w = Watch()
         event = w.unmarshal_event('{"type": "ADDED", "object": 1}', 'float')
         self.assertEqual("ADDED", event['type'])
@@ -135,7 +135,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         self.assertTrue(isinstance(event['object'], float))
         self.assertEqual(1, event['raw_object'])
 
-    def test_unmarshal_without_return_type(self):
+    async def test_unmarshal_without_return_type(self):
         w = Watch()
         event = w.unmarshal_event(
             '{"type": "ADDED", "object": ["test1"]}', None)
@@ -143,7 +143,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         self.assertEqual(["test1"], event['object'])
         self.assertEqual(["test1"], event['raw_object'])
 
-    def test_unmarshal_with_empty_return_type(self):
+    async def test_unmarshal_with_empty_return_type(self):
         # empty string as a return_type is a default value
         # if watch can't detect object by function's name
         w = Watch()
@@ -201,7 +201,7 @@ class WatchTest(IsolatedAsyncioTestCase):
                 r'\(401\)\nReason: Unauthorized: Unauthorized'):
             Watch().unmarshal_event(json.dumps(k8s_err), None)
 
-    def test_unmarshal_with_custom_object(self):
+    async def test_unmarshal_with_custom_object(self):
         w = Watch()
         event = w.unmarshal_event('{"type": "ADDED", "object": {"apiVersion":'
                                   '"test.com/v1beta1","kind":"foo","metadata":'
@@ -281,7 +281,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         fake_resp.release.assert_called_once_with()
         self.assertEqual(watch.resource_version, '10')
 
-    def test_unmarshal_bookmark_succeeds_and_preserves_resource_version(self):
+    async def test_unmarshal_bookmark_succeeds_and_preserves_resource_version(self):
         w = Watch()
         event = w.unmarshal_event('{"type": "BOOKMARK", "object": {"apiVersion":'
                                   '"test.com/v1beta1","kind":"foo","metadata":'

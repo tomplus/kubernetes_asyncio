@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.admissionregistration_api import Admissionreg
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestAdmissionregistrationApi(unittest.TestCase):
-    """AdmissionregistrationApi unit test stubs"""
+class TestAdmissionregistrationApi(unittest.IsolatedAsyncioTestCase):
 
-    def setUp(self):
+    """AdmissionregistrationApi unit test stubs"""
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.admissionregistration_api.AdmissionregistrationApi()  # noqa: E501
 
     def tearDown(self):

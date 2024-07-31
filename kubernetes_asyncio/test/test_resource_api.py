@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.resource_api import ResourceApi  # noqa: E501
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestResourceApi(unittest.TestCase):
+class TestResourceApi(unittest.IsolatedAsyncioTestCase):
     """ResourceApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.resource_api.ResourceApi()  # noqa: E501
 
     def tearDown(self):

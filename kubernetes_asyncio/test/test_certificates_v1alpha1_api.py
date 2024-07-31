@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.certificates_v1alpha1_api import Certificates
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestCertificatesV1alpha1Api(unittest.TestCase):
+class TestCertificatesV1alpha1Api(unittest.IsolatedAsyncioTestCase):
     """CertificatesV1alpha1Api unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.certificates_v1alpha1_api.CertificatesV1alpha1Api()  # noqa: E501
 
     def tearDown(self):

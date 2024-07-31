@@ -81,5 +81,8 @@ find "${CLIENT_ROOT}/client/models/" -type f -print0 | xargs -0 sed -i 's/local_
 
 echo ">>> Remove invalid tests (workaround https://github.com/OpenAPITools/openapi-generator/issues/5377)"
 grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm
+echo ">>> Fix API tests (https://github.com/aio-libs/aiohttp/issues/8555)"
+find "${CLIENT_ROOT}/test/" -type f -print0 | xargs -0 sed -i -e 's/unittest.TestCase/unittest.IsolatedAsyncioTestCase/g' -e 's/def setUp(self):/async def asyncSetUp(self):/g'
+
 
 echo ">>> Done."

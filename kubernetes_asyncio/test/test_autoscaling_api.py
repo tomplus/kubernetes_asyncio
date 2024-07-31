@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.autoscaling_api import AutoscalingApi  # noqa
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestAutoscalingApi(unittest.TestCase):
+class TestAutoscalingApi(unittest.IsolatedAsyncioTestCase):
     """AutoscalingApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.autoscaling_api.AutoscalingApi()  # noqa: E501
 
     def tearDown(self):
