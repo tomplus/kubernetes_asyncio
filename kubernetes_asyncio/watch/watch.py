@@ -145,6 +145,9 @@ class Watch(object):
 
     async def next(self):
 
+        watch_forever = 'timeout_seconds' not in self.func.keywords
+        retry_410 = watch_forever
+
         while 1:
 
             # Set the response object to the user supplied function (eg
@@ -163,9 +166,7 @@ class Watch(object):
             except asyncio.TimeoutError:
                 # This exception can be raised by aiohttp (client timeout)
                 # but we don't retry if server side timeout is applied.
-                # The base scenario would be to restart watching with timeout_seconds
-                # reduced by time spent in previous iterations.
-                if 'timeout_seconds' not in self.func.keywords:
+                if watch_forever:
                     self._reconnect()
                     continue
                 else:
@@ -176,7 +177,7 @@ class Watch(object):
             # Stop the iterator if K8s sends an empty response. This happens when
             # eg the supplied timeout has expired.
             if line == '':
-                if 'timeout_seconds' not in self.func.keywords:
+                if watch_forever:
                     self._reconnect()
                     continue
 
@@ -184,7 +185,17 @@ class Watch(object):
             if self.return_type == 'str':
                 return line
 
-            return self.unmarshal_event(line, self.return_type)
+            # retry 410 error only once
+            try:
+                event = self.unmarshal_event(line, self.return_type)
+            except client.exceptions.ApiException as ex:
+                if ex.status == 410 and retry_410:
+                    retry_410 = False  # retry only once
+                    self._reconnect()
+                    continue
+                raise
+            retry_410 = watch_forever
+            return event
 
     def stream(self, func, *args, **kwargs):
         """Watch an API resource and stream the result back via a generator.

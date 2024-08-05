@@ -227,7 +227,7 @@ class WatchTest(IsolatedAsyncioTestCase):
             async for e in watch.stream(fake_api.get_namespaces, timeout_seconds=10): # noqa
                 pass
 
-    async def test_watch_timeout(self):
+    async def test_watch_retry_timeout(self):
         fake_resp = AsyncMock()
         fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
@@ -255,6 +255,108 @@ class WatchTest(IsolatedAsyncioTestCase):
             [call(_preload_content=False, watch=True),
              call(_preload_content=False, watch=True, resource_version='1555')])
         fake_resp.release.assert_called_once_with()
+
+    async def test_watch_retry_410(self):
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
+        fake_resp.release = Mock()
+
+        mock_event1 = {
+            "type": "ADDED",
+            "object": {
+                "metadata":
+                    {
+                        "name": "test1555",
+                        "resourceVersion": "1555"
+                    },
+                "spec": {},
+                "status": {}
+            }
+        }
+
+        mock_event2 = {
+            "type": "ADDED",
+            "object": {
+                "metadata":
+                    {
+                        "name": "test1555",
+                        "resourceVersion": "1555"
+                    },
+                "spec": {},
+                "status": {}
+            }
+        }
+
+        mock_410 = {
+            'type': 'ERROR',
+            'object': {
+                'kind': 'Status',
+                'apiVersion': 'v1',
+                'metadata': {},
+                'status': 'Failure',
+                'message': 'too old resource version: 1 (8146471)',
+                'reason': 'Gone',
+                'code': 410
+            }
+        }
+
+        # retry 410
+        fake_resp.content.readline.side_effect = [json.dumps(mock_event1).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  json.dumps(mock_event2).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  b""]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
+
+        watch = kubernetes_asyncio.watch.Watch()
+        async with watch.stream(fake_api.get_namespaces) as stream:
+            async for e in stream: # noqa
+                pass
+
+        fake_api.get_namespaces.assert_has_calls(
+            [call(_preload_content=False, watch=True),
+             call(_preload_content=False, watch=True, resource_version='1555')])
+        fake_resp.release.assert_called_once_with()
+
+        # retry 410 only once
+        fake_resp.content.readline.side_effect = [json.dumps(mock_event1).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  json.dumps(mock_event2).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  b""]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
+
+        with self.assertRaisesRegex(
+                kubernetes_asyncio.client.exceptions.ApiException,
+                r'\(410\)\nReason: Gone: too old resource version: 1 \(8146471\)'):
+            watch = kubernetes_asyncio.watch.Watch()
+            async with watch.stream(fake_api.get_namespaces) as stream:
+                async for e in stream: # noqa
+                    pass
+
+        # no retry 410 if timeout is passed
+        fake_resp.content.readline.side_effect = [json.dumps(mock_event1).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  b""]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
+
+        with self.assertRaisesRegex(
+                kubernetes_asyncio.client.exceptions.ApiException,
+                r'\(410\)\nReason: Gone: too old resource version: 1 \(8146471\)'):
+            watch = kubernetes_asyncio.watch.Watch()
+            async with watch.stream(fake_api.get_namespaces, timeout_seconds=10) as stream:
+                async for e in stream: # noqa
+                    pass
 
     async def test_watch_timeout_with_resource_version(self):
         fake_resp = AsyncMock()
