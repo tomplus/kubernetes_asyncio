@@ -99,7 +99,7 @@ async def main():
     async with WsApiClient() as ws_api:
         v1_ws = client.CoreV1Api(api_client=ws_api)
         exec_command = ['/bin/sh']
-        ws = await v1_ws.connect_get_namespaced_pod_exec(
+        websocket = await v1_ws.connect_get_namespaced_pod_exec(
             BUSYBOX_POD,
             "default",
             command=exec_command,
@@ -116,32 +116,32 @@ async def main():
         ]
         error_data = ""
         closed = False
-        while commands and not closed:
-            command = commands.pop(0)
-            stdin_channel_prefix = chr(0)
-            await ws.send_bytes((stdin_channel_prefix + command).encode("utf-8"))
-            while True:
-                try:
-                    msg = await ws.receive(timeout=1)
-                except asyncio.TimeoutError:
-                    break
-                if msg.type in (WSMsgType.CLOSE, WSMsgType.CLOSING, WSMsgType.CLOSED):
-                    closed = True
-                    break
-                channel = msg.data[0]
-                data = msg.data[1:].decode("utf-8")
-                if not data:
-                    continue
-                if channel == STDOUT_CHANNEL:
-                    print(f"stdout: {data}")
-                elif channel == STDERR_CHANNEL:
-                    print(f"stderr: {data}")
-                elif channel == ERROR_CHANNEL:
-                    error_data += data
-        if error_data:
-            returncode = ws_api.parse_error_data(error_data)
-            print(f"Exit code: {returncode}")
-        await ws.close()
+        async with websocket as ws:
+            while commands and not closed:
+                command = commands.pop(0)
+                stdin_channel_prefix = chr(0)
+                await ws.send_bytes((stdin_channel_prefix + command).encode("utf-8"))
+                while True:
+                    try:
+                        msg = await ws.receive(timeout=1)
+                    except asyncio.TimeoutError:
+                        break
+                    if msg.type in (WSMsgType.CLOSE, WSMsgType.CLOSING, WSMsgType.CLOSED):
+                        closed = True
+                        break
+                    channel = msg.data[0]
+                    data = msg.data[1:].decode("utf-8")
+                    if not data:
+                        continue
+                    if channel == STDOUT_CHANNEL:
+                        print(f"stdout: {data}")
+                    elif channel == STDERR_CHANNEL:
+                        print(f"stderr: {data}")
+                    elif channel == ERROR_CHANNEL:
+                        error_data += data
+            if error_data:
+                returncode = ws_api.parse_error_data(error_data)
+                print(f"Exit code: {returncode}")
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
