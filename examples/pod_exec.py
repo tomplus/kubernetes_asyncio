@@ -1,8 +1,13 @@
 import asyncio
 
+from aiohttp.http import WSMsgType
+
 from kubernetes_asyncio import client, config, utils
 from kubernetes_asyncio.client.api_client import ApiClient
 from kubernetes_asyncio.stream import WsApiClient
+from kubernetes_asyncio.stream.ws_client import (
+    ERROR_CHANNEL, STDERR_CHANNEL, STDOUT_CHANNEL,
+)
 
 BUSYBOX_POD = "busybox-test"
 
@@ -87,6 +92,56 @@ async def main():
         )
         print(f"Response: {ret}")
 
+    # Execute a command interactively. If _preload_content=False is passed to
+    # connect_get_namespaced_pod_exec(), the returned object is an aiohttp ClientWebSocketResponse
+    # object, that can be manipulated directly.
+    print("-------------")
+    async with WsApiClient() as ws_api:
+        v1_ws = client.CoreV1Api(api_client=ws_api)
+        exec_command = ['/bin/sh']
+        ws = await v1_ws.connect_get_namespaced_pod_exec(
+            BUSYBOX_POD,
+            "default",
+            command=exec_command,
+            stderr=True,
+            stdin=True,
+            stdout=True,
+            tty=False,
+            _preload_content=False,
+        )
+        commands = [
+            "echo 'This message goes to stdout'\n",
+            "echo 'This message goes to stderr' >&2\n",
+            "exit 1\n",
+        ]
+        error_data = ""
+        closed = False
+        while commands and not closed:
+            command = commands.pop(0)
+            stdin_channel_prefix = chr(0)
+            await ws.send_bytes((stdin_channel_prefix + command).encode("utf-8"))
+            while True:
+                try:
+                    msg = await ws.receive(timeout=1)
+                except asyncio.TimeoutError:
+                    break
+                if msg.type in (WSMsgType.CLOSE, WSMsgType.CLOSING, WSMsgType.CLOSED):
+                    closed = True
+                    break
+                channel = msg.data[0]
+                data = msg.data[1:].decode("utf-8")
+                if not data:
+                    continue
+                if channel == STDOUT_CHANNEL:
+                    print(f"stdout: {data}")
+                elif channel == STDERR_CHANNEL:
+                    print(f"stderr: {data}")
+                elif channel == ERROR_CHANNEL:
+                    error_data += data
+        if error_data:
+            returncode = ws_api.parse_error_data(error_data)
+            print(f"Exit code: {returncode}")
+        await ws.close()
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()
