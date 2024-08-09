@@ -108,3 +108,17 @@ class WSClientTest(IsolatedAsyncioTestCase):
                 },
                 heartbeat=30
             )
+
+    def test_parse_error_data_success(self):
+        error_data = '{"metadata":{},"status":"Success"}'
+        return_code = WsApiClient.parse_error_data(error_data)
+        self.assertEqual(return_code, 0)
+
+    def test_parse_error_data_failure(self):
+        error_data = (
+            '{"metadata":{},"status":"Failure",'
+            '"message":"command terminated with non-zero exit code",'
+            '"reason":"NonZeroExitCode",'
+            '"details":{"causes":[{"reason":"ExitCode","message":"1"}]}}')
+        return_code = WsApiClient.parse_error_data(error_data)
+        self.assertEqual(return_code, 1)
