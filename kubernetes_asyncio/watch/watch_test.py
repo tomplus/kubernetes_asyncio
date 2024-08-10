@@ -74,7 +74,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         fake_resp = AsyncMock()
         fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
-        side_effects = ['log_line_1', 'log_line_2']
+        side_effects = ['log_line_1', 'log_line_2', '']
         side_effects = [_.encode('utf8') for _ in side_effects]
         side_effects.extend([AssertionError('Should not have been called')])
         fake_resp.content.readline.side_effect = side_effects
@@ -84,16 +84,12 @@ class WatchTest(IsolatedAsyncioTestCase):
         fake_api.read_namespaced_pod_log.__doc__ = ':param follow:\n:type follow: bool\n:rtype: str'
 
         watch = kubernetes_asyncio.watch.Watch()
-        count = 1
+        logs = []
         async with watch:
             async for e in watch.stream(fake_api.read_namespaced_pod_log):
-                self.assertEqual("log_line_1", e)
-                # Stop the watch. This must not return the next event which would
-                # be an AssertionError exception.
-                count += 1
-                if count == len(side_effects) - 1:
-                    watch.stop()
+                logs.append(e)
 
+        self.assertListEqual(logs, ['log_line_1', 'log_line_2'])
         fake_api.read_namespaced_pod_log.assert_called_once_with(
             _preload_content=False, follow=True)
         fake_resp.release.assert_called_once_with()
