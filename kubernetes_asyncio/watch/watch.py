@@ -174,16 +174,20 @@ class Watch(object):
 
             line = line.decode('utf8')
 
+            # Special case for faster log streaming
+            if self.return_type == 'str':
+                if line == '':
+                    # end of log
+                    raise StopAsyncIteration
+                return line
+
             # Stop the iterator if K8s sends an empty response. This happens when
             # eg the supplied timeout has expired.
             if line == '':
                 if watch_forever:
                     self._reconnect()
                     continue
-
-            # Special case for faster log streaming
-            if self.return_type == 'str':
-                return line
+                raise StopAsyncIteration
 
             # retry 410 error only once
             try:
