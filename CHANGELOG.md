@@ -1,3 +1,7 @@
+# v30.3.1
+
+* fix: Fix stopping Watch for logs and events with timeout ([#330](https://github.com/tomplus/kubernetes_asyncio/pull/330), [@tomplus](https://github.com/tomplus))
+
 # v30.3.0
 
 * fix: Timeout related fixes ([#320](https://github.com/tomplus/kubernetes_asyncio/pull/320), [@olivier-matz-6wind](https://github.com/olivier-matz-6wind))
