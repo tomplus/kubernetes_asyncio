@@ -18,8 +18,8 @@ import os
 import tempfile
 import unittest
 
-from kubernetes_asyncio.client import Configuration
 import kubernetes_asyncio.config
+from kubernetes_asyncio.client import Configuration
 
 from .config_exception import ConfigException
 from .incluster_config import (

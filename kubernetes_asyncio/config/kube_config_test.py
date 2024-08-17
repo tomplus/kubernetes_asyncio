@@ -24,6 +24,7 @@ from unittest.mock import Mock, patch
 import yaml
 from six import PY3
 
+from . import load_config
 from .config_exception import ConfigException
 from .kube_config import (
     ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode, FileOrData, KubeConfigLoader,
@@ -31,7 +32,6 @@ from .kube_config import (
     load_kube_config_from_dict, new_client_from_config,
     new_client_from_config_dict, refresh_token,
 )
-from . import load_config
 
 BEARER_TOKEN_FORMAT = "Bearer %s"
 
