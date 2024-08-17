@@ -114,7 +114,7 @@ class InClusterConfigLoader(object):
             ) + TOKEN_REFRESH_PERIOD
 
 
-def load_incluster_config(client_configuration=None, try_refresh_token=True):
+def load_incluster_config(client_configuration=None, try_refresh_token=True, **kwargs):
     """Use the service account kubernetes gives to pods to connect to kubernetes
     cluster. It's intended for clients that expect to be running inside a pod
     running on kubernetes. It will raise an exception if called from a process
@@ -123,7 +123,6 @@ def load_incluster_config(client_configuration=None, try_refresh_token=True):
     :param client_configuration: The kubernetes.client.Configuration to
     set configs to.
     """
-    InClusterConfigLoader(
-        token_filename=SERVICE_TOKEN_FILENAME,
-        cert_filename=SERVICE_CERT_FILENAME,
-        try_refresh_token=try_refresh_token).load_and_set(client_configuration)
+    kwargs.setdefault("token_filename", SERVICE_TOKEN_FILENAME)
+    kwargs.setdefault("cert_filename", SERVICE_CERT_FILENAME)
+    InClusterConfigLoader(try_refresh_token=try_refresh_token, **kwargs).load_and_set(client_configuration)

@@ -12,11 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import contextlib
 import datetime
 import os
 import tempfile
 import unittest
 
+import kubernetes_asyncio.config
 from kubernetes_asyncio.client import Configuration
 
 from .config_exception import ConfigException
@@ -24,6 +26,7 @@ from .incluster_config import (
     SERVICE_HOST_ENV_NAME, SERVICE_PORT_ENV_NAME, InClusterConfigLoader,
     _join_host_port,
 )
+from .kube_config_test import FakeConfig
 
 _TEST_TOKEN = "temp_token"
 _TEST_NEW_TOKEN = "temp_new_token"
@@ -40,7 +43,17 @@ _TEST_IPV6_ENVIRON = {SERVICE_HOST_ENV_NAME: _TEST_IPV6_HOST,
                       SERVICE_PORT_ENV_NAME: _TEST_PORT}
 
 
-class InClusterConfigTest(unittest.TestCase):
+@contextlib.contextmanager
+def monkeypatch_kube_config_path():
+    old_kube_config_path = kubernetes_asyncio.config.KUBE_CONFIG_DEFAULT_LOCATION
+    kubernetes_asyncio.config.KUBE_CONFIG_DEFAULT_LOCATION = "/path-does-not-exist"
+    try:
+        yield
+    finally:
+        kubernetes_asyncio.config.KUBE_CONFIG_DEFAULT_LOCATION = old_kube_config_path
+
+
+class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
 
     def setUp(self):
         self._temp_files = []
@@ -197,6 +210,25 @@ class InClusterConfigTest(unittest.TestCase):
         self.assertEqual("https://" + _TEST_HOST_PORT, client_config.host)
         self.assertEqual(cert_filename, client_config.ssl_ca_cert)
         self.assertEqual("Bearer " + _TEST_TOKEN, client_config.api_key['BearerToken'])
+
+    async def test_load_config_helper(self):
+        token_filename = self._create_file_with_temp_content(_TEST_TOKEN)
+        cert_filename = self._create_file_with_temp_content(_TEST_CERT)
+        expected = FakeConfig(
+            host="https://" + _TEST_HOST_PORT,
+            token="Bearer " + _TEST_TOKEN,
+            ssl_ca_cert=cert_filename,
+        )
+        actual = FakeConfig()
+        with monkeypatch_kube_config_path():
+            await kubernetes_asyncio.config.load_config(
+                client_configuration=actual,
+                try_refresh_token=None,
+                token_filename=token_filename,
+                cert_filename=cert_filename,
+                environ=_TEST_ENVIRON
+            )
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':

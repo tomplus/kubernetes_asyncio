@@ -24,6 +24,7 @@ from unittest.mock import Mock, patch
 import yaml
 from six import PY3
 
+from . import load_config
 from .config_exception import ConfigException
 from .kube_config import (
     ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode, FileOrData, KubeConfigLoader,
@@ -322,7 +323,7 @@ class FakeConfig:
             if k in self.FILE_KEYS:
                 try:
                     with open(v) as f:
-                        val = "FILE: %s" % str.decode(f.read())
+                        val = "FILE: %s" % str.encode(f.read())
                 except IOError as e:
                     val = "ERROR: %s" % str(e)
             rep += "\t%s: %s\n" % (k, val)
@@ -1072,6 +1073,16 @@ class TestKubeConfigLoader(BaseTestCase):
             await refresh_token(loader, mock_config)
 
         self.assertEqual(TEST_ANOTHER_DATA_BASE64, mock_config.api_key["BearerToken"])
+
+    async def test_load_config_helper(self):
+        expected = FakeConfig(host=TEST_HOST,
+                              token=BEARER_TOKEN_FORMAT % TEST_DATA_BASE64)
+        config_file = self._create_temp_file(yaml.safe_dump(self.TEST_KUBE_CONFIG))
+        actual = FakeConfig()
+        await load_config(config_file=config_file,
+                          context="simple_token",
+                          client_configuration=actual)
+        self.assertEqual(expected, actual)
 
 
 class TestKubeConfigMerger(BaseTestCase):
