@@ -47,16 +47,10 @@ _TEST_IPV6_ENVIRON = {SERVICE_HOST_ENV_NAME: _TEST_IPV6_HOST,
 def monkeypatch_kube_config_path():
     old_kube_config_path = config.KUBE_CONFIG_DEFAULT_LOCATION
     config.KUBE_CONFIG_DEFAULT_LOCATION = "/path-does-not-exist"
-    yield
-    config.KUBE_CONFIG_DEFAULT_LOCATION = old_kube_config_path
-
-
-@contextlib.contextmanager
-def monkeypatch_environ(new_environ: dict):
-    old_environ = os.environ.copy()
-    os.environ.update(new_environ)
-    yield
-    os.environ = old_environ
+    try:
+        yield
+    finally:
+        config.KUBE_CONFIG_DEFAULT_LOCATION = old_kube_config_path
 
 
 class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
@@ -226,15 +220,13 @@ class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
             ssl_ca_cert=cert_filename,
         )
         actual = FakeConfig()
-        with (
-            monkeypatch_kube_config_path(),
-            monkeypatch_environ(_TEST_ENVIRON),
-        ):
+        with monkeypatch_kube_config_path():
             await config.load_config(
                 client_configuration=actual,
                 try_refresh_token=None,
                 token_filename=token_filename,
                 cert_filename=cert_filename,
+                environ=_TEST_ENVIRON
             )
         self.assertEqual(expected, actual)
 
