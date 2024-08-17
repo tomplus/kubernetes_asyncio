@@ -19,7 +19,7 @@ import tempfile
 import unittest
 
 from kubernetes_asyncio.client import Configuration
-from kubernetes_asyncio import config
+import kubernetes_asyncio.config
 
 from .config_exception import ConfigException
 from .incluster_config import (
@@ -45,12 +45,12 @@ _TEST_IPV6_ENVIRON = {SERVICE_HOST_ENV_NAME: _TEST_IPV6_HOST,
 
 @contextlib.contextmanager
 def monkeypatch_kube_config_path():
-    old_kube_config_path = config.KUBE_CONFIG_DEFAULT_LOCATION
-    config.KUBE_CONFIG_DEFAULT_LOCATION = "/path-does-not-exist"
+    old_kube_config_path = kubernetes_asyncio.config.KUBE_CONFIG_DEFAULT_LOCATION
+    kubernetes_asyncio.config.KUBE_CONFIG_DEFAULT_LOCATION = "/path-does-not-exist"
     try:
         yield
     finally:
-        config.KUBE_CONFIG_DEFAULT_LOCATION = old_kube_config_path
+        kubernetes_asyncio.config.KUBE_CONFIG_DEFAULT_LOCATION = old_kube_config_path
 
 
 class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
@@ -221,7 +221,7 @@ class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
         )
         actual = FakeConfig()
         with monkeypatch_kube_config_path():
-            await config.load_config(
+            await kubernetes_asyncio.config.load_config(
                 client_configuration=actual,
                 try_refresh_token=None,
                 token_filename=token_filename,
