@@ -11,14 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+import warnings
 from os.path import exists, expanduser
 
 from .config_exception import ConfigException
 from .incluster_config import load_incluster_config
 from .kube_config import (
-    KUBE_CONFIG_DEFAULT_LOCATION, list_kube_config_contexts, load_kube_config,
-    load_kube_config_from_dict, new_client_from_config,
+    KUBE_CONFIG_DEFAULT_LOCATION,
+    list_kube_config_contexts,
+    load_kube_config,
+    load_kube_config_from_dict,
+    new_client_from_config,
     new_client_from_config_dict,
 )
 
@@ -35,12 +38,18 @@ async def load_config(**kwargs):
     can be passed to either load_kube_config or
     load_incluster_config functions.
     """
-    if "kube_config_path" in kwargs.keys() or exists(expanduser(KUBE_CONFIG_DEFAULT_LOCATION)):
+    if "config_file" in kwargs.keys():
+        await load_kube_config(**kwargs)
+    elif "kube_config_path" in kwargs.keys():
+        kwargs["config_file"] = kwargs.pop("kube_config_path", None)
+        await load_kube_config(**kwargs)
+    elif exists(expanduser(KUBE_CONFIG_DEFAULT_LOCATION)):
         await load_kube_config(**kwargs)
     else:
-        print(
+        warnings.warn(
             "kube_config_path not provided and "
             "default location ({0}) does not exist. "
             "Using inCluster Config. "
-            "This might not work.".format(KUBE_CONFIG_DEFAULT_LOCATION))
+            "This might not work.".format(KUBE_CONFIG_DEFAULT_LOCATION)
+        )
         load_incluster_config(**kwargs)
