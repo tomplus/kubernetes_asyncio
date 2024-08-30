@@ -13,7 +13,7 @@
 +                    isinstance(body, list)):
 +                return 'application/json-patch+json'
 +            if ('application/strategic-merge-patch+json' in content_types and
-+                    isinstance(body, dict)):
++                    (isinstance(body, dict) or hasattr(body, "to_dict"))):
 +                return 'application/strategic-merge-patch+json'
  
          if 'application/json' in content_types or '*/*' in content_types:
