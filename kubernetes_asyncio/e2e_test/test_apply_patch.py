@@ -50,8 +50,18 @@ class TestApplyPatch(IsolatedAsyncioTestCase):
         )
         self.assertEqual(name, resp.metadata.name)
 
-        resp = await api.read_namespaced_config_map(name=name, namespace="default")
-        self.assertEqual(name, resp.metadata.name)
+        cm = await api.read_namespaced_config_map(name=name, namespace="default")
+        self.assertEqual(name, cm.metadata.name)
+
+        # strategic merge patch for object
+        cm.data["new"] = "value"
+        resp = await api.patch_namespaced_config_map(
+            field_manager="test",
+            body=cm,
+            name=name,
+            namespace="default",
+        )
+        self.assertEqual(resp.data, {'hello': 'world!', 'new': 'value'})
 
         resp = await api.delete_namespaced_config_map(
             name=name, body={}, namespace="default"
