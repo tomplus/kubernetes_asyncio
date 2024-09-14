@@ -34,6 +34,7 @@ Submodules
    kubernetes_asyncio.test.test_certificates_v1alpha1_api
    kubernetes_asyncio.test.test_coordination_api
    kubernetes_asyncio.test.test_coordination_v1_api
+   kubernetes_asyncio.test.test_coordination_v1alpha1_api
    kubernetes_asyncio.test.test_core_api
    kubernetes_asyncio.test.test_core_v1_api
    kubernetes_asyncio.test.test_custom_objects_api
@@ -49,7 +50,7 @@ Submodules
    kubernetes_asyncio.test.test_logs_api
    kubernetes_asyncio.test.test_networking_api
    kubernetes_asyncio.test.test_networking_v1_api
-   kubernetes_asyncio.test.test_networking_v1alpha1_api
+   kubernetes_asyncio.test.test_networking_v1beta1_api
    kubernetes_asyncio.test.test_node_api
    kubernetes_asyncio.test.test_node_v1_api
    kubernetes_asyncio.test.test_openid_api
@@ -58,12 +59,13 @@ Submodules
    kubernetes_asyncio.test.test_rbac_authorization_api
    kubernetes_asyncio.test.test_rbac_authorization_v1_api
    kubernetes_asyncio.test.test_resource_api
-   kubernetes_asyncio.test.test_resource_v1alpha2_api
+   kubernetes_asyncio.test.test_resource_v1alpha3_api
    kubernetes_asyncio.test.test_scheduling_api
    kubernetes_asyncio.test.test_scheduling_v1_api
    kubernetes_asyncio.test.test_storage_api
    kubernetes_asyncio.test.test_storage_v1_api
    kubernetes_asyncio.test.test_storage_v1alpha1_api
+   kubernetes_asyncio.test.test_storage_v1beta1_api
    kubernetes_asyncio.test.test_storagemigration_api
    kubernetes_asyncio.test.test_storagemigration_v1alpha1_api
    kubernetes_asyncio.test.test_version_api
