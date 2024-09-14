@@ -34,6 +34,7 @@ Submodules
    kubernetes_asyncio.client.api.certificates_v1alpha1_api
    kubernetes_asyncio.client.api.coordination_api
    kubernetes_asyncio.client.api.coordination_v1_api
+   kubernetes_asyncio.client.api.coordination_v1alpha1_api
    kubernetes_asyncio.client.api.core_api
    kubernetes_asyncio.client.api.core_v1_api
    kubernetes_asyncio.client.api.custom_objects_api
@@ -50,6 +51,7 @@ Submodules
    kubernetes_asyncio.client.api.networking_api
    kubernetes_asyncio.client.api.networking_v1_api
    kubernetes_asyncio.client.api.networking_v1alpha1_api
+   kubernetes_asyncio.client.api.networking_v1beta1_api
    kubernetes_asyncio.client.api.node_api
    kubernetes_asyncio.client.api.node_v1_api
    kubernetes_asyncio.client.api.openid_api
@@ -59,11 +61,13 @@ Submodules
    kubernetes_asyncio.client.api.rbac_authorization_v1_api
    kubernetes_asyncio.client.api.resource_api
    kubernetes_asyncio.client.api.resource_v1alpha2_api
+   kubernetes_asyncio.client.api.resource_v1alpha3_api
    kubernetes_asyncio.client.api.scheduling_api
    kubernetes_asyncio.client.api.scheduling_v1_api
    kubernetes_asyncio.client.api.storage_api
    kubernetes_asyncio.client.api.storage_v1_api
    kubernetes_asyncio.client.api.storage_v1alpha1_api
+   kubernetes_asyncio.client.api.storage_v1beta1_api
    kubernetes_asyncio.client.api.storagemigration_api
    kubernetes_asyncio.client.api.storagemigration_v1alpha1_api
    kubernetes_asyncio.client.api.version_api
