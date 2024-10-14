@@ -117,7 +117,16 @@ class RESTClientObject(object):
 
         post_params = post_params or {}
         headers = headers or {}
-        timeout = _request_timeout or 5 * 60
+        timeout = aiohttp.ClientTimeout()
+        if _request_timeout:
+            if isinstance(_request_timeout, (int, float)):
+                timeout = aiohttp.ClientTimeout(total=_request_timeout)
+            elif isinstance(_request_timeout, tuple) and len(_request_timeout) == 2:
+                timeout = aiohttp.ClientTimeout(
+                        connect=_request_timeout[0],
+                        sock_connect=_request_timeout[0],
+                        sock_read=_request_timeout[1],
+                )
 
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'
