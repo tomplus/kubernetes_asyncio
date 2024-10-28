@@ -104,7 +104,8 @@ class RESTClientObject(object):
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
+                                 (connection, read) timeouts or object
+                                 of aiohttp.ClientTimeout.
         """
         method = method.upper()
         assert method in ['GET', 'HEAD', 'DELETE', 'POST', 'PUT',
@@ -127,6 +128,8 @@ class RESTClientObject(object):
                         sock_connect=_request_timeout[0],
                         sock_read=_request_timeout[1],
                 )
+            elif isinstance(_request_timeout, aiohttp.ClientTimeout):
+                timeout = _request_timeout
 
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'

@@ -18,6 +18,7 @@ class TestRESTClientObject(unittest.IsolatedAsyncioTestCase):
                 (5.0, aiohttp.ClientTimeout(total=5.0)),
                 (3, aiohttp.ClientTimeout(total=3)),
                 ((5, 7), aiohttp.ClientTimeout(connect=5, sock_connect=5, sock_read=7)),
+                (aiohttp.ClientTimeout(total=None), aiohttp.ClientTimeout(total=None)),
         ]:
             with self.subTest(request_timeout=request_timeout, expected_timeout_arg=expected_timeout_arg):
                 mock_request = AsyncMock()
