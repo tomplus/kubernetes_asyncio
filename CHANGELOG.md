@@ -1,5 +1,20 @@
 # v31.1.0
 
+### Breaking changes:
+
+* Websocket connect method returns an asynchronous context manager instead of a websocket ([#328](https://github.com/tomplus/kubernetes_asyncio/pull/328), [@olivier-matz-6wind](https://github.com/olivier-matz-6wind))
+  
+  Example:
+  ```python
+  websocket = await core_v1_ws.connect_get_namespaced_pod_exec(...)
+  # now context manager is returned which can be used in this way:
+  async with websocket as ws:
+     ...
+     await ws.send_bytes(...)
+   ```
+
+### Changes:
+
 * Added `load_config` function ([#331](https://github.com/tomplus/kubernetes_asyncio/pull/331), [@james-mchugh](https://github.com/james-mchugh))
 * Watch() retries 410 errors ([#327](https://github.com/tomplus/kubernetes_asyncio/pull/327), [@tomplus](https://github.com/tomplus))
 * Pod exec enhancements ([#328](https://github.com/tomplus/kubernetes_asyncio/pull/328), [@olivier-matz-6wind](https://github.com/olivier-matz-6wind))
