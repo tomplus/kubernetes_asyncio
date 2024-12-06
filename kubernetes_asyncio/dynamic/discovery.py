@@ -189,7 +189,8 @@ class Discoverer(object):
         resources_raw = list(filter(lambda r: '/' not in r['name'], resources_response))
         subresources_raw = list(filter(lambda r: '/' in r['name'], resources_response))
         for subresource in subresources_raw:
-            resource, name = subresource['name'].split('/')
+            # Handle resources with >2 parts in their name
+            resource, name = subresource['name'].split('/', 1)
             if not subresources.get(resource):
                 subresources[resource] = {}
             subresources[resource][name] = subresource
