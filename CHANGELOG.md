@@ -1,3 +1,9 @@
+# v31.1.1
+
+### Changes:
+
+* Allow resource names >2 parts ([#343](https://github.com/tomplus/kubernetes_asyncio/pull/343), [@edwinpjacques](https://github.com/edwinpjacques))
+
 # v31.1.0
 
 * Added `load_config` function ([#331](https://github.com/tomplus/kubernetes_asyncio/pull/331), [@james-mchugh](https://github.com/james-mchugh))
