@@ -479,23 +479,25 @@ Submodules
    kubernetes_asyncio.client.models.v1_webhook_conversion
    kubernetes_asyncio.client.models.v1_weighted_pod_affinity_term
    kubernetes_asyncio.client.models.v1_windows_security_context_options
-   kubernetes_asyncio.client.models.v1alpha1_audit_annotation
+   kubernetes_asyncio.client.models.v1alpha1_apply_configuration
    kubernetes_asyncio.client.models.v1alpha1_cluster_trust_bundle
    kubernetes_asyncio.client.models.v1alpha1_cluster_trust_bundle_list
    kubernetes_asyncio.client.models.v1alpha1_cluster_trust_bundle_spec
-   kubernetes_asyncio.client.models.v1alpha1_expression_warning
    kubernetes_asyncio.client.models.v1alpha1_group_version_resource
-   kubernetes_asyncio.client.models.v1alpha1_lease_candidate
-   kubernetes_asyncio.client.models.v1alpha1_lease_candidate_list
-   kubernetes_asyncio.client.models.v1alpha1_lease_candidate_spec
+   kubernetes_asyncio.client.models.v1alpha1_json_patch
    kubernetes_asyncio.client.models.v1alpha1_match_condition
    kubernetes_asyncio.client.models.v1alpha1_match_resources
    kubernetes_asyncio.client.models.v1alpha1_migration_condition
+   kubernetes_asyncio.client.models.v1alpha1_mutating_admission_policy
+   kubernetes_asyncio.client.models.v1alpha1_mutating_admission_policy_binding
+   kubernetes_asyncio.client.models.v1alpha1_mutating_admission_policy_binding_list
+   kubernetes_asyncio.client.models.v1alpha1_mutating_admission_policy_binding_spec
+   kubernetes_asyncio.client.models.v1alpha1_mutating_admission_policy_list
+   kubernetes_asyncio.client.models.v1alpha1_mutating_admission_policy_spec
+   kubernetes_asyncio.client.models.v1alpha1_mutation
    kubernetes_asyncio.client.models.v1alpha1_named_rule_with_operations
    kubernetes_asyncio.client.models.v1alpha1_param_kind
    kubernetes_asyncio.client.models.v1alpha1_param_ref
-   kubernetes_asyncio.client.models.v1alpha1_self_subject_review
-   kubernetes_asyncio.client.models.v1alpha1_self_subject_review_status
    kubernetes_asyncio.client.models.v1alpha1_server_storage_version
    kubernetes_asyncio.client.models.v1alpha1_storage_version
    kubernetes_asyncio.client.models.v1alpha1_storage_version_condition
@@ -505,18 +507,13 @@ Submodules
    kubernetes_asyncio.client.models.v1alpha1_storage_version_migration_spec
    kubernetes_asyncio.client.models.v1alpha1_storage_version_migration_status
    kubernetes_asyncio.client.models.v1alpha1_storage_version_status
-   kubernetes_asyncio.client.models.v1alpha1_type_checking
-   kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy
-   kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy_binding
-   kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy_binding_list
-   kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy_binding_spec
-   kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy_list
-   kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy_spec
-   kubernetes_asyncio.client.models.v1alpha1_validating_admission_policy_status
-   kubernetes_asyncio.client.models.v1alpha1_validation
    kubernetes_asyncio.client.models.v1alpha1_variable
    kubernetes_asyncio.client.models.v1alpha1_volume_attributes_class
    kubernetes_asyncio.client.models.v1alpha1_volume_attributes_class_list
+   kubernetes_asyncio.client.models.v1alpha2_lease_candidate
+   kubernetes_asyncio.client.models.v1alpha2_lease_candidate_list
+   kubernetes_asyncio.client.models.v1alpha2_lease_candidate_spec
+   kubernetes_asyncio.client.models.v1alpha3_allocated_device_status
    kubernetes_asyncio.client.models.v1alpha3_allocation_result
    kubernetes_asyncio.client.models.v1alpha3_basic_device
    kubernetes_asyncio.client.models.v1alpha3_cel_device_selector
@@ -534,15 +531,11 @@ Submodules
    kubernetes_asyncio.client.models.v1alpha3_device_request
    kubernetes_asyncio.client.models.v1alpha3_device_request_allocation_result
    kubernetes_asyncio.client.models.v1alpha3_device_selector
+   kubernetes_asyncio.client.models.v1alpha3_network_device_data
    kubernetes_asyncio.client.models.v1alpha3_opaque_device_configuration
-   kubernetes_asyncio.client.models.v1alpha3_pod_scheduling_context
-   kubernetes_asyncio.client.models.v1alpha3_pod_scheduling_context_list
-   kubernetes_asyncio.client.models.v1alpha3_pod_scheduling_context_spec
-   kubernetes_asyncio.client.models.v1alpha3_pod_scheduling_context_status
    kubernetes_asyncio.client.models.v1alpha3_resource_claim
    kubernetes_asyncio.client.models.v1alpha3_resource_claim_consumer_reference
    kubernetes_asyncio.client.models.v1alpha3_resource_claim_list
-   kubernetes_asyncio.client.models.v1alpha3_resource_claim_scheduling_status
    kubernetes_asyncio.client.models.v1alpha3_resource_claim_spec
    kubernetes_asyncio.client.models.v1alpha3_resource_claim_status
    kubernetes_asyncio.client.models.v1alpha3_resource_claim_template
@@ -552,7 +545,26 @@ Submodules
    kubernetes_asyncio.client.models.v1alpha3_resource_slice
    kubernetes_asyncio.client.models.v1alpha3_resource_slice_list
    kubernetes_asyncio.client.models.v1alpha3_resource_slice_spec
+   kubernetes_asyncio.client.models.v1beta1_allocated_device_status
+   kubernetes_asyncio.client.models.v1beta1_allocation_result
    kubernetes_asyncio.client.models.v1beta1_audit_annotation
+   kubernetes_asyncio.client.models.v1beta1_basic_device
+   kubernetes_asyncio.client.models.v1beta1_cel_device_selector
+   kubernetes_asyncio.client.models.v1beta1_device
+   kubernetes_asyncio.client.models.v1beta1_device_allocation_configuration
+   kubernetes_asyncio.client.models.v1beta1_device_allocation_result
+   kubernetes_asyncio.client.models.v1beta1_device_attribute
+   kubernetes_asyncio.client.models.v1beta1_device_capacity
+   kubernetes_asyncio.client.models.v1beta1_device_claim
+   kubernetes_asyncio.client.models.v1beta1_device_claim_configuration
+   kubernetes_asyncio.client.models.v1beta1_device_class
+   kubernetes_asyncio.client.models.v1beta1_device_class_configuration
+   kubernetes_asyncio.client.models.v1beta1_device_class_list
+   kubernetes_asyncio.client.models.v1beta1_device_class_spec
+   kubernetes_asyncio.client.models.v1beta1_device_constraint
+   kubernetes_asyncio.client.models.v1beta1_device_request
+   kubernetes_asyncio.client.models.v1beta1_device_request_allocation_result
+   kubernetes_asyncio.client.models.v1beta1_device_selector
    kubernetes_asyncio.client.models.v1beta1_expression_warning
    kubernetes_asyncio.client.models.v1beta1_ip_address
    kubernetes_asyncio.client.models.v1beta1_ip_address_list
@@ -560,9 +572,23 @@ Submodules
    kubernetes_asyncio.client.models.v1beta1_match_condition
    kubernetes_asyncio.client.models.v1beta1_match_resources
    kubernetes_asyncio.client.models.v1beta1_named_rule_with_operations
+   kubernetes_asyncio.client.models.v1beta1_network_device_data
+   kubernetes_asyncio.client.models.v1beta1_opaque_device_configuration
    kubernetes_asyncio.client.models.v1beta1_param_kind
    kubernetes_asyncio.client.models.v1beta1_param_ref
    kubernetes_asyncio.client.models.v1beta1_parent_reference
+   kubernetes_asyncio.client.models.v1beta1_resource_claim
+   kubernetes_asyncio.client.models.v1beta1_resource_claim_consumer_reference
+   kubernetes_asyncio.client.models.v1beta1_resource_claim_list
+   kubernetes_asyncio.client.models.v1beta1_resource_claim_spec
+   kubernetes_asyncio.client.models.v1beta1_resource_claim_status
+   kubernetes_asyncio.client.models.v1beta1_resource_claim_template
+   kubernetes_asyncio.client.models.v1beta1_resource_claim_template_list
+   kubernetes_asyncio.client.models.v1beta1_resource_claim_template_spec
+   kubernetes_asyncio.client.models.v1beta1_resource_pool
+   kubernetes_asyncio.client.models.v1beta1_resource_slice
+   kubernetes_asyncio.client.models.v1beta1_resource_slice_list
+   kubernetes_asyncio.client.models.v1beta1_resource_slice_spec
    kubernetes_asyncio.client.models.v1beta1_self_subject_review
    kubernetes_asyncio.client.models.v1beta1_self_subject_review_status
    kubernetes_asyncio.client.models.v1beta1_service_cidr
@@ -581,29 +607,6 @@ Submodules
    kubernetes_asyncio.client.models.v1beta1_variable
    kubernetes_asyncio.client.models.v1beta1_volume_attributes_class
    kubernetes_asyncio.client.models.v1beta1_volume_attributes_class_list
-   kubernetes_asyncio.client.models.v1beta3_exempt_priority_level_configuration
-   kubernetes_asyncio.client.models.v1beta3_flow_distinguisher_method
-   kubernetes_asyncio.client.models.v1beta3_flow_schema
-   kubernetes_asyncio.client.models.v1beta3_flow_schema_condition
-   kubernetes_asyncio.client.models.v1beta3_flow_schema_list
-   kubernetes_asyncio.client.models.v1beta3_flow_schema_spec
-   kubernetes_asyncio.client.models.v1beta3_flow_schema_status
-   kubernetes_asyncio.client.models.v1beta3_group_subject
-   kubernetes_asyncio.client.models.v1beta3_limit_response
-   kubernetes_asyncio.client.models.v1beta3_limited_priority_level_configuration
-   kubernetes_asyncio.client.models.v1beta3_non_resource_policy_rule
-   kubernetes_asyncio.client.models.v1beta3_policy_rules_with_subjects
-   kubernetes_asyncio.client.models.v1beta3_priority_level_configuration
-   kubernetes_asyncio.client.models.v1beta3_priority_level_configuration_condition
-   kubernetes_asyncio.client.models.v1beta3_priority_level_configuration_list
-   kubernetes_asyncio.client.models.v1beta3_priority_level_configuration_reference
-   kubernetes_asyncio.client.models.v1beta3_priority_level_configuration_spec
-   kubernetes_asyncio.client.models.v1beta3_priority_level_configuration_status
-   kubernetes_asyncio.client.models.v1beta3_queuing_configuration
-   kubernetes_asyncio.client.models.v1beta3_resource_policy_rule
-   kubernetes_asyncio.client.models.v1beta3_service_account_subject
-   kubernetes_asyncio.client.models.v1beta3_subject
-   kubernetes_asyncio.client.models.v1beta3_user_subject
    kubernetes_asyncio.client.models.v2_container_resource_metric_source
    kubernetes_asyncio.client.models.v2_container_resource_metric_status
    kubernetes_asyncio.client.models.v2_cross_version_object_reference

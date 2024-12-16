@@ -1,3 +1,10 @@
+# v32.0.0
+
+### Breaking changes:
+
+* fix rest api aiohttp timeout ([#337](https://github.com/tomplus/kubernetes_asyncio/pull/337), [@soamicharan](https://github.com/soamicharan)) 
+  This fix may affect you if you don't configure timeout for watch/stream. Previously it was treated as 5 min, now it's forever.
+
 # v31.1.1
 
 ### Changes:
