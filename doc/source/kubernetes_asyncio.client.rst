@@ -20,6 +20,7 @@ Submodules
    kubernetes_asyncio.client.configuration
    kubernetes_asyncio.client.exceptions
    kubernetes_asyncio.client.rest
+   kubernetes_asyncio.client.test_rest
 
 Module contents
 ---------------
