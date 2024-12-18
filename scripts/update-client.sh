@@ -35,7 +35,7 @@ pushd "${CLIENT_ROOT}" > /dev/null
 CLIENT_ROOT=`pwd`
 popd > /dev/null
 
-TEMP_FOLDER=$(mktemp -d) 
+TEMP_FOLDER=$(mktemp -d)
 trap "rm -rf ${TEMP_FOLDER}" EXIT SIGINT
 
 SETTING_FILE="${TEMP_FOLDER}/settings"
