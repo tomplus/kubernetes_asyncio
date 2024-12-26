@@ -3,12 +3,16 @@
 #
 name: Publish to PyPI
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   publish-to-pypi:
     runs-on: ubuntu-latest
-
+    environment:
+      name: pypi
+      url: https://pypi.org/p/kubernetes-asyncio
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -29,6 +33,3 @@ jobs:
       - name: Publish to PyPI
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.pypi_api_token }}
