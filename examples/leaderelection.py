@@ -19,9 +19,7 @@ import uuid
 from kubernetes_asyncio import config
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.leaderelection import electionconfig, leaderelection
-from kubernetes_asyncio.leaderelection.resourcelock.configmaplock import (
-    ConfigMapLock,
-)
+from kubernetes_asyncio.leaderelection.resourcelock.leaselock import LeaseLock
 
 
 async def main():
@@ -59,7 +57,8 @@ async def main():
     async with api_client.ApiClient() as apic:
         # Create config
         leader_election_config = electionconfig.Config(
-            ConfigMapLock(lock_name, lock_namespace, candidate_id, apic),
+            # A legacy ConfigMapLock is also available
+            LeaseLock(lock_name, lock_namespace, candidate_id, apic),
             lease_duration=17,
             renew_deadline=15,
             retry_period=5,

@@ -30,8 +30,8 @@ object. The onstarted_leading coroutine is run as a task, which is cancelled if
 the leader lock is obtained and then lost.
 
 At first all candidates are considered followers. The one to create a lock or
-update an existing lock first becomes the leader and remains so until it keeps
-renewing its lease.
+update an existing lock first becomes the leader and remains so until it fails
+to renew its lease.
 """
 
 
@@ -166,7 +166,7 @@ class LeaderElection:
         # A lock exists with that name
         # Validate old_election_record
         if old_election_record is None:
-            # try to update lock with proper annotation and election record
+            # try to update lock with proper election record
             return await self.update_lock(leader_election_record)
 
         if (
@@ -175,7 +175,7 @@ class LeaderElection:
             or old_election_record.acquire_time is None
             or old_election_record.renew_time is None
         ):
-            # try to update lock with proper annotation and election record
+            # try to update lock with proper election record
             return await self.update_lock(leader_election_record)
 
         # Report transitions
