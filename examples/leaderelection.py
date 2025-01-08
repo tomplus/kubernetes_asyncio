@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import asyncio
+import logging
 import os
 import uuid
 
@@ -20,6 +21,8 @@ from kubernetes_asyncio import config
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.leaderelection import electionconfig, leaderelection
 from kubernetes_asyncio.leaderelection.resourcelock.leaselock import LeaseLock
+
+logging.basicConfig(level=logging.INFO)
 
 
 async def main():

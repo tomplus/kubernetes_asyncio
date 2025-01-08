@@ -69,8 +69,8 @@ class LeaseLock:
                 namespace, body, pretty=True
             )
             return True
-        except ApiException as e:
-            logging.info("Failed to create lock as %s", e)
+        except ApiException:
+            logging.exception("Failed to create lock")
             return False
 
     async def update(self, name, namespace, updated_record):
@@ -90,8 +90,8 @@ class LeaseLock:
                 name=name, namespace=namespace, body=self.lease_reference
             )
             return True
-        except ApiException as e:
-            logging.info("Failed to update lock as %s", e)
+        except ApiException:
+            logging.exception("Failed to update lock")
             return False
 
     def update_lease(self, leader_election_record, current_spec=None):

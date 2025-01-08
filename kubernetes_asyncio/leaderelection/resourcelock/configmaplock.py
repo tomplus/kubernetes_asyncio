@@ -105,8 +105,8 @@ class ConfigMapLock:
                 namespace, body, pretty=True
             )
             return True
-        except ApiException as e:
-            logging.info("Failed to create lock as %s", e)
+        except ApiException:
+            logging.exception("Failed to create lock")
             return False
 
     async def update(self, name, namespace, updated_record):
@@ -125,8 +125,8 @@ class ConfigMapLock:
                 name=name, namespace=namespace, body=self.configmap_reference
             )
             return True
-        except ApiException as e:
-            logging.info("Failed to update lock as %s", e)
+        except ApiException:
+            logging.exception("Failed to update lock")
             return False
 
     def get_lock_object(self, lock_record):
