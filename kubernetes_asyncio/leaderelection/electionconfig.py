@@ -13,20 +13,25 @@
 # limitations under the License.
 
 import logging
+from collections.abc import Coroutine  # noqa:F401
 
 logging.basicConfig(level=logging.INFO)
 
 
 class Config:
     # Validate config, exit if an error is detected
+
+    # onstarted_leading and onstopped_leading are defined as coroutines rather
+    # than callables in order to faciliate passing context. For example, this
+    # allows the ApiClient used by the leader election to be shared and reused.
     def __init__(
         self,
         lock,
         lease_duration,
         renew_deadline,
         retry_period,
-        onstarted_leading,
-        onstopped_leading,
+        onstarted_leading,  # type: Coroutine
+        onstopped_leading=None,  # type: Coroutine | None
     ):
         self.jitter_factor = 1.2
 
@@ -59,11 +64,4 @@ class Config:
             raise ValueError("callback onstarted_leading cannot be None")
         self.onstarted_leading = onstarted_leading
 
-        if onstopped_leading is None:
-            self.onstopped_leading = self.on_stoppedleading_callback
-        else:
-            self.onstopped_leading = onstopped_leading
-
-    # Default callback for when the current candidate if a leader, stops leading
-    def on_stoppedleading_callback(self):
-        logging.info("{} stopped leading".format(self.lock.identity))
+        self.onstopped_leading = onstopped_leading

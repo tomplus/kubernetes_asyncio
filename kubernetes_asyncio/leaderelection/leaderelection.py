@@ -59,7 +59,7 @@ class LeaderElection:
                 )
             )
 
-            task = asyncio.create_task(self.election_config.onstarted_leading())
+            task = asyncio.create_task(self.election_config.onstarted_leading)
 
             await self.renew_loop()
 
@@ -71,7 +71,8 @@ class LeaderElection:
             # Failed to update lease, run onstopped_leading callback. This is
             # preserved in order to continue to provide an interface similar to
             # the one provided by `kubernetes-client/python`.
-            await self.election_config.onstopped_leading()
+            if self.election_config.onstopped_leading is not None:
+                await self.election_config.onstopped_leading
 
     async def acquire(self):
         # Follower

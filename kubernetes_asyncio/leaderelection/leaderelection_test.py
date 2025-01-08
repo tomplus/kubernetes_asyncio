@@ -62,8 +62,8 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             lease_duration=2.5,
             renew_deadline=2,
             retry_period=1.5,
-            onstarted_leading=on_started_leading,
-            onstopped_leading=on_stopped_leading,
+            onstarted_leading=on_started_leading(),
+            onstopped_leading=on_stopped_leading(),
         )
 
         # Enter leader election
@@ -116,8 +116,8 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             lease_duration=2.5,
             renew_deadline=2,
             retry_period=1.5,
-            onstarted_leading=on_started_leading_A,
-            onstopped_leading=on_stopped_leading_A,
+            onstarted_leading=on_started_leading_A(),
+            onstopped_leading=on_stopped_leading_A(),
         )
 
         def on_create_B():
@@ -153,8 +153,8 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             lease_duration=2.5,
             renew_deadline=2,
             retry_period=1.5,
-            onstarted_leading=on_started_leading_B,
-            onstopped_leading=on_stopped_leading_B,
+            onstarted_leading=on_started_leading_B(),
+            onstopped_leading=on_stopped_leading_B(),
         )
 
         mock_lock_B.leader_record = mock_lock_A.leader_record
@@ -246,8 +246,8 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             lease_duration=2.5,
             renew_deadline=2,
             retry_period=1.5,
-            onstarted_leading=on_started_leading,
-            onstopped_leading=on_stopped_leading,
+            onstarted_leading=on_started_leading(),
+            onstopped_leading=on_stopped_leading(),
         )
 
         # Enter leader election
