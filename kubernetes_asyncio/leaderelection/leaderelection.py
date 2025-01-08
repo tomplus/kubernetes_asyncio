@@ -22,7 +22,6 @@ from http import HTTPStatus
 
 from .leaderelectionrecord import LeaderElectionRecord
 
-logging.basicConfig(level=logging.INFO)
 
 """
 This package implements leader election using an annotation in a Kubernetes
@@ -54,9 +53,7 @@ class LeaderElection:
         # Try to create/ acquire a lock
         if await self.acquire():
             logging.info(
-                "{} successfully acquired lease".format(
-                    self.election_config.lock.identity
-                )
+                "%s successfully acquired lease", self.election_config.lock.identity
             )
 
             task = asyncio.create_task(self.election_config.onstarted_leading)
@@ -76,7 +73,7 @@ class LeaderElection:
 
     async def acquire(self):
         # Follower
-        logging.info("{} is a follower".format(self.election_config.lock.identity))
+        logging.info("%s is a follower", self.election_config.lock.identity)
         retry_period = self.election_config.retry_period
 
         while True:
@@ -135,16 +132,14 @@ class LeaderElection:
         if not lock_status:
             if json.loads(old_election_record.body)["code"] != HTTPStatus.NOT_FOUND:
                 logging.info(
-                    "Error retrieving resource lock {} as {}".format(
-                        self.election_config.lock.name, old_election_record.reason
-                    )
+                    "Error retrieving resource lock %s as %s",
+                    self.election_config.lock.name, old_election_record.reason,
                 )
                 return False
 
             logging.info(
-                "{} is trying to create a lock".format(
-                    leader_election_record.holder_identity
-                )
+                "%s is trying to create a lock",
+                leader_election_record.holder_identity,
             )
             create_status = await self.election_config.lock.create(
                 name=self.election_config.lock.name,
@@ -154,9 +149,7 @@ class LeaderElection:
 
             if not create_status:
                 logging.info(
-                    "{} Failed to create lock".format(
-                        leader_election_record.holder_identity
-                    )
+                    "%s Failed to create lock", leader_election_record.holder_identity
                 )
                 return False
 
@@ -186,7 +179,7 @@ class LeaderElection:
             != old_election_record.holder_identity
         ):
             logging.info(
-                "Leader has switched to {}".format(old_election_record.holder_identity)
+                "Leader has switched to %s", old_election_record.holder_identity
             )
 
         if (
@@ -204,9 +197,8 @@ class LeaderElection:
             > int(now_timestamp * 1000)
         ):
             logging.info(
-                "yet to finish lease_duration, lease held by {} and has not expired".format(
-                    old_election_record.holder_identity
-                )
+                "yet to finish lease_duration, lease held by %s and has not expired",
+                old_election_record.holder_identity,
             )
             return False
 
@@ -227,17 +219,14 @@ class LeaderElection:
 
         if not update_status:
             logging.info(
-                "{} failed to acquire lease".format(
-                    leader_election_record.holder_identity
-                )
+                "%s failed to acquire lease", leader_election_record.holder_identity
             )
             return False
 
         self.observed_record = leader_election_record
         self.observed_time_milliseconds = int(time.time() * 1000)
         logging.info(
-            "leader {} has successfully acquired lease".format(
-                leader_election_record.holder_identity
-            )
+            "leader %s has successfully acquired lease",
+            leader_election_record.holder_identity,
         )
         return True

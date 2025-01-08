@@ -12,10 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import logging
 from collections.abc import Coroutine  # noqa:F401
-
-logging.basicConfig(level=logging.INFO)
 
 
 class Config:

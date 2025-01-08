@@ -20,8 +20,6 @@ from kubernetes_asyncio.client.rest import ApiException
 
 from ..leaderelectionrecord import LeaderElectionRecord
 
-logging.basicConfig(level=logging.INFO)
-
 
 class ConfigMapLock:
     def __init__(self, name, namespace, identity, api_client):
@@ -108,7 +106,7 @@ class ConfigMapLock:
             )
             return True
         except ApiException as e:
-            logging.info("Failed to create lock as {}".format(e))
+            logging.info("Failed to create lock as %s", e)
             return False
 
     async def update(self, name, namespace, updated_record):
@@ -128,7 +126,7 @@ class ConfigMapLock:
             )
             return True
         except ApiException as e:
-            logging.info("Failed to update lock as {}".format(e))
+            logging.info("Failed to update lock as %s", e)
             return False
 
     def get_lock_object(self, lock_record):

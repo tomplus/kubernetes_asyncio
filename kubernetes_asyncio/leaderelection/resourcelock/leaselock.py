@@ -20,8 +20,6 @@ from kubernetes_asyncio.client.rest import ApiException
 
 from ..leaderelectionrecord import LeaderElectionRecord
 
-logging.basicConfig(level=logging.INFO)
-
 
 class LeaseLock:
     def __init__(self, name, namespace, identity, api_client):
@@ -72,7 +70,7 @@ class LeaseLock:
             )
             return True
         except ApiException as e:
-            logging.info("Failed to create lock as {}".format(e))
+            logging.info("Failed to create lock as %s", e)
             return False
 
     async def update(self, name, namespace, updated_record):
@@ -93,7 +91,7 @@ class LeaseLock:
             )
             return True
         except ApiException as e:
-            logging.info("Failed to update lock as {}".format(e))
+            logging.info("Failed to update lock as %s", e)
             return False
 
     def update_lease(self, leader_election_record, current_spec=None):
@@ -142,4 +140,4 @@ class LeaseLock:
                 return datetime.strptime(str_time, fmt).isoformat() + "Z"
             except ValueError:
                 pass
-        logging.error("Failed to parse time string: {}".format(str_time))
+        logging.error("Failed to parse time string: %s", str_time)
