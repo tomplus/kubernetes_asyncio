@@ -65,8 +65,10 @@ async def main():
             lease_duration=17,
             renew_deadline=15,
             retry_period=5,
-            onstarted_leading=example_start_func(),
-            onstopped_leading=example_end_func(),
+            # Coroutines are also accepted, to facilitate providing context
+            # (e.g. passing apic)
+            onstarted_leading=example_start_func,
+            onstopped_leading=example_end_func,
         )
 
         # Enter leader election

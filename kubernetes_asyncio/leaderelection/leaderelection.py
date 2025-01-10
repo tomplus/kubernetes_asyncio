@@ -14,6 +14,7 @@
 
 import asyncio
 import datetime
+import inspect
 import json
 import logging
 import sys
@@ -55,7 +56,13 @@ class LeaderElection:
                 "%s successfully acquired lease", self.election_config.lock.identity
             )
 
-            task = asyncio.create_task(self.election_config.onstarted_leading)
+            onstarted_leading_coroutine = (
+                self.election_config.onstarted_leading
+                if inspect.iscoroutine(self.election_config.onstarted_leading)
+                else self.election_config.onstarted_leading()
+            )
+
+            task = asyncio.create_task(onstarted_leading_coroutine)
 
             await self.renew_loop()
 
@@ -68,7 +75,11 @@ class LeaderElection:
             # preserved in order to continue to provide an interface similar to
             # the one provided by `kubernetes-client/python`.
             if self.election_config.onstopped_leading is not None:
-                await self.election_config.onstopped_leading
+                await (
+                    self.election_config.onstopped_leading
+                    if inspect.iscoroutine(self.election_config.onstopped_leading)
+                    else self.election_config.onstopped_leading()
+                )
 
     async def acquire(self):
         # Follower

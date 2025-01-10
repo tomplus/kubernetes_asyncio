@@ -12,23 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from collections.abc import Coroutine  # noqa:F401
+from collections.abc import Callable, Coroutine  # noqa:F401
 
 
 class Config:
     # Validate config, exit if an error is detected
 
-    # onstarted_leading and onstopped_leading are defined as coroutines rather
-    # than callables in order to faciliate passing context. For example, this
-    # allows the ApiClient used by the leader election to be shared and reused.
+    # onstarted_leading and onstopped_leading accept either coroutines or
+    # coroutine functions. Coroutines faciliate passing context, but coroutine
+    # functions can be simpler when passing context is not required.
+    #
+    # One example of when passing context is helpful is sharing the ApiClient
+    # used by the leader election, which can then be used for subsequent
+    # Kubernetes API operations upon onstopped_leading or onstopped_leading.
     def __init__(
         self,
         lock,
         lease_duration,
         renew_deadline,
         retry_period,
-        onstarted_leading,  # type: Coroutine
-        onstopped_leading=None,  # type: Coroutine | None
+        onstarted_leading,  # type: Coroutine | Callable[[], Coroutine]
+        onstopped_leading=None,  # type: Coroutine | Callable[[], Coroutine] | None
     ):
         self.jitter_factor = 1.2
 
