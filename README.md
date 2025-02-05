@@ -52,9 +52,7 @@ async def main():
 
 
 if __name__ == '__main__':
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
-    loop.close()
+    asyncio.run(main())
 ```
 
 More complicated examples, like asynchronous multiple watch or tail logs from pods,
