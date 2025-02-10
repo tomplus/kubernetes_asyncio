@@ -73,6 +73,9 @@ patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch_read_buf
 echo ">>> fix generated rest client and configuration to support customer server hostname TLS verification..."
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_server_hostname_patch.diff"
 patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_tls_server_name_patch.diff"
+echo ">>> fix generated rest client and configuration to support disabling strict TLS verification..."
+patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_disable_ssl_strict_verification_patch.diff"
+patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_disable_ssl_strict_verification_patch.diff"
 echo ">>> fix generated rest client by handling timeout correctly..."
 patch -R "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_timeout.diff"
 

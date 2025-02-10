@@ -61,6 +61,8 @@ class RESTClientObject(object):
         if not configuration.verify_ssl:
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
+        if configuration.disable_strict_ssl_verification:
+            ssl_context.verify_flags &= ~ssl.VERIFY_X509_STRICT
 
         connector = aiohttp.TCPConnector(
             limit=maxsize,
