@@ -1,4 +1,5 @@
 import asyncio
+import ssl
 import unittest
 from unittest.mock import AsyncMock
 import aiohttp
@@ -30,3 +31,10 @@ class TestRESTClientObject(unittest.IsolatedAsyncioTestCase):
                     timeout=expected_timeout_arg,
                     headers={"Content-Type": "application/json"}
                 )
+
+    async def test_disable_ssl_verification(self):
+        configuration = Configuration()
+        configuration.disable_strict_ssl_verification = True
+        rest_api = RESTClientObject(configuration=configuration)
+        ssl_context = rest_api.pool_manager._connector._ssl
+        self.assertEqual(ssl_context.verify_flags & ssl.VERIFY_X509_STRICT, 0)
