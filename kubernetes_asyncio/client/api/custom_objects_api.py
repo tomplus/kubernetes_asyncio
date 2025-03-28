@@ -2971,7 +2971,7 @@ class CustomObjectsApi(object):
         }
 
         return self.api_client.call_api(
-            '/apis/{group}/{version}/{plural}#‎', 'GET',
+            '/apis/{group}/{version}/{plural}', 'GET',
             path_params,
             query_params,
             header_params,
