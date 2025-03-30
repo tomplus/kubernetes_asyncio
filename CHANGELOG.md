@@ -1,3 +1,16 @@
+# v32.3.0
+
+* fix: Delete extra characters in URL ([#354](https://github.com/tomplus/kubernetes_asyncio/pull/354), [satayyeb](https://github.com/satayyeb))
+* feat: Add option to disable ssl.VERIFY_X509_STRICT ([#350](https://github.com/tomplus/kubernetes_asyncio/pull/350), [msw-kialo](https://github.com/msw-kialo))
+* doc: Update README example with asyncio.run ([#348](https://github.com/tomplus/kubernetes_asyncio/pull/348), [PaarthShah](https://github.com/PaarthShah))
+* feat: Add leaderelection module ([#347](https://github.com/tomplus/kubernetes_asyncio/pull/347), [@JacobHenner](https://github.com/JacobHenner))
+
+### API Change
+
+- DRA: CEL expressions using attribute strings exceeded the cost limit because their cost estimation was incomplete. Cost estimation was unnecessarily also computed in the scheduler. ([#129690](https://github.com/kubernetes/kubernetes/pull/129690), [@pohly](https://github.com/pohly)) [SIG Node]
+
+- DRA API: the maximum number of pods which can use the same ResourceClaim is now 256 instead of 32. Beware that downgrading a cluster where this relaxed limit is in use to Kubernetes 1.32.0 is not supported because 1.32.0 would refuse to update ResourceClaims with more than 32 entries in the status.reservedFor field. ([#129544](https://github.com/kubernetes/kubernetes/pull/129544), [@pohly](https://github.com/pohly)) [SIG API Machinery, Node and Testing]
+
 # v32.0.0
 
 ### Breaking changes:
