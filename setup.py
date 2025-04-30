@@ -57,7 +57,8 @@ setup(
         'kubernetes_asyncio.stream',
         'kubernetes_asyncio.client.models',
         'kubernetes_asyncio.utils',
-        'kubernetes_asyncio.leaderelection'],
+        'kubernetes_asyncio.leaderelection',
+        'kubernetes_asyncio.leaderelection.resourcelock'],
     include_package_data=True,
     long_description="""\
     Python client for kubernetes http://kubernetes.io/
