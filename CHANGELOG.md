@@ -1,3 +1,7 @@
+# v32.3.2
+
+* fix: add missing leaderelection.resourcelock package ([#358](https://github.com/tomplus/kubernetes_asyncio/pull/358), [@tomplus](https://github.com/tomplus))
+
 # v32.3.1
 
 * fix: add missing leaderelection package ([#357](https://github.com/tomplus/kubernetes_asyncio/pull/357), [@tomplus](https://github.com/tomplus))
