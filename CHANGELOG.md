@@ -1,8 +1,12 @@
+# v32.3.1
+
+* fix: add missing leaderelection package ([#357](https://github.com/tomplus/kubernetes_asyncio/pull/357), [@tomplus](https://github.com/tomplus))
+
 # v32.3.0
 
-* fix: Delete extra characters in URL ([#354](https://github.com/tomplus/kubernetes_asyncio/pull/354), [satayyeb](https://github.com/satayyeb))
-* feat: Add option to disable ssl.VERIFY_X509_STRICT ([#350](https://github.com/tomplus/kubernetes_asyncio/pull/350), [msw-kialo](https://github.com/msw-kialo))
-* doc: Update README example with asyncio.run ([#348](https://github.com/tomplus/kubernetes_asyncio/pull/348), [PaarthShah](https://github.com/PaarthShah))
+* fix: Delete extra characters in URL ([#354](https://github.com/tomplus/kubernetes_asyncio/pull/354), [@satayyeb](https://github.com/satayyeb))
+* feat: Add option to disable ssl.VERIFY_X509_STRICT ([#350](https://github.com/tomplus/kubernetes_asyncio/pull/350), [@msw-kialo](https://github.com/msw-kialo))
+* doc: Update README example with asyncio.run ([#348](https://github.com/tomplus/kubernetes_asyncio/pull/348), [@PaarthShah](https://github.com/PaarthShah))
 * feat: Add leaderelection module ([#347](https://github.com/tomplus/kubernetes_asyncio/pull/347), [@JacobHenner](https://github.com/JacobHenner))
 
 ### API Change
