@@ -83,6 +83,9 @@ echo ">>> don't deep-copy configuration for local_vars_configuration in models"
 patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_get_default_patch.diff"
 find "${CLIENT_ROOT}/client/models/" -type f -print0 | xargs -0 sed -i 's/local_vars_configuration = Configuration.get_default_copy()/local_vars_configuration = Configuration.get_default()/g'
 
+echo ">>> fix generated api client and configuration for async token refreshing..."
+patch "${CLIENT_ROOT}/client/api_client.py" "${SCRIPT_ROOT}/api_client_async_refresh_api_key_hook.diff"
+patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_async_refresh_api_key_hook.diff"
 
 echo ">>> Remove invalid tests (workaround https://github.com/OpenAPITools/openapi-generator/issues/5377)"
 grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm
