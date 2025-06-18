@@ -27,31 +27,31 @@ CLIENT_VERSION=$(python "${SCRIPT_ROOT}/constants.py" CLIENT_VERSION)
 PACKAGE_NAME=$(python "${SCRIPT_ROOT}/constants.py" PACKAGE_NAME)
 DEVELOPMENT_STATUS=$(python "${SCRIPT_ROOT}/constants.py" DEVELOPMENT_STATUS)
 
-pushd "${SCRIPT_ROOT}" >/dev/null
-SCRIPT_ROOT=$(pwd)
-popd >/dev/null
+pushd "${SCRIPT_ROOT}" > /dev/null
+SCRIPT_ROOT=`pwd`
+popd > /dev/null
 
-pushd "${CLIENT_ROOT}" >/dev/null
-CLIENT_ROOT=$(pwd)
-popd >/dev/null
+pushd "${CLIENT_ROOT}" > /dev/null
+CLIENT_ROOT=`pwd`
+popd > /dev/null
 
-TEMP_FOLDER=$(mktemp -d)
+TEMP_FOLDER=$(mktemp -d) 
 trap "rm -rf ${TEMP_FOLDER}" EXIT SIGINT
 
 SETTING_FILE="${TEMP_FOLDER}/settings"
-echo "export KUBERNETES_BRANCH=\"$(python ${SCRIPT_ROOT}/constants.py KUBERNETES_BRANCH)\"" >$SETTING_FILE
-echo "export CLIENT_VERSION=\"$(python ${SCRIPT_ROOT}/constants.py CLIENT_VERSION)\"" >>$SETTING_FILE
-echo "export PACKAGE_NAME=\"client\"" >>$SETTING_FILE
+echo "export KUBERNETES_BRANCH=\"$(python ${SCRIPT_ROOT}/constants.py KUBERNETES_BRANCH)\"" > $SETTING_FILE
+echo "export CLIENT_VERSION=\"$(python ${SCRIPT_ROOT}/constants.py CLIENT_VERSION)\"" >> $SETTING_FILE
+echo "export PACKAGE_NAME=\"client\"" >> $SETTING_FILE
 # openapi-generator v5.4.0
-echo "export OPENAPI_GENERATOR_COMMIT=4a36be70025e9c0d3ff61731618b7fc2d942c4b6" >>$SETTING_FILE
-echo "unset USERNAME" >>$SETTING_FILE
+echo "export OPENAPI_GENERATOR_COMMIT=4a36be70025e9c0d3ff61731618b7fc2d942c4b6" >> $SETTING_FILE
+echo "unset USERNAME" >> $SETTING_FILE
 
 if [[ -z ${GEN_ROOT:-} ]]; then
-	GEN_ROOT="${TEMP_FOLDER}/gen"
-	echo ">>> Cloning gen repo"
-	git clone --recursive https://github.com/kubernetes-client/gen.git "${GEN_ROOT}"
+    GEN_ROOT="${TEMP_FOLDER}/gen"
+    echo ">>> Cloning gen repo"
+    git clone --recursive https://github.com/kubernetes-client/gen.git "${GEN_ROOT}"
 else
-	echo ">>> Reusing gen repo at ${GEN_ROOT}"
+    echo ">>> Reusing gen repo at ${GEN_ROOT}"
 fi
 
 echo ">>> Running python generator from the gen repo"
@@ -93,5 +93,6 @@ echo ">>> Remove invalid tests (workaround https://github.com/OpenAPITools/opena
 grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm
 echo ">>> Fix API tests (https://github.com/aio-libs/aiohttp/issues/8555)"
 find "${CLIENT_ROOT}/test/" -type f -print0 | xargs -0 sed -i -e 's/unittest.TestCase/unittest.IsolatedAsyncioTestCase/g' -e 's/def setUp(self):/async def asyncSetUp(self):/g'
+
 
 echo ">>> Done."
