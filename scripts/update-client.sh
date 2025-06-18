@@ -66,6 +66,8 @@ sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STAT
 
 echo ">>> fix generated api client for patching with strategic merge..."
 patch "${CLIENT_ROOT}/client/api_client.py" "${SCRIPT_ROOT}/api_client_strategic_merge_patch.diff"
+echo ">>> fix generated api client by adding 'none' check..."
+patch "${CLIENT_ROOT}/client/api_client.py" "${SCRIPT_ROOT}/api_client_response_types_map.diff"
 echo ">>> fix generated rest client by increasing aiohttp read buffer to 2MiB..."
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch_read_bufsize.diff"
 echo ">>> fix generated rest client and configuration to support customer server hostname TLS verification..."
