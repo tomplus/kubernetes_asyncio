@@ -104,12 +104,13 @@ class Watch(object):
 
         # If possible, compile the JSON response into a Python native response
         # type, eg `V1Namespace` or `V1Pod`,`ExtensionsV1beta1Deployment`, ...
-        if response_type and js['type'].lower() != 'bookmark':
+        if response_type:
             js['object'] = self._api_client.deserialize(
                 response=SimpleNamespace(data=json.dumps(js['raw_object'])),
                 response_type=response_type
             )
 
+        if js['type'].lower() != 'bookmark':
             # decode and save resource_version to continue watching
             if hasattr(js['object'], 'metadata'):
                 self.resource_version = js['object'].metadata.resource_version
@@ -120,6 +121,7 @@ class Watch(object):
                     and 'metadata' in js['object']
                     and 'resourceVersion' in js['object']['metadata']):
                 self.resource_version = js['object']['metadata']['resourceVersion']
+
         elif js['type'].lower() == 'bookmark':
             self.resource_version = js['object']['metadata']['resourceVersion']
 
@@ -135,7 +137,16 @@ class Watch(object):
             await self.close()
             raise
 
+    def _reconnect(self):
+        self.resp.close()
+        self.resp = None
+        if self.resource_version:
+            self.func.keywords['resource_version'] = self.resource_version
+
     async def next(self):
+
+        watch_forever = 'timeout_seconds' not in self.func.keywords
+        retry_410 = watch_forever
 
         while 1:
 
@@ -153,27 +164,42 @@ class Watch(object):
             try:
                 line = await self.resp.content.readline()
             except asyncio.TimeoutError:
-                if 'timeout_seconds' not in self.func.keywords:
-                    self.resp.close()
-                    self.resp = None
-                    if self.resource_version:
-                        self.func.keywords['resource_version'] = self.resource_version
+                # This exception can be raised by aiohttp (client timeout)
+                # but we don't retry if server side timeout is applied.
+                if watch_forever:
+                    self._reconnect()
                     continue
                 else:
                     raise
 
             line = line.decode('utf8')
 
+            # Special case for faster log streaming
+            if self.return_type == 'str':
+                if line == '':
+                    # end of log
+                    raise StopAsyncIteration
+                return line
+
             # Stop the iterator if K8s sends an empty response. This happens when
             # eg the supplied timeout has expired.
             if line == '':
+                if watch_forever:
+                    self._reconnect()
+                    continue
                 raise StopAsyncIteration
 
-            # Special case for faster log streaming
-            if self.return_type == 'str':
-                return line
-
-            return self.unmarshal_event(line, self.return_type)
+            # retry 410 error only once
+            try:
+                event = self.unmarshal_event(line, self.return_type)
+            except client.exceptions.ApiException as ex:
+                if ex.status == 410 and retry_410:
+                    retry_410 = False  # retry only once
+                    self._reconnect()
+                    continue
+                raise
+            retry_410 = watch_forever
+            return event
 
     def stream(self, func, *args, **kwargs):
         """Watch an API resource and stream the result back via a generator.

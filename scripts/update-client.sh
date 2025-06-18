@@ -27,31 +27,31 @@ CLIENT_VERSION=$(python "${SCRIPT_ROOT}/constants.py" CLIENT_VERSION)
 PACKAGE_NAME=$(python "${SCRIPT_ROOT}/constants.py" PACKAGE_NAME)
 DEVELOPMENT_STATUS=$(python "${SCRIPT_ROOT}/constants.py" DEVELOPMENT_STATUS)
 
-pushd "${SCRIPT_ROOT}" > /dev/null
-SCRIPT_ROOT=`pwd`
-popd > /dev/null
+pushd "${SCRIPT_ROOT}" >/dev/null
+SCRIPT_ROOT=$(pwd)
+popd >/dev/null
 
-pushd "${CLIENT_ROOT}" > /dev/null
-CLIENT_ROOT=`pwd`
-popd > /dev/null
+pushd "${CLIENT_ROOT}" >/dev/null
+CLIENT_ROOT=$(pwd)
+popd >/dev/null
 
-TEMP_FOLDER=$(mktemp -d) 
+TEMP_FOLDER=$(mktemp -d)
 trap "rm -rf ${TEMP_FOLDER}" EXIT SIGINT
 
 SETTING_FILE="${TEMP_FOLDER}/settings"
-echo "export KUBERNETES_BRANCH=\"$(python ${SCRIPT_ROOT}/constants.py KUBERNETES_BRANCH)\"" > $SETTING_FILE
-echo "export CLIENT_VERSION=\"$(python ${SCRIPT_ROOT}/constants.py CLIENT_VERSION)\"" >> $SETTING_FILE
-echo "export PACKAGE_NAME=\"client\"" >> $SETTING_FILE
+echo "export KUBERNETES_BRANCH=\"$(python ${SCRIPT_ROOT}/constants.py KUBERNETES_BRANCH)\"" >$SETTING_FILE
+echo "export CLIENT_VERSION=\"$(python ${SCRIPT_ROOT}/constants.py CLIENT_VERSION)\"" >>$SETTING_FILE
+echo "export PACKAGE_NAME=\"client\"" >>$SETTING_FILE
 # openapi-generator v5.4.0
-echo "export OPENAPI_GENERATOR_COMMIT=4a36be70025e9c0d3ff61731618b7fc2d942c4b6" >> $SETTING_FILE
-echo "unset USERNAME" >> $SETTING_FILE
+echo "export OPENAPI_GENERATOR_COMMIT=4a36be70025e9c0d3ff61731618b7fc2d942c4b6" >>$SETTING_FILE
+echo "unset USERNAME" >>$SETTING_FILE
 
 if [[ -z ${GEN_ROOT:-} ]]; then
-    GEN_ROOT="${TEMP_FOLDER}/gen"
-    echo ">>> Cloning gen repo"
-    git clone --recursive https://github.com/kubernetes-client/gen.git "${GEN_ROOT}"
+	GEN_ROOT="${TEMP_FOLDER}/gen"
+	echo ">>> Cloning gen repo"
+	git clone --recursive https://github.com/kubernetes-client/gen.git "${GEN_ROOT}"
 else
-    echo ">>> Reusing gen repo at ${GEN_ROOT}"
+	echo ">>> Reusing gen repo at ${GEN_ROOT}"
 fi
 
 echo ">>> Running python generator from the gen repo"
@@ -68,18 +68,30 @@ echo ">>> fix generated api client for patching with strategic merge..."
 patch "${CLIENT_ROOT}/client/api_client.py" "${SCRIPT_ROOT}/api_client_strategic_merge_patch.diff"
 echo ">>> fix generated api client by adding 'none' check..."
 patch "${CLIENT_ROOT}/client/api_client.py" "${SCRIPT_ROOT}/api_client_response_types_map.diff"
+echo ">>> fix generated rest client by accepting application/apply-patch+yaml content type"
+patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_apply_patch_patch.diff"
 echo ">>> fix generated rest client by increasing aiohttp read buffer to 2MiB..."
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_patch_read_bufsize.diff"
 echo ">>> fix generated rest client and configuration to support customer server hostname TLS verification..."
 patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_server_hostname_patch.diff"
 patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_tls_server_name_patch.diff"
+echo ">>> fix generated rest client and configuration to support disabling strict TLS verification..."
+patch "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_disable_ssl_strict_verification_patch.diff"
+patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_disable_ssl_strict_verification_patch.diff"
+echo ">>> fix generated rest client by handling timeout correctly..."
+patch -R "${CLIENT_ROOT}/client/rest.py" "${SCRIPT_ROOT}/rest_client_timeout.diff"
 
 echo ">>> don't deep-copy configuration for local_vars_configuration in models"
 patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_get_default_patch.diff"
 find "${CLIENT_ROOT}/client/models/" -type f -print0 | xargs -0 sed -i 's/local_vars_configuration = Configuration.get_default_copy()/local_vars_configuration = Configuration.get_default()/g'
 
+echo ">>> fix generated api client and configuration for async token refreshing..."
+patch "${CLIENT_ROOT}/client/api_client.py" "${SCRIPT_ROOT}/api_client_async_refresh_api_key_hook.diff"
+patch "${CLIENT_ROOT}/client/configuration.py" "${SCRIPT_ROOT}/client_configuration_async_refresh_api_key_hook.diff"
 
 echo ">>> Remove invalid tests (workaround https://github.com/OpenAPITools/openapi-generator/issues/5377)"
 grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' | sort | uniq | xargs rm
+echo ">>> Fix API tests (https://github.com/aio-libs/aiohttp/issues/8555)"
+find "${CLIENT_ROOT}/test/" -type f -print0 | xargs -0 sed -i -e 's/unittest.TestCase/unittest.IsolatedAsyncioTestCase/g' -e 's/def setUp(self):/async def asyncSetUp(self):/g'
 
 echo ">>> Done."

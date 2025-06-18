@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -250,7 +250,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -333,7 +333,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 ### HTTP response details
 | Status code | Description | Response headers |
@@ -404,7 +404,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 ### HTTP response details
 | Status code | Description | Response headers |

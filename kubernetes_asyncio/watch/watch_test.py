@@ -74,7 +74,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         fake_resp = AsyncMock()
         fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
-        side_effects = ['log_line_1', 'log_line_2']
+        side_effects = ['log_line_1', 'log_line_2', '']
         side_effects = [_.encode('utf8') for _ in side_effects]
         side_effects.extend([AssertionError('Should not have been called')])
         fake_resp.content.readline.side_effect = side_effects
@@ -84,16 +84,12 @@ class WatchTest(IsolatedAsyncioTestCase):
         fake_api.read_namespaced_pod_log.__doc__ = ':param follow:\n:type follow: bool\n:rtype: str'
 
         watch = kubernetes_asyncio.watch.Watch()
-        count = 1
+        logs = []
         async with watch:
             async for e in watch.stream(fake_api.read_namespaced_pod_log):
-                self.assertEqual("log_line_1", e)
-                # Stop the watch. This must not return the next event which would
-                # be an AssertionError exception.
-                count += 1
-                if count == len(side_effects) - 1:
-                    watch.stop()
+                logs.append(e)
 
+        self.assertListEqual(logs, ['log_line_1', 'log_line_2'])
         fake_api.read_namespaced_pod_log.assert_called_once_with(
             _preload_content=False, follow=True)
         fake_resp.release.assert_called_once_with()
@@ -127,7 +123,7 @@ class WatchTest(IsolatedAsyncioTestCase):
             cnt += 1
         self.assertEqual(cnt, len(side_effects))
 
-    def test_unmarshal_with_float_object(self):
+    async def test_unmarshal_with_float_object(self):
         w = Watch()
         event = w.unmarshal_event('{"type": "ADDED", "object": 1}', 'float')
         self.assertEqual("ADDED", event['type'])
@@ -135,7 +131,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         self.assertTrue(isinstance(event['object'], float))
         self.assertEqual(1, event['raw_object'])
 
-    def test_unmarshal_without_return_type(self):
+    async def test_unmarshal_without_return_type(self):
         w = Watch()
         event = w.unmarshal_event(
             '{"type": "ADDED", "object": ["test1"]}', None)
@@ -143,7 +139,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         self.assertEqual(["test1"], event['object'])
         self.assertEqual(["test1"], event['raw_object'])
 
-    def test_unmarshal_with_empty_return_type(self):
+    async def test_unmarshal_with_empty_return_type(self):
         # empty string as a return_type is a default value
         # if watch can't detect object by function's name
         w = Watch()
@@ -201,7 +197,7 @@ class WatchTest(IsolatedAsyncioTestCase):
                 r'\(401\)\nReason: Unauthorized: Unauthorized'):
             Watch().unmarshal_event(json.dumps(k8s_err), None)
 
-    def test_unmarshal_with_custom_object(self):
+    async def test_unmarshal_with_custom_object(self):
         w = Watch()
         event = w.unmarshal_event('{"type": "ADDED", "object": {"apiVersion":'
                                   '"test.com/v1beta1","kind":"foo","metadata":'
@@ -227,7 +223,7 @@ class WatchTest(IsolatedAsyncioTestCase):
             async for e in watch.stream(fake_api.get_namespaces, timeout_seconds=10): # noqa
                 pass
 
-    async def test_watch_timeout(self):
+    async def test_watch_retry_timeout(self):
         fake_resp = AsyncMock()
         fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
@@ -256,6 +252,108 @@ class WatchTest(IsolatedAsyncioTestCase):
              call(_preload_content=False, watch=True, resource_version='1555')])
         fake_resp.release.assert_called_once_with()
 
+    async def test_watch_retry_410(self):
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
+        fake_resp.release = Mock()
+
+        mock_event1 = {
+            "type": "ADDED",
+            "object": {
+                "metadata":
+                    {
+                        "name": "test1555",
+                        "resourceVersion": "1555"
+                    },
+                "spec": {},
+                "status": {}
+            }
+        }
+
+        mock_event2 = {
+            "type": "ADDED",
+            "object": {
+                "metadata":
+                    {
+                        "name": "test1555",
+                        "resourceVersion": "1555"
+                    },
+                "spec": {},
+                "status": {}
+            }
+        }
+
+        mock_410 = {
+            'type': 'ERROR',
+            'object': {
+                'kind': 'Status',
+                'apiVersion': 'v1',
+                'metadata': {},
+                'status': 'Failure',
+                'message': 'too old resource version: 1 (8146471)',
+                'reason': 'Gone',
+                'code': 410
+            }
+        }
+
+        # retry 410
+        fake_resp.content.readline.side_effect = [json.dumps(mock_event1).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  json.dumps(mock_event2).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  b""]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
+
+        watch = kubernetes_asyncio.watch.Watch()
+        async with watch.stream(fake_api.get_namespaces) as stream:
+            async for e in stream: # noqa
+                pass
+
+        fake_api.get_namespaces.assert_has_calls(
+            [call(_preload_content=False, watch=True),
+             call(_preload_content=False, watch=True, resource_version='1555')])
+        fake_resp.release.assert_called_once_with()
+
+        # retry 410 only once
+        fake_resp.content.readline.side_effect = [json.dumps(mock_event1).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  json.dumps(mock_event2).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  b""]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
+
+        with self.assertRaisesRegex(
+                kubernetes_asyncio.client.exceptions.ApiException,
+                r'\(410\)\nReason: Gone: too old resource version: 1 \(8146471\)'):
+            watch = kubernetes_asyncio.watch.Watch()
+            async with watch.stream(fake_api.get_namespaces) as stream:
+                async for e in stream: # noqa
+                    pass
+
+        # no retry 410 if timeout is passed
+        fake_resp.content.readline.side_effect = [json.dumps(mock_event1).encode('utf8'),
+                                                  json.dumps(mock_410).encode('utf8'),
+                                                  b""]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ':rtype: V1NamespaceList'
+
+        with self.assertRaisesRegex(
+                kubernetes_asyncio.client.exceptions.ApiException,
+                r'\(410\)\nReason: Gone: too old resource version: 1 \(8146471\)'):
+            watch = kubernetes_asyncio.watch.Watch()
+            async with watch.stream(fake_api.get_namespaces, timeout_seconds=10) as stream:
+                async for e in stream: # noqa
+                    pass
+
     async def test_watch_timeout_with_resource_version(self):
         fake_resp = AsyncMock()
         fake_resp.content.readline = AsyncMock()
@@ -281,7 +379,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         fake_resp.release.assert_called_once_with()
         self.assertEqual(watch.resource_version, '10')
 
-    def test_unmarshal_bookmark_succeeds_and_preserves_resource_version(self):
+    async def test_unmarshal_bookmark_succeeds_and_preserves_resource_version(self):
         w = Watch()
         event = w.unmarshal_event('{"type": "BOOKMARK", "object": {"apiVersion":'
                                   '"test.com/v1beta1","kind":"foo","metadata":'
