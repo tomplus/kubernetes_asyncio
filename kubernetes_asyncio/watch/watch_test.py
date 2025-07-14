@@ -409,3 +409,17 @@ class WatchTest(IsolatedAsyncioTestCase):
         self.assertTrue(isinstance(event['raw_object'], dict))
         self.assertEqual("1", event['raw_object']['metadata']['resourceVersion'])
         self.assertEqual("1", w.resource_version)
+
+    async def test_unmarshall_job_bookmark_malformed_object_fails(self):
+        # An actual error response sent by K8s during testing.
+        k8s_err = {
+            'type': 'BOOKMARK',
+            'object': {
+                'kind': 'Job',
+                'apiVersion': 'batch/v1',
+                'metadata': {},
+            }
+        }
+
+        with self.assertRaises(Exception):
+            Watch().unmarshal_event(json.dumps(k8s_err), None)
