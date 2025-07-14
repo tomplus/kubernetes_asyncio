@@ -123,7 +123,10 @@ class Watch(object):
                 self.resource_version = js['object']['metadata']['resourceVersion']
 
         elif js['type'].lower() == 'bookmark':
-            self.resource_version = js['raw_object']['metadata']['resourceVersion']
+            if (isinstance(js['raw_object'], dict)
+                    and 'metadata' in js['raw_object']
+                    and 'resourceVersion' in js['raw_object']['metadata']):
+                self.resource_version = js['raw_object']['metadata']['resourceVersion']
 
         return js
 
