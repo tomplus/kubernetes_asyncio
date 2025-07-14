@@ -129,8 +129,8 @@ class Watch(object):
                 self.resource_version = js['raw_object']['metadata']['resourceVersion']
             else:
                 raise Exception(("Malformed JSON response for bookmark event, "
-                                "'metadata' or 'resourceVersion' field is missing. "
-                                "JSON: {}").format(js))
+                                 "'metadata' or 'resourceVersion' field is missing. "
+                                 "JSON: {}").format(js))
 
         return js
 
