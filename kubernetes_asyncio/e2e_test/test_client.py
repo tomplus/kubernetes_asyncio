@@ -17,7 +17,9 @@ import uuid
 from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client import api_client
-from kubernetes_asyncio.client.api import core_v1_api
+from kubernetes_asyncio.client.api import (
+    apiextensions_v1_api, core_v1_api, custom_objects_api,
+)
 from kubernetes_asyncio.e2e_test import base
 from kubernetes_asyncio.stream import WsApiClient
 
@@ -185,6 +187,92 @@ class TestClient(IsolatedAsyncioTestCase):
         self.assertTrue(resp.status)
         resp = await api.delete_namespaced_service(
             name=name, body={}, namespace="default"
+        )
+
+    async def test_custom_objects_api(self):
+        client = api_client.ApiClient(configuration=self.config)
+
+        apiextensions_api_client = apiextensions_v1_api.ApiextensionsV1Api(client)
+        custom_objects_api_client = custom_objects_api.CustomObjectsApi(client)
+
+        name = 'clusterchangemes.apps.example.com'
+        crd_manifest = {
+            "apiVersion": "apiextensions.k8s.io/v1",
+            "kind": "CustomResourceDefinition",
+            "metadata": {
+                "name": name,
+            },
+            "spec": {
+                "group": "apps.example.com",
+                "names": {
+                    "kind": "ClusterChangeMe",
+                    "listKind": "ClusterChangeMeList",
+                    "plural": "clusterchangemes",
+                    "singular": "clusterchangeme",
+                },
+                "scope": "Cluster",
+                "versions": [
+                    {
+                        "name": "v1",
+                        "served": True,
+                        "storage": True,
+                        "schema": {
+                            "openAPIV3Schema": {
+                                "type": "object",
+                                "properties": {
+                                    "spec": {
+                                        "type": "object",
+                                        "properties": {
+                                            "size": {"type": "integer"}
+                                        },
+                                    }
+                                },
+                            }
+                        },
+                    }
+                ],
+            },
+        }
+        custom_object_manifest = {
+            'apiVersion': 'apps.example.com/v1',
+            'kind': 'ClusterChangeMe',
+            'metadata': {
+                'name': "changeme-name",
+            },
+            'spec': {}
+        }
+
+        await apiextensions_api_client.create_custom_resource_definition(
+            crd_manifest
+        )
+
+        await apiextensions_api_client.read_custom_resource_definition(
+            crd_manifest["metadata"]["name"]
+        )
+
+        await custom_objects_api_client.create_cluster_custom_object(
+            crd_manifest["spec"]["group"],
+            crd_manifest["spec"]["versions"][0]["name"],
+            crd_manifest["spec"]["names"]["plural"],
+            custom_object_manifest
+        )
+
+        # json merge patch (implied)
+        resp = await custom_objects_api_client.patch_cluster_custom_object(
+            group=crd_manifest["spec"]["group"],
+            version=crd_manifest["spec"]["versions"][0]["name"],
+            plural=crd_manifest["spec"]["names"]["plural"],
+            name=custom_object_manifest["metadata"]["name"],
+            body={
+                "spec": {
+                    "size": 0
+                }
+            },
+        )
+        self.assertEqual(resp["spec"]["size"], 0)
+
+        await apiextensions_api_client.delete_custom_resource_definition(
+            crd_manifest["metadata"]["name"]
         )
 
     async def test_replication_controller_apis(self):
