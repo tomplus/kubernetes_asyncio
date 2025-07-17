@@ -389,6 +389,37 @@ class WatchTest(IsolatedAsyncioTestCase):
 
         # make sure the resource version is preserved,
         # and the watcher's resource_version is updated
-        self.assertTrue(isinstance(event['object'], dict))
-        self.assertEqual("1", event['object']['metadata']['resourceVersion'])
+        self.assertTrue(isinstance(event['raw_object'], dict))
+        self.assertEqual("1", event['raw_object']['metadata']['resourceVersion'])
         self.assertEqual("1", w.resource_version)
+
+    async def test_unmarshal_job_bookmark_succeeds_and_preserves_resource_version(self):
+        w = Watch()
+        event = w.unmarshal_event('{"type": "BOOKMARK", "object": {"apiVersion":'
+                                  '"batch/v1","kind":"Job","metadata":'
+                                  '{"name": "bar", "resourceVersion": "1"},'
+                                  '"spec": {"template": {"metadata": '
+                                  '{"creationTimestamp":null}, "spec": '
+                                  '{"containers":null}}}}}',
+                                  'object')
+        self.assertEqual("BOOKMARK", event['type'])
+
+        # make sure the resource version is preserved,
+        # and the watcher's resource_version is updated
+        self.assertTrue(isinstance(event['raw_object'], dict))
+        self.assertEqual("1", event['raw_object']['metadata']['resourceVersion'])
+        self.assertEqual("1", w.resource_version)
+
+    async def test_unmarshall_job_bookmark_malformed_object_fails(self):
+        # An actual error response sent by K8s during testing.
+        k8s_err = {
+            'type': 'BOOKMARK',
+            'object': {
+                'kind': 'Job',
+                'apiVersion': 'batch/v1',
+                'metadata': {},
+            }
+        }
+
+        with self.assertRaises(Exception):
+            Watch().unmarshal_event(json.dumps(k8s_err), None)

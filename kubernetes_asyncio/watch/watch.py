@@ -102,15 +102,15 @@ class Watch(object):
             reason = "{}: {}".format(obj['reason'], obj['message'])
             raise client.exceptions.ApiException(status=obj['code'], reason=reason)
 
-        # If possible, compile the JSON response into a Python native response
-        # type, eg `V1Namespace` or `V1Pod`,`ExtensionsV1beta1Deployment`, ...
-        if response_type:
-            js['object'] = self._api_client.deserialize(
-                response=SimpleNamespace(data=json.dumps(js['raw_object'])),
-                response_type=response_type
-            )
-
         if js['type'].lower() != 'bookmark':
+            # If possible, compile the JSON response into a Python native response
+            # type, eg `V1Namespace` or `V1Pod`,`ExtensionsV1beta1Deployment`, ...
+            if response_type:
+                js['object'] = self._api_client.deserialize(
+                    response=SimpleNamespace(data=json.dumps(js['raw_object'])),
+                    response_type=response_type
+                )
+
             # decode and save resource_version to continue watching
             if hasattr(js['object'], 'metadata'):
                 self.resource_version = js['object'].metadata.resource_version
@@ -123,7 +123,14 @@ class Watch(object):
                 self.resource_version = js['object']['metadata']['resourceVersion']
 
         elif js['type'].lower() == 'bookmark':
-            self.resource_version = js['object']['metadata']['resourceVersion']
+            if (isinstance(js['raw_object'], dict)
+                    and 'metadata' in js['raw_object']
+                    and 'resourceVersion' in js['raw_object']['metadata']):
+                self.resource_version = js['raw_object']['metadata']['resourceVersion']
+            else:
+                raise Exception(("Malformed JSON response for bookmark event, "
+                                 "'metadata' or 'resourceVersion' field is missing. "
+                                 "JSON: {}").format(js))
 
         return js
 
