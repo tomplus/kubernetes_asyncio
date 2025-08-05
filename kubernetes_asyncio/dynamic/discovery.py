@@ -22,8 +22,9 @@ from collections import defaultdict
 from functools import partial
 from typing import Dict
 
-from urllib3.exceptions import MaxRetryError, ProtocolError
 from aiohttp.client_exceptions import ContentTypeError
+from urllib3.exceptions import MaxRetryError, ProtocolError
+
 
 from kubernetes_asyncio import __version__
 
