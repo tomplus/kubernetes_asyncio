@@ -22,6 +22,7 @@ from collections import defaultdict
 from functools import partial
 from typing import Dict
 
+from aiohttp.client_exceptions import ContentTypeError
 from urllib3.exceptions import MaxRetryError, ProtocolError
 
 from kubernetes_asyncio import __version__
@@ -183,7 +184,9 @@ class Discoverer(object):
         try:
             response = await self.client.request('GET', path)
             resources_response = response.resources or []
-        except ServiceUnavailableError:
+        except (ServiceUnavailableError, ContentTypeError):
+            # Handle both service unavailable errors and content type errors
+            # (e.g., when server returns 503 with text/plain)
             resources_response = []
 
         resources_raw = list(filter(lambda r: '/' not in r['name'], resources_response))
