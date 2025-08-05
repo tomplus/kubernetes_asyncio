@@ -25,7 +25,6 @@ from typing import Dict
 from aiohttp.client_exceptions import ContentTypeError
 from urllib3.exceptions import MaxRetryError, ProtocolError
 
-
 from kubernetes_asyncio import __version__
 
 from .exceptions import (
