@@ -56,7 +56,7 @@ class V1PodAffinityTerm(object):
     def __init__(self, label_selector=None, match_label_keys=None, mismatch_label_keys=None, namespace_selector=None, namespaces=None, topology_key=None, local_vars_configuration=None):  # noqa: E501
         """V1PodAffinityTerm - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._label_selector = None

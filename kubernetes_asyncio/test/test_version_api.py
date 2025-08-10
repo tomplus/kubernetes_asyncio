@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.version_api import VersionApi  # noqa: E501
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestVersionApi(unittest.TestCase):
+class TestVersionApi(unittest.IsolatedAsyncioTestCase):
     """VersionApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.version_api.VersionApi()  # noqa: E501
 
     def tearDown(self):

@@ -56,7 +56,7 @@ class V1beta1LeaseCandidateSpec(object):
     def __init__(self, binary_version=None, emulation_version=None, lease_name=None, ping_time=None, renew_time=None, strategy=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1LeaseCandidateSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._binary_version = None

@@ -50,7 +50,7 @@ class V2ObjectMetricStatus(object):
     def __init__(self, current=None, described_object=None, metric=None, local_vars_configuration=None):  # noqa: E501
         """V2ObjectMetricStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._current = None

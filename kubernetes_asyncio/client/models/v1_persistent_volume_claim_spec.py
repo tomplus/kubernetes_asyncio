@@ -62,7 +62,7 @@ class V1PersistentVolumeClaimSpec(object):
     def __init__(self, access_modes=None, data_source=None, data_source_ref=None, resources=None, selector=None, storage_class_name=None, volume_attributes_class_name=None, volume_mode=None, volume_name=None, local_vars_configuration=None):  # noqa: E501
         """V1PersistentVolumeClaimSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._access_modes = None

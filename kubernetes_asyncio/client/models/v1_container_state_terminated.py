@@ -58,7 +58,7 @@ class V1ContainerStateTerminated(object):
     def __init__(self, container_id=None, exit_code=None, finished_at=None, message=None, reason=None, signal=None, started_at=None, local_vars_configuration=None):  # noqa: E501
         """V1ContainerStateTerminated - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._container_id = None

@@ -62,7 +62,7 @@ class V1ResourceAttributes(object):
     def __init__(self, field_selector=None, group=None, label_selector=None, name=None, namespace=None, resource=None, subresource=None, verb=None, version=None, local_vars_configuration=None):  # noqa: E501
         """V1ResourceAttributes - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._field_selector = None

@@ -54,7 +54,7 @@ class V1alpha3DeviceTaintSelector(object):
     def __init__(self, device=None, device_class_name=None, driver=None, pool=None, selectors=None, local_vars_configuration=None):  # noqa: E501
         """V1alpha3DeviceTaintSelector - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._device = None

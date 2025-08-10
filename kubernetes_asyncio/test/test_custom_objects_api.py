@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.custom_objects_api import CustomObjectsApi  #
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestCustomObjectsApi(unittest.TestCase):
+class TestCustomObjectsApi(unittest.IsolatedAsyncioTestCase):
     """CustomObjectsApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.custom_objects_api.CustomObjectsApi()  # noqa: E501
 
     def tearDown(self):

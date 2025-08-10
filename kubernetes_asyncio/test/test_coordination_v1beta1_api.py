@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.coordination_v1beta1_api import CoordinationV
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestCoordinationV1beta1Api(unittest.TestCase):
+class TestCoordinationV1beta1Api(unittest.IsolatedAsyncioTestCase):
     """CoordinationV1beta1Api unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.coordination_v1beta1_api.CoordinationV1beta1Api()  # noqa: E501
 
     def tearDown(self):

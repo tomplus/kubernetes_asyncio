@@ -54,7 +54,7 @@ class V1ConfigMapNodeConfigSource(object):
     def __init__(self, kubelet_config_key=None, name=None, namespace=None, resource_version=None, uid=None, local_vars_configuration=None):  # noqa: E501
         """V1ConfigMapNodeConfigSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._kubelet_config_key = None

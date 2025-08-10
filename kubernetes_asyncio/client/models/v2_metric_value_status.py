@@ -50,7 +50,7 @@ class V2MetricValueStatus(object):
     def __init__(self, average_utilization=None, average_value=None, value=None, local_vars_configuration=None):  # noqa: E501
         """V2MetricValueStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._average_utilization = None

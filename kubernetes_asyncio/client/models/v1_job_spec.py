@@ -76,7 +76,7 @@ class V1JobSpec(object):
     def __init__(self, active_deadline_seconds=None, backoff_limit=None, backoff_limit_per_index=None, completion_mode=None, completions=None, managed_by=None, manual_selector=None, max_failed_indexes=None, parallelism=None, pod_failure_policy=None, pod_replacement_policy=None, selector=None, success_policy=None, suspend=None, template=None, ttl_seconds_after_finished=None, local_vars_configuration=None):  # noqa: E501
         """V1JobSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._active_deadline_seconds = None

@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.storage_v1beta1_api import StorageV1beta1Api 
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestStorageV1beta1Api(unittest.TestCase):
+class TestStorageV1beta1Api(unittest.IsolatedAsyncioTestCase):
     """StorageV1beta1Api unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.storage_v1beta1_api.StorageV1beta1Api()  # noqa: E501
 
     def tearDown(self):

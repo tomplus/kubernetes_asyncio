@@ -58,7 +58,7 @@ class V1CSIStorageCapacity(object):
     def __init__(self, api_version=None, capacity=None, kind=None, maximum_volume_size=None, metadata=None, node_topology=None, storage_class_name=None, local_vars_configuration=None):  # noqa: E501
         """V1CSIStorageCapacity - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._api_version = None

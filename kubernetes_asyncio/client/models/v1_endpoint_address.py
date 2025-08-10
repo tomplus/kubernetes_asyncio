@@ -52,7 +52,7 @@ class V1EndpointAddress(object):
     def __init__(self, hostname=None, ip=None, node_name=None, target_ref=None, local_vars_configuration=None):  # noqa: E501
         """V1EndpointAddress - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._hostname = None

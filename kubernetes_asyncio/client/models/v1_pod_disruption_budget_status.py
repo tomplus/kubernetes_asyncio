@@ -58,7 +58,7 @@ class V1PodDisruptionBudgetStatus(object):
     def __init__(self, conditions=None, current_healthy=None, desired_healthy=None, disrupted_pods=None, disruptions_allowed=None, expected_pods=None, observed_generation=None, local_vars_configuration=None):  # noqa: E501
         """V1PodDisruptionBudgetStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._conditions = None

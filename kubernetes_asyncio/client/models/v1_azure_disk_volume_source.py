@@ -56,7 +56,7 @@ class V1AzureDiskVolumeSource(object):
     def __init__(self, caching_mode=None, disk_name=None, disk_uri=None, fs_type=None, kind=None, read_only=None, local_vars_configuration=None):  # noqa: E501
         """V1AzureDiskVolumeSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._caching_mode = None

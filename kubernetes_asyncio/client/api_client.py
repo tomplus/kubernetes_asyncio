@@ -165,7 +165,7 @@ class ApiClient(object):
             post_params.extend(self.files_parameters(files))
 
         # auth setting
-        self.update_params_for_auth(
+        await self.update_params_for_auth(
             header_params, query_params, auth_settings,
             request_auth=_request_auth)
 
@@ -198,7 +198,9 @@ class ApiClient(object):
         if not _preload_content:
             return return_data
 
-        response_type = response_types_map.get(response_data.status, None)
+        response_type = None
+        if response_types_map:
+            response_type = response_types_map.get(response_data.status, None)
 
         if six.PY3 and response_type not in ["file", "bytes"]:
             match = None
@@ -548,7 +550,7 @@ class ApiClient(object):
         else:
             return content_types[0]
 
-    def update_params_for_auth(self, headers, queries, auth_settings,
+    async def update_params_for_auth(self, headers, queries, auth_settings,
                                request_auth=None):
         """Updates header and query params based on authentication setting.
 
@@ -566,7 +568,7 @@ class ApiClient(object):
             return
 
         for auth in auth_settings:
-            auth_setting = self.configuration.auth_settings().get(auth)
+            auth_setting = (await self.configuration.auth_settings()).get(auth)
             if auth_setting:
                 self._apply_auth_params(headers, queries, auth_setting)
 

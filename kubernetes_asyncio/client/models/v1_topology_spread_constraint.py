@@ -60,7 +60,7 @@ class V1TopologySpreadConstraint(object):
     def __init__(self, label_selector=None, match_label_keys=None, max_skew=None, min_domains=None, node_affinity_policy=None, node_taints_policy=None, topology_key=None, when_unsatisfiable=None, local_vars_configuration=None):  # noqa: E501
         """V1TopologySpreadConstraint - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._label_selector = None

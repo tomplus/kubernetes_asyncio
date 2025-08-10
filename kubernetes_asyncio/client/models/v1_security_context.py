@@ -68,7 +68,7 @@ class V1SecurityContext(object):
     def __init__(self, allow_privilege_escalation=None, app_armor_profile=None, capabilities=None, privileged=None, proc_mount=None, read_only_root_filesystem=None, run_as_group=None, run_as_non_root=None, run_as_user=None, se_linux_options=None, seccomp_profile=None, windows_options=None, local_vars_configuration=None):  # noqa: E501
         """V1SecurityContext - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._allow_privilege_escalation = None

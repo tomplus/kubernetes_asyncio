@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.apiregistration_v1_api import Apiregistration
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestApiregistrationV1Api(unittest.TestCase):
+class TestApiregistrationV1Api(unittest.IsolatedAsyncioTestCase):
     """ApiregistrationV1Api unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.apiregistration_v1_api.ApiregistrationV1Api()  # noqa: E501
 
     def tearDown(self):

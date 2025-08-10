@@ -64,7 +64,7 @@ class V1StatefulSetStatus(object):
     def __init__(self, available_replicas=None, collision_count=None, conditions=None, current_replicas=None, current_revision=None, observed_generation=None, ready_replicas=None, replicas=None, update_revision=None, updated_replicas=None, local_vars_configuration=None):  # noqa: E501
         """V1StatefulSetStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._available_replicas = None

@@ -50,7 +50,7 @@ class V1EndpointConditions(object):
     def __init__(self, ready=None, serving=None, terminating=None, local_vars_configuration=None):  # noqa: E501
         """V1EndpointConditions - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._ready = None

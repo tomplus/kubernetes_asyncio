@@ -56,7 +56,7 @@ class V1CephFSVolumeSource(object):
     def __init__(self, monitors=None, path=None, read_only=None, secret_file=None, secret_ref=None, user=None, local_vars_configuration=None):  # noqa: E501
         """V1CephFSVolumeSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._monitors = None

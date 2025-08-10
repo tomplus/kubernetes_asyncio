@@ -54,7 +54,7 @@ class V1VolumeProjection(object):
     def __init__(self, cluster_trust_bundle=None, config_map=None, downward_api=None, secret=None, service_account_token=None, local_vars_configuration=None):  # noqa: E501
         """V1VolumeProjection - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._cluster_trust_bundle = None

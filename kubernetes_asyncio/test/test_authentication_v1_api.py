@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.authentication_v1_api import AuthenticationV1
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestAuthenticationV1Api(unittest.TestCase):
+class TestAuthenticationV1Api(unittest.IsolatedAsyncioTestCase):
     """AuthenticationV1Api unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.authentication_v1_api.AuthenticationV1Api()  # noqa: E501
 
     def tearDown(self):

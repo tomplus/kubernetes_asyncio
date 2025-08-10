@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.well_known_api import WellKnownApi  # noqa: E
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestWellKnownApi(unittest.TestCase):
+class TestWellKnownApi(unittest.IsolatedAsyncioTestCase):
     """WellKnownApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.well_known_api.WellKnownApi()  # noqa: E501
 
     def tearDown(self):

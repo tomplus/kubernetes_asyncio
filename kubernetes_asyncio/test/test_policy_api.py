@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.policy_api import PolicyApi  # noqa: E501
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestPolicyApi(unittest.TestCase):
+class TestPolicyApi(unittest.IsolatedAsyncioTestCase):
     """PolicyApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.policy_api.PolicyApi()  # noqa: E501
 
     def tearDown(self):

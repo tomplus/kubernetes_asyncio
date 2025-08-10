@@ -64,7 +64,7 @@ class V1ScaleIOVolumeSource(object):
     def __init__(self, fs_type=None, gateway=None, protection_domain=None, read_only=None, secret_ref=None, ssl_enabled=None, storage_mode=None, storage_pool=None, system=None, volume_name=None, local_vars_configuration=None):  # noqa: E501
         """V1ScaleIOVolumeSource - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._fs_type = None

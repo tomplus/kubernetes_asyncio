@@ -12,6 +12,7 @@
 
 from __future__ import absolute_import
 
+import asyncio
 import copy
 import logging
 import sys
@@ -177,6 +178,14 @@ conf = client.Configuration(
            Set this to false to skip verifying SSL certificate when calling API
            from https server.
         """
+        self.disable_strict_ssl_verification = False
+        """Set to true, to accept certificates violate X509 strict certificate
+           verification requirements, like missing the following extensions:
+           - X509v3 Subject Key Identifier
+           - X509v3 Authority Key Identifier
+           - X509v3 Subject Alternative Name
+           (It is implemented by removing ssl.VERIFY_X509_STRICT from SSLContext.verify_flags)
+        """
         self.ssl_ca_cert = ssl_ca_cert
         """Set this to customize the certificate file to verify the peer.
         """
@@ -188,6 +197,10 @@ conf = client.Configuration(
         """
         self.assert_hostname = None
         """Set this to True/False to enable/disable SSL hostname verification.
+        """
+        self.tls_server_name = None
+        """SSL/TLS Server Name Indication (SNI)
+           Set this to the SNI value expected by Kubernetes API.
         """
 
         self.connection_pool_maxsize = 100
@@ -248,6 +261,16 @@ conf = client.Configuration(
         :param default: object of Configuration
         """
         cls._default = copy.deepcopy(default)
+
+    @classmethod
+    def get_default(cls):
+        """Get default instance of configuration.
+
+        :return: The Configuration object.
+        """
+        if cls._default is None:
+            cls.set_default(Configuration())
+        return cls._default
 
     @classmethod
     def get_default_copy(cls):
@@ -348,7 +371,7 @@ conf = client.Configuration(
         self.__logger_format = value
         self.logger_formatter = logging.Formatter(self.__logger_format)
 
-    def get_api_key_with_prefix(self, identifier, alias=None):
+    async def get_api_key_with_prefix(self, identifier, alias=None):
         """Gets API key (with prefix if set).
 
         :param identifier: The identifier of apiKey.
@@ -356,7 +379,9 @@ conf = client.Configuration(
         :return: The token for api key authentication.
         """
         if self.refresh_api_key_hook is not None:
-            self.refresh_api_key_hook(self)
+            result = self.refresh_api_key_hook(self)
+            if asyncio.iscoroutine(result):
+                await result
         key = self.api_key.get(identifier, self.api_key.get(alias) if alias is not None else None)
         if key:
             prefix = self.api_key_prefix.get(identifier)
@@ -380,7 +405,7 @@ conf = client.Configuration(
             basic_auth=username + ':' + password
         ).get('authorization')
 
-    def auth_settings(self):
+    async def auth_settings(self):
         """Gets Auth Settings dict for api client.
 
         :return: The Auth Settings information dict.
@@ -391,7 +416,7 @@ conf = client.Configuration(
                 'type': 'api_key',
                 'in': 'header',
                 'key': 'authorization',
-                'value': self.get_api_key_with_prefix(
+                'value': await self.get_api_key_with_prefix(
                     'BearerToken',
                 ),
             }

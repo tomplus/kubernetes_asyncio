@@ -54,7 +54,7 @@ class V1PolicyRule(object):
     def __init__(self, api_groups=None, non_resource_urls=None, resource_names=None, resources=None, verbs=None, local_vars_configuration=None):  # noqa: E501
         """V1PolicyRule - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._api_groups = None

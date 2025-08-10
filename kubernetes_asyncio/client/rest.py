@@ -56,9 +56,13 @@ class RESTClientObject(object):
                 configuration.cert_file, keyfile=configuration.key_file
             )
 
+        self.server_hostname = configuration.tls_server_name
+
         if not configuration.verify_ssl:
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
+        if configuration.disable_strict_ssl_verification:
+            ssl_context.verify_flags &= ~ssl.VERIFY_X509_STRICT
 
         connector = aiohttp.TCPConnector(
             limit=maxsize,
@@ -71,7 +75,14 @@ class RESTClientObject(object):
         # https pool manager
         self.pool_manager = aiohttp.ClientSession(
             connector=connector,
-            trust_env=True
+            trust_env=True,
+            # Watch events containing large resource objects can exceed
+            # aiohttp's default read buffer size.
+            #
+            # There is no hard-limit defined by k8s, but the etcd default
+            # maximum request size is 1.5MiB.
+            # https://github.com/kubernetes/kubernetes/issues/19781
+            read_bufsize=2**21
         )
 
     async def close(self):
@@ -95,7 +106,8 @@ class RESTClientObject(object):
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
+                                 (connection, read) timeouts or object
+                                 of aiohttp.ClientTimeout.
         """
         method = method.upper()
         assert method in ['GET', 'HEAD', 'DELETE', 'POST', 'PUT',
@@ -108,7 +120,18 @@ class RESTClientObject(object):
 
         post_params = post_params or {}
         headers = headers or {}
-        timeout = _request_timeout or 5 * 60
+        timeout = aiohttp.ClientTimeout()
+        if _request_timeout:
+            if isinstance(_request_timeout, (int, float)):
+                timeout = aiohttp.ClientTimeout(total=_request_timeout)
+            elif isinstance(_request_timeout, tuple) and len(_request_timeout) == 2:
+                timeout = aiohttp.ClientTimeout(
+                        connect=_request_timeout[0],
+                        sock_connect=_request_timeout[0],
+                        sock_read=_request_timeout[1],
+                )
+            elif isinstance(_request_timeout, aiohttp.ClientTimeout):
+                timeout = _request_timeout
 
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'
@@ -128,9 +151,15 @@ class RESTClientObject(object):
         if query_params:
             args["url"] += '?' + urlencode(query_params)
 
+        if self.server_hostname:
+            args["server_hostname"] = self.server_hostname
+
         # For `POST`, `PUT`, `PATCH`, `OPTIONS`, `DELETE`
         if method in ['POST', 'PUT', 'PATCH', 'OPTIONS', 'DELETE']:
-            if re.search('json', headers['Content-Type'], re.IGNORECASE):
+            if (
+                    re.search('json', headers['Content-Type'], re.IGNORECASE)
+                    or headers['Content-Type'] in ["application/apply-patch+yaml"]
+            ):
                 if body is not None:
                     body = json.dumps(body)
                 args["data"] = body

@@ -64,7 +64,7 @@ class V1StorageClass(object):
     def __init__(self, allow_volume_expansion=None, allowed_topologies=None, api_version=None, kind=None, metadata=None, mount_options=None, parameters=None, provisioner=None, reclaim_policy=None, volume_binding_mode=None, local_vars_configuration=None):  # noqa: E501
         """V1StorageClass - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._allow_volume_expansion = None

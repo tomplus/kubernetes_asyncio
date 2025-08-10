@@ -48,7 +48,7 @@ class V1PodAffinity(object):
     def __init__(self, preferred_during_scheduling_ignored_during_execution=None, required_during_scheduling_ignored_during_execution=None, local_vars_configuration=None):  # noqa: E501
         """V1PodAffinity - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._preferred_during_scheduling_ignored_during_execution = None

@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.flowcontrol_apiserver_api import FlowcontrolA
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestFlowcontrolApiserverApi(unittest.TestCase):
+class TestFlowcontrolApiserverApi(unittest.IsolatedAsyncioTestCase):
     """FlowcontrolApiserverApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.flowcontrol_apiserver_api.FlowcontrolApiserverApi()  # noqa: E501
 
     def tearDown(self):

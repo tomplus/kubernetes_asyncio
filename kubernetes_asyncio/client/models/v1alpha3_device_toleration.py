@@ -54,7 +54,7 @@ class V1alpha3DeviceToleration(object):
     def __init__(self, effect=None, key=None, operator=None, toleration_seconds=None, value=None, local_vars_configuration=None):  # noqa: E501
         """V1alpha3DeviceToleration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._effect = None

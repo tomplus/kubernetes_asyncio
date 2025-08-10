@@ -60,7 +60,7 @@ class V1PersistentVolumeClaimStatus(object):
     def __init__(self, access_modes=None, allocated_resource_statuses=None, allocated_resources=None, capacity=None, conditions=None, current_volume_attributes_class_name=None, modify_volume_status=None, phase=None, local_vars_configuration=None):  # noqa: E501
         """V1PersistentVolumeClaimStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._access_modes = None

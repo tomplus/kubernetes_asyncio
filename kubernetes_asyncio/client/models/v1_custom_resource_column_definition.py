@@ -56,7 +56,7 @@ class V1CustomResourceColumnDefinition(object):
     def __init__(self, description=None, format=None, json_path=None, name=None, priority=None, type=None, local_vars_configuration=None):  # noqa: E501
         """V1CustomResourceColumnDefinition - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._description = None

@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.scheduling_v1_api import SchedulingV1Api  # n
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestSchedulingV1Api(unittest.TestCase):
+class TestSchedulingV1Api(unittest.IsolatedAsyncioTestCase):
     """SchedulingV1Api unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.scheduling_v1_api.SchedulingV1Api()  # noqa: E501
 
     def tearDown(self):

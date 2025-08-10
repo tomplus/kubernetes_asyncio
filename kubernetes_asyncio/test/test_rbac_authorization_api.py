@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.rbac_authorization_api import RbacAuthorizati
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestRbacAuthorizationApi(unittest.TestCase):
+class TestRbacAuthorizationApi(unittest.IsolatedAsyncioTestCase):
     """RbacAuthorizationApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.rbac_authorization_api.RbacAuthorizationApi()  # noqa: E501
 
     def tearDown(self):

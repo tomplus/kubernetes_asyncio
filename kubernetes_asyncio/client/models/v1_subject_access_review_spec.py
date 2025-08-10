@@ -56,7 +56,7 @@ class V1SubjectAccessReviewSpec(object):
     def __init__(self, extra=None, groups=None, non_resource_attributes=None, resource_attributes=None, uid=None, user=None, local_vars_configuration=None):  # noqa: E501
         """V1SubjectAccessReviewSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._extra = None

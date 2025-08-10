@@ -19,10 +19,10 @@ from kubernetes_asyncio.client.api.logs_api import LogsApi  # noqa: E501
 from kubernetes_asyncio.client.rest import ApiException
 
 
-class TestLogsApi(unittest.TestCase):
+class TestLogsApi(unittest.IsolatedAsyncioTestCase):
     """LogsApi unit test stubs"""
 
-    def setUp(self):
+    async def asyncSetUp(self):
         self.api = kubernetes_asyncio.client.api.logs_api.LogsApi()  # noqa: E501
 
     def tearDown(self):

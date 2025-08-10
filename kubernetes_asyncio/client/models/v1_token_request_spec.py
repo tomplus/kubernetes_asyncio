@@ -50,7 +50,7 @@ class V1TokenRequestSpec(object):
     def __init__(self, audiences=None, bound_object_ref=None, expiration_seconds=None, local_vars_configuration=None):  # noqa: E501
         """V1TokenRequestSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._audiences = None

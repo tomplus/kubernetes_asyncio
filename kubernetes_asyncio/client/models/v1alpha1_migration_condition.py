@@ -54,7 +54,7 @@ class V1alpha1MigrationCondition(object):
     def __init__(self, last_update_time=None, message=None, reason=None, status=None, type=None, local_vars_configuration=None):  # noqa: E501
         """V1alpha1MigrationCondition - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._last_update_time = None

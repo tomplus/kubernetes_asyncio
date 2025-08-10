@@ -52,7 +52,7 @@ class V1FlowSchemaSpec(object):
     def __init__(self, distinguisher_method=None, matching_precedence=None, priority_level_configuration=None, rules=None, local_vars_configuration=None):  # noqa: E501
         """V1FlowSchemaSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._distinguisher_method = None

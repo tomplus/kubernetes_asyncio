@@ -64,7 +64,7 @@ class V1Probe(object):
     def __init__(self, _exec=None, failure_threshold=None, grpc=None, http_get=None, initial_delay_seconds=None, period_seconds=None, success_threshold=None, tcp_socket=None, termination_grace_period_seconds=None, timeout_seconds=None, local_vars_configuration=None):  # noqa: E501
         """V1Probe - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self.__exec = None

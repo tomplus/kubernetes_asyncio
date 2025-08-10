@@ -50,7 +50,7 @@ class V1beta1ResourcePool(object):
     def __init__(self, generation=None, name=None, resource_slice_count=None, local_vars_configuration=None):  # noqa: E501
         """V1beta1ResourcePool - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._generation = None

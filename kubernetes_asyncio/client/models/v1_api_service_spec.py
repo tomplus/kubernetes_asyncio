@@ -58,7 +58,7 @@ class V1APIServiceSpec(object):
     def __init__(self, ca_bundle=None, group=None, group_priority_minimum=None, insecure_skip_tls_verify=None, service=None, version=None, version_priority=None, local_vars_configuration=None):  # noqa: E501
         """V1APIServiceSpec - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
-            local_vars_configuration = Configuration.get_default_copy()
+            local_vars_configuration = Configuration.get_default()
         self.local_vars_configuration = local_vars_configuration
 
         self._ca_bundle = None
