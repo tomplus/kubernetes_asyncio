@@ -11,6 +11,7 @@ Subpackages
    kubernetes_asyncio.config
    kubernetes_asyncio.dynamic
    kubernetes_asyncio.e2e_test
+   kubernetes_asyncio.leaderelection
    kubernetes_asyncio.stream
    kubernetes_asyncio.test
    kubernetes_asyncio.utils
