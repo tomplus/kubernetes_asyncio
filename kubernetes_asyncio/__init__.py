@@ -14,7 +14,7 @@
 
 __project__ = 'kubernetes_asyncio'
 # The version is auto-updated. Please do not edit.
-__version__ = "33.3.0+snapshot"
+__version__ = "33.3.0"
 
 import kubernetes_asyncio.client
 import kubernetes_asyncio.config
