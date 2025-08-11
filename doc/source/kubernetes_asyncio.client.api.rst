@@ -32,10 +32,12 @@ Submodules
    kubernetes_asyncio.client.api.certificates_api
    kubernetes_asyncio.client.api.certificates_v1_api
    kubernetes_asyncio.client.api.certificates_v1alpha1_api
+   kubernetes_asyncio.client.api.certificates_v1beta1_api
    kubernetes_asyncio.client.api.coordination_api
    kubernetes_asyncio.client.api.coordination_v1_api
    kubernetes_asyncio.client.api.coordination_v1alpha1_api
    kubernetes_asyncio.client.api.coordination_v1alpha2_api
+   kubernetes_asyncio.client.api.coordination_v1beta1_api
    kubernetes_asyncio.client.api.core_api
    kubernetes_asyncio.client.api.core_v1_api
    kubernetes_asyncio.client.api.custom_objects_api
@@ -64,6 +66,7 @@ Submodules
    kubernetes_asyncio.client.api.resource_v1alpha2_api
    kubernetes_asyncio.client.api.resource_v1alpha3_api
    kubernetes_asyncio.client.api.resource_v1beta1_api
+   kubernetes_asyncio.client.api.resource_v1beta2_api
    kubernetes_asyncio.client.api.scheduling_api
    kubernetes_asyncio.client.api.scheduling_v1_api
    kubernetes_asyncio.client.api.storage_api
