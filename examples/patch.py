@@ -99,7 +99,8 @@ async def main():
             SERVICE_NAME,
             SERVICE_NS,
             patch,
-            _content_type="application/merge-patch+json",  # required to force merge patch
+            # required to force merge patch when strategic merge patch would otherwise be used
+            _content_type="application/merge-patch+json",
         )
 
 
