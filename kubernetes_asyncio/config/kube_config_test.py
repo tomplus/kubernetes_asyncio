@@ -287,7 +287,7 @@ class FakeConfig:
     def __init__(self, token=None, **kwargs):
         self.api_key = {}
         if token:
-            self.api_key['BearerToken'] = token
+            self.api_key['authorization'] = token
 
         self.__dict__.update(kwargs)
 
@@ -788,7 +788,7 @@ class TestKubeConfigLoader(BaseTestCase):
             "token": token
         }
         expected = FakeConfig(host=TEST_HOST, api_key={
-                              "BearerToken": BEARER_TOKEN_FORMAT % token})
+                              "authorization": BEARER_TOKEN_FORMAT % token})
         actual = FakeConfig()
         await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG,
@@ -1008,14 +1008,14 @@ class TestKubeConfigLoader(BaseTestCase):
             config_file=config_file, context="simple_token")
         self.assertEqual(TEST_HOST, client.configuration.host)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
-                         client.configuration.api_key['BearerToken'])
+                         client.configuration.api_key['authorization'])
 
     async def test_new_client_from_config_dict(self):
         client = await new_client_from_config_dict(
             config_dict=self.TEST_KUBE_CONFIG, context="simple_token")
         self.assertEqual(TEST_HOST, client.configuration.host)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
-                         client.configuration.api_key['BearerToken'])
+                         client.configuration.api_key['authorization'])
 
     async def test_no_users_section(self):
         expected = FakeConfig(host=TEST_HOST)
@@ -1072,7 +1072,7 @@ class TestKubeConfigLoader(BaseTestCase):
         with self.assertRaises(AssertionError):
             await refresh_token(loader, mock_config)
 
-        self.assertEqual(TEST_ANOTHER_DATA_BASE64, mock_config.api_key["BearerToken"])
+        self.assertEqual(TEST_ANOTHER_DATA_BASE64, mock_config.api_key["authorization"])
 
     async def test_load_config_helper(self):
         expected = FakeConfig(host=TEST_HOST,
@@ -1253,7 +1253,7 @@ class TestKubeConfigMerger(BaseTestCase):
             config_file=kubeconfigs, context="simple_token")
         self.assertEqual(TEST_HOST, client.configuration.host)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
-                         client.configuration.api_key['BearerToken'])
+                         client.configuration.api_key['authorization'])
 
     async def test_merge_with_context_in_different_file(self):
         kubeconfigs = self._create_multi_config(self.TEST_KUBE_CONFIG_SET2)
@@ -1269,7 +1269,7 @@ class TestKubeConfigMerger(BaseTestCase):
         self.assertEqual(active_context, expected_contexts[0])
         self.assertEqual(TEST_HOST, client.configuration.host)
         self.assertEqual(BEARER_TOKEN_FORMAT % TEST_DATA_BASE64,
-                         client.configuration.api_key['BearerToken'])
+                         client.configuration.api_key['authorization'])
 
     def test_save_changes(self):
         kubeconfigs = self._create_multi_config(self.TEST_KUBE_CONFIG_SET1)

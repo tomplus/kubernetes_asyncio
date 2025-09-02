@@ -105,7 +105,7 @@ class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
         loader.load_and_set(config)
 
         self.assertEqual('Bearer ' + _TEST_TOKEN,
-                         await config.get_api_key_with_prefix('BearerToken'))
+                         await config.get_api_key_with_prefix('authorization'))
         self.assertEqual('Bearer ' + _TEST_TOKEN, loader.token)
         self.assertIsNotNone(loader.token_expires_at)
 
@@ -113,11 +113,11 @@ class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
         loader._token_filename = self._create_file_with_temp_content(
             _TEST_NEW_TOKEN)
         self.assertEqual('Bearer ' + _TEST_TOKEN,
-                         await config.get_api_key_with_prefix('BearerToken'))
+                         await config.get_api_key_with_prefix('authorization'))
 
         loader.token_expires_at = datetime.datetime.now()
         self.assertEqual('Bearer ' + _TEST_NEW_TOKEN,
-                         await config.get_api_key_with_prefix('BearerToken'))
+                         await config.get_api_key_with_prefix('authorization'))
         self.assertEqual('Bearer ' + _TEST_NEW_TOKEN, loader.token)
         self.assertGreater(loader.token_expires_at, old_token_expires_at)
 
@@ -132,7 +132,7 @@ class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
 
         for config in configs:
             self.assertEqual('Bearer ' + _TEST_TOKEN,
-                             await config.get_api_key_with_prefix('BearerToken'))
+                             await config.get_api_key_with_prefix('authorization'))
         self.assertEqual('Bearer ' + _TEST_TOKEN, loader.token)
         self.assertIsNotNone(loader.token_expires_at)
 
@@ -142,13 +142,13 @@ class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
 
         for config in configs:
             self.assertEqual('Bearer ' + _TEST_TOKEN,
-                             await config.get_api_key_with_prefix('BearerToken'))
+                             await config.get_api_key_with_prefix('authorization'))
 
         loader.token_expires_at = datetime.datetime.now()
 
         for config in configs:
             self.assertEqual('Bearer ' + _TEST_NEW_TOKEN,
-                             await config.get_api_key_with_prefix('BearerToken'))
+                             await config.get_api_key_with_prefix('authorization'))
 
         self.assertEqual('Bearer ' + _TEST_NEW_TOKEN, loader.token)
         self.assertGreater(loader.token_expires_at, old_token_expires_at)
@@ -209,7 +209,7 @@ class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
         loader._set_config(client_config)
         self.assertEqual("https://" + _TEST_HOST_PORT, client_config.host)
         self.assertEqual(cert_filename, client_config.ssl_ca_cert)
-        self.assertEqual("Bearer " + _TEST_TOKEN, client_config.api_key['BearerToken'])
+        self.assertEqual("Bearer " + _TEST_TOKEN, client_config.api_key['authorization'])
 
     async def test_load_config_helper(self):
         token_filename = self._create_file_with_temp_content(_TEST_TOKEN)
