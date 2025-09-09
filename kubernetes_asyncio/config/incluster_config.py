@@ -89,7 +89,7 @@ class InClusterConfigLoader(object):
         configuration.host = self.host
         configuration.ssl_ca_cert = self.ssl_ca_cert
         if self.token is not None:
-            configuration.api_key['BearerToken'] = self.token
+            configuration.api_key['authorization'] = self.token
         if not self._try_refresh_token:
             return
 
@@ -99,8 +99,8 @@ class InClusterConfigLoader(object):
 
             # expiration time is stored InClusterConfigLoader,
             # thus some copies of Configuration can be outdated.
-            if configuration.api_key['BearerToken'] != self.token:
-                configuration.api_key['BearerToken'] = self.token
+            if configuration.api_key['authorization'] != self.token:
+                configuration.api_key['authorization'] = self.token
 
         configuration.refresh_api_key_hook = load_token_from_file
 

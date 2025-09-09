@@ -411,14 +411,12 @@ conf = client.Configuration(
         :return: The Auth Settings information dict.
         """
         auth = {}
-        if 'BearerToken' in self.api_key:
+        if 'authorization' in self.api_key:
             auth['BearerToken'] = {
                 'type': 'api_key',
                 'in': 'header',
                 'key': 'authorization',
-                'value': await self.get_api_key_with_prefix(
-                    'BearerToken',
-                ),
+                'value': await self.get_api_key_with_prefix('authorization'),
             }
         return auth
 
