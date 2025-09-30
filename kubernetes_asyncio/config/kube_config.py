@@ -400,7 +400,7 @@ class KubeConfigLoader(object):
     def _set_config(self, client_configuration):
 
         if 'token' in self.__dict__:
-            client_configuration.api_key['BearerToken'] = self.token
+            client_configuration.api_key['authorization'] = self.token
 
         # copy these keys directly from self to configuration object
         keys = ['host', 'ssl_ca_cert', 'cert_file', 'key_file', 'verify_ssl', 'tls_server_name']
@@ -657,17 +657,16 @@ async def refresh_token(loader, client_configuration=None, interval=60):
 
     if client_configuration is None:
         raise NotImplementedError
-
     if loader.provider == 'gcp':
         while 1:
             await asyncio.sleep(interval)
             await loader.load_gcp_token()
-            client_configuration.api_key['BearerToken'] = loader.token
+            client_configuration.api_key['authorization'] = loader.token
     elif 'exec' in loader._user:
         while 1:
             await asyncio.sleep(interval)
             await loader.load_from_exec_plugin()
-            client_configuration.api_key['BearerToken'] = loader.token
+            client_configuration.api_key['authorization'] = loader.token
 
 
 async def new_client_from_config(config_file=None, context=None, persist_config=True,
