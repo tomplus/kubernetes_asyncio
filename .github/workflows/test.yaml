@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
 
     steps:
     - uses: actions/checkout@v5
@@ -41,13 +41,13 @@ jobs:
         scripts/kube-init.sh py.test -vvv -s kubernetes_asyncio/e2e_test
 
     - name: Lint with flake8 and isort (only on the latest version of Python)
-      if: matrix.python-version == 3.11
+      if: matrix.python-version == '3.13'
       run: |
         flake8
         isort -c --diff .
 
     - name: Send coverage report
       uses: codecov/codecov-action@v5
-      if: matrix.python-version == 3.11
+      if: matrix.python-version == '3.13'
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
