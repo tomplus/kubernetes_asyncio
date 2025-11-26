@@ -541,9 +541,13 @@ class ApiClient(object):
             if ('application/json-patch+json' in content_types and
                     isinstance(body, list)):
                 return 'application/json-patch+json'
-            if ('application/strategic-merge-patch+json' in content_types and
-                    (isinstance(body, dict) or hasattr(body, "to_dict"))):
-                return 'application/strategic-merge-patch+json'
+            if isinstance(body, dict) or hasattr(body, "to_dict"):
+                if 'application/strategic-merge-patch+json' in content_types:
+                    return 'application/strategic-merge-patch+json'
+                elif 'application/merge-patch+json' in content_types:
+                    # Intended for cases where strategic merge patch is not
+                    # supported, like when patching custom objects.
+                    return 'application/merge-patch+json'
 
         if 'application/json' in content_types or '*/*' in content_types:
             return 'application/json'
