@@ -1,0 +1,9 @@
+from kubernetes_asyncio.client.api_client import ApiClient
+from kubernetes_asyncio.client.models import VersionInfo
+from multidict import CIMultiDictProxy
+from typing import Any
+
+class VersionApi:
+    def __init__(self, api_client: ApiClient) -> None: ...
+    def get_code(self, kwargs: Any) -> VersionInfo: ...
+    def get_code_with_http_info(self, kwargs: Any) -> tuple[VersionInfo, int, CIMultiDictProxy]: ...

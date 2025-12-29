@@ -1,0 +1,9 @@
+from kubernetes_asyncio.client.api_client import ApiClient
+from kubernetes_asyncio.client.models import V1APIGroup
+from multidict import CIMultiDictProxy
+from typing import Any
+
+class AuthorizationApi:
+    def __init__(self, api_client: ApiClient) -> None: ...
+    def get_api_group(self, kwargs: Any) -> V1APIGroup: ...
+    def get_api_group_with_http_info(self, kwargs: Any) -> tuple[V1APIGroup, int, CIMultiDictProxy]: ...
