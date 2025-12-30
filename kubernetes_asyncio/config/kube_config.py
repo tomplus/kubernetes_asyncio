@@ -524,7 +524,7 @@ class ConfigNode:
                 return self.value[key]
         return None
 
-    def __getitem__(self, key: str | int) -> "ConfigNode" | Any:
+    def __getitem__(self, key: str | int) -> "ConfigNode | Any":
         v = self.safe_get(key)
         if v is None:
             raise ConfigException(
