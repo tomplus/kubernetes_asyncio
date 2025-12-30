@@ -27,11 +27,11 @@ from urllib3.exceptions import MaxRetryError, ProtocolError
 
 from kubernetes_asyncio import __version__
 
-from .exceptions import (
+from kubernetes_asyncio.dynamic.exceptions import (
     NotFoundError, ResourceNotFoundError, ResourceNotUniqueError,
     ServiceUnavailableError,
 )
-from .resource import Resource, ResourceList
+from kubernetes_asyncio.dynamic.resource import Resource, ResourceList
 
 DISCOVERY_PREFIX = 'apis'
 logger = logging.getLogger(__name__)

@@ -21,7 +21,7 @@ import sys
 import time
 from http import HTTPStatus
 
-from .leaderelectionrecord import LeaderElectionRecord
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectionRecord
 
 """
 This package implements leader election using an annotation in a Kubernetes

@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .client import *  # NOQA
+from kubernetes_asyncio.dynamic.client import *  # NOQA

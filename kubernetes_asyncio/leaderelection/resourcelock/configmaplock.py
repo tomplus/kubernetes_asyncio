@@ -18,7 +18,7 @@ import logging
 from kubernetes_asyncio import client
 from kubernetes_asyncio.client.rest import ApiException
 
-from ..leaderelectionrecord import LeaderElectionRecord
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectionRecord
 
 
 class ConfigMapLock:

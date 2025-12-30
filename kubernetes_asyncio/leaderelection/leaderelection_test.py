@@ -20,7 +20,7 @@ from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client.rest import ApiException
 
-from . import electionconfig, leaderelection
+from kubernetes_asyncio.leaderelection import electionconfig, leaderelection
 
 
 class LeaderElectionTest(IsolatedAsyncioTestCase):

@@ -15,9 +15,9 @@
 from kubernetes_asyncio import watch
 from kubernetes_asyncio.client.rest import ApiException
 
-from .discovery import EagerDiscoverer, LazyDiscoverer
-from .exceptions import KubernetesValidateMissing, api_exception
-from .resource import (
+from kubernetes_asyncio.dynamic.discovery import EagerDiscoverer, LazyDiscoverer
+from kubernetes_asyncio.dynamic.exceptions import KubernetesValidateMissing, api_exception
+from kubernetes_asyncio.dynamic.resource import (
     Resource, ResourceField, ResourceInstance, ResourceList, Subresource,
 )
 
