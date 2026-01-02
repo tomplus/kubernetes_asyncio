@@ -19,13 +19,13 @@ import traceback
 from kubernetes_asyncio.client.rest import ApiException
 
 
-def api_exception(e):
+def api_exception(e: ApiException) -> Exception:
     """
     Returns the proper Exception class for the given kubernetes.client.rest.ApiException object
     https://github.com/kubernetes/community/blob/master/contributors/devel/api-conventions.md#success-codes
     """
     _, _, exc_traceback = sys.exc_info()
-    tb = '\n'.join(traceback.format_tb(exc_traceback))
+    tb = "\n".join(traceback.format_tb(exc_traceback))
     return {
         400: BadRequestError,
         401: UnauthorizedError,
@@ -43,96 +43,100 @@ def api_exception(e):
 
 
 class DynamicApiError(ApiException):
-    """ Generic API Error for the dynamic client """
-    def __init__(self, e, tb=None):
+    """Generic API Error for the dynamic client"""
+
+    def __init__(self, e: ApiException, tb=None) -> None:
         self.status = e.status
         self.reason = e.reason
         self.body = e.body
         self.headers = e.headers
         self.original_traceback = tb
 
-    def __str__(self):
+    def __str__(self) -> str:
         error_message = [str(self.status), "Reason: {}".format(self.reason)]
         if self.headers:
             error_message.append("HTTP response headers: {}".format(self.headers))
 
         if self.body:
-            error_message.append("HTTP response body: {}".format(self.body))
+            error_message.append("HTTP response body: {!r}".format(self.body))
 
         if self.original_traceback:
-            error_message.append("Original traceback: \n{}".format(self.original_traceback))
+            error_message.append(
+                "Original traceback: \n{}".format(self.original_traceback)
+            )
 
-        return '\n'.join(error_message)
+        return "\n".join(error_message)
 
-    def summary(self):
+    def summary(self) -> str:
         if self.body:
-            if self.headers and self.headers.get('Content-Type') == 'application/json':
-                message = json.loads(self.body).get('message')
+            if self.headers and self.headers.get("Content-Type") == "application/json":
+                message = json.loads(self.body).get("message")
                 if message:
                     return message
 
-            return self.body
+            return self.body.decode()
         else:
             return "{} Reason: {}".format(self.status, self.reason)
 
 
 class ResourceNotFoundError(Exception):
-    """ Resource was not found in available APIs """
+    """Resource was not found in available APIs"""
 
 
 class ResourceNotUniqueError(Exception):
-    """ Parameters given matched multiple API resources """
+    """Parameters given matched multiple API resources"""
 
 
 class KubernetesValidateMissing(Exception):
-    """ kubernetes-validate is not installed """
+    """kubernetes-validate is not installed"""
+
 
 # HTTP Errors
 
 
 class BadRequestError(DynamicApiError):
-    """ 400: StatusBadRequest """
+    """400: StatusBadRequest"""
 
 
 class UnauthorizedError(DynamicApiError):
-    """ 401: StatusUnauthorized """
+    """401: StatusUnauthorized"""
 
 
 class ForbiddenError(DynamicApiError):
-    """ 403: StatusForbidden """
+    """403: StatusForbidden"""
 
 
 class NotFoundError(DynamicApiError):
-    """ 404: StatusNotFound """
+    """404: StatusNotFound"""
 
 
 class MethodNotAllowedError(DynamicApiError):
-    """ 405: StatusMethodNotAllowed """
+    """405: StatusMethodNotAllowed"""
 
 
 class ConflictError(DynamicApiError):
-    """ 409: StatusConflict """
+    """409: StatusConflict"""
 
 
 class GoneError(DynamicApiError):
-    """ 410: StatusGone """
+    """410: StatusGone"""
 
 
 class UnprocessibleEntityError(DynamicApiError):
-    """ 422: StatusUnprocessibleEntity """
+    """422: StatusUnprocessibleEntity"""
 
 
 class TooManyRequestsError(DynamicApiError):
-    """ 429: StatusTooManyRequests """
+    """429: StatusTooManyRequests"""
 
 
 class InternalServerError(DynamicApiError):
-    """ 500: StatusInternalServer """
+    """500: StatusInternalServer"""
 
 
 class ServiceUnavailableError(DynamicApiError):
-    """ 503: StatusServiceUnavailable """
+    """503: StatusServiceUnavailable"""
 
 
 class ServerTimeoutError(DynamicApiError):
-    """ 504: StatusServerTimeout """
+    """504: StatusServerTimeout"""

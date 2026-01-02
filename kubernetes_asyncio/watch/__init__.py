@@ -13,3 +13,5 @@
 # limitations under the License.
 
 from kubernetes_asyncio.watch.watch import Watch
+
+__all__ = ["Watch"]

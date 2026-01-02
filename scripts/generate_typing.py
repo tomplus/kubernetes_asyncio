@@ -17,12 +17,15 @@ class PyiFile:
     def add_class(self, name):
         self.cls_name = name
 
-    def add_method(self, name, params, retval, decorator=None):
+    def add_method(self, name, params, retval, decorator=None, awaitable: bool = False):
         if retval:
             retval = retval.replace("HTTPHeaderDict", "CIMultiDictProxy")
             rtypes = re.findall(r"\b([A-Za-z_][A-Za-z0-9_]*)\b(?!\s*\()", retval)
             if retval.startswith("tuple"):
                 retval = f"tuple[{', '.join(rtypes)}]"
+            if awaitable:
+                retval = f"Awaitable[{retval}]"
+                rtypes.append("Awaitable")
             self.types.update(rtypes)
         if params:
             for param, pvd in params.items():
@@ -34,7 +37,6 @@ class PyiFile:
                         r"\b([A-Za-z_][A-Za-z0-9_]*)\b(?!\s*\()", pvd["type"]
                     )
                     self.types.update(rtypes)
-
 
         self.methods.append([name, params, retval, decorator])
 
@@ -61,7 +63,7 @@ class PyiFile:
             for name, params, retval, decorator in self.methods:
                 params_typing = ", ".join(
                     [
-                        f"{k}{': ' + v.get('type') if v.get('type') else ''}"
+                        f"{'**' if k == 'kwargs' else ''}{k}{': ' + v.get('type') if v.get('type') else ''}"
                         for k, v in params.items()
                     ]
                 )
@@ -89,7 +91,9 @@ class PyiFile:
                 ret.append("from multidict import CIMultiDictProxy")
             elif itype == "Any":
                 ret.append("from typing import Any")
-            elif itype == "datetime":                
+            elif itype == "Awaitable":
+                ret.append("from typing import Awaitable")
+            elif itype == "datetime":
                 ret.append("from datetime import datetime")
             elif itype == "ApiClient":
                 ret.append("from kubernetes_asyncio.client.api_client import ApiClient")
@@ -183,7 +187,12 @@ def gen_api_typing(module: str) -> None:
                     for param_name in sig.parameters.keys():
                         method_params[param_name] = params.get(param_name, {})
 
-            pyi.add_method(method_name, method_params, retval)
+            pyi.add_method(
+                method_name,
+                method_params,
+                retval,
+                awaitable=not method_name.startswith("__"),
+            )
 
     pyi.save()
 

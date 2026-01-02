@@ -28,7 +28,7 @@ class ApiKeyError(OpenApiException, KeyError):
     def __init__(self, msg: str, path_to_item: list | None = None) -> None: ...
 
 class ApiException(OpenApiException):
-    status: int | None
+    status: int
     reason: str | None
     body: bytes | None
     headers: CIMultiDictProxy | None
