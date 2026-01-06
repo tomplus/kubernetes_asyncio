@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from collections.abc import Callable, Coroutine  # noqa:F401
+from collections.abc import Callable, Coroutine
+from typing import Any
+
+from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
+
 
 
 class Config:
@@ -27,13 +31,15 @@ class Config:
     # Kubernetes API operations upon onstopped_leading or onstopped_leading.
     def __init__(
         self,
-        lock,
-        lease_duration,
-        renew_deadline,
-        retry_period,
-        onstarted_leading,  # type: Coroutine | Callable[[], Coroutine]
-        onstopped_leading=None,  # type: Coroutine | Callable[[], Coroutine] | None
-    ):
+        lock: BaseLock,
+        lease_duration: float,
+        renew_deadline: float,
+        retry_period: float,
+        onstarted_leading: Callable[[], Coroutine[Any, Any, None]]
+        | Coroutine[Any, Any, None],
+        onstopped_leading: Callable[[], Coroutine[Any, Any, None]]
+        | Coroutine[Any, Any, None],
+    ) -> None:
         self.jitter_factor = 1.2
 
         if lock is None:

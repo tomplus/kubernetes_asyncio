@@ -21,7 +21,7 @@ from kubernetes_asyncio.config import kube_config
 DEFAULT_E2E_HOST = '127.0.0.1'
 
 
-def get_e2e_configuration():
+def get_e2e_configuration() -> Configuration:
     config = Configuration()
     config.host = None
     if os.path.exists(
@@ -36,7 +36,7 @@ def get_e2e_configuration():
                                   ('http', DEFAULT_E2E_HOST, '8080')]:
             try:
                 print('Testing:', proto, host, port)
-                http.client.HTTPConnection(host, port).request('GET', '/')
+                http.client.HTTPConnection(host, int(port)).request('GET', '/')
                 config.host = "{}://{}:{}".format(proto, host, port)
                 config.verify_ssl = False
                 break

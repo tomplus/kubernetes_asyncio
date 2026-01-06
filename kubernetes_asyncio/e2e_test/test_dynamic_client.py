@@ -17,6 +17,7 @@ import uuid
 from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client import api_client
+from kubernetes_asyncio.client.configuration import Configuration
 from kubernetes_asyncio.dynamic import DynamicClient
 from kubernetes_asyncio.e2e_test import base
 
@@ -29,46 +30,49 @@ def short_uuid():
 
 
 class TestDynamicClient(IsolatedAsyncioTestCase):
+    config: Configuration
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls) -> None:
         cls.config = base.get_e2e_configuration()
 
-    async def test_pod_apis(self):
+    async def test_pod_apis(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
 
-            pod_resource = await client.resources.get(kind='Pod', api_version='v1')
+            pod_resource = await client.resources.get(kind="Pod", api_version="v1")
 
-            name = 'busybox-test-' + short_uuid()
+            name = "busybox-test-" + short_uuid()
             pod_manifest = {
-                'apiVersion': 'v1',
-                'kind': 'Pod',
-                'metadata': {
-                    'name': name
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "metadata": {"name": name},
+                "spec": {
+                    "containers": [
+                        {
+                            "image": "busybox",
+                            "name": "sleep",
+                            "args": [
+                                "/bin/sh",
+                                "-c",
+                                "while true;do date;sleep 5; done",
+                            ],
+                        }
+                    ]
                 },
-                'spec': {
-                    'containers': [{
-                        'image': 'busybox',
-                        'name': 'sleep',
-                        "args": [
-                            "/bin/sh",
-                            "-c",
-                            "while true;do date;sleep 5; done"
-                        ]
-                    }]
-                }
             }
 
-            resp = await client.create(pod_resource, body=pod_manifest, namespace='default')
+            resp = await client.create(
+                pod_resource, body=pod_manifest, namespace="default"
+            )
             self.assertEqual(name, resp.metadata.name)
             self.assertTrue(resp.status.phase)
 
             while True:
-                resp = await client.get(pod_resource, name=name, namespace='default')
+                resp = await client.get(pod_resource, name=name, namespace="default")
                 self.assertEqual(name, resp.metadata.name)
                 self.assertTrue(resp.status.phase)
-                if resp.status.phase != 'Pending':
+                if resp.status.phase != "Pending":
                     break
                 time.sleep(1)
 
@@ -76,4 +80,4 @@ class TestDynamicClient(IsolatedAsyncioTestCase):
             number_of_pods = len(resp.items)
             self.assertTrue(number_of_pods > 0)
 
-            await client.delete(pod_resource, name=name, body={}, namespace='default')
+            await client.delete(pod_resource, name=name, body={}, namespace="default")

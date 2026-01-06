@@ -15,17 +15,19 @@
 
 import asyncio
 import json
+from typing import Callable
 import unittest
 from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client.rest import ApiException
 
 from kubernetes_asyncio.leaderelection import electionconfig, leaderelection
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectionRecord
+from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
 
 
 class LeaderElectionTest(IsolatedAsyncioTestCase):
-
-    async def test_simple_leader_election(self):
+    async def test_simple_leader_election(self) -> None:
         election_history = []
         leadership_history = []
 
@@ -50,10 +52,10 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             None,
         )
 
-        async def on_started_leading():
+        async def on_started_leading() -> None:
             leadership_history.append("start leading")
 
-        async def on_stopped_leading():
+        async def on_stopped_leading() -> None:
             leadership_history.append("stop leading")
 
         # Create config 4.5 4 3
@@ -77,7 +79,7 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             leadership_history, ["get leadership", "start leading", "stop leading"]
         )
 
-    async def test_leader_election(self):
+    async def test_leader_election(self) -> None:
         election_history = []
         leadership_history = []
 
@@ -205,7 +207,7 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
     on try update:  6s
     Timeout - Leader Exits"""
 
-    async def test_leader_election_with_renew_deadline(self):
+    async def test_leader_election_with_renew_deadline(self) -> None:
         election_history = []
         leadership_history = []
 
@@ -270,7 +272,7 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             leadership_history, ["get leadership", "start leading", "stop leading"]
         )
 
-    def assert_history(self, history, expected):
+    def assert_history(self, history, expected) -> None:
         self.assertIsNotNone(expected)
         self.assertIsNotNone(history)
         self.assertEqual(len(expected), len(history))
@@ -285,20 +287,20 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             )
 
 
-class MockResourceLock:
+class MockResourceLock(BaseLock):
     def __init__(
         self,
-        name,
-        namespace,
-        identity,
-        shared_lock,
-        on_create=None,
-        on_update=None,
-        on_change=None,
-        on_try_update=None,
-    ):
+        name: str,
+        namespace: str,
+        identity: str,
+        shared_lock: asyncio.Lock,
+        on_create: Callable,
+        on_update: Callable,
+        on_change: Callable,
+        on_try_update: Callable | None,
+    ) -> None:
         # self.leader_record is shared between two MockResourceLock objects
-        self.leader_record = []
+        self.leader_record: list[LeaderElectionRecord] = []
         self.renew_count = 0
         self.renew_count_max = 4
         self.name = name
@@ -311,18 +313,23 @@ class MockResourceLock:
         self.on_change = on_change
         self.on_try_update = on_try_update
 
-    async def get(self, name, namespace):
+    async def get(
+        self, name: str, namespace: str
+    ) -> tuple[bool, LeaderElectionRecord] | tuple[bool, Exception] | tuple[bool, None]:
         await self.lock.acquire()
         try:
             if self.leader_record:
                 return True, self.leader_record[0]
 
-            ApiException.body = json.dumps({"code": 404})
-            return False, ApiException
+            ex = ApiException()
+            ex.body = json.dumps({"code": 404}).encode()
+            return False, ex
         finally:
             self.lock.release()
 
-    async def create(self, name, namespace, election_record):
+    async def create(
+        self, name: str, namespace: str, election_record: LeaderElectionRecord
+    ) -> bool:
         await self.lock.acquire()
         try:
             if len(self.leader_record) == 1:
@@ -334,7 +341,9 @@ class MockResourceLock:
         finally:
             self.lock.release()
 
-    async def update(self, name, namespace, updated_record):
+    async def update(
+        self, name: str, namespace: str, updated_record: LeaderElectionRecord
+    ) -> bool:
         await self.lock.acquire()
         try:
             if self.on_try_update:

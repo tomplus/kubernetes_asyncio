@@ -15,7 +15,13 @@
 
 class LeaderElectionRecord:
     # Leader election details, used in the lock object
-    def __init__(self, holder_identity, lease_duration, acquire_time, renew_time):
+    def __init__(
+        self,
+        holder_identity: str | None,
+        lease_duration: str | None,
+        acquire_time: str | None,
+        renew_time: str | None,
+    ):
         self.holder_identity = holder_identity
         self.lease_duration = lease_duration
         self.acquire_time = acquire_time

@@ -14,13 +14,14 @@
 
 import asyncio
 import datetime
-import inspect
 import json
 import logging
 import sys
 import time
 from http import HTTPStatus
 
+from kubernetes_asyncio.client.exceptions import ApiException
+from kubernetes_asyncio.leaderelection.electionconfig import Config
 from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectionRecord
 
 """
@@ -35,21 +36,21 @@ to renew its lease.
 
 
 class LeaderElection:
-    def __init__(self, election_config):
+    def __init__(self, election_config: Config) -> None:
         if election_config is None:
             sys.exit("argument config not passed")
 
         # Latest record observed in the created lock object
-        self.observed_record = None
+        self.observed_record: LeaderElectionRecord | None = None
 
         # The configuration set for this candidate
-        self.election_config = election_config
+        self.election_config: Config = election_config
 
         # Latest update time of the lock
         self.observed_time_milliseconds = 0
 
     # Point of entry to Leader election
-    async def run(self):
+    async def run(self) -> None:
         # Try to create/ acquire a lock
         if await self.acquire():
             logging.info(
@@ -57,9 +58,9 @@ class LeaderElection:
             )
 
             onstarted_leading_coroutine = (
-                self.election_config.onstarted_leading
-                if inspect.iscoroutine(self.election_config.onstarted_leading)
-                else self.election_config.onstarted_leading()
+                self.election_config.onstarted_leading()
+                if callable(self.election_config.onstarted_leading)
+                else self.election_config.onstarted_leading
             )
 
             task = asyncio.create_task(onstarted_leading_coroutine)
@@ -76,12 +77,12 @@ class LeaderElection:
             # the one provided by `kubernetes-client/python`.
             if self.election_config.onstopped_leading is not None:
                 await (
-                    self.election_config.onstopped_leading
-                    if inspect.iscoroutine(self.election_config.onstopped_leading)
-                    else self.election_config.onstopped_leading()
+                    self.election_config.onstopped_leading()
+                    if callable(self.election_config.onstopped_leading)
+                    else self.election_config.onstopped_leading
                 )
 
-    async def acquire(self):
+    async def acquire(self) -> bool:
         # Follower
         logging.debug("%s is a follower", self.election_config.lock.identity)
         retry_period = self.election_config.retry_period
@@ -94,7 +95,7 @@ class LeaderElection:
 
             await asyncio.sleep(retry_period)
 
-    async def renew_loop(self):
+    async def renew_loop(self) -> None:
         # Leader
         logging.debug(
             "Leader has entered renew loop and will try to update lease continuously"
@@ -121,7 +122,7 @@ class LeaderElection:
             # failed to renew, return
             return
 
-    async def try_acquire_or_renew(self):
+    async def try_acquire_or_renew(self) -> bool:
         now_timestamp = time.time()
         now = datetime.datetime.fromtimestamp(now_timestamp)
 
@@ -140,6 +141,10 @@ class LeaderElection:
 
         # A lock is not created with that name, try to create one
         if not lock_status:
+            assert (
+                isinstance(old_election_record, ApiException)
+                and old_election_record.body is not None
+            )
             if json.loads(old_election_record.body)["code"] != HTTPStatus.NOT_FOUND:
                 logging.error(
                     "Error retrieving resource lock %s as %s",
@@ -174,6 +179,7 @@ class LeaderElection:
             # try to update lock with proper election record
             return await self.update_lock(leader_election_record)
 
+        assert isinstance(old_election_record, LeaderElectionRecord)
         if (
             old_election_record.holder_identity is None
             or old_election_record.lease_duration is None
@@ -220,7 +226,7 @@ class LeaderElection:
 
         return await self.update_lock(leader_election_record)
 
-    async def update_lock(self, leader_election_record):
+    async def update_lock(self, leader_election_record: LeaderElectionRecord) -> bool:
         # Update object with latest election record
         update_status = await self.election_config.lock.update(
             self.election_config.lock.name,

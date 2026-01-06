@@ -19,14 +19,18 @@ from os import path
 import yaml
 
 from kubernetes_asyncio import client
+from kubernetes_asyncio.client.api_client import ApiClient
+from kubernetes_asyncio.client.exceptions import ApiException
+from kubernetes_asyncio.config import Any
 
 
 async def create_from_yaml(
-        k8s_client,
-        yaml_file,
-        verbose=False,
-        namespace="default",
-        **kwargs):
+    k8s_client: ApiClient,
+    yaml_file: str,
+    verbose: bool = False,
+    namespace: str = "default",
+    **kwargs: Any,
+) -> Any:
     """
     Perform an action from a yaml file. Pass True for verbose to
     print confirmation information.
@@ -60,14 +64,14 @@ async def create_from_yaml(
 
     with open(path.abspath(yaml_file)) as f:
         yml_document_all = yaml.safe_load_all(f)
-        api_exceptions = []
+        api_exceptions: list[ApiException] = []
         k8s_objects = []
         # Load all documents from a single YAML file
         for yml_document in yml_document_all:
             try:
-                created = await create_from_dict(k8s_client, yml_document,
-                                                 verbose, namespace=namespace,
-                                                 **kwargs)
+                created = await create_from_dict(
+                    k8s_client, yml_document, verbose, namespace=namespace, **kwargs
+                )
                 k8s_objects.append(created)
             except FailToCreateError as failure:
                 api_exceptions.append(failure)
@@ -80,11 +84,12 @@ async def create_from_yaml(
 
 
 async def create_from_dict(
-        k8s_client,
-        data,
-        verbose=False,
-        namespace="default",
-        **kwargs):
+    k8s_client: ApiClient,
+    data: dict,
+    verbose: bool = False,
+    namespace: str = "default",
+    **kwargs: Any,
+) -> Any:
     """
     Perform an action from a yaml file. Pass True for verbose to
     print confirmation information.
@@ -131,17 +136,19 @@ async def create_from_dict(
                 yml_object["kind"] = kind
             try:
                 created = await create_from_yaml_single_item(
-                    k8s_client, yml_object, verbose, namespace, **kwargs)
+                    k8s_client, yml_object, verbose, namespace, **kwargs
+                )
                 k8s_objects.append(created)
-            except client.rest.ApiException as api_exception:
+            except client.ApiException as api_exception:
                 api_exceptions.append(api_exception)
     else:
         # This is a single object. Call the single item method
         try:
             created = await create_from_yaml_single_item(
-                k8s_client, data, verbose, namespace, **kwargs)
+                k8s_client, data, verbose, namespace, **kwargs
+            )
             k8s_objects.append(created)
-        except client.rest.ApiException as api_exception:
+        except client.ApiException as api_exception:
             api_exceptions.append(api_exception)
 
     if api_exceptions:
@@ -151,11 +158,12 @@ async def create_from_dict(
 
 
 async def create_from_yaml_single_item(
-        k8s_client,
-        yml_object,
-        verbose=False,
-        namespace="default",
-        **kwargs):
+    k8s_client: ApiClient,
+    yml_object: dict,
+    verbose: bool = False,
+    namespace: str = "default",
+    **kwargs: Any,
+) -> Any:
     group, _, version = yml_object["apiVersion"].partition("/")
     if version == "":
         version = group
@@ -165,13 +173,13 @@ async def create_from_yaml_single_item(
     group = "".join(group.rsplit(".k8s.io", 1))
     # convert group name from DNS subdomain format to
     # python class name convention
-    group = "".join(word.capitalize() for word in group.split('.'))
+    group = "".join(word.capitalize() for word in group.split("."))
     fcn_to_call = "{0}{1}Api".format(group, version.capitalize())
     k8s_api = getattr(client, fcn_to_call)(k8s_client)
     # Replace CamelCased action_type into snake_case
     kind = yml_object["kind"]
-    kind = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', kind)
-    kind = re.sub('([a-z0-9])([A-Z])', r'\1_\2', kind).lower()
+    kind = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", kind)
+    kind = re.sub("([a-z0-9])([A-Z])", r"\1_\2", kind).lower()
     # Decide which namespace we are going to put the object in,
     # if any
     if "namespace" in yml_object["metadata"]:
@@ -179,27 +187,30 @@ async def create_from_yaml_single_item(
     # Expect the user to create namespaced objects more often
     if hasattr(k8s_api, "create_namespaced_{0}".format(kind)):
         resp = await getattr(k8s_api, "create_namespaced_{0}".format(kind))(
-            body=yml_object, namespace=namespace, **kwargs)
+            body=yml_object, namespace=namespace, **kwargs
+        )
     else:
         resp = await getattr(k8s_api, "create_{0}".format(kind))(
-            body=yml_object, **kwargs)
+            body=yml_object, **kwargs
+        )
     if verbose:
         print("{0} created. status='{1}'".format(kind, str(resp.status)))
     return resp
 
 
-class FailToCreateError(Exception):
+class FailToCreateError(ApiException):
     """
     An exception class for handling error if an error occurred when
     handling a yaml file.
     """
 
-    def __init__(self, api_exceptions):
+    def __init__(self, api_exceptions: list[ApiException]):
         self.api_exceptions = api_exceptions
 
     def __str__(self):
         msg = ""
         for api_exception in self.api_exceptions:
             msg += "Error from server ({0}): {1}".format(
-                api_exception.reason, api_exception.body)
+                api_exception.reason, api_exception.body
+            )
         return msg

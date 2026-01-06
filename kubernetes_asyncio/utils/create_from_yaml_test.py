@@ -19,39 +19,44 @@ from kubernetes_asyncio.utils import create_from_dict, create_from_yaml
 
 
 class CreateFromYamlTest(IsolatedAsyncioTestCase):
-
-    async def test_create_from_yaml(self):
+    async def test_create_from_yaml(self) -> None:
         api_client = AsyncMock()
         api_client.call_api = AsyncMock()
-        api_client.call_api.return_value = 'mock-value'
+        api_client.call_api.return_value = "mock-value"
 
-        created = await create_from_yaml(api_client, 'examples/nginx-deployment.yaml')
+        created = await create_from_yaml(api_client, "examples/nginx-deployment.yaml")
 
         # simple check for api call
-        self.assertEqual(api_client.call_api.call_args[0][0],
-                         '/apis/apps/v1/namespaces/{namespace}/deployments')
+        self.assertEqual(
+            api_client.call_api.call_args[0][0],
+            "/apis/apps/v1/namespaces/{namespace}/deployments",
+        )
 
         # returned values
-        self.assertEqual(created, [['mock-value']])
+        self.assertEqual(created, [["mock-value"]])
 
-    async def test_create_from_dict(self):
+    async def test_create_from_dict(self) -> None:
         api_client = AsyncMock()
         api_client.call_api = AsyncMock()
-        api_client.call_api.return_value = 'mock-value'
+        api_client.call_api.return_value = "mock-value"
 
-        created = await create_from_dict(api_client, {
-            'apiVersion': 'apps/v1',
-            'kind': 'Deployment',
-            'metadata': {
-                'name': 'nginx-deployment'},
-            'spec': {
-                'replicas': 3,
-            }
-        })
+        created = await create_from_dict(
+            api_client,
+            {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "metadata": {"name": "nginx-deployment"},
+                "spec": {
+                    "replicas": 3,
+                },
+            },
+        )
 
         # simple check for api call
-        self.assertEqual(api_client.call_api.call_args[0][0],
-                         '/apis/apps/v1/namespaces/{namespace}/deployments')
+        self.assertEqual(
+            api_client.call_api.call_args[0][0],
+            "/apis/apps/v1/namespaces/{namespace}/deployments",
+        )
 
         # returned values
-        self.assertEqual(created, ['mock-value'])
+        self.assertEqual(created, ["mock-value"])

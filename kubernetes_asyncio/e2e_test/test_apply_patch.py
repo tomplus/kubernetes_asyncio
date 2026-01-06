@@ -17,16 +17,18 @@ from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.client.api import core_v1_api
+from kubernetes_asyncio.client.configuration import Configuration
 from kubernetes_asyncio.e2e_test import base
 
 
 class TestApplyPatch(IsolatedAsyncioTestCase):
+    config: Configuration
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls) -> None:
         cls.config = base.get_e2e_configuration()
 
-    async def test_apply_patch(self):
+    async def test_apply_patch(self) -> None:
         client = api_client.ApiClient(configuration=self.config)
         api = core_v1_api.CoreV1Api(client)
 
@@ -61,8 +63,6 @@ class TestApplyPatch(IsolatedAsyncioTestCase):
             name=name,
             namespace="default",
         )
-        self.assertEqual(resp.data, {'hello': 'world!', 'new': 'value'})
+        self.assertEqual(resp.data, {"hello": "world!", "new": "value"})
 
-        resp = await api.delete_namespaced_config_map(
-            name=name, body={}, namespace="default"
-        )
+        await api.delete_namespaced_config_map(name=name, namespace="default")

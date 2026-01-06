@@ -61,15 +61,26 @@ class PyiFile:
 
             write_ln(f"class {self.cls_name}:")
             for name, params, retval, decorator in self.methods:
-                params_typing = ", ".join(
-                    [
-                        f"{'**' if k == 'kwargs' else ''}{k}{': ' + v.get('type') if v.get('type') else ''}"
-                        for k, v in params.items()
-                    ]
-                )
+                params_typing = []
+
+                for k, v in params.items():
+                    pn = f"{'**' if k == 'kwargs' else ''}{k}"
+                    if v.get("type"):
+                        pt = ": " + v.get("type")
+                    else:
+                        pt = ""
+                    if "default" in v:
+                        if v["default"] is None:
+                            pt += " | None = None"
+                        else:
+                            pt += f" = {v['default']}"
+
+                    params_typing.append(f"{pn}{pt}")
+
+                params_typing_str = ", ".join(params_typing)
                 if decorator:
                     write_ln(f"    {decorator}")
-                write_ln(f"    def {name}({params_typing}) -> {retval}: ...")
+                write_ln(f"    def {name}({params_typing_str}) -> {retval}: ...")
 
     def _get_imports(self) -> list[str]:
         ret = []
@@ -176,7 +187,7 @@ def gen_api_typing(module: str) -> None:
             if method_name == "__init__":
                 method_params = {
                     "self": {},
-                    "api_client": {"required": False, "type": "ApiClient"},
+                    "api_client": {"required": False, "type": "ApiClient", "default": None},
                 }
                 retval = None
             else:
@@ -218,6 +229,7 @@ def gen_model_typing(module: str) -> None:
             params: dict[str, dict] = {}
 
             if method_name == "to_dict":
+                params["serialize"] = {"required": False, "type": "bool"}
                 retval = "dict[str, Any]"
             elif method_name in ("to_str", "__repr__"):
                 retval = "str"
@@ -247,6 +259,10 @@ def gen_model_typing(module: str) -> None:
             method_params = {}
             for param_name in sig.parameters.keys():
                 method_params[param_name] = params.get(param_name, {})
+                if sig.parameters[param_name].default != inspect.Parameter.empty:
+                    method_params[param_name]["default"] = sig.parameters[
+                        param_name
+                    ].default
 
             pyi.add_method(method_name, method_params, retval)
 

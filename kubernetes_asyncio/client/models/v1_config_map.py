@@ -87,7 +87,7 @@ class V1ConfigMap(object):
         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources  # noqa: E501
 
         :return: The api_version of this V1ConfigMap.  # noqa: E501
-        :rtype: str
+      :rtype: str
         """
         return self._api_version
 
