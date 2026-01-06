@@ -7,8 +7,7 @@ from unittest.mock import patch
 
 from aiohttp import web
 from aiohttp.test_utils import (
-    TestClient as _TestClient,
-    TestServer as _TestServer,
+    TestClient as _TestClient, TestServer as _TestServer,
 )
 
 from kubernetes_asyncio.config.config_exception import ConfigException

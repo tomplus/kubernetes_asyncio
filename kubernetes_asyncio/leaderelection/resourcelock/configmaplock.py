@@ -19,8 +19,9 @@ from typing import Any
 from kubernetes_asyncio import client
 from kubernetes_asyncio.client.api_client import ApiClient
 from kubernetes_asyncio.client.rest import ApiException
-
-from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectionRecord
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
+    LeaderElectionRecord,
+)
 from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
 
 

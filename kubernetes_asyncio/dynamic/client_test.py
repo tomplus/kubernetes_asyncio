@@ -13,9 +13,9 @@
 # limitations under the License.
 
 import asyncio
-from typing import Any
 import unittest
 import uuid
+from typing import Any
 
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.client.configuration import Configuration

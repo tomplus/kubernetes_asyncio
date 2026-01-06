@@ -14,7 +14,9 @@
 
 from abc import abstractmethod
 
-from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectionRecord
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
+    LeaderElectionRecord,
+)
 
 
 class BaseLock:

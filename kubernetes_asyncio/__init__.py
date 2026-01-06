@@ -23,5 +23,4 @@ import kubernetes_asyncio.stream as stream
 import kubernetes_asyncio.utils as utils
 import kubernetes_asyncio.watch as watch
 
-
 __all__ = ["client", "config", "dynamic", "stream", "utils", "watch"]

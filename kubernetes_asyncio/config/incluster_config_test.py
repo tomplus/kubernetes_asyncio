@@ -16,17 +16,14 @@ import contextlib
 import datetime
 import os
 import tempfile
-from typing import Generator
 import unittest
+from typing import Generator
 
 import kubernetes_asyncio.config
 from kubernetes_asyncio.client import Configuration
-
 from kubernetes_asyncio.config.config_exception import ConfigException
 from kubernetes_asyncio.config.incluster_config import (
-    SERVICE_HOST_ENV_NAME,
-    SERVICE_PORT_ENV_NAME,
-    InClusterConfigLoader,
+    SERVICE_HOST_ENV_NAME, SERVICE_PORT_ENV_NAME, InClusterConfigLoader,
     _join_host_port,
 )
 from kubernetes_asyncio.config.kube_config_test import FakeConfig

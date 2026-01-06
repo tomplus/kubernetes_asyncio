@@ -13,8 +13,8 @@
 import json
 from urllib.parse import urlencode, urlparse, urlunparse
 
-from multidict import CIMultiDict, CIMultiDictProxy
 from aiohttp.client import _WSRequestContextManager
+from multidict import CIMultiDict, CIMultiDictProxy
 
 from kubernetes_asyncio.client import ApiClient
 from kubernetes_asyncio.client.configuration import Configuration

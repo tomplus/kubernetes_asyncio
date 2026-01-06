@@ -15,14 +15,15 @@
 
 import asyncio
 import json
-from typing import Callable
 import unittest
+from typing import Callable
 from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client.rest import ApiException
-
 from kubernetes_asyncio.leaderelection import electionconfig, leaderelection
-from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectionRecord
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
+    LeaderElectionRecord,
+)
 from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
 
 

@@ -1,4 +1,5 @@
 from typing import Any
+
 import aiohttp
 
 from kubernetes_asyncio.config.config_exception import ConfigException

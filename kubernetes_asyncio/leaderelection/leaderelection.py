@@ -22,7 +22,9 @@ from http import HTTPStatus
 
 from kubernetes_asyncio.client.exceptions import ApiException
 from kubernetes_asyncio.leaderelection.electionconfig import Config
-from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectionRecord
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
+    LeaderElectionRecord,
+)
 
 """
 This package implements leader election using an annotation in a Kubernetes

@@ -16,7 +16,6 @@ import datetime
 import os
 
 from kubernetes_asyncio.client import Configuration
-
 from kubernetes_asyncio.config.config_exception import ConfigException
 
 SERVICE_HOST_ENV_NAME = "KUBERNETES_SERVICE_HOST"

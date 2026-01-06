@@ -22,7 +22,9 @@ from kubernetes_asyncio.client.models.v1_job import V1Job
 from kubernetes_asyncio.client.models.v1_job_spec import V1JobSpec
 from kubernetes_asyncio.client.models.v1_object_meta import V1ObjectMeta
 from kubernetes_asyncio.client.models.v1_pod_spec import V1PodSpec
-from kubernetes_asyncio.client.models.v1_pod_template_spec import V1PodTemplateSpec
+from kubernetes_asyncio.client.models.v1_pod_template_spec import (
+    V1PodTemplateSpec,
+)
 from kubernetes_asyncio.e2e_test import base
 
 
