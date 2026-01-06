@@ -31,9 +31,7 @@ if TYPE_CHECKING:
     from kubernetes_asyncio.dynamic.client import DynamicClient
 
 from kubernetes_asyncio.dynamic.exceptions import (
-    NotFoundError,
-    ResourceNotFoundError,
-    ResourceNotUniqueError,
+    NotFoundError, ResourceNotFoundError, ResourceNotUniqueError,
     ServiceUnavailableError,
 )
 from kubernetes_asyncio.dynamic.resource import Resource, ResourceList
