@@ -120,7 +120,7 @@ class DynamicClient(object):
 
     @property
     def version(self) -> dict[str, Any]:
-        return self.__discoverer.version # type: ignore
+        return self.__discoverer.version  # type: ignore
 
     @staticmethod
     def ensure_namespace(resource: Resource, namespace: str, body: Any) -> str:

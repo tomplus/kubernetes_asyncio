@@ -35,13 +35,13 @@ class TestDiscoverer(unittest.IsolatedAsyncioTestCase):
             client = await DynamicClient(apic)
 
             await client.resources.get(api_version="v1", kind="Node")
-            mtime1 = os.path.getmtime(client.resources._Discoverer__cache_file)  # type: ignore[reportAttributeAccessIssue]
+            mtime1 = os.path.getmtime(client.resources._Discoverer__cache_file)  # type: ignore[reportAttributeAccessIssue]  # noqa: E501
 
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
 
             await client.resources.get(api_version="v1", kind="Node")
-            mtime2 = os.path.getmtime(client.resources._Discoverer__cache_file)  # type: ignore[reportAttributeAccessIssue]
+            mtime2 = os.path.getmtime(client.resources._Discoverer__cache_file)  # type: ignore[reportAttributeAccessIssue]  # noqa: E501
 
         # test no Discoverer._write_cache called
         self.assertTrue(mtime1 == mtime2)
