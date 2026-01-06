@@ -65,9 +65,9 @@ sed -i'' "s/^PACKAGE_NAME = .*/PACKAGE_NAME = \\\"${PACKAGE_NAME}\\\"/" "${SCRIP
 sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STATUS}\\\"," "${SCRIPT_ROOT}/../setup.py"
 
 echo ">>> copy patched files"
-copy "${SCRIPT_ROOT}/patched_files/api_client.py" "${CLIENT_ROOT}/client/api_client.py"
-copy "${SCRIPT_ROOT}/patched_files/rest.py" "${CLIENT_ROOT}/client/rest.py"
-copy "${SCRIPT_ROOT}/patched_files/configuration.py" "${CLIENT_ROOT}/client/configuration.py"
+cp "${SCRIPT_ROOT}/patched_files/api_client.py" "${CLIENT_ROOT}/client/api_client.py"
+cp "${SCRIPT_ROOT}/patched_files/rest.py" "${CLIENT_ROOT}/client/rest.py"
+cp "${SCRIPT_ROOT}/patched_files/configuration.py" "${CLIENT_ROOT}/client/configuration.py"
 
 echo ">>> don't deep-copy configuration for local_vars_configuration in models"
 find "${CLIENT_ROOT}/client/models/" -type f -print0 | xargs -0 sed -i 's/local_vars_configuration = Configuration.get_default_copy()/local_vars_configuration = Configuration.get_default()/g'
