@@ -64,7 +64,7 @@ class ExecProvider:
                 "exec: _WindowsSelectorEventLoop does NOT support subprocesses, see README.md"
             )
 
-        kubernetes_exec_info : dict[str, Any] = {
+        kubernetes_exec_info: dict[str, Any] = {
             "apiVersion": self.api_version,
             "kind": "ExecCredential",
             "spec": {"interactive": sys.stdout.isatty()},

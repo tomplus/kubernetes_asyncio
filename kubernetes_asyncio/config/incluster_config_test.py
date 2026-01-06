@@ -59,7 +59,7 @@ def monkeypatch_kube_config_path() -> Generator[None, None, None]:
 
 class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
     def setUp(self) -> None:
-        self._temp_files : list[str] = []
+        self._temp_files: list[str] = []
 
     def tearDown(self) -> None:
         for f in self._temp_files:

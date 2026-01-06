@@ -24,7 +24,6 @@ from kubernetes_asyncio.e2e_test import base
 
 
 class TestDiscoverer(unittest.IsolatedAsyncioTestCase):
-
     config: Configuration
 
     @classmethod

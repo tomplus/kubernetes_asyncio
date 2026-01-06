@@ -69,7 +69,7 @@ class InClusterConfigLoader(object):
             not self._environ[SERVICE_HOST_ENV_NAME]
             or not self._environ[SERVICE_PORT_ENV_NAME]
         ):
-            raise    ConfigException("Service host/port is set but empty.")
+            raise ConfigException("Service host/port is set but empty.")
 
         self.host = "https://" + _join_host_port(
             self._environ[SERVICE_HOST_ENV_NAME], self._environ[SERVICE_PORT_ENV_NAME]

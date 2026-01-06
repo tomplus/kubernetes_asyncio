@@ -18,7 +18,6 @@ from typing import Any
 from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
 
 
-
 class Config:
     # Validate config, exit if an error is detected
 

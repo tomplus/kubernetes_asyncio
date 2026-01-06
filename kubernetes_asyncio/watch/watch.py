@@ -36,7 +36,7 @@ TYPE_LIST_SUFFIX = "List"
 def _find_return_type(func: object) -> str:
     for line in pydoc.getdoc(func).splitlines():
         if line.startswith(PYDOC_RETURN_LABEL):
-            return line[len(PYDOC_RETURN_LABEL) :].strip()
+            return line[len(PYDOC_RETURN_LABEL):].strip()
     return ""
 
 

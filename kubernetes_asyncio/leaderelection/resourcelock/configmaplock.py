@@ -31,14 +31,13 @@ class ConfigMapLock(BaseLock):
         :param namespace: namespace
         :param identity: A unique identifier that the candidate is using
         """
+        super().__init__(name, namespace, identity)
+
         # self._api_instance = None # See api_instance property
         self.api_instance = client.CoreV1Api(api_client=api_client)
         self.leader_electionrecord_annotationkey = (
             "control-plane.alpha.kubernetes.io/leader"
         )
-        self.name = name
-        self.namespace = namespace
-        self.identity = str(identity)
         self.configmap_reference: client.V1ConfigMap | None = None
         self.lock_record: dict[str, Any] = {
             "holderIdentity": None,

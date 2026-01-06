@@ -42,7 +42,9 @@ class WatchTest(IsolatedAsyncioTestCase):
             }
             for uid in range(3)
         ]
-        side_effects : list[Any] = [json.dumps(_).encode("utf8") for _ in side_effects_events]
+        side_effects: list[Any] = [
+            json.dumps(_).encode("utf8") for _ in side_effects_events
+        ]
         side_effects.extend([AssertionError("Should not have been called")])
         fake_resp.content.readline.side_effect = side_effects
 
@@ -82,7 +84,7 @@ class WatchTest(IsolatedAsyncioTestCase):
         fake_resp.content.readline = AsyncMock()
         fake_resp.release = Mock()
         side_effects_logs = ["log_line_1", "log_line_2", ""]
-        side_effects : list[Any] = [_.encode("utf8") for _ in side_effects_logs]
+        side_effects: list[Any] = [_.encode("utf8") for _ in side_effects_logs]
         side_effects.extend([AssertionError("Should not have been called")])
         fake_resp.content.readline.side_effect = side_effects
 
@@ -124,7 +126,9 @@ class WatchTest(IsolatedAsyncioTestCase):
                 "object": {"metadata": {"name": "test1"}, "spec": {}, "status": {}},
             },
         ]
-        side_effects : list[Any] = [json.dumps(_).encode("utf8") for _ in side_effects_events]
+        side_effects: list[Any] = [
+            json.dumps(_).encode("utf8") for _ in side_effects_events
+        ]
         fake_resp.content.readline.side_effect = side_effects + [b""]
 
         # Fake the K8s resource object to watch.

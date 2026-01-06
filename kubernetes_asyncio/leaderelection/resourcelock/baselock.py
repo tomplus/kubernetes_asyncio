@@ -18,6 +18,11 @@ from kubernetes_asyncio.leaderelection.leaderelectionrecord import LeaderElectio
 
 
 class BaseLock:
+    def __init__(self, name: str, namespace: str, identity: str) -> None:
+        self.name = name
+        self.namespace = namespace
+        self.identity = str(identity)
+
     # get returns the election record from a ConfigMap Annotation
     @abstractmethod
     async def get(

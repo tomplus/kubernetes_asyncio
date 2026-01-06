@@ -29,15 +29,12 @@ class LeaseLock(BaseLock):
         :param namespace: namespace
         :param identity: A unique identifier that the candidate is using
         """
+        super().__init__(name, namespace, identity)
+
         self.api_instance = client.CoordinationV1Api(api_client=api_client)
 
         # lease resource identity and reference
-        self.name = name
-        self.namespace = namespace
         self.lease_reference: client.V1Lease | None = None
-
-        # identity of this candidate
-        self.identity = str(identity)
 
     # get returns the election record from a Lease Annotation
     async def get(
