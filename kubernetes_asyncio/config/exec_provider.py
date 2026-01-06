@@ -16,11 +16,14 @@ import asyncio.subprocess
 import json
 import os
 import sys
+from typing import TYPE_CHECKING, Any, cast
 
-from .config_exception import ConfigException
+if TYPE_CHECKING:
+    from kubernetes_asyncio.config.kube_config import ConfigNode
+from kubernetes_asyncio.config.config_exception import ConfigException
 
 
-class ExecProvider(object):
+class ExecProvider:
     """
     Implementation of the proposal for out-of-tree client authentication providers
     as described here --
@@ -32,70 +35,81 @@ class ExecProvider(object):
     * caching
     """
 
-    def __init__(self, exec_config):
-        for key in ['command', 'apiVersion']:
+    def __init__(self, exec_config: "ConfigNode") -> None:
+        for key in ["command", "apiVersion"]:
             if key not in exec_config:
+                raise ConfigException(f"exec: malformed request. missing key '{key}'")
+        self.api_version = exec_config["apiVersion"]
+        self.args = [str(exec_config["command"])]
+        if exec_config.safe_get("args"):
+            ec_args = exec_config["args"]
+            if not ec_args or not isinstance(ec_args.value, list):
                 raise ConfigException(
-                    'exec: malformed request. missing key \'%s\'' % key)
-        self.api_version = exec_config['apiVersion']
-        self.args = [exec_config['command']]
-        if exec_config.safe_get('args'):
-            self.args.extend(exec_config['args'])
+                    f"exec: malformed request. invalid args list '{ec_args}'"
+                )
+            self.args.extend(ec_args.value)
         self.env = os.environ.copy()
-        if exec_config.safe_get('env'):
+        if exec_config.safe_get("env"):
             additional_vars = {}
-            for item in exec_config['env']:
-                name = item['name']
-                value = item['value']
+            for item in cast(list, exec_config["env"]):
+                name = item["name"]
+                value = item["value"]
                 additional_vars[name] = value
             self.env.update(additional_vars)
 
-    async def run(self, previous_response=None):
+    async def run(self, previous_response: str | None = None) -> Any:
         # Validate the run can be executed on Windows
-        if type(asyncio.get_event_loop()).__name__ == '_WindowsSelectorEventLoop':
+        if type(asyncio.get_event_loop()).__name__ == "_WindowsSelectorEventLoop":
             raise ConfigException(
-                'exec: _WindowsSelectorEventLoop does NOT support subprocesses, see README.md'
+                "exec: _WindowsSelectorEventLoop does NOT support subprocesses, see README.md"
             )
 
-        kubernetes_exec_info = {
-            'apiVersion': self.api_version,
-            'kind': 'ExecCredential',
-            'spec': {
-                'interactive': sys.stdout.isatty()
-            }
+        kubernetes_exec_info: dict[str, Any] = {
+            "apiVersion": self.api_version,
+            "kind": "ExecCredential",
+            "spec": {"interactive": sys.stdout.isatty()},
         }
         if previous_response:
-            kubernetes_exec_info['spec']['response'] = previous_response
-        self.env['KUBERNETES_EXEC_INFO'] = json.dumps(kubernetes_exec_info)
+            kubernetes_exec_info["spec"]["response"] = previous_response
+        self.env["KUBERNETES_EXEC_INFO"] = json.dumps(kubernetes_exec_info)
 
-        cmd_exec = asyncio.create_subprocess_exec(*self.args,
-                                                  env=self.env,
-                                                  stdin=None,
-                                                  stdout=asyncio.subprocess.PIPE,
-                                                  stderr=asyncio.subprocess.PIPE)
+        cmd_exec = asyncio.create_subprocess_exec(
+            *self.args,
+            env=self.env,
+            stdin=None,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
         proc = await cmd_exec
 
-        stdout = await proc.stdout.read()
-        stderr = await proc.stderr.read()
+        if proc.stdout:
+            stdout = await proc.stdout.read()
+        else:
+            raise RuntimeError("Unable to read stdout")
+        if proc.stderr:
+            stderr = await proc.stderr.read()
+        else:
+            raise RuntimeError("Unable to read stderr")
         exit_code = await proc.wait()
 
         if exit_code != 0:
-            msg = 'exec: process returned %d' % exit_code
+            msg = "exec: process returned %d" % exit_code
             stderr = stderr.strip()
             if stderr:
-                msg += '. %s' % stderr
+                msg += ". %s" % stderr.decode()
             raise ConfigException(msg)
         try:
             data = json.loads(stdout)
         except ValueError as de:
-            raise ConfigException(
-                'exec: failed to decode process output: %s' % de)
-        for key in ('apiVersion', 'kind', 'status'):
+            raise ConfigException("exec: failed to decode process output: %s" % de)
+        for key in ("apiVersion", "kind", "status"):
             if key not in data:
                 raise ConfigException(
-                    'exec: malformed response. missing key \'%s\'' % key)
-        if data['apiVersion'] != self.api_version:
+                    "exec: malformed response. missing key '%s'" % key
+                )
+        if data["apiVersion"] != self.api_version:
             raise ConfigException(
-                'exec: plugin api version %s does not match %s' %
-                (data['apiVersion'], self.api_version))
-        return data['status']
+                "exec: plugin api version %s does not match %s"
+                % (data["apiVersion"], self.api_version)
+            )
+        return data["status"]

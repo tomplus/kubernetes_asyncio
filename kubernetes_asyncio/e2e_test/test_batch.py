@@ -17,11 +17,18 @@ from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.client.api import batch_v1_api
+from kubernetes_asyncio.client.models.v1_container import V1Container
+from kubernetes_asyncio.client.models.v1_job import V1Job
+from kubernetes_asyncio.client.models.v1_job_spec import V1JobSpec
+from kubernetes_asyncio.client.models.v1_object_meta import V1ObjectMeta
+from kubernetes_asyncio.client.models.v1_pod_spec import V1PodSpec
+from kubernetes_asyncio.client.models.v1_pod_template_spec import (
+    V1PodTemplateSpec,
+)
 from kubernetes_asyncio.e2e_test import base
 
 
 class TestClientBatch(IsolatedAsyncioTestCase):
-
     @classmethod
     def setUpClass(cls):
         cls.config = base.get_e2e_configuration()
@@ -30,29 +37,32 @@ class TestClientBatch(IsolatedAsyncioTestCase):
         client = api_client.ApiClient(configuration=self.config)
         api = batch_v1_api.BatchV1Api(client)
 
-        name = 'test-job-' + str(uuid.uuid4())
-        job_manifest = {
-            'kind': 'Job',
-            'spec': {
-                'template':
-                    {'spec':
-                        {'containers': [
-                            {'image': 'busybox',
-                             'name': name,
-                             'command': ["sh", "-c", "sleep 5"]
-                             }],
-                            'restartPolicy': 'Never'},
-                        'metadata': {'name': name}}},
-            'apiVersion': 'batch/v1',
-            'metadata': {'name': name}}
+        name = "test-job-" + str(uuid.uuid4())
+        job_manifest = V1Job(
+            kind="Job",
+            spec=V1JobSpec(
+                template=V1PodTemplateSpec(
+                    spec=V1PodSpec(
+                        containers=[
+                            V1Container(
+                                image="busybox",
+                                name=name,
+                                command=["sh", "-c", "sleep 5"],
+                            )
+                        ],
+                        restart_policy="Never",
+                    ),
+                    metadata=V1ObjectMeta(name=name),
+                )
+            ),
+            api_version="batch/v1",
+            metadata=V1ObjectMeta(name=name),
+        )
 
-        resp = await api.create_namespaced_job(
-            body=job_manifest, namespace='default')
+        resp = await api.create_namespaced_job(body=job_manifest, namespace="default")
         self.assertEqual(name, resp.metadata.name)
 
-        resp = await api.read_namespaced_job(
-            name=name, namespace='default')
+        resp = await api.read_namespaced_job(name=name, namespace="default")
         self.assertEqual(name, resp.metadata.name)
 
-        resp = await api.delete_namespaced_job(
-            name=name, body={}, namespace='default')
+        await api.delete_namespaced_job(name=name, body={}, namespace="default")

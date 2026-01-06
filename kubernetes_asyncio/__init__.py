@@ -12,13 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-__project__ = 'kubernetes_asyncio'
+__project__ = "kubernetes_asyncio"
 # The version is auto-updated. Please do not edit.
 __version__ = "33.3.0+snapshot"
 
-import kubernetes_asyncio.client
-import kubernetes_asyncio.config
-import kubernetes_asyncio.dynamic
-import kubernetes_asyncio.stream
-import kubernetes_asyncio.utils
-import kubernetes_asyncio.watch
+import kubernetes_asyncio.client as client
+import kubernetes_asyncio.config as config
+import kubernetes_asyncio.dynamic as dynamic
+import kubernetes_asyncio.stream as stream
+import kubernetes_asyncio.utils as utils
+import kubernetes_asyncio.watch as watch
+
+__all__ = ["client", "config", "dynamic", "stream", "utils", "watch"]

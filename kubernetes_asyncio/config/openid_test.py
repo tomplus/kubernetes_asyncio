@@ -1,6 +1,7 @@
 import asyncio
 import json
 from contextlib import contextmanager
+from typing import Generator
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import patch
 
@@ -9,12 +10,11 @@ from aiohttp.test_utils import (
     TestClient as _TestClient, TestServer as _TestServer,
 )
 
-from .config_exception import ConfigException
-from .openid import OpenIDRequestor
+from kubernetes_asyncio.config.config_exception import ConfigException
+from kubernetes_asyncio.config.openid import OpenIDRequestor
 
 
 def make_responder(response):
-
     async def responder(request):
         return response
 
@@ -25,19 +25,28 @@ def respond_json(data):
     return make_responder(
         web.Response(
             text=json.dumps(data),
-            content_type='application/json',
+            content_type="application/json",
         )
     )
 
 
 @contextmanager
-def working_client():
+def working_client() -> Generator[_TestClient, None, None]:
     loop = asyncio.get_event_loop()
     app = web.Application()
-    app.router.add_get('/.well-known/openid-configuration', respond_json({'token_endpoint': '/token'}))
-    app.router.add_post('/token', respond_json({'id-token': 'id-token-data', 'refresh-token': 'refresh-token-data'}))
+    app.router.add_get(
+        "/.well-known/openid-configuration", respond_json({"token_endpoint": "/token"})
+    )
+    app.router.add_post(
+        "/token",
+        respond_json(
+            {"id-token": "id-token-data", "refresh-token": "refresh-token-data"}
+        ),
+    )
 
-    with patch('kubernetes_asyncio.config.openid.aiohttp.ClientSession') as _client_session:
+    with patch(
+        "kubernetes_asyncio.config.openid.aiohttp.ClientSession"
+    ) as _client_session:
         client = _TestClient(_TestServer(app, loop=loop), loop=loop)
         _client_session.return_value = client
 
@@ -45,25 +54,33 @@ def working_client():
 
 
 @contextmanager
-def fail_well_known_client():
+def fail_well_known_client() -> Generator[_TestClient, None, None]:
     loop = asyncio.get_event_loop()
     app = web.Application()
-    app.router.add_get('/.well-known/openid-configuration', make_responder(web.Response(status=500)))
+    app.router.add_get(
+        "/.well-known/openid-configuration", make_responder(web.Response(status=500))
+    )
 
-    with patch('kubernetes_asyncio.config.openid.aiohttp.ClientSession') as _client_session:
+    with patch(
+        "kubernetes_asyncio.config.openid.aiohttp.ClientSession"
+    ) as _client_session:
         client = _TestClient(_TestServer(app, loop=loop), loop=loop)
         _client_session.return_value = client
         yield client
 
 
 @contextmanager
-def fail_token_request_client():
+def fail_token_request_client() -> Generator[_TestClient, None, None]:
     loop = asyncio.get_event_loop()
     app = web.Application()
-    app.router.add_get('/.well-known/openid-configuration', respond_json({'token_endpoint': '/token'}))
-    app.router.add_post('/token', make_responder(web.Response(status=500)))
+    app.router.add_get(
+        "/.well-known/openid-configuration", respond_json({"token_endpoint": "/token"})
+    )
+    app.router.add_post("/token", make_responder(web.Response(status=500)))
 
-    with patch('kubernetes_asyncio.config.openid.aiohttp.ClientSession') as _client_session:
+    with patch(
+        "kubernetes_asyncio.config.openid.aiohttp.ClientSession"
+    ) as _client_session:
         client = _TestClient(_TestServer(app, loop=loop), loop=loop)
         _client_session.return_value = client
 
@@ -71,27 +88,26 @@ def fail_token_request_client():
 
 
 class OpenIDRequestorTest(IsolatedAsyncioTestCase):
-
-    def setUp(self):
+    def setUp(self) -> None:
         self.requestor = OpenIDRequestor(
-            'client-id',
-            'client-secret',
-            '',
+            "client-id",
+            "client-secret",
+            "",
         )
 
-    async def test_refresh_token_success(self):
+    async def test_refresh_token_success(self) -> None:
         with working_client():
-            resp = await self.requestor.refresh_token('my-refresh-token')
+            resp = await self.requestor.refresh_token("my-refresh-token")
 
-            assert resp['id-token'] == 'id-token-data'
-            assert resp['refresh-token'] == 'refresh-token-data'
+            assert resp["id-token"] == "id-token-data"
+            assert resp["refresh-token"] == "refresh-token-data"
 
-    async def test_failed_well_known(self):
+    async def test_failed_well_known(self) -> None:
         with fail_well_known_client():
             with self.assertRaises(ConfigException):
-                await self.requestor.refresh_token('my-refresh-token')
+                await self.requestor.refresh_token("my-refresh-token")
 
-    async def test_failed_refresh_token(self):
+    async def test_failed_refresh_token(self) -> None:
         with fail_token_request_client():
             with self.assertRaises(ConfigException):
-                await self.requestor.refresh_token('my-refresh-token')
+                await self.requestor.refresh_token("my-refresh-token")

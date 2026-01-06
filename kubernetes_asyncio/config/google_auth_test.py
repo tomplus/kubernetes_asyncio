@@ -14,25 +14,23 @@
 
 from unittest import IsolatedAsyncioTestCase
 
-from .google_auth import google_auth_credentials
+from kubernetes_asyncio.config.google_auth import google_auth_credentials
+from kubernetes_asyncio.config.kube_config import ConfigNode
 
 
 class TestGoogleAuth(IsolatedAsyncioTestCase):
-
-    async def test_google_auth_credentials(self):
-
+    async def test_google_auth_credentials(self) -> None:
         provider = {
-            'cmd-path': '/bin/echo',
-            'cmd-args': '{\\"credential\\": {\\"access_token\\": \\"token\\", '
-                        '\\"token_expiry\\": \\"2001.01.01T00:00:00Z\\"}}'
+            "cmd-path": "/bin/echo",
+            "cmd-args": '{\\"credential\\": {\\"access_token\\": \\"token\\", '
+            '\\"token_expiry\\": \\"2001.01.01T00:00:00Z\\"}}',
         }
 
-        ret = await google_auth_credentials(provider)
+        ret = await google_auth_credentials(ConfigNode("", provider))
 
-        self.assertEqual(ret.token, 'token')
-        self.assertEqual(ret.expiry, '2001.01.01T00:00:00Z')
+        self.assertEqual(ret.token, "token")
+        self.assertEqual(ret.expiry, "2001.01.01T00:00:00Z")
 
-    async def test_google_auth_credentials_exception(self):
-
+    async def test_google_auth_credentials_exception(self) -> None:
         with self.assertRaisesRegex(ValueError, "cmd-path, cmd-args are required."):
-            await google_auth_credentials({})
+            await google_auth_credentials(ConfigNode("", {}))

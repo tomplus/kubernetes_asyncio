@@ -21,21 +21,35 @@ import yaml
 from kubernetes_asyncio import utils
 from kubernetes_asyncio.client import api_client
 from kubernetes_asyncio.client.api import apps_v1_api
+from kubernetes_asyncio.client.configuration import Configuration
 from kubernetes_asyncio.client.models import v1_delete_options
+from kubernetes_asyncio.client.models.v1_container import V1Container
+from kubernetes_asyncio.client.models.v1_daemon_set import V1DaemonSet
+from kubernetes_asyncio.client.models.v1_daemon_set_spec import V1DaemonSetSpec
+from kubernetes_asyncio.client.models.v1_daemon_set_update_strategy import (
+    V1DaemonSetUpdateStrategy,
+)
+from kubernetes_asyncio.client.models.v1_label_selector import V1LabelSelector
+from kubernetes_asyncio.client.models.v1_object_meta import V1ObjectMeta
+from kubernetes_asyncio.client.models.v1_pod_spec import V1PodSpec
+from kubernetes_asyncio.client.models.v1_pod_template_spec import (
+    V1PodTemplateSpec,
+)
 from kubernetes_asyncio.e2e_test import base
 
 
 class TestClientApi(IsolatedAsyncioTestCase):
+    config: Configuration
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls) -> None:
         cls.config = base.get_e2e_configuration()
 
-    async def test_create_deployment(self):
+    async def test_create_deployment(self) -> None:
         client = api_client.ApiClient(configuration=self.config)
         api = apps_v1_api.AppsV1Api(client)
-        name = 'nginx-deployment-' + str(uuid.uuid4())
-        deployment = '''apiVersion: apps/v1
+        name = "nginx-deployment-" + str(uuid.uuid4())
+        deployment = """apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: %s
@@ -54,22 +68,25 @@ spec:
         image: nginx:1.7.9
         ports:
         - containerPort: 80
-'''
+"""
         resp = await api.create_namespaced_deployment(
-            body=yaml.safe_load(deployment % name),
-            namespace="default")
-        resp = await api.read_namespaced_deployment(name, 'default')
+            body=yaml.safe_load(deployment % name), namespace="default"
+        )
+        resp = await api.read_namespaced_deployment(name, "default")
         self.assertIsNotNone(resp)
 
         options = v1_delete_options.V1DeleteOptions()
-        resp = await api.delete_namespaced_deployment(name, 'default', body=options)
+        resp_delete = await api.delete_namespaced_deployment(
+            name, "default", body=options
+        )
+        self.assertIsNotNone(resp_delete)
 
-    async def test_create_deployment_from_yaml_file(self):
+    async def test_create_deployment_from_yaml_file(self) -> None:
         client = api_client.ApiClient(configuration=self.config)
         api = apps_v1_api.AppsV1Api(client)
-        name = 'nginx-deployment-' + str(uuid.uuid4())
-        tempfile = 'temp.yaml'
-        deployment = '''apiVersion: apps/v1
+        name = "nginx-deployment-" + str(uuid.uuid4())
+        tempfile = "temp.yaml"
+        deployment = """apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: %s
@@ -88,51 +105,50 @@ spec:
         image: nginx:1.7.9
         ports:
         - containerPort: 80
-'''
-        with open(tempfile, 'w') as f:
+"""
+        with open(tempfile, "w") as f:
             f.write(deployment % name)
         resp = await utils.create_from_yaml(client, tempfile)
         os.remove(tempfile)
-        resp = await api.read_namespaced_deployment(name, 'default')
+        resp = await api.read_namespaced_deployment(name, "default")
         self.assertIsNotNone(resp)
 
         options = v1_delete_options.V1DeleteOptions()
-        resp = await api.delete_namespaced_deployment(name, 'default', body=options)
+        resp = await api.delete_namespaced_deployment(name, "default", body=options)
 
-    async def test_create_daemonset(self):
+    async def test_create_daemonset(self) -> None:
         client = api_client.ApiClient(configuration=self.config)
         api = apps_v1_api.AppsV1Api(client)
-        name = 'nginx-app-' + str(uuid.uuid4())
-        daemonset = {
-            'apiVersion': 'apps/v1',
-            'kind': 'DaemonSet',
-            'metadata': {
-                'labels': {'app': 'nginx'},
-                'name': name,
-            },
-            'spec': {
-                'selector': {
-                    'matchLabels': {'app': 'nginx'}
-                },
-                'template': {
-                    'metadata': {
-                        'labels': {'app': 'nginx'},
-                        'name': name},
-                    'spec': {
-                        'containers': [
-                            {'name': 'nginx-app',
-                             'image': 'nginx:1.10'},
+        name = "nginx-app-" + str(uuid.uuid4())
+        daemonset = V1DaemonSet(
+            api_version="apps/v1",
+            kind="DaemonSet",
+            metadata=V1ObjectMeta(
+                labels={"app": "nginx"},
+                name=name,
+            ),
+            spec=V1DaemonSetSpec(
+                selector=V1LabelSelector(match_labels={"app": "nginx"}),
+                template=V1PodTemplateSpec(
+                    metadata=V1ObjectMeta(
+                        labels={"app": "nginx"},
+                        name=name,
+                    ),
+                    spec=V1PodSpec(
+                        containers=[
+                            V1Container(name="nginx-app", image="nginx:1.10"),
                         ],
-                    },
-                },
-                'updateStrategy': {
-                    'type': 'RollingUpdate',
-                },
-            }
-        }
-        resp = await api.create_namespaced_daemon_set('default', body=daemonset)
-        resp = await api.read_namespaced_daemon_set(name, 'default')
+                    ),
+                ),
+                update_strategy=V1DaemonSetUpdateStrategy(type="RollingUpdate"),
+            ),
+        )
+        resp = await api.create_namespaced_daemon_set("default", body=daemonset)
+        resp = await api.read_namespaced_daemon_set(name, "default")
         self.assertIsNotNone(resp)
 
         options = v1_delete_options.V1DeleteOptions()
-        resp = await api.delete_namespaced_daemon_set(name, 'default', body=options)
+        resp_delete = await api.delete_namespaced_daemon_set(
+            name, "default", body=options
+        )
+        self.assertIsNotNone(resp_delete)

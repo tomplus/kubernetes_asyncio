@@ -15,46 +15,52 @@
 import datetime
 import math
 import re
+from typing import Any
 
 
 class TimezoneInfo(datetime.tzinfo):
-    def __init__(self, h, m):
+    def __init__(self, h: int, m: int) -> None:
         self._name = "UTC"
         if h != 0 and m != 0:
             self._name += "%+03d:%2d" % (h, m)
         self._delta = datetime.timedelta(hours=h, minutes=math.copysign(m, h))
 
-    def utcoffset(self, dt):
+    def utcoffset(self, dt: Any | None) -> datetime.timedelta:
         return self._delta
 
-    def tzname(self, dt):
+    def tzname(self, dt: Any | None) -> str:
         return self._name
 
-    def dst(self, dt):
+    def dst(self, dt: Any | None) -> datetime.timedelta:
         return datetime.timedelta(0)
 
 
 UTC = TimezoneInfo(0, 0)
 
 # ref https://www.ietf.org/rfc/rfc3339.txt
-_re_rfc3339 = re.compile(r"(\d\d\d\d)-(\d\d)-(\d\d)"        # full-date
-                         r"[ Tt]"                           # Separator
-                         r"(\d\d):(\d\d):(\d\d)([.,]\d+)?"  # partial-time
-                         r"([zZ ]|[-+]\d\d?:\d\d)?",        # time-offset
-                         re.VERBOSE + re.IGNORECASE)
+_re_rfc3339 = re.compile(
+    r"(\d\d\d\d)-(\d\d)-(\d\d)"  # full-date
+    r"[ Tt]"  # Separator
+    r"(\d\d):(\d\d):(\d\d)([.,]\d+)?"  # partial-time
+    r"([zZ ]|[-+]\d\d?:\d\d)?",  # time-offset
+    re.VERBOSE + re.IGNORECASE,
+)
 _re_timezone = re.compile(r"([-+])(\d\d?):?(\d\d)?")
 
 
 MICROSEC_PER_SEC = 1000000
 
 
-def parse_rfc3339(s):
+def parse_rfc3339(s: str | datetime.datetime) -> datetime.datetime:
     if isinstance(s, datetime.datetime):
         # no need to parse it, just make sure it has a timezone.
         if not s.tzinfo:
             return s.replace(tzinfo=UTC)
         return s
-    groups = _re_rfc3339.search(s).groups()
+    _re_rfc3339_s = _re_rfc3339.search(s)
+    if not _re_rfc3339_s:
+        raise ValueError(f"Unable to parse datetime {s}")
+    groups = _re_rfc3339_s.groups()
     dt = [0] * 7
     for x in range(6):
         dt[x] = int(groups[x])
@@ -63,8 +69,11 @@ def parse_rfc3339(s):
         partial_sec = float(groups[6].replace(",", "."))
         us = int(MICROSEC_PER_SEC * partial_sec)
     tz = UTC
-    if groups[7] is not None and groups[7] != 'Z' and groups[7] != 'z':
-        tz_groups = _re_timezone.search(groups[7]).groups()
+    if groups[7] is not None and groups[7] != "Z" and groups[7] != "z":
+        _re_timezone_s = _re_timezone.search(groups[7])
+        if not _re_timezone_s:
+            raise ValueError(f"Unable to parse timezone {s}")
+        tz_groups = _re_timezone_s.groups()
         hour = int(tz_groups[1])
         minute = 0
         if tz_groups[0] == "-":
@@ -73,13 +82,19 @@ def parse_rfc3339(s):
             minute = int(tz_groups[2])
         tz = TimezoneInfo(hour, minute)
     return datetime.datetime(
-        year=dt[0], month=dt[1], day=dt[2],
-        hour=dt[3], minute=dt[4], second=dt[5],
-        microsecond=us, tzinfo=tz)
+        year=dt[0],
+        month=dt[1],
+        day=dt[2],
+        hour=dt[3],
+        minute=dt[4],
+        second=dt[5],
+        microsecond=us,
+        tzinfo=tz,
+    )
 
 
-def format_rfc3339(date_time):
+def format_rfc3339(date_time: datetime.datetime) -> str:
     if date_time.tzinfo is None:
         date_time = date_time.replace(tzinfo=UTC)
     date_time = date_time.astimezone(UTC)
-    return date_time.strftime('%Y-%m-%dT%H:%M:%SZ')
+    return date_time.strftime("%Y-%m-%dT%H:%M:%SZ")

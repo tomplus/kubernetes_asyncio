@@ -16,30 +16,32 @@ import logging
 from datetime import datetime
 
 from kubernetes_asyncio import client
+from kubernetes_asyncio.client.api_client import ApiClient
 from kubernetes_asyncio.client.rest import ApiException
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
+    LeaderElectionRecord,
+)
+from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
 
-from ..leaderelectionrecord import LeaderElectionRecord
 
-
-class LeaseLock:
-    def __init__(self, name, namespace, identity, api_client):
+class LeaseLock(BaseLock):
+    def __init__(self, name: str, namespace: str, identity: str, api_client: ApiClient):
         """
         :param name: name of the lock
         :param namespace: namespace
         :param identity: A unique identifier that the candidate is using
         """
+        super().__init__(name, namespace, identity)
+
         self.api_instance = client.CoordinationV1Api(api_client=api_client)
 
         # lease resource identity and reference
-        self.name = name
-        self.namespace = namespace
-        self.lease_reference = None
-
-        # identity of this candidate
-        self.identity = str(identity)
+        self.lease_reference: client.V1Lease | None = None
 
     # get returns the election record from a Lease Annotation
-    async def get(self, name, namespace):
+    async def get(
+        self, name: str, namespace: str
+    ) -> tuple[bool, LeaderElectionRecord] | tuple[bool, Exception] | tuple[bool, None]:
         """
         :param name: Name of the lease object information to get
         :param namespace: Namespace in which the lease object is to be searched
@@ -53,7 +55,9 @@ class LeaseLock:
             self.lease_reference = lease
             return True, self.election_record(lease)
 
-    async def create(self, name, namespace, election_record):
+    async def create(
+        self, name: str, namespace: str, election_record: LeaderElectionRecord
+    ) -> bool:
         """
         :param electionRecord: Annotation string
         :param name: Name of the lease object to be created
@@ -61,7 +65,8 @@ class LeaseLock:
         :return: 'True' if object is created else 'False' if failed
         """
         body = client.V1Lease(
-            metadata={"name": name}, spec=self.update_lease(election_record)
+            metadata=client.V1ObjectMeta(name=name),
+            spec=self.update_lease(election_record),
         )
 
         try:
@@ -73,7 +78,9 @@ class LeaseLock:
             logging.exception("Failed to create lock")
             return False
 
-    async def update(self, name, namespace, updated_record):
+    async def update(
+        self, name: str, namespace: str, updated_record: LeaderElectionRecord
+    ) -> bool:
         """
         :param name: name of the lock to be updated
         :param namespace: namespace the lock is in
@@ -82,6 +89,7 @@ class LeaseLock:
         """
         try:
             # update the Lease from the updated record
+            assert self.lease_reference is not None
             self.lease_reference.spec = self.update_lease(
                 updated_record, self.lease_reference.spec
             )
@@ -94,19 +102,32 @@ class LeaseLock:
             logging.exception("Failed to update lock")
             return False
 
-    def update_lease(self, leader_election_record, current_spec=None):
+    def update_lease(
+        self,
+        leader_election_record: LeaderElectionRecord,
+        current_spec: client.V1LeaseSpec | None = None,
+    ):
         # existing or new lease?
         spec = current_spec if current_spec else client.V1LeaseSpec()
 
         # lease configuration
+        assert leader_election_record.holder_identity
         spec.holder_identity = leader_election_record.holder_identity
+
+        assert leader_election_record.lease_duration
         spec.lease_duration_seconds = int(leader_election_record.lease_duration)
-        spec.acquire_time = self.time_str_to_iso(leader_election_record.acquire_time)
-        spec.renew_time = self.time_str_to_iso(leader_election_record.renew_time)
+
+        acquire_time = self.time_str_to_iso(leader_election_record.acquire_time)
+        if acquire_time:
+            spec.acquire_time = acquire_time
+
+        renew_time = self.time_str_to_iso(leader_election_record.renew_time)
+        if renew_time:
+            spec.renew_time = renew_time
 
         return spec
 
-    def election_record(self, lease):
+    def election_record(self, lease: client.V1Lease):
         """
         Get leader election record from Lease spec.
         """
@@ -133,11 +154,13 @@ class LeaseLock:
         return leader_election_record
 
     # conversion between kubernetes ISO formatted time and elector record time
-    def time_str_to_iso(self, str_time):
+    def time_str_to_iso(self, str_time) -> datetime | None:
         formats = ["%Y-%m-%d %H:%M:%S.%f%z", "%Y-%m-%d %H:%M:%S.%f"]
         for fmt in formats:
             try:
-                return datetime.strptime(str_time, fmt).isoformat() + "Z"
+                # return datetime.strptime(str_time, fmt).isoformat() + "Z"
+                return datetime.strptime(str_time, fmt)
             except ValueError:
                 pass
         logging.error("Failed to parse time string: %s", str_time)
+        return None

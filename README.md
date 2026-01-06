@@ -22,7 +22,7 @@ From [PyPi](https://pypi.python.org/pypi/kubernetes_asyncio/) directly:
 pip install kubernetes_asyncio
 ```
 
-It requires Python 3.8+
+It requires Python 3.10+
 
 ## Example
 

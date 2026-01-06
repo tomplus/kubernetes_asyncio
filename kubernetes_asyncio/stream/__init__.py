@@ -12,4 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .ws_client import WsApiClient
+from kubernetes_asyncio.stream.ws_client import WsApiClient
+
+__all__ = ["WsApiClient"]

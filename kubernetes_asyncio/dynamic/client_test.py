@@ -15,36 +15,41 @@
 import asyncio
 import unittest
 import uuid
+from typing import Any
 
 from kubernetes_asyncio.client import api_client
+from kubernetes_asyncio.client.configuration import Configuration
 from kubernetes_asyncio.dynamic import DynamicClient
 from kubernetes_asyncio.dynamic.exceptions import ResourceNotFoundError
 from kubernetes_asyncio.dynamic.resource import ResourceField, ResourceInstance
 from kubernetes_asyncio.e2e_test import base
 
 
-def short_uuid():
+def short_uuid() -> str:
     id_ = str(uuid.uuid4())
     return id_[-12:]
 
 
 class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
+    config: Configuration
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls) -> None:
         cls.config = base.get_e2e_configuration()
 
-    async def test_cluster_custom_resources(self):
+    async def test_cluster_custom_resources(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
 
             with self.assertRaises(ResourceNotFoundError):
-                await client.resources.get(api_version='apps.example.com/v1', kind='ClusterChangeMe')
+                await client.resources.get(
+                    api_version="apps.example.com/v1", kind="ClusterChangeMe"
+                )
 
             crd_api = await client.resources.get(
-                api_version='apiextensions.k8s.io/v1',
-                kind='CustomResourceDefinition')
-            name = 'clusterchangemes.apps.example.com'
+                api_version="apiextensions.k8s.io/v1", kind="CustomResourceDefinition"
+            )
+            name = "clusterchangemes.apps.example.com"
             crd_manifest = {
                 "apiVersion": "apiextensions.k8s.io/v1",
                 "kind": "CustomResourceDefinition",
@@ -92,22 +97,25 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
             self.assertTrue(resp.status)
 
             try:
-                await client.resources.get(api_version='apps.example.com/v1', kind='ClusterChangeMe')
+                await client.resources.get(
+                    api_version="apps.example.com/v1", kind="ClusterChangeMe"
+                )
             except ResourceNotFoundError:
                 # Need to wait a sec for the discovery layer to get updated
                 await asyncio.sleep(2)
             changeme_api = await client.resources.get(
-                api_version='apps.example.com/v1', kind='ClusterChangeMe')
+                api_version="apps.example.com/v1", kind="ClusterChangeMe"
+            )
             resp = await changeme_api.get()
             self.assertEqual(resp.items, [])
-            changeme_name = 'custom-resource' + short_uuid()
+            changeme_name = "custom-resource" + short_uuid()
             changeme_manifest = {
-                'apiVersion': 'apps.example.com/v1',
-                'kind': 'ClusterChangeMe',
-                'metadata': {
-                    'name': changeme_name,
+                "apiVersion": "apps.example.com/v1",
+                "kind": "ClusterChangeMe",
+                "metadata": {
+                    "name": changeme_name,
                 },
-                'spec': {}
+                "spec": {},
             }
 
             resp = await changeme_api.create(body=changeme_manifest)
@@ -115,24 +123,28 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
             # watch with timeout
             count = 0
-            async for _ in client.watch(changeme_api, timeout=3, namespace="default", name=changeme_name):
+            async for _ in client.watch(
+                changeme_api, timeout=3, namespace="default", name=changeme_name
+            ):
                 count += 1
             self.assertTrue(count > 0, msg="no events received for watch")
 
             # without timeout, should be longer than the previous check
             async def _watch_no_timeout():
-                async for _ in client.watch(changeme_api, namespace="default", name=changeme_name):
+                async for _ in client.watch(
+                    changeme_api, namespace="default", name=changeme_name
+                ):
                     pass
+
             with self.assertRaises(asyncio.exceptions.TimeoutError):
                 await asyncio.wait_for(_watch_no_timeout(), timeout=5)
 
             resp = await changeme_api.get(name=changeme_name)
             self.assertEqual(resp.metadata.name, changeme_name)
 
-            changeme_manifest['spec']['size'] = 3
+            changeme_manifest["spec"]["size"] = 3
             resp = await changeme_api.patch(
-                body=changeme_manifest,
-                content_type='application/merge-patch+json'
+                body=changeme_manifest, content_type="application/merge-patch+json"
             )
             self.assertEqual(resp.spec.size, 3)
 
@@ -152,19 +164,23 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
             await asyncio.sleep(2)
             await client.resources.invalidate_cache()
             with self.assertRaises(ResourceNotFoundError):
-                await client.resources.get(api_version='apps.example.com/v1', kind='ClusterChangeMe')
+                await client.resources.get(
+                    api_version="apps.example.com/v1", kind="ClusterChangeMe"
+                )
 
-    async def test_namespaced_custom_resources(self):
+    async def test_namespaced_custom_resources(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
 
             with self.assertRaises(ResourceNotFoundError):
-                await client.resources.get(api_version='apps.example.com/v1', kind='ChangeMe')
+                await client.resources.get(
+                    api_version="apps.example.com/v1", kind="ChangeMe"
+                )
 
             crd_api = await client.resources.get(
-                api_version='apiextensions.k8s.io/v1',
-                kind='CustomResourceDefinition')
-            name = 'clusterchangemes.apps.example.com'
+                api_version="apiextensions.k8s.io/v1", kind="CustomResourceDefinition"
+            )
+            name = "clusterchangemes.apps.example.com"
             crd_manifest = {
                 "apiVersion": "apiextensions.k8s.io/v1",
                 "kind": "CustomResourceDefinition",
@@ -212,50 +228,55 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
             self.assertTrue(resp.status)
 
             try:
-                await client.resources.get(api_version='apps.example.com/v1', kind='ClusterChangeMe')
+                await client.resources.get(
+                    api_version="apps.example.com/v1", kind="ClusterChangeMe"
+                )
             except ResourceNotFoundError:
                 # Need to wait a sec for the discovery layer to get updated
                 await asyncio.sleep(2)
             changeme_api = await client.resources.get(
-                api_version='apps.example.com/v1', kind='ClusterChangeMe')
+                api_version="apps.example.com/v1", kind="ClusterChangeMe"
+            )
             resp = await changeme_api.get()
             self.assertEqual(resp.items, [])
-            changeme_name = 'custom-resource' + short_uuid()
+            changeme_name = "custom-resource" + short_uuid()
             changeme_manifest = {
-                'apiVersion': 'apps.example.com/v1',
-                'kind': 'ClusterChangeMe',
-                'metadata': {
-                    'name': changeme_name,
+                "apiVersion": "apps.example.com/v1",
+                "kind": "ClusterChangeMe",
+                "metadata": {
+                    "name": changeme_name,
                 },
-                'spec': {}
+                "spec": {},
             }
 
-            resp = await changeme_api.create(body=changeme_manifest, namespace='default')
+            resp = await changeme_api.create(
+                body=changeme_manifest, namespace="default"
+            )
             self.assertEqual(resp.metadata.name, changeme_name)
 
-            resp = await changeme_api.get(name=changeme_name, namespace='default')
+            resp = await changeme_api.get(name=changeme_name, namespace="default")
             self.assertEqual(resp.metadata.name, changeme_name)
 
-            changeme_manifest['spec']['size'] = 3
+            changeme_manifest["spec"]["size"] = 3
             resp = await changeme_api.patch(
                 body=changeme_manifest,
-                namespace='default',
-                content_type='application/merge-patch+json'
+                namespace="default",
+                content_type="application/merge-patch+json",
             )
             self.assertEqual(resp.spec.size, 3)
 
-            resp = await changeme_api.get(name=changeme_name, namespace='default')
+            resp = await changeme_api.get(name=changeme_name, namespace="default")
             self.assertEqual(resp.spec.size, 3)
 
-            resp = await changeme_api.get(namespace='default')
+            resp = await changeme_api.get(namespace="default")
             self.assertEqual(len(resp.items), 1)
 
             resp = await changeme_api.get()
             self.assertEqual(len(resp.items), 1)
 
-            await changeme_api.delete(name=changeme_name, namespace='default')
+            await changeme_api.delete(name=changeme_name, namespace="default")
 
-            resp = await changeme_api.get(namespace='default')
+            resp = await changeme_api.get(namespace="default")
             self.assertEqual(len(resp.items), 0)
 
             resp = await changeme_api.get()
@@ -266,97 +287,105 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
             await asyncio.sleep(2)
             await client.resources.invalidate_cache()
             with self.assertRaises(ResourceNotFoundError):
-                await client.resources.get(api_version='apps.example.com/v1', kind='ChangeMe')
+                await client.resources.get(
+                    api_version="apps.example.com/v1", kind="ChangeMe"
+                )
 
-    async def test_service_apis(self):
+    async def test_service_apis(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
-            api = await client.resources.get(api_version='v1', kind='Service')
+            api = await client.resources.get(api_version="v1", kind="Service")
 
-            name = 'frontend-' + short_uuid()
-            service_manifest = {'apiVersion': 'v1',
-                                'kind': 'Service',
-                                'metadata': {'labels': {'name': name},
-                                             'name': name,
-                                             'resourceversion': 'v1'},
-                                'spec': {'ports': [{'name': 'port',
-                                                    'port': 80,
-                                                    'protocol': 'TCP',
-                                                    'targetPort': 80}],
-                                         'selector': {'name': name}}}
+            name = "frontend-" + short_uuid()
+            service_manifest = {
+                "apiVersion": "v1",
+                "kind": "Service",
+                "metadata": {
+                    "labels": {"name": name},
+                    "name": name,
+                    "resourceversion": "v1",
+                },
+                "spec": {
+                    "ports": [
+                        {
+                            "name": "port",
+                            "port": 80,
+                            "protocol": "TCP",
+                            "targetPort": 80,
+                        }
+                    ],
+                    "selector": {"name": name},
+                },
+            }
 
-            resp = await api.create(
-                body=service_manifest,
-                namespace='default'
-            )
+            resp = await api.create(body=service_manifest, namespace="default")
             self.assertEqual(name, resp.metadata.name)
             self.assertTrue(resp.status)
 
-            resp = await api.get(
-                name=name,
-                namespace='default'
-            )
+            resp = await api.get(name=name, namespace="default")
             self.assertEqual(name, resp.metadata.name)
             self.assertTrue(resp.status)
 
-            service_manifest['spec']['ports'] = [{'name': 'new',
-                                                  'port': 8080,
-                                                  'protocol': 'TCP',
-                                                  'targetPort': 8080}]
+            service_manifest["spec"]["ports"] = [
+                {"name": "new", "port": 8080, "protocol": "TCP", "targetPort": 8080}
+            ]
             resp = await api.patch(
-                body=service_manifest,
-                name=name,
-                namespace='default'
+                body=service_manifest, name=name, namespace="default"
             )
             self.assertEqual(2, len(resp.spec.ports))
             self.assertTrue(resp.status)
 
-            await api.delete(name=name, body={}, namespace='default')
+            await api.delete(name=name, body={}, namespace="default")
 
-    async def test_replication_controller_apis(self):
+    async def test_replication_controller_apis(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
 
             api = await client.resources.get(
-                api_version='v1', kind='ReplicationController')
+                api_version="v1", kind="ReplicationController"
+            )
 
-            name = 'frontend-' + short_uuid()
+            name = "frontend-" + short_uuid()
             rc_manifest = {
-                'apiVersion': 'v1',
-                'kind': 'ReplicationController',
-                'metadata': {'labels': {'name': name},
-                             'name': name},
-                'spec': {'replicas': 2,
-                         'selector': {'name': name},
-                         'template': {'metadata': {
-                             'labels': {'name': name}},
-                             'spec': {'containers': [{
-                                 'image': 'nginx',
-                                 'name': 'nginx',
-                                 'ports': [{'containerPort': 80,
-                                            'protocol': 'TCP'}]}]}}}}
+                "apiVersion": "v1",
+                "kind": "ReplicationController",
+                "metadata": {"labels": {"name": name}, "name": name},
+                "spec": {
+                    "replicas": 2,
+                    "selector": {"name": name},
+                    "template": {
+                        "metadata": {"labels": {"name": name}},
+                        "spec": {
+                            "containers": [
+                                {
+                                    "image": "nginx",
+                                    "name": "nginx",
+                                    "ports": [{"containerPort": 80, "protocol": "TCP"}],
+                                }
+                            ]
+                        },
+                    },
+                },
+            }
 
-            resp = await api.create(
-                body=rc_manifest, namespace='default')
+            resp = await api.create(body=rc_manifest, namespace="default")
             self.assertEqual(name, resp.metadata.name)
             self.assertEqual(2, resp.spec.replicas)
 
-            resp = await api.get(
-                name=name, namespace='default')
+            resp = await api.get(name=name, namespace="default")
             self.assertEqual(name, resp.metadata.name)
             self.assertEqual(2, resp.spec.replicas)
 
             await api.delete(
-                name=name,
-                namespace='default',
-                propagation_policy='Background')
+                name=name, namespace="default", propagation_policy="Background"
+            )
 
-    async def test_configmap_apis(self):
+    async def test_configmap_apis(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
-            api = await client.resources.get(api_version='v1', kind='ConfigMap')
+            api = await client.resources.get(api_version="v1", kind="ConfigMap")
 
-            name = 'test-configmap-' + short_uuid()
+            name = "test-configmap-" + short_uuid()
             test_configmap = {
                 "kind": "ConfigMap",
                 "apiVersion": "v1",
@@ -367,18 +396,17 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
                     },
                 },
                 "data": {
-                    "config.json": "{\"command\":\"/usr/bin/mysqld_safe\"}",
-                    "frontend.cnf": "[mysqld]\nbind-address = 10.0.0.3\n"
-                }
+                    "config.json": '{"command":"/usr/bin/mysqld_safe"}',
+                    "frontend.cnf": "[mysqld]\nbind-address = 10.0.0.3\n",
+                },
             }
 
-            resp = await api.create(
-                body=test_configmap, namespace='default'
-            )
+            resp = await api.create(body=test_configmap, namespace="default")
             self.assertEqual(name, resp.metadata.name)
 
             resp = await api.get(
-                name=name, namespace='default', label_selector="e2e-test=true")
+                name=name, namespace="default", label_selector="e2e-test=true"
+            )
             self.assertEqual(name, resp.metadata.name)
 
             count = 0
@@ -386,22 +414,21 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
                 count += 1
             self.assertTrue(count > 0, msg="no events received for watch")
 
-            test_configmap['data']['config.json'] = "{}"
-            await api.patch(name=name, namespace='default', body=test_configmap)
+            test_configmap["data"]["config.json"] = "{}"
+            await api.patch(name=name, namespace="default", body=test_configmap)
 
-            await api.delete(name=name, body={}, namespace='default')
+            await api.delete(name=name, body={}, namespace="default")
 
             resp = await api.get(
-                namespace='default',
-                pretty=True,
-                label_selector="e2e-test=true")
+                namespace="default", pretty=True, label_selector="e2e-test=true"
+            )
             self.assertEqual([], resp.items)
 
-    async def test_node_apis(self):
+    async def test_node_apis(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
 
-            api = await client.resources.get(api_version='v1', kind='Node')
+            api = await client.resources.get(api_version="v1", kind="Node")
             nodes = await api.get()
             for item in nodes.items:
                 node = await api.get(name=item.metadata.name)
@@ -409,79 +436,95 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
 
     # test_node_apis_partial_object_metadata lists all nodes in the cluster,
     # but only retrieves object metadata
-    async def test_node_apis_partial_object_metadata(self):
+    async def test_node_apis_partial_object_metadata(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
-            api = await client.resources.get(api_version='v1', kind='Node')
+            api = await client.resources.get(api_version="v1", kind="Node")
 
             params = {
-                'header_params': {
-                    'Accept': 'application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io'}}
+                "header_params": {
+                    "Accept": "application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io"
+                }
+            }
             resp = await api.get(**params)
-            self.assertEqual('PartialObjectMetadataList', resp.kind)
-            self.assertEqual('meta.k8s.io/v1', resp.apiVersion)
+            self.assertEqual("PartialObjectMetadataList", resp.kind)
+            self.assertEqual("meta.k8s.io/v1", resp.apiVersion)
 
             params = {
-                'header_params': {
-                    'aCcePt': 'application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io'}}
+                "header_params": {
+                    "aCcePt": "application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io"
+                }
+            }
             resp = await api.get(**params)
-            self.assertEqual('PartialObjectMetadataList', resp.kind)
-            self.assertEqual('meta.k8s.io/v1', resp.apiVersion)
+            self.assertEqual("PartialObjectMetadataList", resp.kind)
+            self.assertEqual("meta.k8s.io/v1", resp.apiVersion)
 
-    async def test_server_side_apply_api(self):
+    async def test_server_side_apply_api(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
-            api = await client.resources.get(api_version='v1', kind='Pod')
+            api = await client.resources.get(api_version="v1", kind="Pod")
 
-            name = 'pod-' + short_uuid()
+            name = "pod-" + short_uuid()
             pod_manifest = {
-                'apiVersion': 'apps/v1',
-                'kind': 'Deployment',
-                'metadata': {'labels': {'name': name},
-                             'name': name},
-                'spec': {'template': {'spec': {'containers': [{
-                    'image': 'nginx',
-                    'name': 'nginx',
-                    'ports': [{'containerPort': 80,
-                               'protocol': 'TCP'}]}]}}}}
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "metadata": {"labels": {"name": name}, "name": name},
+                "spec": {
+                    "template": {
+                        "spec": {
+                            "containers": [
+                                {
+                                    "image": "nginx",
+                                    "name": "nginx",
+                                    "ports": [{"containerPort": 80, "protocol": "TCP"}],
+                                }
+                            ]
+                        }
+                    }
+                },
+            }
 
             resp = await api.server_side_apply(
-                namespace='default', body=pod_manifest,
-                field_manager='kubernetes-unittests', dry_run="All")
-        self.assertEqual('kubernetes-unittests', resp.metadata.managedFields[0].manager)
+                namespace="default",
+                body=pod_manifest,
+                field_manager="kubernetes-unittests",
+                dry_run="All",
+            )
+        self.assertEqual("kubernetes-unittests", resp.metadata.managedFields[0].manager)
 
 
 class TestDynamicClientSerialization(unittest.IsolatedAsyncioTestCase):
+    config: Configuration
+    pod_manifest: dict[str, Any]
 
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(cls) -> None:
         cls.config = base.get_e2e_configuration()
         cls.pod_manifest = {
-            'apiVersion': 'v1',
-            'kind': 'Pod',
-            'metadata': {'name': 'foo-pod'},
-            'spec': {'containers': [{'name': "main", 'image': "busybox"}]},
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {"name": "foo-pod"},
+            "spec": {"containers": [{"name": "main", "image": "busybox"}]},
         }
 
-    async def test_dict_type(self):
+    async def test_dict_type(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
-            self.assertEqual(client.serialize_body(self.pod_manifest), self.pod_manifest)
+            self.assertEqual(
+                client.serialize_body(self.pod_manifest), self.pod_manifest
+            )
 
-    async def test_resource_instance_type(self):
+    async def test_resource_instance_type(self) -> None:
         async with api_client.ApiClient(configuration=self.config) as apic:
             client = await DynamicClient(apic)
             inst = ResourceInstance(client, self.pod_manifest)
             self.assertEqual(client.serialize_body(inst), self.pod_manifest)
 
-    async def test_resource_field(self):
+    async def test_resource_field(self) -> None:
         """`ResourceField` is a special type which overwrites `__getattr__` method to return `None`
         when a non-existent attribute was accessed. which means it can pass any `hasattr(...)` tests.
         """
-        params = {
-            "foo": "bar",
-            "self": True
-        }
+        params = {"foo": "bar", "self": True}
         res = ResourceField(params)
         self.assertEqual(res["foo"], params["foo"])
         self.assertEqual(res["self"], params["self"])

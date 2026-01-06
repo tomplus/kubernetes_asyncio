@@ -14,30 +14,33 @@
 
 import json
 import logging
+from typing import Any
 
 from kubernetes_asyncio import client
+from kubernetes_asyncio.client.api_client import ApiClient
 from kubernetes_asyncio.client.rest import ApiException
+from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
+    LeaderElectionRecord,
+)
+from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
 
-from ..leaderelectionrecord import LeaderElectionRecord
 
-
-class ConfigMapLock:
-    def __init__(self, name, namespace, identity, api_client):
+class ConfigMapLock(BaseLock):
+    def __init__(self, name: str, namespace: str, identity: str, api_client: ApiClient):
         """
         :param name: name of the lock
         :param namespace: namespace
         :param identity: A unique identifier that the candidate is using
         """
+        super().__init__(name, namespace, identity)
+
         # self._api_instance = None # See api_instance property
         self.api_instance = client.CoreV1Api(api_client=api_client)
         self.leader_electionrecord_annotationkey = (
             "control-plane.alpha.kubernetes.io/leader"
         )
-        self.name = name
-        self.namespace = namespace
-        self.identity = str(identity)
-        self.configmap_reference = None
-        self.lock_record = {
+        self.configmap_reference: client.V1ConfigMap | None = None
+        self.lock_record: dict[str, Any] = {
             "holderIdentity": None,
             "leaseDurationSeconds": None,
             "acquireTime": None,
@@ -45,7 +48,9 @@ class ConfigMapLock:
         }
 
     # get returns the election record from a ConfigMap Annotation
-    async def get(self, name, namespace):
+    async def get(
+        self, name: str, namespace: str
+    ) -> tuple[bool, LeaderElectionRecord] | tuple[bool, Exception] | tuple[bool, None]:
         """
         :param name: Name of the configmap object information to get
         :param namespace: Namespace in which the configmap object is to be searched
@@ -82,7 +87,9 @@ class ConfigMapLock:
         except ApiException as e:
             return False, e
 
-    async def create(self, name, namespace, election_record):
+    async def create(
+        self, name: str, namespace: str, election_record: LeaderElectionRecord
+    ) -> bool:
         """
         :param electionRecord: Annotation string
         :param name: Name of the configmap object to be created
@@ -90,14 +97,14 @@ class ConfigMapLock:
         :return: 'True' if object is created else 'False' if failed
         """
         body = client.V1ConfigMap(
-            metadata={
-                "name": name,
-                "annotations": {
+            metadata=client.V1ObjectMeta(
+                name=name,
+                annotations={
                     self.leader_electionrecord_annotationkey: json.dumps(
                         self.get_lock_dict(election_record)
                     )
                 },
-            }
+            )
         )
 
         try:
@@ -109,7 +116,9 @@ class ConfigMapLock:
             logging.exception("Failed to create lock")
             return False
 
-    async def update(self, name, namespace, updated_record):
+    async def update(
+        self, name: str, namespace: str, updated_record: LeaderElectionRecord
+    ) -> bool:
         """
         :param name: name of the lock to be updated
         :param namespace: namespace the lock is in
@@ -118,6 +127,7 @@ class ConfigMapLock:
         """
         try:
             # Set the updated record
+            assert self.configmap_reference is not None
             self.configmap_reference.metadata.annotations[
                 self.leader_electionrecord_annotationkey
             ] = json.dumps(self.get_lock_dict(updated_record))
@@ -129,7 +139,7 @@ class ConfigMapLock:
             logging.exception("Failed to update lock")
             return False
 
-    def get_lock_object(self, lock_record):
+    def get_lock_object(self, lock_record: dict) -> LeaderElectionRecord:
         leader_election_record = LeaderElectionRecord(None, None, None, None)
 
         if lock_record.get("holderIdentity"):
@@ -143,7 +153,9 @@ class ConfigMapLock:
 
         return leader_election_record
 
-    def get_lock_dict(self, leader_election_record):
+    def get_lock_dict(
+        self, leader_election_record: LeaderElectionRecord
+    ) -> dict[str, Any]:
         self.lock_record["holderIdentity"] = leader_election_record.holder_identity
         self.lock_record["leaseDurationSeconds"] = leader_election_record.lease_duration
         self.lock_record["acquireTime"] = leader_election_record.acquire_time

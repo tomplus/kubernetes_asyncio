@@ -21,104 +21,112 @@ from kubernetes_asyncio.stream.ws_client import WsResponse, get_websocket_url
 
 
 class WsMock:
-    def __init__(self):
+    def __init__(self) -> None:
         self.iter = 0
 
-    def __aiter__(self):
+    def __aiter__(self) -> "WsMock":
         return self
 
-    async def __aexit__(self, exc_type, exc, tb):
+    async def __aexit__(self, exc_type, exc, tb) -> "WsMock":
         return self
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> "WsMock":
         return self
 
-    async def __anext__(self):
+    async def __anext__(self) -> WsResponse:
         self.iter += 1
         if self.iter > 5:
             raise StopAsyncIteration
-        return WsResponse(200, (chr(1) + 'mock').encode('utf-8'))
+        return WsResponse(200, (chr(1) + "mock").encode("utf-8"))
 
 
 class WSClientTest(IsolatedAsyncioTestCase):
-
-    def test_websocket_client(self):
+    def test_websocket_client(self) -> None:
         for url, ws_url in [
-                ('http://localhost/api', 'ws://localhost/api'),
-                ('https://localhost/api', 'wss://localhost/api'),
-                ('https://domain.com/api', 'wss://domain.com/api'),
-                ('https://api.domain.com/api', 'wss://api.domain.com/api'),
-                ('http://api.domain.com', 'ws://api.domain.com'),
-                ('https://api.domain.com', 'wss://api.domain.com'),
-                ('http://api.domain.com/', 'ws://api.domain.com/'),
-                ('https://api.domain.com/', 'wss://api.domain.com/'),
+            ("http://localhost/api", "ws://localhost/api"),
+            ("https://localhost/api", "wss://localhost/api"),
+            ("https://domain.com/api", "wss://domain.com/api"),
+            ("https://api.domain.com/api", "wss://api.domain.com/api"),
+            ("http://api.domain.com", "ws://api.domain.com"),
+            ("https://api.domain.com", "wss://api.domain.com"),
+            ("http://api.domain.com/", "ws://api.domain.com/"),
+            ("https://api.domain.com/", "wss://api.domain.com/"),
         ]:
             self.assertEqual(get_websocket_url(url), ws_url)
 
-    async def test_exec_ws(self):
+    async def test_exec_ws(self) -> None:
         mock = Mock()
         mock.RESTClientObject.return_value.pool_manager = mock
         mock.ws_connect.return_value = WsMock()
-        with patch('kubernetes_asyncio.client.api_client.rest', mock):
-
+        with patch("kubernetes_asyncio.client.api_client.rest", mock):
             api_client = WsApiClient()
-            api_client.configuration.host = 'https://localhost'
+            api_client.configuration.host = "https://localhost"
             ws = client.CoreV1Api(api_client=api_client)
-            resp = ws.connect_get_namespaced_pod_exec('pod', 'namespace',
-                                                      command="mock-command",
-                                                      stderr=True, stdin=False,
-                                                      stdout=True, tty=False)
-
-            ret = await resp
-            self.assertEqual(ret, 'mock' * 5)
-            mock.ws_connect.assert_called_once_with(
-                'wss://localhost/api/v1/namespaces/namespace/pods/pod/exec?'
-                'command=mock-command&stderr=True&stdin=False&stdout=True&tty=False',
-                headers={
-                    'sec-websocket-protocol': 'v4.channel.k8s.io',
-                    'Accept': '*/*',
-                    'User-Agent': api_client.user_agent
-                },
-                heartbeat=None
+            resp = ws.connect_get_namespaced_pod_exec(
+                "pod",
+                "namespace",
+                command="mock-command",
+                stderr=True,
+                stdin=False,
+                stdout=True,
+                tty=False,
             )
 
-    async def test_exec_ws_with_heartbeat(self):
+            ret = await resp
+            self.assertEqual(ret, "mock" * 5)
+            mock.ws_connect.assert_called_once_with(
+                "wss://localhost/api/v1/namespaces/namespace/pods/pod/exec?"
+                "command=mock-command&stderr=True&stdin=False&stdout=True&tty=False",
+                headers={
+                    "sec-websocket-protocol": "v4.channel.k8s.io",
+                    "Accept": "*/*",
+                    "User-Agent": api_client.user_agent,
+                },
+                heartbeat=None,
+            )
+
+    async def test_exec_ws_with_heartbeat(self) -> None:
         mock = Mock()
         mock.RESTClientObject.return_value.pool_manager = mock
         mock.ws_connect.return_value = WsMock()
-        with patch('kubernetes_asyncio.client.api_client.rest', mock):
-
+        with patch("kubernetes_asyncio.client.api_client.rest", mock):
             api_client = WsApiClient(heartbeat=30)
-            api_client.configuration.host = 'https://localhost'
+            api_client.configuration.host = "https://localhost"
             ws = client.CoreV1Api(api_client=api_client)
-            resp = ws.connect_get_namespaced_pod_exec('pod', 'namespace',
-                                                      command='mock-command',
-                                                      stderr=True, stdin=False,
-                                                      stdout=True, tty=False)
-
-            ret = await resp
-            self.assertEqual(ret, 'mock' * 5)
-            mock.ws_connect.assert_called_once_with(
-                'wss://localhost/api/v1/namespaces/namespace/pods/pod/exec?'
-                'command=mock-command&stderr=True&stdin=False&stdout=True&tty=False',
-                headers={
-                    'sec-websocket-protocol': 'v4.channel.k8s.io',
-                    'Accept': '*/*',
-                    'User-Agent': api_client.user_agent
-                },
-                heartbeat=30
+            resp = ws.connect_get_namespaced_pod_exec(
+                "pod",
+                "namespace",
+                command="mock-command",
+                stderr=True,
+                stdin=False,
+                stdout=True,
+                tty=False,
             )
 
-    def test_parse_error_data_success(self):
+            ret = await resp
+            self.assertEqual(ret, "mock" * 5)
+            mock.ws_connect.assert_called_once_with(
+                "wss://localhost/api/v1/namespaces/namespace/pods/pod/exec?"
+                "command=mock-command&stderr=True&stdin=False&stdout=True&tty=False",
+                headers={
+                    "sec-websocket-protocol": "v4.channel.k8s.io",
+                    "Accept": "*/*",
+                    "User-Agent": api_client.user_agent,
+                },
+                heartbeat=30,
+            )
+
+    def test_parse_error_data_success(self) -> None:
         error_data = '{"metadata":{},"status":"Success"}'
         return_code = WsApiClient.parse_error_data(error_data)
         self.assertEqual(return_code, 0)
 
-    def test_parse_error_data_failure(self):
+    def test_parse_error_data_failure(self) -> None:
         error_data = (
             '{"metadata":{},"status":"Failure",'
             '"message":"command terminated with non-zero exit code",'
             '"reason":"NonZeroExitCode",'
-            '"details":{"causes":[{"reason":"ExitCode","message":"1"}]}}')
+            '"details":{"causes":[{"reason":"ExitCode","message":"1"}]}}'
+        )
         return_code = WsApiClient.parse_error_data(error_data)
         self.assertEqual(return_code, 1)
