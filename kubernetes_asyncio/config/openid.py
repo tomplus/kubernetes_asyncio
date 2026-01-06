@@ -38,7 +38,7 @@ class OpenIDRequestor:
             trust_env=True,
         )
 
-    async def refresh_token(self, refresh_token) -> Any:
+    async def refresh_token(self, refresh_token: str) -> Any:
         """
         :param refresh_token: an openid refresh-token from a previous token request
         """
@@ -57,11 +57,15 @@ class OpenIDRequestor:
             except aiohttp.ClientResponseError:
                 raise ConfigException("oidc: failed to refresh access token")
 
-    async def _get(self, client: aiohttp.ClientSession, *args, **kwargs) -> Any:
+    async def _get(
+        self, client: aiohttp.ClientSession, *args: Any, **kwargs: Any
+    ) -> Any:
         async with client.get(*args, **kwargs) as resp:
             return await resp.json()
 
-    async def _post(self, client: aiohttp.ClientSession, *args, **kwargs) -> Any:
+    async def _post(
+        self, client: aiohttp.ClientSession, *args: Any, **kwargs: Any
+    ) -> Any:
         async with client.post(*args, **kwargs) as resp:
             return await resp.json()
 

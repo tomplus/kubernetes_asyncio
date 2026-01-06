@@ -31,7 +31,7 @@ class TimezoneInfo(datetime.tzinfo):
     def tzname(self, dt: Any | None) -> str:
         return self._name
 
-    def dst(self, dt) -> datetime.timedelta:
+    def dst(self, dt: Any | None) -> datetime.timedelta:
         return datetime.timedelta(0)
 
 

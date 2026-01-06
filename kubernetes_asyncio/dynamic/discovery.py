@@ -31,7 +31,9 @@ if TYPE_CHECKING:
     from kubernetes_asyncio.dynamic.client import DynamicClient
 
 from kubernetes_asyncio.dynamic.exceptions import (
-    NotFoundError, ResourceNotFoundError, ResourceNotUniqueError,
+    NotFoundError,
+    ResourceNotFoundError,
+    ResourceNotUniqueError,
     ServiceUnavailableError,
 )
 from kubernetes_asyncio.dynamic.resource import Resource, ResourceList
@@ -67,6 +69,7 @@ class Discoverer(object):
 
     def __init__(self, client: "DynamicClient", cache_file: str | None = None) -> None:
         self.client = client
+        assert self.client.configuration.host
         default_cache_id = self.client.configuration.host.encode("utf-8")
         try:
             default_cachefile_name = "osrcp-{0}.json".format(
@@ -225,7 +228,10 @@ class Discoverer(object):
                     e.reason, ProtocolError
                 ):
                     raise
-                if not self.client.configuration.host.startswith("https://"):
+                if (
+                    self.client.configuration.host is None
+                    or not self.client.configuration.host.startswith("https://")
+                ):
                     raise ValueError(
                         "Host value %s should start with https:// when talking to HTTPS endpoint"
                         % self.client.configuration.host
