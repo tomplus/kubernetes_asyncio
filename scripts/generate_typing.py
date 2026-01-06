@@ -4,20 +4,28 @@ import glob
 import importlib
 import inspect
 import re
+from types import ModuleType
 from typing import Any
 
 
 class PyiFile:
-    def __init__(self, path) -> None:
-        self.path = path
-        self.cls_name = None
+    def __init__(self, path: str) -> None:
+        self.path: str = path
+        self.cls_name: str | None = None
         self.methods: list[list[Any]] = []
         self.types: set[str] = set()
 
-    def add_class(self, name):
+    def add_class(self, name: str):
         self.cls_name = name
 
-    def add_method(self, name, params, retval, decorator=None, awaitable: bool = False):
+    def add_method(
+        self,
+        name: str,
+        params: dict[str, dict],
+        retval: str | None,
+        decorator: str | None = None,
+        awaitable: bool = False,
+    ):
         if retval:
             retval = retval.replace("HTTPHeaderDict", "CIMultiDictProxy")
             rtypes = re.findall(r"\b([A-Za-z_][A-Za-z0-9_]*)\b(?!\s*\()", retval)
@@ -49,7 +57,7 @@ class PyiFile:
             f"@{name}.setter",
         )
 
-    def save(self):
+    def save(self) -> None:
         with open(self.path, "w") as fp:
 
             def write_ln(text: str) -> None:
@@ -130,7 +138,7 @@ def path_to_module(file: str) -> str:
     return file.replace("/", ".")
 
 
-def get_defined_classes(module):
+def get_defined_classes(module: ModuleType) -> list[tuple]:
     return [
         (name, cls)
         for name, cls in inspect.getmembers(module, inspect.isclass)
@@ -182,12 +190,16 @@ def gen_api_typing(module: str) -> None:
             cls, predicate=inspect.isfunction
         ):
             sig = inspect.signature(method)
-            method_params = {}
+            method_params: dict[str, dict] = {}
             retval = None
             if method_name == "__init__":
                 method_params = {
                     "self": {},
-                    "api_client": {"required": False, "type": "ApiClient", "default": None},
+                    "api_client": {
+                        "required": False,
+                        "type": "ApiClient",
+                        "default": None,
+                    },
                 }
                 retval = None
             else:
@@ -227,7 +239,7 @@ def gen_model_typing(module: str) -> None:
         ):
             sig = inspect.signature(method)
             params: dict[str, dict] = {}
-
+            retval: str | None = None
             if method_name == "to_dict":
                 params["serialize"] = {"required": False, "type": "bool"}
                 retval = "dict[str, Any]"
@@ -267,13 +279,13 @@ def gen_model_typing(module: str) -> None:
             pyi.add_method(method_name, method_params, retval)
 
         # add model properties
-        for method_name, method in inspect.getmembers(
+        for method_name, method_prop in inspect.getmembers(
             cls, predicate=inspect.isdatadescriptor
         ):
-            if not isinstance(method, property):
+            if not isinstance(method_prop, property):
                 continue
-            assert method.fset and method.fget
-            sig = inspect.signature(method.fset)
+            assert method_prop.fset and method_prop.fget
+            sig = inspect.signature(method_prop.fset)
             assert len(sig.parameters) == 2
             assert list(sig.parameters.keys())[-1] == method_name
             pyi.add_property(method_name, map_types(openapi_types[method_name]))
@@ -281,12 +293,12 @@ def gen_model_typing(module: str) -> None:
     pyi.save()
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("file", nargs="?")
     args = parser.parse_args()
 
-    files = []
+    files: list[str] = []
     if args.file:
         files.append(args.file)
     else:
