@@ -304,6 +304,8 @@ class KubeConfigLoader(object):
             datetime.datetime.utcfromtimestamp(expires)
         ):
             await self._refresh_oidc(provider)
+            self.token = "Bearer {}".format(provider["config"]["id-token"])
+            return self.token
 
         self.token = "Bearer {}".format(provider["config"]["id-token"])
         return self.token

@@ -728,8 +728,9 @@ class TestKubeConfigLoader(BaseTestCase):
     @patch("kubernetes_asyncio.config.kube_config.OpenIDRequestor.refresh_token")
     async def test_oidc_with_refresh_no_new_refresh_token(self, mock_refresh_token) -> None:
         original_refresh_token = "lucWJjEhlxZW01cXI3YmVlcYnpxNGhzk"
+        refreshed_id_token = "simple-refreshed-token-123"
         mock_refresh_token.return_value = {
-            "id_token": "abc123",
+            "id_token": refreshed_id_token,
         }
 
         loader = KubeConfigLoader(
@@ -737,7 +738,7 @@ class TestKubeConfigLoader(BaseTestCase):
             active_context="expired_oidc",
         )
         await loader._load_authentication()
-        self.assertEqual("Bearer abc123", loader.token)
+        self.assertEqual("Bearer {}".format(refreshed_id_token), loader.token)
         self.assertEqual(
             original_refresh_token,
             loader._user["auth-provider"]["config"]["refresh-token"]
