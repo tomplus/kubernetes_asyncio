@@ -1,3 +1,8 @@
+# v34.3.1
+
+* chore: add `__all__` for imported symbols ([#386](https://github.com/tomplus/kubernetes_asyncio/pull/386), [@tomplus](https://github.com/tomplus))
+* fix leaselock datetime parse error introduced in 34.3.0 ([#387](https://github.com/tomplus/kubernetes_asyncio/pull/387), [@tomplus](https://github.com/tomplus))
+
 # v34.3.0
 
 ### BREAKING CHANGES
