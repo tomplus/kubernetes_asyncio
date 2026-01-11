@@ -733,7 +733,6 @@ from kubernetes_asyncio.client.models.v2_resource_metric_status import V2Resourc
 from kubernetes_asyncio.client.models.version_info import VersionInfo
 
 __all__ = [
-    "absolute_import",
     "AdmissionregistrationV1ServiceReference",
     "AdmissionregistrationV1WebhookClientConfig",
     "ApiextensionsV1ServiceReference",

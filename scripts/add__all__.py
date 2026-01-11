@@ -15,8 +15,9 @@ imports = []
 
 for node in ast.walk(tree):
     if isinstance(node, ast.ImportFrom):
-        for alias in node.names:
-            imports.append(alias.name)
+        if node.module != "__future__":
+            for alias in node.names:
+                imports.append(alias.name)
 
 all_section = "\n__all__ = [\n"
 for imp in imports:

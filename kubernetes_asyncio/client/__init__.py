@@ -813,7 +813,6 @@ from kubernetes_asyncio.client.models.version_info import VersionInfo
 
 
 __all__ = [
-    "absolute_import",
     "WellKnownApi",
     "AdmissionregistrationApi",
     "AdmissionregistrationV1Api",

@@ -70,7 +70,6 @@ from kubernetes_asyncio.client.api.storagemigration_v1alpha1_api import Storagem
 from kubernetes_asyncio.client.api.version_api import VersionApi
 
 __all__ = [
-    "absolute_import",
     "WellKnownApi",
     "AdmissionregistrationApi",
     "AdmissionregistrationV1Api",
