@@ -7,6 +7,7 @@ Submodules
 .. toctree::
    :maxdepth: 4
 
+   kubernetes_asyncio.leaderelection.resourcelock.baselock
    kubernetes_asyncio.leaderelection.resourcelock.configmaplock
    kubernetes_asyncio.leaderelection.resourcelock.leaselock
 

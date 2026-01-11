@@ -55,6 +55,7 @@ from kubernetes_asyncio.client.api.policy_v1_api import PolicyV1Api
 from kubernetes_asyncio.client.api.rbac_authorization_api import RbacAuthorizationApi
 from kubernetes_asyncio.client.api.rbac_authorization_v1_api import RbacAuthorizationV1Api
 from kubernetes_asyncio.client.api.resource_api import ResourceApi
+from kubernetes_asyncio.client.api.resource_v1_api import ResourceV1Api
 from kubernetes_asyncio.client.api.resource_v1alpha3_api import ResourceV1alpha3Api
 from kubernetes_asyncio.client.api.resource_v1beta1_api import ResourceV1beta1Api
 from kubernetes_asyncio.client.api.resource_v1beta2_api import ResourceV1beta2Api

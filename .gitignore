@@ -66,5 +66,5 @@ target/
 *.iml
 .vscode
 
-# rest.py is patched
-kubernetes_asyncio/client/rest.py.orig
+# patched backups
+kubernetes_asyncio/client/*.*~
