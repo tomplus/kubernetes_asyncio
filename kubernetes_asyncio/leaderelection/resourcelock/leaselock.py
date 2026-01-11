@@ -154,12 +154,11 @@ class LeaseLock(BaseLock):
         return leader_election_record
 
     # conversion between kubernetes ISO formatted time and elector record time
-    def time_str_to_iso(self, str_time) -> datetime | None:
+    def time_str_to_iso(self, str_time) -> str | None:
         formats = ["%Y-%m-%d %H:%M:%S.%f%z", "%Y-%m-%d %H:%M:%S.%f"]
         for fmt in formats:
             try:
-                # return datetime.strptime(str_time, fmt).isoformat() + "Z"
-                return datetime.strptime(str_time, fmt)
+                return datetime.strptime(str_time, fmt).isoformat() + "Z"
             except ValueError:
                 pass
         logging.error("Failed to parse time string: %s", str_time)
