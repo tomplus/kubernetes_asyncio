@@ -66,13 +66,15 @@ async def main():
         if pod.metadata.name.startswith(args.pod):
             for container in pod.spec.containers:
                 cmd.append(
-                    print_pod_log(
-                        v1_api,
-                        pod.metadata.name,
-                        args.namespace,
-                        container.name,
-                        args.lines,
-                        args.follow,
+                    asyncio.create_task(
+                        print_pod_log(
+                            v1_api,
+                            pod.metadata.name,
+                            args.namespace,
+                            container.name,
+                            args.lines,
+                            args.follow,
+                        )
                     )
                 )
 
@@ -84,8 +86,10 @@ async def main():
     if args.follow:
         # autorefresh gcp token
         cmd.append(
-            config.refresh_token(
-                loader=loader, client_configuration=client_configuration
+            asyncio.create_task(
+                config.refresh_token(
+                    loader=loader, client_configuration=client_configuration
+                )
             )
         )
 

@@ -81,4 +81,9 @@ find "${CLIENT_ROOT}/test/" -type f -print0 | xargs -0 sed -i -e 's/unittest.Tes
 echo ">>> add type stub files for generated files"
 PYTHONPATH="$(dirname ${SCRIPT_ROOT})" python "${SCRIPT_ROOT}/generate_typing.py"
 
+echo ">>> add __all__ for generated files"
+PYTHONPATH="$(dirname ${SCRIPT_ROOT})" python "${SCRIPT_ROOT}/add__all__.py" "${CLIENT_ROOT}/client/models/__init__.py"
+PYTHONPATH="$(dirname ${SCRIPT_ROOT})" python "${SCRIPT_ROOT}/add__all__.py" "${CLIENT_ROOT}/client/api/__init__.py"
+PYTHONPATH="$(dirname ${SCRIPT_ROOT})" python "${SCRIPT_ROOT}/add__all__.py" "${CLIENT_ROOT}/client/__init__.py"
+
 echo ">>> Done."
