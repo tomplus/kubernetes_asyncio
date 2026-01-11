@@ -1,3 +1,7 @@
+# v34.3.2
+
+* fix: missing import refresh_token ([#389](https://github.com/tomplus/kubernetes_asyncio/pull/389), [@tomplus](https://github.com/tomplus))
+
 # v34.3.1
 
 * chore: add `__all__` for imported symbols ([#386](https://github.com/tomplus/kubernetes_asyncio/pull/386), [@tomplus](https://github.com/tomplus))
