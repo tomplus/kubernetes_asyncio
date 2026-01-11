@@ -18,7 +18,7 @@ import sys
 KUBERNETES_BRANCH = "v1.34.3"
 
 # client version for packaging and releasing.
-CLIENT_VERSION = "34.3.0"
+CLIENT_VERSION = "34.3.1"
 
 # Name of the release package
 PACKAGE_NAME = "kubernetes_asyncio"

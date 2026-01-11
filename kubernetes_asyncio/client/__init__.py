@@ -14,7 +14,7 @@
 
 from __future__ import absolute_import
 
-__version__ = "34.3.0"
+__version__ = "34.3.1"
 
 # import apis into sdk package
 from kubernetes_asyncio.client.api.well_known_api import WellKnownApi
