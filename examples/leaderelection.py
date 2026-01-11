@@ -14,7 +14,6 @@
 
 import asyncio
 import logging
-import os
 import uuid
 
 from kubernetes_asyncio import config
@@ -28,12 +27,12 @@ logging.basicConfig(level=logging.INFO)
 async def main():
 
     # Authenticate using config file
-    await config.load_kube_config(config_file=os.environ.get("KUBECONFIG", ""))
+    await config.load_kube_config()
 
     # Parameters required from the user
 
     # A unique identifier for this candidate
-    candidate_id = uuid.uuid4()
+    candidate_id = str(uuid.uuid4())
 
     # Name of the lock object to be created
     lock_name = "examplepython"

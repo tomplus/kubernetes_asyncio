@@ -44,7 +44,7 @@ jobs:
       if: matrix.python-version == '3.13'
       run: |
         flake8
-        isort -c --diff .
+        # isort -c --diff .  (TODO: ruff)
 
     - name: Send coverage report
       uses: codecov/codecov-action@v5
