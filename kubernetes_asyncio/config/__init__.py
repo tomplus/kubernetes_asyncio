@@ -24,6 +24,7 @@ from kubernetes_asyncio.config.kube_config import (
     load_kube_config_from_dict,
     new_client_from_config,
     new_client_from_config_dict,
+    refresh_token,
 )
 
 __all__ = [
@@ -34,6 +35,7 @@ __all__ = [
     "load_kube_config_from_dict",
     "new_client_from_config",
     "new_client_from_config_dict",
+    "refresh_token"
 ]
 
 
