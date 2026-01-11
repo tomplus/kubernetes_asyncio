@@ -65,9 +65,9 @@ sed -i'' "s/^PACKAGE_NAME = .*/PACKAGE_NAME = \\\"${PACKAGE_NAME}\\\"/" "${SCRIP
 sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STATUS}\\\"," "${SCRIPT_ROOT}/../setup.py"
 
 echo ">>> copy patched files"
-cp "${SCRIPT_ROOT}/patched_files/api_client.py" "${CLIENT_ROOT}/client/api_client.py"
-cp "${SCRIPT_ROOT}/patched_files/rest.py" "${CLIENT_ROOT}/client/rest.py"
-cp "${SCRIPT_ROOT}/patched_files/configuration.py" "${CLIENT_ROOT}/client/configuration.py"
+cp -b "${SCRIPT_ROOT}/patched_files/api_client.py" "${CLIENT_ROOT}/client/api_client.py"
+cp -b "${SCRIPT_ROOT}/patched_files/rest.py" "${CLIENT_ROOT}/client/rest.py"
+cp -b "${SCRIPT_ROOT}/patched_files/configuration.py" "${CLIENT_ROOT}/client/configuration.py"
 
 echo ">>> don't deep-copy configuration for local_vars_configuration in models"
 find "${CLIENT_ROOT}/client/models/" -type f -print0 | xargs -0 sed -i 's/local_vars_configuration = Configuration.get_default_copy()/local_vars_configuration = Configuration.get_default()/g'
@@ -77,5 +77,8 @@ grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' 
 
 echo ">>> Fix API tests (https://github.com/aio-libs/aiohttp/issues/8555)"
 find "${CLIENT_ROOT}/test/" -type f -print0 | xargs -0 sed -i -e 's/unittest.TestCase/unittest.IsolatedAsyncioTestCase/g' -e 's/def setUp(self):/async def asyncSetUp(self):/g'
+
+echo ">>> add type stub files for generated files"
+PYTHONPATH="$(dirname ${SCRIPT_ROOT})" python "${SCRIPT_ROOT}/generate_typing.py"
 
 echo ">>> Done."
