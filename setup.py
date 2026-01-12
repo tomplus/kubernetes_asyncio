@@ -46,7 +46,7 @@ setup(
         "OpenAPI",
         "Kubernetes"],
     install_requires=REQUIRES,
-    python_requires=">=3.8",
+    python_requires=">=3.10",
     tests_require=TESTS_REQUIRES,
     packages=[
         'kubernetes_asyncio',
