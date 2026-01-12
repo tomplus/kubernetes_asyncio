@@ -1,3 +1,7 @@
+# v34.3.3
+
+* fix: update required Python version to 3.10+ ([#392](https://github.com/tomplus/kubernetes_asyncio/pull/392), [@tomplus](https://github.com/tomplus))
+
 # v34.3.2
 
 * fix: missing import refresh_token ([#389](https://github.com/tomplus/kubernetes_asyncio/pull/389), [@tomplus](https://github.com/tomplus))
