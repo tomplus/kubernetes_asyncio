@@ -12,12 +12,14 @@
 
 import argparse
 import asyncio
+from typing import cast
+from aiohttp import ClientResponse
 
 from kubernetes_asyncio import client, config
 from kubernetes_asyncio.client.api_client import ApiClient, Configuration
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Tail for pods")
     parser.add_argument("namespace", help="k8s namespace")
     parser.add_argument("pod", help="pod name or prefix")
@@ -31,29 +33,40 @@ def parse_args():
     return parser.parse_args()
 
 
-async def print_pod_log(v1_api, pod, namespace, container, lines, follow):
+async def print_pod_log(
+    v1_api: client.CoreV1Api,
+    pod: str,
+    namespace: str,
+    container: str,
+    lines: int,
+    follow: bool,
+) -> None:
     if not follow:
-        resp = await v1_api.read_namespaced_pod_log(
+        logs = await v1_api.read_namespaced_pod_log(
             pod, namespace, container=container, tail_lines=lines
         )
-        print(resp)
+        print(logs)
     else:
-        resp = await v1_api.read_namespaced_pod_log(
-            pod,
-            namespace,
-            container=container,
-            tail_lines=lines,
-            follow=True,
-            _preload_content=False,
+        raw_resp = cast(
+            ClientResponse,
+            await v1_api.read_namespaced_pod_log(
+                pod,
+                namespace,
+                container=container,
+                tail_lines=lines,
+                follow=True,
+                _preload_content=False,  # force to return raw ClientResponse
+            ),
         )
+
         while True:
-            line = await resp.content.readline()
+            line = await raw_resp.content.readline()
             if not line:
                 break
             print(line.decode("utf-8"), end="")
 
 
-async def main():
+async def main() -> None:
     args = parse_args()
 
     client_configuration = Configuration()
