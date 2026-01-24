@@ -9,6 +9,7 @@ description = "Kubernetes Asynchronous Python Client"
 authors = [
     { name = "Tomasz Prus", email = "tomasz.prus@gmail.com" }
 ]
+license = "Apache-2.0"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Topic :: Utilities",
@@ -43,7 +44,19 @@ dev = [
 ]
 
 [tool.ruff]
-line-length = 120
+
+exclude = [
+    ".git",
+    ".venv",
+    "build",
+    "dist",
+    "venv",
+    "doc",
+    "kubernetes_asyncio/client/",
+    "kubernetes_asyncio/test/",
+    "scripts/"
+]
+
 target-version = "py310"
 
 [tool.ruff.lint]
@@ -61,3 +74,8 @@ ignore = []
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "scripts/*",
+]
