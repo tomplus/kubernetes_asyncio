@@ -74,6 +74,37 @@ quote-style = "double"
 indent-style = "space"
 
 [tool.hatch.build.targets.sdist]
-exclude = [
-  "scripts/*",
+include = [
+  "kubernetes_asyncio/client",
+  "kubernetes_asyncio/config",
+  "kubernetes_asyncio/dynamic",
+  "kubernetes_asyncio/leaderelection",
+  "kubernetes_asyncio/stream",
+  "kubernetes_asyncio/utils",
+  "kubernetes_asyncio/watch",
+  "kubernetes_asyncio/__init__.py",
+  "kubernetes_asyncio/py.typed",
+  "pyproject.toml",
+  "LICENSE",
+  "CHANGELOG.md",
+  "CONTRIBUTING.md",
+  "README.md",
+]
+
+[tool.hatch.build.targets.wheel]
+include = [
+  "kubernetes_asyncio/client",
+  "kubernetes_asyncio/config",
+  "kubernetes_asyncio/dynamic",
+  "kubernetes_asyncio/leaderelection",
+  "kubernetes_asyncio/stream",
+  "kubernetes_asyncio/utils",
+  "kubernetes_asyncio/watch",
+  "kubernetes_asyncio/__init__.py",
+  "kubernetes_asyncio/py.typed",
+  "pyproject.toml",
+  "LICENSE",
+  "CHANGELOG.md",
+  "CONTRIBUTING.md",
+  "README.md",
 ]
