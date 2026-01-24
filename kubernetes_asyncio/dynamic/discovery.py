@@ -19,8 +19,9 @@ import os
 import tempfile
 from abc import abstractmethod
 from collections import defaultdict
+from collections.abc import Generator
 from functools import partial
-from typing import TYPE_CHECKING, Any, Generator
+from typing import TYPE_CHECKING, Any
 
 from aiohttp.client_exceptions import ContentTypeError
 from urllib3.exceptions import MaxRetryError, ProtocolError
@@ -31,7 +32,9 @@ if TYPE_CHECKING:
     from kubernetes_asyncio.dynamic.client import DynamicClient
 
 from kubernetes_asyncio.dynamic.exceptions import (
-    NotFoundError, ResourceNotFoundError, ResourceNotUniqueError,
+    NotFoundError,
+    ResourceNotFoundError,
+    ResourceNotUniqueError,
     ServiceUnavailableError,
 )
 from kubernetes_asyncio.dynamic.resource import Resource, ResourceList
@@ -40,7 +43,7 @@ DISCOVERY_PREFIX = "apis"
 logger = logging.getLogger(__name__)
 
 
-class ResourceGroup(object):
+class ResourceGroup:
     """Helper class for Discoverer container"""
 
     def __init__(self, preferred, resources=None):
@@ -55,7 +58,7 @@ class ResourceGroup(object):
         }
 
 
-class Discoverer(object):
+class Discoverer:
     """
     A convenient container for storing discovered API resources. Allows
     easy searching and retrieval of specific resources.
@@ -70,13 +73,11 @@ class Discoverer(object):
         assert self.client.configuration.host
         default_cache_id = self.client.configuration.host.encode("utf-8")
         try:
-            default_cachefile_name = "osrcp-{0}.json".format(
-                hashlib.md5(default_cache_id, usedforsecurity=False).hexdigest()
-            )
+            default_cachefile_name = f"osrcp-{hashlib.md5(default_cache_id, usedforsecurity=False).hexdigest()}.json"
         except TypeError:
             # usedforsecurity is only supported in 3.9+
-            default_cachefile_name = "osrcp-{0}.json".format(
-                hashlib.md5(default_cache_id).hexdigest()
+            default_cachefile_name = (
+                f"osrcp-{hashlib.md5(default_cache_id).hexdigest()}.json"
             )
         self.__cache_file = cache_file or os.path.join(
             tempfile.gettempdir(), default_cachefile_name
@@ -100,7 +101,7 @@ class Discoverer(object):
             refresh = True
         else:
             try:
-                with open(self.__cache_file, "r") as f:
+                with open(self.__cache_file) as f:
                     self._cache = json.load(f, cls=partial(CacheDecoder, self.client))  # type: ignore
                 if self._cache.get("library_version") != __version__:
                     # Version mismatch, need to refresh cache
@@ -182,7 +183,7 @@ class Discoverer(object):
         """Discovers all API groups present in the cluster"""
         if not self._cache.get("resources") or update:
             self._cache["resources"] = self._cache.get("resources", {})
-            response = await self.client.request("GET", "/{}".format(DISCOVERY_PREFIX))
+            response = await self.client.request("GET", f"/{DISCOVERY_PREFIX}")
             groups_response = response.groups
 
             groups = await self.default_groups(request_resources=request_resources)
@@ -231,9 +232,8 @@ class Discoverer(object):
                     or not self.client.configuration.host.startswith("https://")
                 ):
                     raise ValueError(
-                        "Host value %s should start with https:// when talking to HTTPS endpoint"
-                        % self.client.configuration.host
-                    )
+                        f"Host value {self.client.configuration.host} should start with https:// when talking to HTTPS endpoint"
+                    ) from e
                 else:
                     raise
 
@@ -308,17 +308,17 @@ class Discoverer(object):
                 if result.group_version == kwargs["api_version"]
             ]
         # If there are multiple matches, prefer non-List kinds
-        if len(results) > 1 and not all([isinstance(x, ResourceList) for x in results]):
+        if len(results) > 1 and not all(isinstance(x, ResourceList) for x in results):
             results = [
                 result for result in results if not isinstance(result, ResourceList)
             ]
         if len(results) == 1:
             return results[0]
         elif not results:
-            raise ResourceNotFoundError("No matches found for {}".format(kwargs))
+            raise ResourceNotFoundError(f"No matches found for {kwargs}")
         else:
             raise ResourceNotUniqueError(
-                "Multiple matches found for {}: {}".format(kwargs, results)
+                f"Multiple matches found for {kwargs}: {results}"
             )
 
 
@@ -383,8 +383,7 @@ class LazyDiscoverer(Discoverer):
             elif isinstance(resource_part, ResourceGroup):
                 if len(req_params) != 2:
                     raise ValueError(
-                        "prefix and group params should be present, have %s"
-                        % req_params
+                        f"prefix and group params should be present, have {req_params}"
                     )
                 # Check if we've requested resources for this group
                 if not resource_part.resources:
@@ -395,8 +394,8 @@ class LazyDiscoverer(Discoverer):
                                 prefix, group, part, resource_part.preferred
                             )
                         )
-                    except NotFoundError:
-                        raise ResourceNotFoundError
+                    except NotFoundError as e:
+                        raise ResourceNotFoundError from e
 
                     self._cache["resources"][prefix][group][version] = resource_part  # type: ignore
                     self.__update_cache = True
@@ -432,7 +431,7 @@ class LazyDiscoverer(Discoverer):
             group, api_version = api_version.split("/")
 
         items = [prefix, group, api_version, kind, kwargs]
-        return list(map(lambda x: x or "*", items))
+        return [x or "*" for x in items]
 
     async def __aiter__(self):
         assert self.__resources is not None
@@ -510,7 +509,7 @@ class EagerDiscoverer(Discoverer):
             group, api_version = api_version.split("/")
 
         items = [prefix, group, api_version, kind, kwargs]
-        return list(map(lambda x: x or "*", items))
+        return [x or "*" for x in items]
 
     def __search(self, parts, resources):
         part = parts[0]
@@ -554,7 +553,7 @@ class CacheEncoder(json.JSONEncoder):
 class CacheDecoder(json.JSONDecoder):
     def __init__(self, client, *args, **kwargs):
         self.client = client
-        json.JSONDecoder.__init__(self, object_hook=self._object_hook, *args, **kwargs)
+        json.JSONDecoder.__init__(self, object_hook=self._object_hook, *args, **kwargs)  # noqa: B026
 
     def _object_hook(self, obj):
         if "_type" not in obj:

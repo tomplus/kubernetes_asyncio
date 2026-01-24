@@ -53,17 +53,15 @@ class DynamicApiError(ApiException):
         self.original_traceback = tb
 
     def __str__(self) -> str:
-        error_message = [str(self.status), "Reason: {}".format(self.reason)]
+        error_message = [str(self.status), f"Reason: {self.reason}"]
         if self.headers:
-            error_message.append("HTTP response headers: {}".format(self.headers))
+            error_message.append(f"HTTP response headers: {self.headers}")
 
         if self.body:
-            error_message.append("HTTP response body: {!r}".format(self.body))
+            error_message.append(f"HTTP response body: {self.body!r}")
 
         if self.original_traceback:
-            error_message.append(
-                "Original traceback: \n{}".format(self.original_traceback)
-            )
+            error_message.append(f"Original traceback: \n{self.original_traceback}")
 
         return "\n".join(error_message)
 
@@ -76,7 +74,7 @@ class DynamicApiError(ApiException):
 
             return self.body.decode()
         else:
-            return "{} Reason: {}".format(self.status, self.reason)
+            return f"{self.status} Reason: {self.reason}"
 
 
 class ResourceNotFoundError(Exception):

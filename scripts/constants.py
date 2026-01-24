@@ -23,10 +23,6 @@ CLIENT_VERSION = "34.3.0+snapshot"
 # Name of the release package
 PACKAGE_NAME = "kubernetes_asyncio"
 
-# Stage of development, mainly used in setup.py's classifiers.
-DEVELOPMENT_STATUS = "4 - Beta"
-
-
 # If called directly, return the constant value given
 # its name. Useful in bash scripts.
 if __name__ == '__main__':

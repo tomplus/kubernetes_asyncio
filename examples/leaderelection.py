@@ -25,7 +25,6 @@ logging.basicConfig(level=logging.INFO)
 
 
 async def main():
-
     # Authenticate using config file
     await config.load_kube_config()
 

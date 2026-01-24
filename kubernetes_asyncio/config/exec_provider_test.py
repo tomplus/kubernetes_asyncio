@@ -115,21 +115,20 @@ class ExecProviderTest(IsolatedAsyncioTestCase):
     async def test_mismatched_api_version(self) -> None:
         wrong_api_version = "client.authentication.k8s.io/v1"
         output = (
-            """
-        {
-            "apiVersion": "%s",
+            f"""
+        {{
+            "apiVersion": "{wrong_api_version}",
             "kind": "ExecCredential",
-            "status": {
+            "status": {{
                 "token": "dummy"
-            }
-        }
+            }}
+        }}
         """
-            % wrong_api_version
         )
         self.process_mock.stdout.read.return_value = output
         with self.assertRaisesRegex(
             ConfigException,
-            "exec: plugin api version {} does not match".format(wrong_api_version),
+            f"exec: plugin api version {wrong_api_version} does not match",
         ):
             ep = ExecProvider(self.input_ok)
             await ep.run()

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
@@ -33,15 +31,15 @@ class TestApplyPatch(IsolatedAsyncioTestCase):
         api = core_v1_api.CoreV1Api(client)
 
         name = "cm-test" + str(uuid.uuid4())
-        manifest = dict(
-            apiVersion="v1",
-            kind="ConfigMap",
-            metadata=dict(
-                namespace="default",
-                name=name,
-            ),
-            data={"hello": "world!"},
-        )
+        manifest = {
+            "apiVersion": "v1",
+            "kind": "ConfigMap",
+            "metadata": {
+                "namespace": "default",
+                "name": name,
+            },
+            "data": {"hello": "world!"},
+        }
 
         resp = await api.patch_namespaced_config_map(
             _content_type="application/apply-patch+yaml",

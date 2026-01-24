@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
 # a copy of the License at
@@ -103,7 +101,7 @@ class TestClient(IsolatedAsyncioTestCase):
             stdout=True,
             tty=False,
         )
-        print("EXEC response : %s" % resp_out)
+        print(f"EXEC response : {resp_out}")
         self.assertEqual(3, len(resp_out.splitlines()))
 
         resp_out = await api_ws.connect_post_namespaced_pod_exec(
@@ -115,7 +113,7 @@ class TestClient(IsolatedAsyncioTestCase):
             stdout=True,
             tty=False,
         )
-        print("EXEC response : %s" % resp_out)
+        print(f"EXEC response : {resp_out}")
         self.assertEqual(1, len(resp_out.splitlines()))
 
         resp_list = await api.list_pod_for_all_namespaces()

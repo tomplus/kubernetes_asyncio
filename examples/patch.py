@@ -21,11 +21,9 @@ SERVICE_SPEC = {
 
 
 async def main():
-
     await config.load_kube_config()
 
     async with ApiClient() as api:
-
         v1 = client.CoreV1Api(api)
 
         print(f"Recreate {SERVICE_NAME}...")

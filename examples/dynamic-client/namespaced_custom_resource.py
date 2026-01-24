@@ -114,10 +114,9 @@ async def main():
         print(
             "\n[INFO] custom resource definition `ingressroutes.apps.example.com` created\n"
         )
-        print("%s\t\t%s" % ("SCOPE", "NAME"))
+        print("{}\t\t{}".format("SCOPE", "NAME"))
         print(
-            "%s\t%s\n"
-            % (crd_creation_response.spec.scope, crd_creation_response.metadata.name)
+            f"{crd_creation_response.spec.scope}\t{crd_creation_response.metadata.name}\n"
         )
 
         # Fetching the "ingressroutes" CRD api
@@ -186,14 +185,12 @@ async def main():
         routes = await ingressroute_api.get()
 
         print(
-            "%s\t\t\t%s\t\t\t%s\t\t%s\t\t\t\t%s"
-            % ("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
+            "{}\t\t\t{}\t\t\t{}\t\t{}\t\t\t\t{}".format("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
         )
 
         for item in routes["items"]:
             print(
-                "%s\t%s\t\t%s\t%s\t%s"
-                % (
+                "{}\t{}\t\t{}\t{}\t{}".format(
                     item["metadata"]["name"],
                     item["metadata"]["namespace"],
                     item["spec"]["virtualhost"]["fqdn"],
@@ -223,14 +220,12 @@ async def main():
         routes = await ingressroute_api.get()
 
         print(
-            "%s\t\t\t%s\t\t\t%s\t\t%s\t\t\t\t%s"
-            % ("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
+            "{}\t\t\t{}\t\t\t{}\t\t{}\t\t\t\t{}".format("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
         )
 
         for item in routes["items"]:
             print(
-                "%s\t%s\t\t%s\t%s\t%s"
-                % (
+                "{}\t{}\t\t{}\t{}\t{}".format(
                     item["metadata"]["name"],
                     item["metadata"]["namespace"],
                     item["spec"]["virtualhost"]["fqdn"],

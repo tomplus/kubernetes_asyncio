@@ -93,23 +93,22 @@ class ExecProvider:
         exit_code = await proc.wait()
 
         if exit_code != 0:
-            msg = "exec: process returned %d" % exit_code
+            msg = f"exec: process returned {exit_code}"
             stderr = stderr.strip()
             if stderr:
-                msg += ". %s" % stderr.decode()
+                msg += f". {stderr.decode()}"
             raise ConfigException(msg)
         try:
             data = json.loads(stdout)
         except ValueError as de:
-            raise ConfigException("exec: failed to decode process output: %s" % de)
+            raise ConfigException(f"exec: failed to decode process output: {de}") from de
         for key in ("apiVersion", "kind", "status"):
             if key not in data:
                 raise ConfigException(
-                    "exec: malformed response. missing key '%s'" % key
+                    f"exec: malformed response. missing key '{key}'"
                 )
         if data["apiVersion"] != self.api_version:
             raise ConfigException(
-                "exec: plugin api version %s does not match %s"
-                % (data["apiVersion"], self.api_version)
+                "exec: plugin api version {} does not match {}".format(data["apiVersion"], self.api_version)
             )
         return data["status"]

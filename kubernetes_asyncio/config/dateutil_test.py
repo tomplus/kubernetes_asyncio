@@ -16,7 +16,10 @@ import unittest
 from datetime import datetime
 
 from kubernetes_asyncio.config.dateutil import (
-    UTC, TimezoneInfo, format_rfc3339, parse_rfc3339,
+    UTC,
+    TimezoneInfo,
+    format_rfc3339,
+    parse_rfc3339,
 )
 
 

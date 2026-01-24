@@ -18,6 +18,7 @@ This example demonstrates the following:
     - Rolling restart of the deployment (demonstrate patch/update action)
     - Listing & deletion of the deployment
 """
+
 import asyncio
 import datetime
 

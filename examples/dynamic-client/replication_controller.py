@@ -68,14 +68,9 @@ async def main():
         # Listing replication-controllers in the `default` namespace
         replication_controller_created = await api.get(name=name, namespace="default")
 
-        print("%s\t%s\t\t\t\t\t%s" % ("NAMESPACE", "NAME", "REPLICAS"))
+        print("{}\t{}\t\t\t\t\t{}".format("NAMESPACE", "NAME", "REPLICAS"))
         print(
-            "%s\t\t%s\t\t%s\n"
-            % (
-                replication_controller_created.metadata.namespace,
-                replication_controller_created.metadata.name,
-                replication_controller_created.spec.replicas,
-            )
+            f"{replication_controller_created.metadata.namespace}\t\t{replication_controller_created.metadata.name}\t\t{replication_controller_created.spec.replicas}\n"
         )
 
         # Deleting replication-controller `frontend-service` from the `default` namespace

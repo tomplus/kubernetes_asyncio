@@ -63,10 +63,9 @@ async def main():
         # Listing service `frontend-service` in the `default` namespace
         service_created = await api.get(name=name, namespace="default")
 
-        print("%s\t%s" % ("NAMESPACE", "NAME"))
+        print("{}\t{}".format("NAMESPACE", "NAME"))
         print(
-            "%s\t\t%s\n"
-            % (service_created.metadata.namespace, service_created.metadata.name)
+            f"{service_created.metadata.namespace}\t\t{service_created.metadata.name}\n"
         )
 
         # Patching the `spec` section of the `frontend-service`
@@ -80,14 +79,9 @@ async def main():
         )
 
         print("\n[INFO] service `frontend-service` patched\n")
-        print("%s\t%s\t\t\t%s" % ("NAMESPACE", "NAME", "PORTS"))
+        print("{}\t{}\t\t\t{}".format("NAMESPACE", "NAME", "PORTS"))
         print(
-            "%s\t\t%s\t%s\n"
-            % (
-                service_patched.metadata.namespace,
-                service_patched.metadata.name,
-                service_patched.spec.ports,
-            )
+            f"{service_patched.metadata.namespace}\t\t{service_patched.metadata.name}\t{service_patched.spec.ports}\n"
         )
 
         # Deleting service `frontend-service` from the `default` namespace

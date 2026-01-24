@@ -123,7 +123,7 @@ class FileOrData:
             else:
                 self._file = self._create_temp_file_with_content(self._data)
         if self._file and not os.path.isfile(self._file):
-            raise ConfigException("File does not exists: %s" % self._file)
+            raise ConfigException(f"File does not exists: {self._file}")
         return self._file
 
     def as_data(self) -> str | None:
@@ -140,7 +140,7 @@ class FileOrData:
         return self._data
 
 
-class KubeConfigLoader(object):
+class KubeConfigLoader:
     def __init__(
         self,
         config_dict: Any,
@@ -271,7 +271,7 @@ class KubeConfigLoader(object):
             if self._config_persister:
                 self._config_persister(self._config.value)
 
-        self.token = "Bearer %s" % config["access-token"]
+        self.token = "Bearer {}".format(config["access-token"])
         return self.token
 
     async def _load_oid_token(self) -> str:
@@ -356,7 +356,7 @@ class KubeConfigLoader(object):
             assert self._user
             status = await ExecProvider(self._user["exec"]).run()
             if "token" in status:
-                self.token = "Bearer %s" % status["token"]
+                self.token = "Bearer {}".format(status["token"])
                 if "expirationTimestamp" in status:
                     self.exec_plugin_expiry = parse_rfc3339(
                         status["expirationTimestamp"]
@@ -405,7 +405,7 @@ class KubeConfigLoader(object):
             base64_file_content=False,
         ).as_data()
         if token:
-            self.token = "Bearer %s" % token
+            self.token = f"Bearer {token}"
             return True
         return False
 
@@ -527,24 +527,24 @@ class ConfigNode:
         v = self.safe_get(key)
         if v is None:
             raise ConfigException(
-                "Invalid kube-config file. Expected key %s in %s" % (key, self.name)
+                f"Invalid kube-config file. Expected key {key} in {self.name}"
             )
         if isinstance(v, dict) or isinstance(v, list):
-            return ConfigNode("%s/%s" % (self.name, key), v, self.path)
+            return ConfigNode(f"{self.name}/{key}", v, self.path)
         else:
             return v
 
     def get_with_name(self, name, safe=False) -> "ConfigNode | None":
         if not isinstance(self.value, list):
             raise ConfigException(
-                "Invalid kube-config file. Expected %s to be a list" % self.name
+                f"Invalid kube-config file. Expected {self.name} to be a list"
             )
         result = None
         for v in self.value:
             if "name" not in v:
                 raise ConfigException(
                     "Invalid kube-config file. "
-                    "Expected all values in %s list to have 'name' key" % self.name
+                    f"Expected all values in {self.name} list to have 'name' key"
                 )
             if v["name"] == name:
                 if result is None:
@@ -552,19 +552,18 @@ class ConfigNode:
                 else:
                     raise ConfigException(
                         "Invalid kube-config file. "
-                        "Expected only one object with name %s in %s list"
-                        % (name, self.name)
+                        f"Expected only one object with name {name} in {self.name} list"
                     )
         if result is not None:
             if isinstance(result, ConfigNode):
                 return result
             else:
-                return ConfigNode("%s[name=%s]" % (self.name, name), result, self.path)
+                return ConfigNode(f"{self.name}[name={name}]", result, self.path)
         if safe:
             return None
         raise ConfigException(
             "Invalid kube-config file. "
-            "Expected object with name %s in %s list" % (name, self.name)
+            f"Expected object with name {name} in {self.name} list"
         )
 
 
@@ -624,7 +623,7 @@ class KubeConfigMerger:
                     break
             else:
                 self.config_merged.value[item].append(
-                    ConfigNode("{}/{}".format(path, new_item), new_item, path)
+                    ConfigNode(f"{path}/{new_item}", new_item, path)
                 )
 
     def save_changes(self) -> None:

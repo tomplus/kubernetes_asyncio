@@ -174,7 +174,7 @@ async def create_from_yaml_single_item(
     # convert group name from DNS subdomain format to
     # python class name convention
     group = "".join(word.capitalize() for word in group.split("."))
-    fcn_to_call = "{0}{1}Api".format(group, version.capitalize())
+    fcn_to_call = f"{group}{version.capitalize()}Api"
     k8s_api = getattr(client, fcn_to_call)(k8s_client)
     # Replace CamelCased action_type into snake_case
     kind = yml_object["kind"]
@@ -185,16 +185,14 @@ async def create_from_yaml_single_item(
     if "namespace" in yml_object["metadata"]:
         namespace = yml_object["metadata"]["namespace"]
     # Expect the user to create namespaced objects more often
-    if hasattr(k8s_api, "create_namespaced_{0}".format(kind)):
-        resp = await getattr(k8s_api, "create_namespaced_{0}".format(kind))(
+    if hasattr(k8s_api, f"create_namespaced_{kind}"):
+        resp = await getattr(k8s_api, f"create_namespaced_{kind}")(
             body=yml_object, namespace=namespace, **kwargs
         )
     else:
-        resp = await getattr(k8s_api, "create_{0}".format(kind))(
-            body=yml_object, **kwargs
-        )
+        resp = await getattr(k8s_api, f"create_{kind}")(body=yml_object, **kwargs)
     if verbose:
-        print("{0} created. status='{1}'".format(kind, str(resp.status)))
+        print(f"{kind} created. status='{str(resp.status)}'")
     return resp
 
 
@@ -210,7 +208,5 @@ class FailToCreateError(ApiException):
     def __str__(self):
         msg = ""
         for api_exception in self.api_exceptions:
-            msg += "Error from server ({0}): {1}".format(
-                api_exception.reason, api_exception.body
-            )
+            msg += f"Error from server ({api_exception.reason}): {api_exception.body}"
         return msg

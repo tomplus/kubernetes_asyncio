@@ -11,7 +11,7 @@ async def watch_namespaces():
         async with watch.Watch().stream(v1.list_namespace) as stream:
             async for event in stream:
                 etype, obj = event["type"], event["object"]
-                print("{} namespace {}".format(etype, obj.metadata.name))
+                print(f"{etype} namespace {obj.metadata.name}")
 
 
 async def watch_pods():
@@ -20,11 +20,7 @@ async def watch_pods():
         async with watch.Watch().stream(v1.list_pod_for_all_namespaces) as stream:
             async for event in stream:
                 evt, obj = event["type"], event["object"]
-                print(
-                    "{} pod {} in NS {}".format(
-                        evt, obj.metadata.name, obj.metadata.namespace
-                    )
-                )
+                print(f"{evt} pod {obj.metadata.name} in NS {obj.metadata.namespace}")
 
 
 def main():

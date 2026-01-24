@@ -12,7 +12,6 @@ async def main():
 
     # use the context manager to close http sessions automatically
     async with ApiClient() as api:
-
         v1 = client.CoreV1Api(api)
         print("Listing pods with their IPs:")
         ret = await v1.list_pod_for_all_namespaces()
