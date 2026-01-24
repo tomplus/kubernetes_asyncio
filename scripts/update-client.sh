@@ -25,7 +25,6 @@ SCRIPT_ROOT=$(dirname "${BASH_SOURCE}")
 CLIENT_ROOT="$(dirname ${SCRIPT_ROOT})/kubernetes_asyncio"
 CLIENT_VERSION=$(python "${SCRIPT_ROOT}/constants.py" CLIENT_VERSION)
 PACKAGE_NAME=$(python "${SCRIPT_ROOT}/constants.py" PACKAGE_NAME)
-DEVELOPMENT_STATUS=$(python "${SCRIPT_ROOT}/constants.py" DEVELOPMENT_STATUS)
 
 pushd "${SCRIPT_ROOT}" > /dev/null
 SCRIPT_ROOT=`pwd`
