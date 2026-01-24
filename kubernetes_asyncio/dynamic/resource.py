@@ -413,10 +413,7 @@ class ResourceInstance:
         return repr(self)
 
     def __repr__(self):
-        return "ResourceInstance[{}]:\n  {}".format(
-            self.attributes.kind,
-            "  ".join(yaml.safe_dump(self.to_dict()).splitlines(True)),
-        )
+        return f"ResourceInstance[{self.attributes.kind}]:\n  {'  '.join(yaml.safe_dump(self.to_dict()).splitlines(True))}"
 
     def __getattr__(self, name):
         if "_ResourceInstance__initialised" not in self.__dict__:

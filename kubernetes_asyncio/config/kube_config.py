@@ -271,7 +271,7 @@ class KubeConfigLoader:
             if self._config_persister:
                 self._config_persister(self._config.value)
 
-        self.token = "Bearer {}".format(config["access-token"])
+        self.token = f"Bearer {config['access-token']}"
         return self.token
 
     async def _load_oid_token(self) -> str:
@@ -284,7 +284,7 @@ class KubeConfigLoader:
         if "id-token" not in provider["config"]:
             await self._refresh_oidc(provider)
 
-            self.token = "Bearer {}".format(provider["config"]["id-token"])
+            self.token = f"Bearer {provider['config']['id-token']}"
             return self.token
 
         id_token = provider["config"]["id-token"]
@@ -305,7 +305,7 @@ class KubeConfigLoader:
         ):
             await self._refresh_oidc(provider)
 
-        self.token = "Bearer {}".format(provider["config"]["id-token"])
+        self.token = f"Bearer {provider['config']['id-token']}"
         return self.token
 
     async def _refresh_oidc(self, provider) -> None:
@@ -356,7 +356,7 @@ class KubeConfigLoader:
             assert self._user
             status = await ExecProvider(self._user["exec"]).run()
             if "token" in status:
-                self.token = "Bearer {}".format(status["token"])
+                self.token = f"Bearer {status['token']}"
                 if "expirationTimestamp" in status:
                     self.exec_plugin_expiry = parse_rfc3339(
                         status["expirationTimestamp"]

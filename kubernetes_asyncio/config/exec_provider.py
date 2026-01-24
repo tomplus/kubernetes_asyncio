@@ -109,8 +109,6 @@ class ExecProvider:
                 raise ConfigException(f"exec: malformed response. missing key '{key}'")
         if data["apiVersion"] != self.api_version:
             raise ConfigException(
-                "exec: plugin api version {} does not match {}".format(
-                    data["apiVersion"], self.api_version
-                )
+                f"exec: plugin api version {data['apiVersion']} does not match {self.api_version}"
             )
         return data["status"]

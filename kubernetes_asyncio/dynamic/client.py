@@ -457,9 +457,7 @@ class DynamicClient:
             kubernetes_validate.validate(definition, version, strict)
         except kubernetes_validate.utils.ValidationError as e:
             errors.append(
-                "resource definition validation error at {}: {}".format(
-                    ".".join([str(item) for item in e.path]), e.message
-                )
+                f"resource definition validation error at {'.'.join([str(item) for item in e.path])}: {e.message}"
             )
         except VersionNotSupportedError:
             errors.append(
