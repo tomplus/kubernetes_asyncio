@@ -36,8 +36,10 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "ruff>=0.1.0",
-    "pytest>=7.0.0",
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "pytest-xdist>=3.8.0",
+    "ruff>=0.14.14",
 ]
 
 [tool.ruff]
