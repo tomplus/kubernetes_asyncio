@@ -114,8 +114,7 @@ class ExecProviderTest(IsolatedAsyncioTestCase):
 
     async def test_mismatched_api_version(self) -> None:
         wrong_api_version = "client.authentication.k8s.io/v1"
-        output = (
-            f"""
+        output = f"""
         {{
             "apiVersion": "{wrong_api_version}",
             "kind": "ExecCredential",
@@ -124,7 +123,6 @@ class ExecProviderTest(IsolatedAsyncioTestCase):
             }}
         }}
         """
-        )
         self.process_mock.stdout.read.return_value = output
         with self.assertRaisesRegex(
             ConfigException,

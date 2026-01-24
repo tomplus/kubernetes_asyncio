@@ -391,9 +391,7 @@ class DynamicClient:
         header_params = params.get("header_params", {})
 
         # Checking Accept header.
-        new_header_params = {
-            key.lower(): value for key, value in header_params.items()
-        }
+        new_header_params = {key.lower(): value for key, value in header_params.items()}
         if "accept" not in new_header_params:
             header_params["Accept"] = self.client.select_header_accept(
                 [
@@ -459,7 +457,9 @@ class DynamicClient:
             kubernetes_validate.validate(definition, version, strict)
         except kubernetes_validate.utils.ValidationError as e:
             errors.append(
-                "resource definition validation error at {}: {}".format(".".join([str(item) for item in e.path]), e.message)
+                "resource definition validation error at {}: {}".format(
+                    ".".join([str(item) for item in e.path]), e.message
+                )
             )  # noqa: B306
         except VersionNotSupportedError:
             errors.append(

@@ -31,9 +31,7 @@ def get_e2e_configuration() -> Configuration:
             kube_config.load_kube_config(client_configuration=config)
         )
     else:
-        print(
-            f"Unable to load config from {kube_config.KUBE_CONFIG_DEFAULT_LOCATION}"
-        )
+        print(f"Unable to load config from {kube_config.KUBE_CONFIG_DEFAULT_LOCATION}")
         for proto, host, port in [
             ("https", DEFAULT_E2E_HOST, "8443"),
             ("http", DEFAULT_E2E_HOST, "8080"),

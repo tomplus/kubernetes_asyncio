@@ -185,7 +185,9 @@ async def main():
         routes = await ingressroute_api.get()
 
         print(
-            "{}\t\t\t{}\t\t\t{}\t\t{}\t\t\t\t{}".format("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
+            "{}\t\t\t{}\t\t\t{}\t\t{}\t\t\t\t{}".format(
+                "NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY"
+            )
         )
 
         for item in routes["items"]:
@@ -220,7 +222,9 @@ async def main():
         routes = await ingressroute_api.get()
 
         print(
-            "{}\t\t\t{}\t\t\t{}\t\t{}\t\t\t\t{}".format("NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY")
+            "{}\t\t\t{}\t\t\t{}\t\t{}\t\t\t\t{}".format(
+                "NAME", "NAMESPACE", "FQDN", "TLS", "STRATEGY"
+            )
         )
 
         for item in routes["items"]:

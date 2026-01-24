@@ -101,14 +101,16 @@ class ExecProvider:
         try:
             data = json.loads(stdout)
         except ValueError as de:
-            raise ConfigException(f"exec: failed to decode process output: {de}") from de
+            raise ConfigException(
+                f"exec: failed to decode process output: {de}"
+            ) from de
         for key in ("apiVersion", "kind", "status"):
             if key not in data:
-                raise ConfigException(
-                    f"exec: malformed response. missing key '{key}'"
-                )
+                raise ConfigException(f"exec: malformed response. missing key '{key}'")
         if data["apiVersion"] != self.api_version:
             raise ConfigException(
-                "exec: plugin api version {} does not match {}".format(data["apiVersion"], self.api_version)
+                "exec: plugin api version {} does not match {}".format(
+                    data["apiVersion"], self.api_version
+                )
             )
         return data["status"]

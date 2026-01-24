@@ -63,6 +63,7 @@ async def load_config(**kwargs: Any) -> None:
             "kube_config_path not provided and "
             f"default location ({KUBE_CONFIG_DEFAULT_LOCATION}) does not exist. "
             "Using inCluster Config. "
-            "This might not work.", stacklevel=2
+            "This might not work.",
+            stacklevel=2,
         )
         load_incluster_config(**kwargs)
