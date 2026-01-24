@@ -27,10 +27,17 @@ import yaml
 from kubernetes_asyncio.config import load_config
 from kubernetes_asyncio.config.config_exception import ConfigException
 from kubernetes_asyncio.config.kube_config import (
-    ENV_KUBECONFIG_PATH_SEPARATOR, ConfigNode, FileOrData, KubeConfigLoader,
-    KubeConfigMerger, list_kube_config_contexts, load_kube_config,
-    load_kube_config_from_dict, new_client_from_config,
-    new_client_from_config_dict, refresh_token,
+    ENV_KUBECONFIG_PATH_SEPARATOR,
+    ConfigNode,
+    FileOrData,
+    KubeConfigLoader,
+    KubeConfigMerger,
+    list_kube_config_contexts,
+    load_kube_config,
+    load_kube_config_from_dict,
+    new_client_from_config,
+    new_client_from_config_dict,
+    refresh_token,
 )
 
 BEARER_TOKEN_FORMAT = "Bearer %s"
@@ -82,7 +89,7 @@ TEST_OIDC_BASE = (
     _unpadded_base64(TEST_OIDC_TOKEN) + "." + _unpadded_base64(TEST_OIDC_INFO)
 )
 TEST_OIDC_LOGIN = TEST_OIDC_BASE + "." + TEST_CLIENT_CERT_BASE64
-TEST_OIDC_TOKEN = "Bearer %s" % TEST_OIDC_LOGIN
+TEST_OIDC_TOKEN = f"Bearer {TEST_OIDC_LOGIN}"
 TEST_OIDC_EXP = '{"name": "test","exp": 536457600}'
 TEST_OIDC_EXP_BASE = (
     _unpadded_base64(TEST_OIDC_TOKEN) + "." + _unpadded_base64(TEST_OIDC_EXP)
@@ -239,7 +246,7 @@ class TestConfigNode(BaseTestCase):
     }
 
     def setUp(self) -> None:
-        super(TestConfigNode, self).setUp()
+        super().setUp()
         self.node = ConfigNode("test_obj", self.test_obj)
 
     def test_normal_map_array_operations(self) -> None:
@@ -331,7 +338,7 @@ class FakeConfig:
                         with open(v) as f1, open(other.__dict__[k]) as f2:
                             if f1.read() != f2.read():
                                 return False
-                    except IOError:
+                    except OSError:
                         # fall back to only compare filenames in case we are
                         # testing the passing of filenames to the config
                         if other.__dict__[k] != v:
@@ -351,11 +358,11 @@ class FakeConfig:
             if k in self.FILE_KEYS:
                 try:
                     with open(v) as f:
-                        val = "FILE: %r" % str.encode(f.read())
-                except IOError as e:
-                    val = "ERROR: %s" % str(e)
-            rep += "\t%s: %s\n" % (k, val)
-        return "Config(%s\n)" % rep
+                        val = f"FILE: {str.encode(f.read())!r}"
+                except OSError as e:
+                    val = f"ERROR: {str(e)}"
+            rep += f"\t{k}: {val}\n"
+        return f"Config({rep}\n)"
 
 
 class TestKubeConfigLoader(BaseTestCase):

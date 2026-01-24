@@ -17,13 +17,15 @@ import datetime
 import os
 import tempfile
 import unittest
-from typing import Generator
+from collections.abc import Generator
 
 import kubernetes_asyncio.config
 from kubernetes_asyncio.client import Configuration
 from kubernetes_asyncio.config.config_exception import ConfigException
 from kubernetes_asyncio.config.incluster_config import (
-    SERVICE_HOST_ENV_NAME, SERVICE_PORT_ENV_NAME, InClusterConfigLoader,
+    SERVICE_HOST_ENV_NAME,
+    SERVICE_PORT_ENV_NAME,
+    InClusterConfigLoader,
     _join_host_port,
 )
 from kubernetes_asyncio.config.kube_config_test import FakeConfig
@@ -166,7 +168,7 @@ class InClusterConfigTest(unittest.IsolatedAsyncioTestCase):
     def _should_fail_load(self, config_loader, reason) -> None:
         try:
             config_loader.load_and_set()
-            self.fail("Should fail because %s" % reason)
+            self.fail(f"Should fail because {reason}")
         except ConfigException:
             # expected
             pass

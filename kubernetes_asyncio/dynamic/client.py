@@ -12,19 +12,26 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Any, Type
+from typing import Any
 
 from kubernetes_asyncio import watch
 from kubernetes_asyncio.client.api_client import ApiClient
 from kubernetes_asyncio.client.rest import ApiException
 from kubernetes_asyncio.dynamic.discovery import (
-    Discoverer, EagerDiscoverer, LazyDiscoverer,
+    Discoverer,
+    EagerDiscoverer,
+    LazyDiscoverer,
 )
 from kubernetes_asyncio.dynamic.exceptions import (
-    KubernetesValidateMissing, api_exception,
+    KubernetesValidateMissing,
+    api_exception,
 )
 from kubernetes_asyncio.dynamic.resource import (
-    Resource, ResourceField, ResourceInstance, ResourceList, Subresource,
+    Resource,
+    ResourceField,
+    ResourceInstance,
+    ResourceList,
+    Subresource,
 )
 from kubernetes_asyncio.watch.watch import Watch
 
@@ -64,7 +71,7 @@ def meta_request(func):
         try:
             resp = await func(self, *args, **kwargs)
         except ApiException as e:
-            raise api_exception(e)
+            raise api_exception(e) from e
         if serialize_response:
             try:
                 data = await resp.json()
@@ -77,7 +84,7 @@ def meta_request(func):
     return inner
 
 
-class DynamicClient(object):
+class DynamicClient:
     """A kubernetes client that dynamically discovers and interacts with
     the kubernetes API
     """
@@ -86,12 +93,12 @@ class DynamicClient(object):
         self,
         client: ApiClient,
         cache_file: str | None = None,
-        discoverer: Type[Discoverer] | None = None,
+        discoverer: type[Discoverer] | None = None,
     ) -> None:
         self.cache_file = cache_file
         self.client = client
         self.configuration = client.configuration
-        self.discoverer: Type[Discoverer] = discoverer or LazyDiscoverer
+        self.discoverer: type[Discoverer] = discoverer or LazyDiscoverer
 
     def __await__(self):
         async def closure():
@@ -120,9 +127,7 @@ class DynamicClient(object):
         namespace = namespace or body.get("metadata", {}).get("namespace")
         if not namespace:
             raise ValueError(
-                "Namespace is required for {}.{}".format(
-                    resource.group_version, resource.kind
-                )
+                f"Namespace is required for {resource.group_version}.{resource.kind}"
             )
         return namespace
 
@@ -208,9 +213,7 @@ class DynamicClient(object):
         name = name or body.get("metadata", {}).get("name")
         if not name:
             raise ValueError(
-                "name is required to replace {}.{}".format(
-                    resource.group_version, resource.kind
-                )
+                f"name is required to replace {resource.group_version}.{resource.kind}"
             )
         if resource.namespaced:
             if not namespace:
@@ -233,9 +236,7 @@ class DynamicClient(object):
         name = name or body.get("metadata", {}).get("name")
         if not name:
             raise ValueError(
-                "name is required to patch {}.{}".format(
-                    resource.group_version, resource.kind
-                )
+                f"name is required to patch {resource.group_version}.{resource.kind}"
             )
         if resource.namespaced:
             if not namespace:
@@ -267,9 +268,7 @@ class DynamicClient(object):
         name = name or body.get("metadata", {}).get("name")
         if not name:
             raise ValueError(
-                "name is required to patch {}.{}".format(
-                    resource.group_version, resource.kind
-                )
+                f"name is required to patch {resource.group_version}.{resource.kind}"
             )
         if resource.namespaced:
             if not namespace:
@@ -392,9 +391,7 @@ class DynamicClient(object):
         header_params = params.get("header_params", {})
 
         # Checking Accept header.
-        new_header_params = dict(
-            (key.lower(), value) for key, value in header_params.items()
-        )
+        new_header_params = {key.lower(): value for key, value in header_params.items()}
         if "accept" not in new_header_params:
             header_params["Accept"] = self.client.select_header_accept(
                 [
@@ -448,8 +445,8 @@ class DynamicClient(object):
         if not HAS_KUBERNETES_VALIDATE:
             raise KubernetesValidateMissing()
 
-        errors = list()
-        warnings = list()
+        errors = []
+        warnings = []
         try:
             if version is None:
                 try:
@@ -460,17 +457,15 @@ class DynamicClient(object):
             kubernetes_validate.validate(definition, version, strict)
         except kubernetes_validate.utils.ValidationError as e:
             errors.append(
-                "resource definition validation error at %s: %s"
-                % (".".join([str(item) for item in e.path]), e.message)
-            )  # noqa: B306
+                f"resource definition validation error at {'.'.join([str(item) for item in e.path])}: {e.message}"
+            )
         except VersionNotSupportedError:
             errors.append(
-                "Kubernetes version %s is not supported by kubernetes-validate"
-                % version
+                f"Kubernetes version {version} is not supported by kubernetes-validate"
             )
         except kubernetes_validate.utils.SchemaNotFoundError as e:
             warnings.append(
-                "Could not find schema for object kind %s with API version %s in Kubernetes version %s"
-                " (possibly Custom Resource?)" % (e.kind, e.api_version, e.version)
+                f"Could not find schema for object kind {e.kind} with API version {e.api_version} in Kubernetes version {e.version}"
+                " (possibly Custom Resource?)"
             )
         return warnings, errors

@@ -16,7 +16,7 @@
 import asyncio
 import json
 import unittest
-from typing import Callable
+from collections.abc import Callable
 from unittest import IsolatedAsyncioTestCase
 
 from kubernetes_asyncio.client.rest import ApiException
@@ -282,9 +282,7 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
             self.assertEqual(
                 history[idx],
                 expected[idx],
-                msg="Not equal at index {}, expected {}, got {}".format(
-                    idx, expected[idx], history[idx]
-                ),
+                msg=f"Not equal at index {idx}, expected {expected[idx]}, got {history[idx]}",
             )
 
 

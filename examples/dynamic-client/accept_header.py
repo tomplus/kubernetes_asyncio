@@ -37,7 +37,7 @@ async def main():
             # Creating a custom header
             params = {
                 "header_params": {
-                    "Accept": "application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io"
+                    "Accept": "application/json;as=PartialObjectMetadataList;v=v1;g=meta.k8s.io"  # noqa: E501
                 }
             }
 

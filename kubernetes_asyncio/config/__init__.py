@@ -35,7 +35,7 @@ __all__ = [
     "load_kube_config_from_dict",
     "new_client_from_config",
     "new_client_from_config_dict",
-    "refresh_token"
+    "refresh_token",
 ]
 
 
@@ -61,8 +61,9 @@ async def load_config(**kwargs: Any) -> None:
     else:
         warnings.warn(
             "kube_config_path not provided and "
-            "default location ({0}) does not exist. "
+            f"default location ({KUBE_CONFIG_DEFAULT_LOCATION}) does not exist. "
             "Using inCluster Config. "
-            "This might not work.".format(KUBE_CONFIG_DEFAULT_LOCATION)
+            "This might not work.",
+            stacklevel=2,
         )
         load_incluster_config(**kwargs)

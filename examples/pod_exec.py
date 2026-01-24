@@ -6,7 +6,9 @@ from kubernetes_asyncio import client, config, utils
 from kubernetes_asyncio.client.api_client import ApiClient
 from kubernetes_asyncio.stream import WsApiClient
 from kubernetes_asyncio.stream.ws_client import (
-    ERROR_CHANNEL, STDERR_CHANNEL, STDOUT_CHANNEL,
+    ERROR_CHANNEL,
+    STDERR_CHANNEL,
+    STDOUT_CHANNEL,
 )
 
 BUSYBOX_POD = "busybox-test"
@@ -17,7 +19,7 @@ async def find_busybox_pod():
         v1 = client.CoreV1Api(api)
         ret = await v1.list_pod_for_all_namespaces()
         for i in ret.items:
-            if i.metadata.namespace == 'default' and i.metadata.name == BUSYBOX_POD:
+            if i.metadata.namespace == "default" and i.metadata.name == BUSYBOX_POD:
                 print(f"Found busybox pod: {i.metadata.name}")
                 return i.metadata.name
     return None
@@ -26,22 +28,20 @@ async def find_busybox_pod():
 async def create_busybox_pod():
     print(f"Pod {BUSYBOX_POD} does not exist. Creating it...")
     manifest = {
-        'apiVersion': 'v1',
-        'kind': 'Pod',
-        'metadata': {
-            'name': BUSYBOX_POD,
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+            "name": BUSYBOX_POD,
         },
-        'spec': {
-            'containers': [{
-                'image': 'busybox',
-                'name': 'sleep',
-                "args": [
-                    "/bin/sh",
-                    "-c",
-                    "while true; do date; sleep 5; done"
-                ]
-            }]
-        }
+        "spec": {
+            "containers": [
+                {
+                    "image": "busybox",
+                    "name": "sleep",
+                    "args": ["/bin/sh", "-c", "while true; do date; sleep 5; done"],
+                }
+            ]
+        },
     }
     async with ApiClient() as api:
         objects = await utils.create_from_dict(api, manifest, namespace="default")
@@ -56,7 +56,7 @@ async def wait_busybox_pod_ready():
         v1 = client.CoreV1Api(api)
         while True:
             ret = await v1.read_namespaced_pod(name=BUSYBOX_POD, namespace="default")
-            if ret.status.phase != 'Pending':
+            if ret.status.phase != "Pending":
                 break
             await asyncio.sleep(1)
 
@@ -98,7 +98,7 @@ async def main():
     print("-------------")
     async with WsApiClient() as ws_api:
         v1_ws = client.CoreV1Api(api_client=ws_api)
-        exec_command = ['/bin/sh']
+        exec_command = ["/bin/sh"]
         websocket = await v1_ws.connect_get_namespaced_pod_exec(
             BUSYBOX_POD,
             "default",
@@ -126,7 +126,11 @@ async def main():
                         msg = await ws.receive(timeout=1)
                     except asyncio.TimeoutError:
                         break
-                    if msg.type in (WSMsgType.CLOSE, WSMsgType.CLOSING, WSMsgType.CLOSED):
+                    if msg.type in (
+                        WSMsgType.CLOSE,
+                        WSMsgType.CLOSING,
+                        WSMsgType.CLOSED,
+                    ):
                         closed = True
                         break
                     channel = msg.data[0]
@@ -142,6 +146,7 @@ async def main():
             if error_data:
                 returncode = ws_api.parse_error_data(error_data)
                 print(f"Exit code: {returncode}")
+
 
 if __name__ == "__main__":
     loop = asyncio.get_event_loop()

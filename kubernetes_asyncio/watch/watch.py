@@ -36,7 +36,7 @@ TYPE_LIST_SUFFIX = "List"
 def _find_return_type(func: object) -> str:
     for line in pydoc.getdoc(func).splitlines():
         if line.startswith(PYDOC_RETURN_LABEL):
-            return line[len(PYDOC_RETURN_LABEL):].strip()
+            return line[len(PYDOC_RETURN_LABEL) :].strip()
     return ""
 
 
@@ -81,14 +81,12 @@ class Watch:
         if "object" not in js or "type" not in js:
             # raise error with code if set
             if "code" in js:
-                reason = "{}: {}".format(js.get("reason"), js.get("message"))
+                reason = f"{js.get('reason')}: {js.get('message')}"
                 raise ApiException(status=js["code"], reason=reason)
 
             raise Exception(
-                (
-                    "Malformed JSON response, the 'object' and/or "
-                    "'type' field is missing. JSON: {}"
-                ).format(js)
+                "Malformed JSON response, the 'object' and/or "
+                f"'type' field is missing. JSON: {js}"
             )
         # Make a copy of the original object and save it under the
         # `raw_object` key because we will replace the data under `object` with
@@ -101,7 +99,7 @@ class Watch:
         # this error into a Python exception to save the user the hassle.
         if js["type"].lower() == "error":
             obj = js["raw_object"]
-            reason = "{}: {}".format(obj["reason"], obj["message"])
+            reason = f"{obj['reason']}: {obj['message']}"
             raise ApiException(status=obj["code"], reason=reason)
 
         if js["type"].lower() != "bookmark":
@@ -135,11 +133,9 @@ class Watch:
                 self.resource_version = js["raw_object"]["metadata"]["resourceVersion"]
             else:
                 raise Exception(
-                    (
-                        "Malformed JSON response for bookmark event, "
-                        "'metadata' or 'resourceVersion' field is missing. "
-                        "JSON: {}"
-                    ).format(js)
+                    "Malformed JSON response for bookmark event, "
+                    "'metadata' or 'resourceVersion' field is missing. "
+                    f"JSON: {js}"
                 )
 
         return js

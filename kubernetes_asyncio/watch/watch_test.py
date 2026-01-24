@@ -33,7 +33,7 @@ class WatchTest(IsolatedAsyncioTestCase):
                 "type": "ADDED",
                 "object": {
                     "metadata": {
-                        "name": "test{}".format(uid),
+                        "name": f"test{uid}",
                         "resourceVersion": str(uid),
                     },
                     "spec": {},
@@ -60,7 +60,7 @@ class WatchTest(IsolatedAsyncioTestCase):
             ):
                 self.assertEqual("ADDED", e["type"])
                 # make sure decoder worked and we got a model with the right name
-                self.assertEqual("test%d" % count, e["object"].metadata.name)
+                self.assertEqual(f"test{count}", e["object"].metadata.name)
                 # make sure decoder worked and updated Watch.resource_version
                 self.assertEqual(e["object"].metadata.resource_version, str(count))
                 self.assertEqual(watch.resource_version, str(count))
@@ -468,5 +468,5 @@ class WatchTest(IsolatedAsyncioTestCase):
             },
         }
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception):  # noqa: B017
             Watch().unmarshal_event(json.dumps(k8s_err), None)

@@ -13,9 +13,10 @@
 # limitations under the License.
 
 import copy
+from collections.abc import Awaitable, Callable
 from functools import partial
 from pprint import pformat
-from typing import TYPE_CHECKING, Any, Awaitable, Callable
+from typing import TYPE_CHECKING, Any
 
 import yaml
 
@@ -97,14 +98,10 @@ class Resource:
         full_prefix = f"{self.prefix}/{self.group_version}"
         resource_name = self.name.lower() if self.name else ""
         return {
-            "base": "/{}/{}".format(full_prefix, resource_name),
-            "namespaced_base": "/{}/namespaces/{{namespace}}/{}".format(
-                full_prefix, resource_name
-            ),
-            "full": "/{}/{}/{{name}}".format(full_prefix, resource_name),
-            "namespaced_full": "/{}/namespaces/{{namespace}}/{}/{{name}}".format(
-                full_prefix, resource_name
-            ),
+            "base": f"/{full_prefix}/{resource_name}",
+            "namespaced_base": f"/{full_prefix}/namespaces/{{namespace}}/{resource_name}",
+            "full": f"/{full_prefix}/{resource_name}/{{name}}",
+            "namespaced_full": f"/{full_prefix}/namespaces/{{namespace}}/{resource_name}/{{name}}",
         }
 
     def path(self, name: str | None = None, namespace: str | None = None) -> str:
@@ -141,7 +138,7 @@ class ResourceList(Resource):
         self.client = client
         self.group = group or ""
         self.api_version = api_version or "v1"
-        self.kind = kind or "{}List".format(base_kind)
+        self.kind = kind or f"{base_kind}List"
         self.base_kind = base_kind or ""
         self.base_resource_lookup = base_resource_lookup
         self.__base_resource = None
@@ -346,12 +343,8 @@ class Subresource(Resource):
     def urls(self) -> dict[str, str]:
         full_prefix = f"{self.prefix}/{self.group_version}"
         return {
-            "full": "/{}/{}/{{name}}/{}".format(
-                full_prefix, self.parent.name, self.subresource
-            ),
-            "namespaced_full": "/{}/namespaces/{{namespace}}/{}/{{name}}/{}".format(
-                full_prefix, self.parent.name, self.subresource
-            ),
+            "full": f"/{full_prefix}/{self.parent.name}/{{name}}/{self.subresource}",
+            "namespaced_full": f"/{full_prefix}/namespaces/{{namespace}}/{self.parent.name}/{{name}}/{self.subresource}",
         }
 
     def __getattr__(self, name):
@@ -382,8 +375,8 @@ class ResourceInstance:
         kind = instance["kind"]
         if kind.endswith("List") and "items" in instance:
             kind = instance["kind"][:-4]
-            if instance['items'] is None:
-                instance['items'] = []
+            if instance["items"] is None:
+                instance["items"] = []
             for item in instance["items"]:
                 if "apiVersion" not in item:
                     item["apiVersion"] = instance["apiVersion"]
@@ -420,10 +413,7 @@ class ResourceInstance:
         return repr(self)
 
     def __repr__(self):
-        return "ResourceInstance[{}]:\n  {}".format(
-            self.attributes.kind,
-            "  ".join(yaml.safe_dump(self.to_dict()).splitlines(True)),
-        )
+        return f"ResourceInstance[{self.attributes.kind}]:\n  {'  '.join(yaml.safe_dump(self.to_dict()).splitlines(True))}"
 
     def __getattr__(self, name):
         if "_ResourceInstance__initialised" not in self.__dict__:
@@ -448,7 +438,7 @@ class ResourceInstance:
         return dir(type(self)) + list(self.attributes.__dict__.keys())
 
 
-class ResourceField(object):
+class ResourceField:
     """A parsed instance of an API resource attribute. It exists
     solely to ease interaction with API objects by allowing
     attributes to be accessed with '.' notation
@@ -478,8 +468,7 @@ class ResourceField(object):
         return dir(type(self)) + list(self.__dict__.keys())
 
     def __iter__(self):
-        for k, v in self.__dict__.items():
-            yield (k, v)
+        yield from self.__dict__.items()
 
     def to_dict(self) -> dict:
         ret = self.__serialize(self)

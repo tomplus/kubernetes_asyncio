@@ -37,11 +37,11 @@ jobs:
         run: |
           scripts/kube-init.sh uv run pytest -vvv -s kubernetes_asyncio/e2e_test
 
-      # - name: Lint with ruff (only on the latest version of Python)
-      #   if: matrix.python-version == '3.13'
-      #   run: |
-      #     uv run ruff format --diff
-      #     uv run ruff check
+      - name: Lint with ruff (only on the latest version of Python)
+        if: matrix.python-version == '3.13'
+        run: |
+          uv run ruff format --diff
+          uv run ruff check
 
       - name: Send coverage report
         uses: codecov/codecov-action@v5

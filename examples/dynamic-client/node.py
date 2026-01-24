@@ -37,13 +37,12 @@ async def main():
 
         # Listing cluster nodes
 
-        print("%s\t\t%s\t\t%s" % ("NAME", "STATUS", "VERSION"))
+        print("{}\t\t{}\t\t{}".format("NAME", "STATUS", "VERSION"))
         resp = await api.get()
         for item in resp.items:
             node = await api.get(name=item.metadata.name)
             print(
-                "%s\t%s\t\t%s\n"
-                % (
+                "{}\t{}\t\t{}\n".format(
                     node.metadata.name,
                     node.status.conditions[3]["type"],
                     node.status.nodeInfo.kubeProxyVersion,

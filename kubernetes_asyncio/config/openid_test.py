@@ -1,13 +1,16 @@
 import asyncio
 import json
+from collections.abc import Generator
 from contextlib import contextmanager
-from typing import Generator
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import patch
 
 from aiohttp import web
 from aiohttp.test_utils import (
-    TestClient as _TestClient, TestServer as _TestServer,
+    TestClient as _TestClient,
+)
+from aiohttp.test_utils import (
+    TestServer as _TestServer,
 )
 
 from kubernetes_asyncio.config.config_exception import ConfigException

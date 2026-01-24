@@ -18,33 +18,35 @@ import unittest
 from kubernetes_asyncio.client.configuration import Configuration
 from kubernetes_asyncio.config import kube_config
 
-DEFAULT_E2E_HOST = '127.0.0.1'
+DEFAULT_E2E_HOST = "127.0.0.1"
 
 
 def get_e2e_configuration() -> Configuration:
     config = Configuration()
     config.host = None
-    if os.path.exists(
-            os.path.expanduser(kube_config.KUBE_CONFIG_DEFAULT_LOCATION)):
+    if os.path.exists(os.path.expanduser(kube_config.KUBE_CONFIG_DEFAULT_LOCATION)):
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
-        loop.run_until_complete(kube_config.load_kube_config(client_configuration=config))
+        loop.run_until_complete(
+            kube_config.load_kube_config(client_configuration=config)
+        )
     else:
-        print('Unable to load config from %s' %
-              kube_config.KUBE_CONFIG_DEFAULT_LOCATION)
-        for proto, host, port in [('https', DEFAULT_E2E_HOST, '8443'),
-                                  ('http', DEFAULT_E2E_HOST, '8080')]:
+        print(f"Unable to load config from {kube_config.KUBE_CONFIG_DEFAULT_LOCATION}")
+        for proto, host, port in [
+            ("https", DEFAULT_E2E_HOST, "8443"),
+            ("http", DEFAULT_E2E_HOST, "8080"),
+        ]:
             try:
-                print('Testing:', proto, host, port)
-                http.client.HTTPConnection(host, int(port)).request('GET', '/')
-                config.host = "{}://{}:{}".format(proto, host, port)
+                print("Testing:", proto, host, port)
+                http.client.HTTPConnection(host, int(port)).request("GET", "/")
+                config.host = f"{proto}://{host}:{port}"
                 config.verify_ssl = False
                 break
             except ConnectionRefusedError:
                 pass
 
     if config.host is None:
-        raise unittest.SkipTest('Unable to find a running Kubernetes instance')
-    print('Running test against : %s' % config.host)
+        raise unittest.SkipTest("Unable to find a running Kubernetes instance")
+    print(f"Running test against : {config.host}")
     config.assert_hostname = False
     return config

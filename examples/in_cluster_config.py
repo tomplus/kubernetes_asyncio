@@ -57,11 +57,8 @@ from kubernetes_asyncio import client, config
 
 
 async def main():
-
     while True:
-
         try:
-
             # it works only if this script is run by K8s as a POD
             config.load_incluster_config()
 

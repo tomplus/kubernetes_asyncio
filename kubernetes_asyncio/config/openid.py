@@ -54,8 +54,8 @@ class OpenIDRequestor:
                         "refresh_token": refresh_token,
                     },
                 )
-            except aiohttp.ClientResponseError:
-                raise ConfigException("oidc: failed to refresh access token")
+            except aiohttp.ClientResponseError as e:
+                raise ConfigException("oidc: failed to refresh access token") from e
 
     async def _get(
         self, client: aiohttp.ClientSession, *args: Any, **kwargs: Any
@@ -74,14 +74,12 @@ class OpenIDRequestor:
             try:
                 self._well_known = await self._get(
                     client,
-                    "{}/.well-known/openid-configuration".format(
-                        self._issuer_url.rstrip("/")
-                    ),
+                    f"{self._issuer_url.rstrip('/')}/.well-known/openid-configuration",
                 )
-            except aiohttp.ClientResponseError:
+            except aiohttp.ClientResponseError as e:
                 raise ConfigException(
                     "oidc: failed to query well-known metadata endpoint"
-                )
+                ) from e
 
         return self._well_known
 

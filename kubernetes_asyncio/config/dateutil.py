@@ -22,7 +22,7 @@ class TimezoneInfo(datetime.tzinfo):
     def __init__(self, h: int, m: int) -> None:
         self._name = "UTC"
         if h != 0 and m != 0:
-            self._name += "%+03d:%2d" % (h, m)
+            self._name += f"{h:+03d}:{m:02d}"
         self._delta = datetime.timedelta(hours=h, minutes=math.copysign(m, h))
 
     def utcoffset(self, dt: Any | None) -> datetime.timedelta:
