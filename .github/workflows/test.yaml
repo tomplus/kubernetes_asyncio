@@ -1,54 +1,50 @@
 name: Tests
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
 
     steps:
-    - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v6
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v6
+      - name: Install dependencies
+        run: |
+          uv sync
 
-    - name: Install dependencies
-      run: |
-        uv sync
+      - name: (Debug environment)
+        run: |
+          printenv
+          python -V
+          uv pip freeze
 
-    - name: (Debug environment)
-      run: |
-        printenv
-        python -V
-        uv pip freeze
+      - name: Run unit tests
+        run: |
+          # splitted into 2 steps because of problem with event-loop in aiohttp
+          uv run pytest -vvv -s --ignore=kubernetes_asyncio/e2e_test --ignore=kubernetes_asyncio/test --cov-report=xml --cov=kubernetes_asyncio
+          uv run pytest -vvv -s --cov-report=xml --cov=kubernetes_asyncio2 kubernetes_asyncio/test --cov-append
 
-    - name: Run unit tests
-      run: |
-        # splitted into 2 steps because of problem with event-loop in aiohttp
-        pytest -vvv -s --ignore=kubernetes_asyncio/e2e_test --ignore=kubernetes_asyncio/test --cov-report=xml --cov=kubernetes_asyncio
-        pytest -vvv -s --cov-report=xml --cov=kubernetes_asyncio2 kubernetes_asyncio/test --cov-append
+      - name: Run e2e tests
+        run: |
+          scripts/kube-init.sh uv run pytest -vvv -s kubernetes_asyncio/e2e_test
 
-    - name: Run e2e tests
-      run: |
-        scripts/kube-init.sh pytest -vvv -s kubernetes_asyncio/e2e_test
+      - name: Lint with flake8 and isort (only on the latest version of Python)
+        if: matrix.python-version == '3.13'
+        run: |
+          uv run ruff format --diff
+          uv run ruff check
 
-    - name: Lint with flake8 and isort (only on the latest version of Python)
-      if: matrix.python-version == '3.13'
-      run: |
-        ruff format --diff
-        ruff check
-
-    - name: Send coverage report
-      uses: codecov/codecov-action@v5
-      if: matrix.python-version == '3.13'
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Send coverage report
+        uses: codecov/codecov-action@v5
+        if: matrix.python-version == '3.13'
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
