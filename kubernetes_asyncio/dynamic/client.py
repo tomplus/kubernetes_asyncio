@@ -460,7 +460,7 @@ class DynamicClient:
                 "resource definition validation error at {}: {}".format(
                     ".".join([str(item) for item in e.path]), e.message
                 )
-            )  # noqa: B306
+            )
         except VersionNotSupportedError:
             errors.append(
                 f"Kubernetes version {version} is not supported by kubernetes-validate"
