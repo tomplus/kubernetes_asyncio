@@ -25,7 +25,6 @@ SCRIPT_ROOT=$(dirname "${BASH_SOURCE}")
 CLIENT_ROOT="$(dirname ${SCRIPT_ROOT})/kubernetes_asyncio"
 CLIENT_VERSION=$(python "${SCRIPT_ROOT}/constants.py" CLIENT_VERSION)
 PACKAGE_NAME=$(python "${SCRIPT_ROOT}/constants.py" PACKAGE_NAME)
-DEVELOPMENT_STATUS=$(python "${SCRIPT_ROOT}/constants.py" DEVELOPMENT_STATUS)
 
 pushd "${SCRIPT_ROOT}" > /dev/null
 SCRIPT_ROOT=`pwd`
@@ -59,10 +58,8 @@ echo ">>> Running python generator from the gen repo"
 mv "${CLIENT_ROOT}/swagger.json" "${SCRIPT_ROOT}/swagger.json"
 
 echo ">>> updating version information..."
-sed -i'' "s/^CLIENT_VERSION = .*/CLIENT_VERSION = \\\"${CLIENT_VERSION}\\\"/" "${SCRIPT_ROOT}/../setup.py"
+sed -i'' "s/^version = .*/version = \\\"${CLIENT_VERSION}\\\"/" "${SCRIPT_ROOT}/../pyproject.toml"
 sed -i'' "s/^__version__ = .*/__version__ = \\\"${CLIENT_VERSION}\\\"/" "${CLIENT_ROOT}/__init__.py"
-sed -i'' "s/^PACKAGE_NAME = .*/PACKAGE_NAME = \\\"${PACKAGE_NAME}\\\"/" "${SCRIPT_ROOT}/../setup.py"
-sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STATUS}\\\"," "${SCRIPT_ROOT}/../setup.py"
 
 echo ">>> copy patched files"
 cp -b "${SCRIPT_ROOT}/patched_files/api_client.py" "${CLIENT_ROOT}/client/api_client.py"

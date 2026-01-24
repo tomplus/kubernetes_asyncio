@@ -18,7 +18,7 @@ https://github.com/kubernetes/kubernetes/tree/master/api/openapi-spec). You can 
 
 ### Adding Dependencies
 
-If your patch depends on new packages, add those packages to [requirements.txt](requirements.txt) and [setup.py](setup.py).
+If your patch depends on new packages, add those packages to [pyproject.toml](pyproject.toml).
 
 ### Rebuild Client
 

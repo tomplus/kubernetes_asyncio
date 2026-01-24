@@ -93,17 +93,19 @@ two numbers from version are Kubernetes version (v.1.18.20). The last
 number is for changes in the library not directly connected with K8s.
 
 ## Development
-Install the development packages:
 
 ```bash
-pip install -r requirements.txt
-pip install -r test-requirements.txt
-```
+# Create and activate virtual environment
+uv venv
+source .venv/bin/activate
 
-You can run the style checks and tests with
+# Install dependencies
+uv sync
 
-```bash
-flake8 kubernetes_asyncio/
-isort --diff kubernetes_asyncio/
-py.test
+# Run ruff
+ruff check .
+ruff format --diff .
+
+# Run tests
+pytest
 ```
