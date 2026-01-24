@@ -68,3 +68,6 @@ target/
 
 # patched backups
 kubernetes_asyncio/client/*.*~
+
+# uv
+uv.lock
