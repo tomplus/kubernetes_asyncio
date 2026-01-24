@@ -59,10 +59,8 @@ echo ">>> Running python generator from the gen repo"
 mv "${CLIENT_ROOT}/swagger.json" "${SCRIPT_ROOT}/swagger.json"
 
 echo ">>> updating version information..."
-sed -i'' "s/^CLIENT_VERSION = .*/CLIENT_VERSION = \\\"${CLIENT_VERSION}\\\"/" "${SCRIPT_ROOT}/../setup.py"
+sed -i'' "s/^version = .*/version = \\\"${CLIENT_VERSION}\\\"/" "${SCRIPT_ROOT}/../pyproject.toml"
 sed -i'' "s/^__version__ = .*/__version__ = \\\"${CLIENT_VERSION}\\\"/" "${CLIENT_ROOT}/__init__.py"
-sed -i'' "s/^PACKAGE_NAME = .*/PACKAGE_NAME = \\\"${PACKAGE_NAME}\\\"/" "${SCRIPT_ROOT}/../setup.py"
-sed -i'' "s,^DEVELOPMENT_STATUS = .*,DEVELOPMENT_STATUS = \\\"${DEVELOPMENT_STATUS}\\\"," "${SCRIPT_ROOT}/../setup.py"
 
 echo ">>> copy patched files"
 cp -b "${SCRIPT_ROOT}/patched_files/api_client.py" "${CLIENT_ROOT}/client/api_client.py"

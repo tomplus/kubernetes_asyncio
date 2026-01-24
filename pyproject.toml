@@ -44,7 +44,6 @@ dev = [
 ]
 
 [tool.ruff]
-
 exclude = [
     ".git",
     ".venv",
@@ -56,7 +55,6 @@ exclude = [
     "kubernetes_asyncio/test/",
     "scripts/"
 ]
-
 target-version = "py310"
 
 [tool.ruff.lint]

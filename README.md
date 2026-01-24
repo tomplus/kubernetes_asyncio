@@ -102,7 +102,7 @@ source .venv/bin/activate
 # Install dependencies
 uv sync
 
-# Run ruff (readolny)
+# Run ruff
 ruff check .
 ruff format --diff .
 
