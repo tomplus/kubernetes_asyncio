@@ -1,9 +1,9 @@
 import argparse
-from collections import defaultdict
 import glob
 import importlib
 import inspect
 import re
+from collections import defaultdict
 from types import ModuleType
 from typing import Any
 
@@ -42,7 +42,7 @@ class PyiFile:
                     pvd["required"] = False
                 if pvd:
                     rtypes = re.findall(
-                        r"\b([A-Za-z_][A-Za-z0-9_]*)\b(?!\s*\()", pvd["type"]
+                        r"\b([A-Za-z_][A-Za-z0-9_]*)\b(?!\s*\()", pvd.get("type", "Any")
                     )
                     self.types.update(rtypes)
 
@@ -52,7 +52,7 @@ class PyiFile:
         self.add_method(name, {"self": {}}, type, "@property")
         self.add_method(
             name,
-            {"self": {}, name: {"required": False, "type": type}},
+            {"self": {}, name: {"required": True, "type": type}},
             None,
             f"@{name}.setter",
         )
@@ -71,8 +71,11 @@ class PyiFile:
             for name, params, retval, decorator in self.methods:
                 params_typing = []
 
-                for k, v in params.items():
-                    pn = f"{'**' if k == 'kwargs' else ''}{k}"
+                for pn, v in params.items():
+                    if pn == "kwargs":
+                        # process keywords after kwargs
+                        params_typing.append("*")
+                        continue
                     if v.get("type"):
                         pt = ": " + v.get("type")
                     else:
@@ -82,6 +85,8 @@ class PyiFile:
                             pt += " | None = None"
                         else:
                             pt += f" = {v['default']}"
+                    elif "required" in v and not v["required"]:
+                        pt += " = ..."
 
                     params_typing.append(f"{pn}{pt}")
 
@@ -102,6 +107,7 @@ class PyiFile:
                 "bool",
                 "dict",
                 "list",
+                "tuple",
             ):
                 continue
             if itype == self.cls_name:
@@ -114,6 +120,8 @@ class PyiFile:
                 ret.append("from typing import Awaitable")
             elif itype == "datetime":
                 ret.append("from datetime import datetime")
+            elif itype == "ClientTimeout":
+                ret.append("from aiohttp import ClientTimeout")
             elif itype == "ApiClient":
                 ret.append("from kubernetes_asyncio.client.api_client import ApiClient")
             else:
@@ -158,7 +166,7 @@ def params_from_method_doc(
             params[rparam.group(1)]["required"] = rparam.group(2) == "(required)"
             continue
 
-        rtype = re.search(r"^:type (\S+): (.*)$", line)
+        rtype = re.search(r"^:type (\S+): (\S*)(, optional)?$", line)
         if rtype:
             params[rtype.group(1)]["type"] = map_types(rtype.group(2))
             continue
@@ -166,6 +174,11 @@ def params_from_method_doc(
         rrtype = re.search(r"^:rtype: (.*)$", line)
         if rrtype:
             rettype = map_types(str(rrtype.group(1)))
+
+    if "_request_timeout" in params:
+        params["_request_timeout"]["type"] = (
+            "None | int | float | tuple[float, float] | ClientTimeout"
+        )
 
     return dict(params), rettype
 
@@ -210,6 +223,10 @@ def gen_api_typing(module: str) -> None:
                     for param_name in sig.parameters.keys():
                         method_params[param_name] = params.get(param_name, {})
 
+                    for param_name in params.keys():
+                        if param_name not in method_params:
+                            method_params[param_name] = params.get(param_name, {})
+
             pyi.add_method(
                 method_name,
                 method_params,
@@ -231,7 +248,7 @@ def gen_model_typing(module: str) -> None:
     for cls_name, cls in classes:
         pyi.add_class(cls_name)
 
-        openapi_types = getattr(cls, "openapi_types")
+        openapi_types = cls.openapi_types
 
         # add methods
         for method_name, method in inspect.getmembers(
