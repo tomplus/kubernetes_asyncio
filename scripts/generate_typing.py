@@ -36,10 +36,6 @@ class PyiFile:
                 rtypes.append("Awaitable")
             self.types.update(rtypes)
         if params:
-            # if "kwargs" in params:
-            # ignore kwargs
-            #    del params["kwargs"]
-
             for param, pvd in params.items():
                 if param == "kwargs":
                     pvd["type"] = "Any"
