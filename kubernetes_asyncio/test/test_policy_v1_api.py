@@ -34,6 +34,12 @@ class TestPolicyV1Api(unittest.IsolatedAsyncioTestCase):
         """
         pass
 
+    def test_create_namespaced_pod_eviction(self):
+        """Test case for create_namespaced_pod_eviction
+
+        """
+        pass
+
     def test_delete_collection_namespaced_pod_disruption_budget(self):
         """Test case for delete_collection_namespaced_pod_disruption_budget
 
