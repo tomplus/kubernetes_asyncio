@@ -1,4 +1,4 @@
-# Byte-compiled / optimized / DLL files
+G# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -71,3 +71,6 @@ kubernetes_asyncio/client/*.*~
 
 # uv
 uv.lock
+
+# auto-generated gitlab ci
+kubernetes_asyncio/.gitlab-ci.yml

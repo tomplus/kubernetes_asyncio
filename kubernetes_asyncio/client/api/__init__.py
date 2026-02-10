@@ -61,12 +61,12 @@ from kubernetes_asyncio.client.api.resource_v1beta1_api import ResourceV1beta1Ap
 from kubernetes_asyncio.client.api.resource_v1beta2_api import ResourceV1beta2Api
 from kubernetes_asyncio.client.api.scheduling_api import SchedulingApi
 from kubernetes_asyncio.client.api.scheduling_v1_api import SchedulingV1Api
+from kubernetes_asyncio.client.api.scheduling_v1alpha1_api import SchedulingV1alpha1Api
 from kubernetes_asyncio.client.api.storage_api import StorageApi
 from kubernetes_asyncio.client.api.storage_v1_api import StorageV1Api
-from kubernetes_asyncio.client.api.storage_v1alpha1_api import StorageV1alpha1Api
 from kubernetes_asyncio.client.api.storage_v1beta1_api import StorageV1beta1Api
 from kubernetes_asyncio.client.api.storagemigration_api import StoragemigrationApi
-from kubernetes_asyncio.client.api.storagemigration_v1alpha1_api import StoragemigrationV1alpha1Api
+from kubernetes_asyncio.client.api.storagemigration_v1beta1_api import StoragemigrationV1beta1Api
 from kubernetes_asyncio.client.api.version_api import VersionApi
 
 __all__ = [
@@ -128,11 +128,11 @@ __all__ = [
     "ResourceV1beta2Api",
     "SchedulingApi",
     "SchedulingV1Api",
+    "SchedulingV1alpha1Api",
     "StorageApi",
     "StorageV1Api",
-    "StorageV1alpha1Api",
     "StorageV1beta1Api",
     "StoragemigrationApi",
-    "StoragemigrationV1alpha1Api",
+    "StoragemigrationV1beta1Api",
     "VersionApi",
 ]
