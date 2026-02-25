@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "kubernetes_asyncio"
-version = "35.0.0"
+version = "35.0.1"
 description = "Kubernetes Asynchronous Python Client"
 authors = [
     { name = "Tomasz Prus", email = "tomasz.prus@gmail.com" }
