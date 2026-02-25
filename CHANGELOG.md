@@ -1,3 +1,9 @@
+# v35.0.1
+
+* fix: use named logger in leaderelection module ([#406](https://github.com/tomplus/kubernetes_asyncio/pull/406), [@jbott](https://github.com/jbott))
+* Fix passing namespaces in dynamic client ([#407](https://github.com/tomplus/kubernetes_asyncio/pull/407), [@tomplus](https://github.com/tomplus))
+
+
 # v35.0.0
 
 * feat: Add typing for optional params in methods ([#399](https://github.com/tomplus/kubernetes_asyncio/pull/399), [@tomplus](https://github.com/tomplus))
