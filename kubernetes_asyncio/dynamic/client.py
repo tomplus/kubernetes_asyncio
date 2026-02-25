@@ -123,7 +123,7 @@ class DynamicClient:
         return self.__discoverer.version  # type: ignore
 
     @staticmethod
-    def ensure_namespace(resource: Resource, namespace: str, body: Any) -> str:
+    def ensure_namespace(resource: Resource, namespace: str | None, body: Any) -> str:
         namespace = namespace or body.get("metadata", {}).get("namespace")
         if not namespace:
             raise ValueError(
@@ -164,8 +164,6 @@ class DynamicClient:
 
         body = self.serialize_body(body)
         if resource.namespaced:
-            if not namespace:
-                raise ValueError("namespace is required")
             namespace = self.ensure_namespace(resource, namespace, body)
         path = resource.path(namespace=namespace)
         return await self.request("post", path, body=body, **kwargs)
@@ -216,8 +214,6 @@ class DynamicClient:
                 f"name is required to replace {resource.group_version}.{resource.kind}"
             )
         if resource.namespaced:
-            if not namespace:
-                raise ValueError("namespace is required")
             namespace = self.ensure_namespace(resource, namespace, body)
         path = resource.path(name=name, namespace=namespace)
         return await self.request("put", path, body=body, **kwargs)
@@ -239,8 +235,6 @@ class DynamicClient:
                 f"name is required to patch {resource.group_version}.{resource.kind}"
             )
         if resource.namespaced:
-            if not namespace:
-                raise ValueError("namespace is required")
             namespace = self.ensure_namespace(resource, namespace, body)
 
         content_type = kwargs.pop(
@@ -271,8 +265,6 @@ class DynamicClient:
                 f"name is required to patch {resource.group_version}.{resource.kind}"
             )
         if resource.namespaced:
-            if not namespace:
-                raise ValueError("namespace is required")
             namespace = self.ensure_namespace(resource, namespace, body)
 
         # force content type to 'application/apply-patch+yaml'
