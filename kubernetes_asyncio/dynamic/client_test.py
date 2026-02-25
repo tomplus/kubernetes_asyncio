@@ -391,6 +391,7 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
                 "apiVersion": "v1",
                 "metadata": {
                     "name": name,
+                    "namespace": "default",
                     "labels": {
                         "e2e-test": "true",
                     },
@@ -401,8 +402,10 @@ class TestDynamicClient(unittest.IsolatedAsyncioTestCase):
                 },
             }
 
-            resp = await api.create(body=test_configmap, namespace="default")
+            # namespace should be taken from body
+            resp = await api.create(body=test_configmap)
             self.assertEqual(name, resp.metadata.name)
+            self.assertEqual("default", resp.metadata.namespace)
 
             resp = await api.get(
                 name=name, namespace="default", label_selector="e2e-test=true"
