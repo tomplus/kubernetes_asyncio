@@ -24,6 +24,8 @@ from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
 )
 from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
 
+logger = logging.getLogger(__name__)
+
 
 class ConfigMapLock(BaseLock):
     def __init__(self, name: str, namespace: str, identity: str, api_client: ApiClient):
@@ -113,7 +115,7 @@ class ConfigMapLock(BaseLock):
             )
             return True
         except ApiException:
-            logging.exception("Failed to create lock")
+            logger.exception("Failed to create lock")
             return False
 
     async def update(
@@ -136,7 +138,7 @@ class ConfigMapLock(BaseLock):
             )
             return True
         except ApiException:
-            logging.exception("Failed to update lock")
+            logger.exception("Failed to update lock")
             return False
 
     def get_lock_object(self, lock_record: dict) -> LeaderElectionRecord:

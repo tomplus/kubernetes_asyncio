@@ -23,6 +23,8 @@ from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
 )
 from kubernetes_asyncio.leaderelection.resourcelock.baselock import BaseLock
 
+logger = logging.getLogger(__name__)
+
 
 class LeaseLock(BaseLock):
     def __init__(self, name: str, namespace: str, identity: str, api_client: ApiClient):
@@ -75,7 +77,7 @@ class LeaseLock(BaseLock):
             )
             return True
         except ApiException:
-            logging.exception("Failed to create lock")
+            logger.exception("Failed to create lock")
             return False
 
     async def update(
@@ -99,7 +101,7 @@ class LeaseLock(BaseLock):
             )
             return True
         except ApiException:
-            logging.exception("Failed to update lock")
+            logger.exception("Failed to update lock")
             return False
 
     def update_lease(
@@ -161,5 +163,5 @@ class LeaseLock(BaseLock):
                 return datetime.strptime(str_time, fmt).isoformat() + "Z"
             except ValueError:
                 pass
-        logging.error("Failed to parse time string: %s", str_time)
+        logger.error("Failed to parse time string: %s", str_time)
         return None
