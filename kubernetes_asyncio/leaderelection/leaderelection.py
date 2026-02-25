@@ -26,6 +26,8 @@ from kubernetes_asyncio.leaderelection.leaderelectionrecord import (
     LeaderElectionRecord,
 )
 
+logger = logging.getLogger(__name__)
+
 """
 This package implements leader election using an annotation in a Kubernetes
 object. The onstarted_leading coroutine is run as a task, which is cancelled if
@@ -55,7 +57,7 @@ class LeaderElection:
     async def run(self) -> None:
         # Try to create/ acquire a lock
         if await self.acquire():
-            logging.info(
+            logger.info(
                 "%s successfully acquired lease", self.election_config.lock.identity
             )
 
@@ -86,7 +88,7 @@ class LeaderElection:
 
     async def acquire(self) -> bool:
         # Follower
-        logging.debug("%s is a follower", self.election_config.lock.identity)
+        logger.debug("%s is a follower", self.election_config.lock.identity)
         retry_period = self.election_config.retry_period
 
         while True:
@@ -99,7 +101,7 @@ class LeaderElection:
 
     async def renew_loop(self) -> None:
         # Leader
-        logging.debug(
+        logger.debug(
             "Leader has entered renew loop and will try to update lease continuously"
         )
 
@@ -148,14 +150,14 @@ class LeaderElection:
                 and old_election_record.body is not None
             )
             if json.loads(old_election_record.body)["code"] != HTTPStatus.NOT_FOUND:
-                logging.error(
+                logger.error(
                     "Error retrieving resource lock %s as %s",
                     self.election_config.lock.name,
                     old_election_record.reason,
                 )
                 return False
 
-            logging.debug(
+            logger.debug(
                 "%s is trying to create a lock",
                 leader_election_record.holder_identity,
             )
@@ -166,7 +168,7 @@ class LeaderElection:
             )
 
             if not create_status:
-                logging.error(
+                logger.error(
                     "%s failed to create lock", leader_election_record.holder_identity
                 )
                 return False
@@ -197,7 +199,7 @@ class LeaderElection:
             and self.observed_record.holder_identity
             != old_election_record.holder_identity
         ):
-            logging.debug(
+            logger.debug(
                 "Leader has switched to %s", old_election_record.holder_identity
             )
 
@@ -215,7 +217,7 @@ class LeaderElection:
             + self.election_config.lease_duration * 1000
             > int(now_timestamp * 1000)
         ):
-            logging.debug(
+            logger.debug(
                 "Yet to finish lease_duration, lease held by %s and has not expired",
                 old_election_record.holder_identity,
             )
@@ -237,14 +239,14 @@ class LeaderElection:
         )
 
         if not update_status:
-            logging.warning(
+            logger.warning(
                 "%s failed to acquire lease", leader_election_record.holder_identity
             )
             return False
 
         self.observed_record = leader_election_record
         self.observed_time_milliseconds = int(time.time() * 1000)
-        logging.debug(
+        logger.debug(
             "Leader %s has successfully updated lease",
             leader_election_record.holder_identity,
         )
