@@ -198,7 +198,7 @@ class RESTClientObject(object):
         if not 200 <= r.status <= 299:
             data = await r.read()
             resp = RESTResponse(r, data)
-            raise ApiException(status=resp.status, reason=resp.reason)
+            raise ApiException(http_resp=resp)
 
         if _preload_content:
 
