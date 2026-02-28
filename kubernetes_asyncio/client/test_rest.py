@@ -23,6 +23,7 @@ class TestRESTClientObject(unittest.IsolatedAsyncioTestCase):
         ]:
             with self.subTest(request_timeout=request_timeout, expected_timeout_arg=expected_timeout_arg):
                 mock_request = AsyncMock()
+                mock_request.return_value.status = 200
                 rest_api.pool_manager.request = mock_request
                 await rest_api.request(method="GET", url="http://test-api", _preload_content=False, _request_timeout=request_timeout)
                 mock_request.assert_called_once_with(
