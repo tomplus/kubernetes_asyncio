@@ -10,7 +10,7 @@
 
 Asynchronous (AsyncIO) client library for the [Kubernetes](http://kubernetes.io/) API.
 
-This library is created in the same way as official https://github.com/kubernetes-client/python but
+This library is created in the same way as the official https://github.com/kubernetes-client/python but
 uses asynchronous version of [OpenAPI generator](https://github.com/openapitools/openapi-generator).
 My motivation is described here: https://github.com/kubernetes-client/python/pull/324
 
@@ -55,22 +55,13 @@ if __name__ == '__main__':
     asyncio.run(main())
 ```
 
-More complicated examples, like asynchronous multiple watch or tail logs from pods,
-you can find in `examples/` folder.
+More examples, including asynchronous multiple watch or tailing logs from pods,
+can be found in `examples/` folder.
 
 ## Documentation
 
 https://kubernetes-asyncio.readthedocs.io/
 
-## Compatibility
-
-This library is generated in the same way as the official Kubernetes Python Library. It uses swagger-codegen and the same concepts
-like streaming, watching or reading configuration. Because of an early stage of this library some differences still exist:
-
-|  | [synchronous library kubernetes-client/python](https://github.com/kubernetes-client/python) | [this library](https://github.com/tomplus/kubernetes_asyncio/) |
-|--|--------------------------------------------------------------------|---------------------------------------------------------------|
-| authentication method | gcp-token, azure-token, user-token, oidc-token, user-password, in-cluster | gcp-token (only via gcloud command), user-token, oidc-token, user-password, in-cluster |
-| streaming data via websocket from PODs | bidirectional | read-only is already implemented |
 
 ### Microsoft Windows
 In case this library is used against Kubernetes cluster using [client-go credentials plugin](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#client-go-credential-plugins), the default asyncio event loop is  [SelectorEventLoop](https://docs.python.org/3/library/asyncio-eventloop.html#event-loop-implementations). This event loop selector, however, does NOT support [pipes and subprocesses](https://bugs.python.org/issue37373), so `exec_provider.py::ExecProvider` is failing. In order to avoid failures the [ProactorEventLoop](https://docs.python.org/3/library/asyncio-eventloop.html#asyncio.ProactorEventLoop) has to be selected. The ProactorEventLoop can be enabled via [WindowsProactorEventLoopPolicy](https://docs.python.org/3/library/asyncio-policy.html#asyncio.WindowsProactorEventLoopPolicy). 
