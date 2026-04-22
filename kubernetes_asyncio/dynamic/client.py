@@ -99,6 +99,7 @@ class DynamicClient:
         self.client = client
         self.configuration = client.configuration
         self.discoverer: type[Discoverer] = discoverer or LazyDiscoverer
+        self.__discoverer: Discoverer | None = None
 
     def __await__(self):
         async def closure():
@@ -116,11 +117,15 @@ class DynamicClient:
 
     @property
     def resources(self) -> Discoverer:
+        if not self.__discoverer:
+            raise RuntimeError(
+                "Discoverer is not initialized, use 'async with' or await the client directly"
+            )
         return self.__discoverer
 
     @property
     def version(self) -> dict[str, Any]:
-        return self.__discoverer.version  # type: ignore
+        return self.resources.version
 
     @staticmethod
     def ensure_namespace(resource: Resource, namespace: str | None, body: Any) -> str:
