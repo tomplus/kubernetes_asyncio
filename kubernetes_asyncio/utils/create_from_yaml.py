@@ -22,6 +22,7 @@ from kubernetes_asyncio import client
 from kubernetes_asyncio.client.api_client import ApiClient
 from kubernetes_asyncio.client.exceptions import ApiException
 from kubernetes_asyncio.config import Any
+from kubernetes_asyncio.dynamic.client import DynamicClient
 
 
 async def create_from_yaml(
@@ -29,6 +30,7 @@ async def create_from_yaml(
     yaml_file: str,
     verbose: bool = False,
     namespace: str = "default",
+    apply: bool = False,
     **kwargs: Any,
 ) -> Any:
     """
@@ -44,6 +46,7 @@ async def create_from_yaml(
         the resource creation will fail. If the API object in
         the yaml file already contains a namespace definition
         this parameter has no effect.
+    apply: bool. If True, use server-side apply for creating resources.
     Returns:
     An k8s api object or list of apis objects created from YAML.
     When a single object is generated, return type is dependent
@@ -70,7 +73,12 @@ async def create_from_yaml(
         for yml_document in yml_document_all:
             try:
                 created = await create_from_dict(
-                    k8s_client, yml_document, verbose, namespace=namespace, **kwargs
+                    k8s_client,
+                    yml_document,
+                    verbose,
+                    namespace=namespace,
+                    apply=apply,
+                    **kwargs,
                 )
                 k8s_objects.append(created)
             except FailToCreateError as failure:
@@ -88,6 +96,7 @@ async def create_from_dict(
     data: dict,
     verbose: bool = False,
     namespace: str = "default",
+    apply: bool = False,
     **kwargs: Any,
 ) -> Any:
     """
@@ -103,6 +112,7 @@ async def create_from_dict(
         the resource creation will fail. If the API object in
         the yaml file already contains a namespace definition
         this parameter has no effect.
+    apply: bool. If True, use server-side apply for creating resources.
     Returns:
     An k8s api object or list of apis objects created from dict.
     When a single object is generated, return type is dependent
@@ -136,7 +146,7 @@ async def create_from_dict(
                 yml_object["kind"] = kind
             try:
                 created = await create_from_yaml_single_item(
-                    k8s_client, yml_object, verbose, namespace, **kwargs
+                    k8s_client, yml_object, verbose, namespace, apply=apply, **kwargs
                 )
                 k8s_objects.append(created)
             except client.ApiException as api_exception:
@@ -145,7 +155,7 @@ async def create_from_dict(
         # This is a single object. Call the single item method
         try:
             created = await create_from_yaml_single_item(
-                k8s_client, data, verbose, namespace, **kwargs
+                k8s_client, data, verbose, namespace, apply=apply, **kwargs
             )
             k8s_objects.append(created)
         except client.ApiException as api_exception:
@@ -162,8 +172,21 @@ async def create_from_yaml_single_item(
     yml_object: dict,
     verbose: bool = False,
     namespace: str = "default",
+    apply: bool = False,
     **kwargs: Any,
 ) -> Any:
+    kind = yml_object["kind"]
+    if apply is True:
+        apply_client = await (await DynamicClient(k8s_client)).resources.get(
+            api_version=yml_object["apiVersion"], kind=kind
+        )
+        resp = await apply_client.server_side_apply(
+            body=yml_object, field_manager="python-client", **kwargs
+        )
+        if verbose:
+            print(f"{kind} applied. status='{str(resp.status)}'")
+        return resp
+
     group, _, version = yml_object["apiVersion"].partition("/")
     if version == "":
         version = group
@@ -177,7 +200,6 @@ async def create_from_yaml_single_item(
     fcn_to_call = f"{group}{version.capitalize()}Api"
     k8s_api = getattr(client, fcn_to_call)(k8s_client)
     # Replace CamelCased action_type into snake_case
-    kind = yml_object["kind"]
     kind = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", kind)
     kind = re.sub("([a-z0-9])([A-Z])", r"\1_\2", kind).lower()
     # Decide which namespace we are going to put the object in,
