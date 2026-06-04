@@ -195,11 +195,6 @@ class RESTClientObject(object):
                 raise ApiException(status=0, reason=msg)
 
         r = await self.pool_manager.request(**args)
-        if not 200 <= r.status <= 299:
-            data = await r.read()
-            resp = RESTResponse(r, data)
-            raise ApiException(http_resp=resp)
-
         if _preload_content:
 
             data = await r.read()
@@ -207,6 +202,9 @@ class RESTClientObject(object):
 
             # log response body
             logger.debug("response body: %s", r.data)
+
+            if not 200 <= r.status <= 299:
+                raise ApiException(http_resp=r)
 
         return r
 
