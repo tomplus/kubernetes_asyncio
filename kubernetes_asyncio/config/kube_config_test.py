@@ -370,6 +370,7 @@ class TestKubeConfigLoader(BaseTestCase):
         "current-context": "no_user",
         "contexts": [
             {"name": "no_user", "context": {"cluster": "default"}},
+            {"name": "ssl_no_user", "context": {"cluster": "ssl"}},
             {
                 "name": "simple_token",
                 "context": {"cluster": "default", "user": "simple_token"},
@@ -626,6 +627,21 @@ class TestKubeConfigLoader(BaseTestCase):
         await KubeConfigLoader(
             config_dict=self.TEST_KUBE_CONFIG, active_context="no_user"
         ).load_and_set(actual)
+        self.assertEqual(expected, actual)
+
+    async def test_ssl_no_user(self) -> None:
+        expected = FakeConfig(
+            host=TEST_SSL_HOST,
+            ssl_ca_cert=self._create_temp_file(TEST_CERTIFICATE_AUTH),
+            verify_ssl=True,
+        )
+        actual = FakeConfig()
+
+        await KubeConfigLoader(
+            config_dict=self.TEST_KUBE_CONFIG,
+            active_context="ssl_no_user",
+        ).load_and_set(actual)
+
         self.assertEqual(expected, actual)
 
     async def test_simple_token(self) -> None:

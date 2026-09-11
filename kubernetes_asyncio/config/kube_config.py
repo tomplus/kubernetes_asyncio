@@ -440,7 +440,7 @@ class KubeConfigLoader:
                     file_base_path=base_path,
                     temp_file_path=self._temp_file_path,
                 ).as_file()
-                if "cert_file" not in self.__dict__:
+                if "cert_file" not in self.__dict__ and self._user is not None:
                     # cert_file could have been provided by
                     # _load_from_exec_plugin; only load from the _user
                     # section if we need it.
