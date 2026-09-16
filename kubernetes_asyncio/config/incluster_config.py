@@ -14,6 +14,7 @@
 
 import datetime
 import os
+from typing import Any
 
 from kubernetes_asyncio.client import Configuration
 from kubernetes_asyncio.config.config_exception import ConfigException
@@ -26,7 +27,7 @@ SERVICE_CERT_FILENAME = "/var/run/secrets/kubernetes.io/serviceaccount/ca.crt"
 TOKEN_REFRESH_PERIOD = datetime.timedelta(minutes=1)
 
 
-def _join_host_port(host: str, port: int | str):
+def _join_host_port(host: str, port: int | str) -> str:
     """Adapted golang's net.JoinHostPort"""
     template = "%s:%s"
     host_requires_bracketing = ":" in host or "%" in host
@@ -107,7 +108,7 @@ class InClusterConfigLoader:
 
         configuration.refresh_api_key_hook = load_token_from_file
 
-    def _read_token_file(self):
+    def _read_token_file(self) -> None:
         with open(self._token_filename) as f:
             content = f.read()
             if not content:
@@ -116,7 +117,11 @@ class InClusterConfigLoader:
             self.token_expires_at = datetime.datetime.now() + TOKEN_REFRESH_PERIOD
 
 
-def load_incluster_config(client_configuration=None, try_refresh_token=True, **kwargs):
+def load_incluster_config(
+    client_configuration: Configuration | None = None,
+    try_refresh_token: bool = True,
+    **kwargs: Any,
+) -> None:
     """Use the service account kubernetes gives to pods to connect to kubernetes
     cluster. It's intended for clients that expect to be running inside a pod
     running on kubernetes. It will raise an exception if called from a process
