@@ -22,6 +22,11 @@ from kubernetes_asyncio.client import ApiClient
 from kubernetes_asyncio.client.exceptions import ApiException
 from kubernetes_asyncio.config import Any
 
+try:
+    from aiohttp import ClientPayloadError
+except ImportError:  # pragma: no cover
+    ClientPayloadError = ()  # type: ignore
+
 PYDOC_RETURN_LABEL = ":rtype:"
 PYDOC_FOLLOW_PARAM = ":param follow:"
 
@@ -38,6 +43,33 @@ def _find_return_type(func: object) -> str:
         if line.startswith(PYDOC_RETURN_LABEL):
             return line[len(PYDOC_RETURN_LABEL) :].strip()
     return ""
+
+
+def _api_exception_from_status(js: dict) -> ApiException:
+    """Build an ApiException from a Kubernetes Status JSON object.
+
+    The original JSON is attached to ``body`` so callers can inspect fields
+    such as ``message`` / ``reason`` / ``details``.
+    """
+    reason = f"{js.get('reason')}: {js.get('message')}"
+    exc = ApiException(status=js.get("code") or 0, reason=reason)
+    exc.body = json.dumps(js)
+    return exc
+
+
+def _maybe_status_dict(data: str) -> dict | None:
+    """Return a Status failure dict if ``data`` is one, else None."""
+    try:
+        js = json.loads(data)
+    except ValueError:
+        return None
+    if not isinstance(js, dict):
+        return None
+    if js.get("kind") == "Status" and js.get("status") == "Failure":
+        return js
+    if "code" in js and ("object" not in js or "type" not in js):
+        return js
+    return None
 
 
 class Stream:
@@ -79,10 +111,13 @@ class Watch:
             return data
 
         if "object" not in js or "type" not in js:
-            # raise error with code if set
-            if "code" in js:
-                reason = f"{js.get('reason')}: {js.get('message')}"
-                raise ApiException(status=js["code"], reason=reason)
+            # Bare Status objects (e.g. BadRequest when following logs of a
+            # pod that is still initializing) or other error payloads with a
+            # code field.
+            if "code" in js or (
+                js.get("kind") == "Status" and js.get("status") == "Failure"
+            ):
+                raise _api_exception_from_status(js)
 
             raise Exception(
                 "Malformed JSON response, the 'object' and/or "
@@ -100,7 +135,9 @@ class Watch:
         if js["type"].lower() == "error":
             obj = js["raw_object"]
             reason = f"{obj['reason']}: {obj['message']}"
-            raise ApiException(status=obj["code"], reason=reason)
+            exc = ApiException(status=obj["code"], reason=reason)
+            exc.body = json.dumps(obj)
+            raise exc
 
         if js["type"].lower() != "bookmark":
             # If possible, compile the JSON response into a Python native response
@@ -157,6 +194,31 @@ class Watch:
         if self.resource_version:
             self.func.keywords["resource_version"] = self.resource_version
 
+    async def _ensure_response_ok(self) -> None:
+        """Raise ApiException when a streaming response has an HTTP error status.
+
+        With ``_preload_content=False`` the REST client does not check status
+        codes, so Watch must do it before consuming the body.
+        """
+        if self.resp is None:
+            return
+        status = getattr(self.resp, "status", None)
+        if not isinstance(status, int) or 200 <= status <= 299:
+            return
+
+        data = await self.resp.read()
+        text = (
+            data.decode("utf-8", errors="replace")
+            if isinstance(data, bytes)
+            else str(data)
+        )
+        status_js = _maybe_status_dict(text)
+        if status_js is not None:
+            raise _api_exception_from_status(status_js)
+        raise ApiException(
+            status=status, reason=text or getattr(self.resp, "reason", None)
+        )
+
     async def next(self) -> Any:
         watch_forever = "timeout_seconds" not in self.func.keywords
         retry_410 = watch_forever
@@ -166,6 +228,7 @@ class Watch:
             # `list_namespaced_pods`) if this is the first iteration.
             if self.resp is None:
                 self.resp = await self.func()
+                await self._ensure_response_ok()
 
             # Abort at the current iteration if the user has called `stop` on this
             # stream instance.
@@ -185,6 +248,14 @@ class Watch:
                     continue
                 else:
                     raise
+            except ClientPayloadError:
+                # Proxies / API servers may close idle watch connections with an
+                # incomplete chunked body (see #156, #235, #352). Treat like a
+                # timeout and reconnect when watching forever.
+                if watch_forever:
+                    self._reconnect()
+                    continue
+                raise
 
             line = line.decode("utf8")
 
@@ -193,6 +264,11 @@ class Watch:
                 if line == "":
                     # end of log
                     raise StopAsyncIteration
+                # Error payloads can still appear as a single JSON line when
+                # the HTTP status was not checked (or is 200 with a Status body).
+                status_js = _maybe_status_dict(line)
+                if status_js is not None:
+                    raise _api_exception_from_status(status_js)
                 return line
 
             # Stop the iterator if K8s sends an empty response. This happens when

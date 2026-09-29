@@ -217,6 +217,103 @@ class WatchTest(IsolatedAsyncioTestCase):
         ):
             Watch().unmarshal_event(json.dumps(k8s_err), None)
 
+    async def test_unmarshall_status_includes_body(self) -> None:
+        k8s_err = {
+            "kind": "Status",
+            "apiVersion": "v1",
+            "metadata": {},
+            "status": "Failure",
+            "message": (
+                'container "busybox" in pod "busybox" is waiting to start: '
+                "PodInitializing"
+            ),
+            "reason": "BadRequest",
+            "code": 400,
+        }
+
+        with self.assertRaises(ApiException) as ctx:
+            Watch().unmarshal_event(json.dumps(k8s_err), None)
+
+        exc = ctx.exception
+        self.assertEqual(exc.status, 400)
+        self.assertIn("PodInitializing", exc.reason)
+        self.assertIsNotNone(exc.body)
+        body = json.loads(exc.body)
+        self.assertEqual(body["reason"], "BadRequest")
+        self.assertEqual(body["code"], 400)
+
+    async def test_watch_http_error_status(self) -> None:
+        fake_resp = AsyncMock()
+        fake_resp.status = 400
+        fake_resp.reason = "Bad Request"
+        fake_resp.release = Mock()
+        fake_resp.read = AsyncMock(
+            return_value=json.dumps(
+                {
+                    "kind": "Status",
+                    "apiVersion": "v1",
+                    "metadata": {},
+                    "status": "Failure",
+                    "message": "pod is initializing",
+                    "reason": "BadRequest",
+                    "code": 400,
+                }
+            ).encode("utf-8")
+        )
+
+        fake_api = Mock()
+        fake_api.read_namespaced_pod_log = AsyncMock(return_value=fake_resp)
+        fake_api.read_namespaced_pod_log.__doc__ = (
+            ":param follow:\n:rtype: str"
+        )
+
+        with self.assertRaises(ApiException) as ctx:
+            watch = kubernetes_asyncio.watch.Watch()
+            async with watch.stream(
+                fake_api.read_namespaced_pod_log, "pod", "default"
+            ) as stream:
+                async for _ in stream:
+                    pass
+
+        self.assertEqual(ctx.exception.status, 400)
+        self.assertIn("pod is initializing", ctx.exception.reason)
+        body = json.loads(ctx.exception.body)
+        self.assertEqual(body["code"], 400)
+
+    async def test_log_stream_status_json_line(self) -> None:
+        fake_resp = AsyncMock()
+        fake_resp.status = 200
+        fake_resp.content.readline = AsyncMock(
+            return_value=json.dumps(
+                {
+                    "kind": "Status",
+                    "apiVersion": "v1",
+                    "metadata": {},
+                    "status": "Failure",
+                    "message": "pod is initializing",
+                    "reason": "BadRequest",
+                    "code": 400,
+                }
+            ).encode("utf-8")
+        )
+        fake_resp.release = Mock()
+
+        fake_api = Mock()
+        fake_api.read_namespaced_pod_log = AsyncMock(return_value=fake_resp)
+        fake_api.read_namespaced_pod_log.__doc__ = (
+            ":param follow:\n:rtype: str"
+        )
+
+        with self.assertRaises(ApiException) as ctx:
+            watch = kubernetes_asyncio.watch.Watch()
+            async with watch.stream(
+                fake_api.read_namespaced_pod_log, "pod", "default"
+            ) as stream:
+                async for _ in stream:
+                    pass
+
+        self.assertEqual(ctx.exception.status, 400)
+
     async def test_unmarshal_with_custom_object(self) -> None:
         w = Watch()
         event = w.unmarshal_event(
@@ -281,6 +378,59 @@ class WatchTest(IsolatedAsyncioTestCase):
             ]
         )
         fake_resp.release.assert_called_once_with()
+
+    async def test_watch_retry_client_payload_error(self) -> None:
+        from aiohttp import ClientPayloadError
+
+        fake_resp = AsyncMock()
+        fake_resp.status = 200
+        fake_resp.content.readline = AsyncMock()
+        fake_resp.release = Mock()
+
+        mock_event = {
+            "type": "ADDED",
+            "object": {
+                "metadata": {"name": "test1555", "resourceVersion": "1555"},
+                "spec": {},
+                "status": {},
+            },
+        }
+
+        fake_resp.content.readline.side_effect = [
+            json.dumps(mock_event).encode("utf8"),
+            ClientPayloadError("Response payload is not completed"),
+            json.dumps(mock_event).encode("utf8"),
+            b"",
+        ]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ":rtype: V1NamespaceList"
+
+        watch = kubernetes_asyncio.watch.Watch()
+        events = []
+        async with watch.stream(fake_api.get_namespaces) as stream:
+            async for e in stream:
+                events.append(e)
+
+        self.assertEqual(len(events), 2)
+        self.assertGreaterEqual(fake_api.get_namespaces.await_count, 2)
+
+        # no retry when timeout_seconds is set
+        fake_resp.content.readline.side_effect = [
+            ClientPayloadError("Response payload is not completed"),
+        ]
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ":rtype: V1NamespaceList"
+
+        with self.assertRaises(ClientPayloadError):
+            watch = kubernetes_asyncio.watch.Watch()
+            async with watch.stream(
+                fake_api.get_namespaces, timeout_seconds=10
+            ) as stream:
+                async for e in stream:  # noqa
+                    pass
 
     async def test_watch_retry_410(self) -> None:
         fake_resp = AsyncMock()
