@@ -19,10 +19,13 @@ from kubernetes_asyncio.utils.create_from_yaml import (
     create_from_yaml,
     create_from_yaml_single_item,
 )
+from kubernetes_asyncio.utils.model_utils import model_from_dict, model_to_dict
 
 __all__ = [
     "FailToCreateError",
     "create_from_dict",
     "create_from_yaml",
     "create_from_yaml_single_item",
+    "model_from_dict",
+    "model_to_dict",
 ]
