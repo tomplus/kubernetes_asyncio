@@ -58,7 +58,7 @@ class StoragemigrationV1alpha1Api(object):
         :type field_validation: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -99,7 +99,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -247,7 +247,7 @@ class StoragemigrationV1alpha1Api(object):
         :type body: V1DeleteOptions
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -308,7 +308,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -466,7 +466,7 @@ class StoragemigrationV1alpha1Api(object):
         :type body: V1DeleteOptions
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -513,7 +513,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -639,7 +639,7 @@ class StoragemigrationV1alpha1Api(object):
 
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -670,7 +670,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -789,7 +789,7 @@ class StoragemigrationV1alpha1Api(object):
         :type watch: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -842,7 +842,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -986,7 +986,7 @@ class StoragemigrationV1alpha1Api(object):
         :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1031,7 +1031,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1178,7 +1178,7 @@ class StoragemigrationV1alpha1Api(object):
         :type force: bool
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1223,7 +1223,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1360,7 +1360,7 @@ class StoragemigrationV1alpha1Api(object):
         :type pretty: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1395,7 +1395,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1506,7 +1506,7 @@ class StoragemigrationV1alpha1Api(object):
         :type pretty: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1541,7 +1541,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1660,7 +1660,7 @@ class StoragemigrationV1alpha1Api(object):
         :type field_validation: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1703,7 +1703,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1839,7 +1839,7 @@ class StoragemigrationV1alpha1Api(object):
         :type field_validation: str
         :param async_req: Whether to execute the request asynchronously.
         :type async_req: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional
@@ -1882,7 +1882,7 @@ class StoragemigrationV1alpha1Api(object):
         :param _return_http_data_only: response data without head status code
                                        and headers
         :type _return_http_data_only: bool, optional
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :type _preload_content: bool, optional

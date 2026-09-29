@@ -334,9 +334,9 @@ class ApiClient(object):
                  async_req=None, _return_http_data_only=None,
                  collection_formats=None,_preload_content=True,
                   _request_timeout=None, _host=None, _request_auth=None):
-        """Makes the HTTP request (synchronous) and returns deserialized data.
+        """Makes the HTTP request and returns an awaitable that resolves to deserialized data.
 
-        To make an async_req request, set the async_req parameter.
+        To execute the request in a thread pool, set the async_req parameter.
 
         :param resource_path: Path to method endpoint.
         :param method: Method to call.
@@ -356,7 +356,7 @@ class ApiClient(object):
                                        and headers
         :param collection_formats: dict of collection formats for path, query,
             header, and post parameters.
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
+        :param _preload_content: if False, the aiohttp.ClientResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
         :param _request_timeout: timeout setting for this request. If one
