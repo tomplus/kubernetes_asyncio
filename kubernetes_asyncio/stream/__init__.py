@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from kubernetes_asyncio.stream.portforward import PortForward, portforward
 from kubernetes_asyncio.stream.ws_client import WsApiClient
 
-__all__ = ["WsApiClient"]
+__all__ = ["PortForward", "WsApiClient", "portforward"]
