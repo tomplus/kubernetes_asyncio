@@ -15,6 +15,7 @@
 import asyncio
 import json
 import pydoc
+import random
 from functools import partial
 from types import SimpleNamespace
 
@@ -32,12 +33,20 @@ PYDOC_FOLLOW_PARAM = ":param follow:"
 # provide return_type to Watch class's __init__.
 TYPE_LIST_SUFFIX = "List"
 
+# Cap exponential backoff for HTTP 429 (storage re-initialising) retries.
+_MAX_429_BACKOFF_SECONDS = 60
+
 
 def _find_return_type(func: object) -> str:
     for line in pydoc.getdoc(func).splitlines():
         if line.startswith(PYDOC_RETURN_LABEL):
             return line[len(PYDOC_RETURN_LABEL) :].strip()
     return ""
+
+
+def _backoff_429_seconds(attempt: int) -> float:
+    """Exponential backoff with jitter for 429 TooManyRequests retries."""
+    return min(2**attempt, _MAX_429_BACKOFF_SECONDS) + random.uniform(0, 1)
 
 
 class Stream:
@@ -160,12 +169,23 @@ class Watch:
     async def next(self) -> Any:
         watch_forever = "timeout_seconds" not in self.func.keywords
         retry_410 = watch_forever
+        retry_429_attempt = 0
 
         while 1:
             # Set the response object to the user supplied function (eg
             # `list_namespaced_pods`) if this is the first iteration.
             if self.resp is None:
-                self.resp = await self.func()
+                try:
+                    self.resp = await self.func()
+                except ApiException as ex:
+                    # HTTP 429 during storage re-initialisation (KEP-4568).
+                    if ex.status == 429 and watch_forever:
+                        delay = _backoff_429_seconds(retry_429_attempt)
+                        retry_429_attempt += 1
+                        await asyncio.sleep(delay)
+                        continue
+                    raise
+                retry_429_attempt = 0
 
             # Abort at the current iteration if the user has called `stop` on this
             # stream instance.
@@ -203,7 +223,8 @@ class Watch:
                     continue
                 raise StopAsyncIteration
 
-            # retry 410 error only once
+            # retry 410 once; retry 429 with exponential backoff while watching
+            # forever (no client-side timeout_seconds).
             try:
                 event = self.unmarshal_event(line, self.return_type)
             except ApiException as ex:
@@ -211,8 +232,15 @@ class Watch:
                     retry_410 = False  # retry only once
                     self._reconnect()
                     continue
+                if ex.status == 429 and watch_forever:
+                    delay = _backoff_429_seconds(retry_429_attempt)
+                    retry_429_attempt += 1
+                    self._reconnect()
+                    await asyncio.sleep(delay)
+                    continue
                 raise
             retry_410 = watch_forever
+            retry_429_attempt = 0
             return event
 
     def stream(self, func, *args, **kwargs) -> "Watch":

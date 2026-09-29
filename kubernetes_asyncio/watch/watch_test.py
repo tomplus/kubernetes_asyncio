@@ -14,6 +14,7 @@
 
 import asyncio
 import json
+import unittest
 from typing import Any
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, Mock, call
@@ -388,6 +389,119 @@ class WatchTest(IsolatedAsyncioTestCase):
             ) as stream:
                 async for e in stream:  # noqa
                     pass
+
+    async def test_watch_retry_429(self) -> None:
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
+        fake_resp.release = Mock()
+
+        mock_event = {
+            "type": "ADDED",
+            "object": {
+                "metadata": {"name": "test1555", "resourceVersion": "1555"},
+                "spec": {},
+                "status": {},
+            },
+        }
+
+        mock_429 = {
+            "type": "ERROR",
+            "object": {
+                "kind": "Status",
+                "apiVersion": "v1",
+                "metadata": {},
+                "status": "Failure",
+                "message": "storage is (re)initializing",
+                "reason": "TooManyRequests",
+                "code": 429,
+            },
+        }
+
+        fake_resp.content.readline.side_effect = [
+            json.dumps(mock_429).encode("utf8"),
+            json.dumps(mock_event).encode("utf8"),
+            b"",
+        ]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ":rtype: V1NamespaceList"
+
+        sleep_mock = AsyncMock()
+        with unittest.mock.patch(
+            "kubernetes_asyncio.watch.watch.asyncio.sleep", sleep_mock
+        ):
+            watch = kubernetes_asyncio.watch.Watch()
+            events = []
+            async with watch.stream(fake_api.get_namespaces) as stream:
+                async for e in stream:
+                    events.append(e)
+
+        self.assertEqual(len(events), 1)
+        self.assertEqual(events[0]["type"], "ADDED")
+        sleep_mock.assert_awaited()
+        self.assertGreaterEqual(fake_api.get_namespaces.await_count, 2)
+
+        # no retry 429 if timeout_seconds is passed
+        fake_resp.content.readline.side_effect = [
+            json.dumps(mock_429).encode("utf8"),
+            b"",
+        ]
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(return_value=fake_resp)
+        fake_api.get_namespaces.__doc__ = ":rtype: V1NamespaceList"
+
+        with self.assertRaisesRegex(
+            ApiException,
+            r"\(429\)\nReason: TooManyRequests: storage is \(re\)initializing",
+        ):
+            watch = kubernetes_asyncio.watch.Watch()
+            async with watch.stream(
+                fake_api.get_namespaces, timeout_seconds=10
+            ) as stream:
+                async for e in stream:  # noqa
+                    pass
+
+    async def test_watch_retry_429_on_connect(self) -> None:
+        fake_resp = AsyncMock()
+        fake_resp.content.readline = AsyncMock()
+        fake_resp.release = Mock()
+
+        mock_event = {
+            "type": "ADDED",
+            "object": {
+                "metadata": {"name": "test1555", "resourceVersion": "1555"},
+                "spec": {},
+                "status": {},
+            },
+        }
+        fake_resp.content.readline.side_effect = [
+            json.dumps(mock_event).encode("utf8"),
+            b"",
+        ]
+
+        fake_api = Mock()
+        fake_api.get_namespaces = AsyncMock(
+            side_effect=[
+                ApiException(status=429, reason="TooManyRequests: storage is (re)initializing"),
+                fake_resp,
+            ]
+        )
+        fake_api.get_namespaces.__doc__ = ":rtype: V1NamespaceList"
+
+        sleep_mock = AsyncMock()
+        with unittest.mock.patch(
+            "kubernetes_asyncio.watch.watch.asyncio.sleep", sleep_mock
+        ):
+            watch = kubernetes_asyncio.watch.Watch()
+            events = []
+            async with watch.stream(fake_api.get_namespaces) as stream:
+                async for e in stream:
+                    events.append(e)
+
+        self.assertEqual(len(events), 1)
+        sleep_mock.assert_awaited()
+        self.assertGreaterEqual(fake_api.get_namespaces.await_count, 2)
 
     async def test_watch_timeout_with_resource_version(self) -> None:
         fake_resp = AsyncMock()
