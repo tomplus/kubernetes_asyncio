@@ -332,7 +332,9 @@ class KubeConfigLoader:
             resp = await requestor.refresh_token(provider["config"]["refresh-token"])
 
             provider["config"].value["id-token"] = resp["id_token"]
-            provider["config"].value["refresh-token"] = resp["refresh_token"]
+            # Providers may omit refresh_token (sliding / non-rotating policies).
+            if "refresh_token" in resp:
+                provider["config"].value["refresh-token"] = resp["refresh_token"]
 
             if self._config_persister:
                 self._config_persister(self._config.value)

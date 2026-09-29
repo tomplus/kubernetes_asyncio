@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import base64
+import copy
 import datetime
 import os
 import shutil
@@ -733,6 +734,34 @@ class TestKubeConfigLoader(BaseTestCase):
         )
         await loader._load_authentication()
         self.assertEqual("Bearer abc123", loader.token)
+
+    @patch("kubernetes_asyncio.config.kube_config.OpenIDRequestor.refresh_token")
+    async def test_oidc_with_refresh_without_new_refresh_token(
+        self, mock_refresh_token
+    ) -> None:
+        # Some IdPs omit refresh_token on refresh (non-rotating / sliding tokens).
+        mock_refresh_token.return_value = {
+            "id_token": "abc123",
+        }
+
+        config_dict = copy.deepcopy(self.TEST_KUBE_CONFIG)
+        original_refresh = None
+        for user in config_dict["users"]:
+            if user["name"] == "expired_oidc":
+                original_refresh = user["user"]["auth-provider"]["config"][
+                    "refresh-token"
+                ]
+                break
+
+        loader = KubeConfigLoader(
+            config_dict=config_dict,
+            active_context="expired_oidc",
+        )
+        await loader._load_authentication()
+        self.assertEqual("Bearer abc123", loader.token)
+        # Previous refresh-token must be retained when the response omits one.
+        provider = loader._user["auth-provider"]["config"]
+        self.assertEqual(original_refresh, provider["refresh-token"])
 
     @patch("kubernetes_asyncio.config.kube_config.OpenIDRequestor.refresh_token")
     async def test_oidc_with_refresh_no_idp_cert_data(self, mock_refresh_token) -> None:
