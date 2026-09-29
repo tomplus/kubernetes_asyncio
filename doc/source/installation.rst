@@ -4,9 +4,9 @@ Installation
 
 At the command line::
 
-    $ pip install kubernetes
+    $ pip install kubernetes_asyncio
 
 Or, if you have virtualenvwrapper installed::
 
-    $ mkvirtualenv kubernetes
-    $ pip install kubernetes
+    $ mkvirtualenv kubernetes_asyncio
+    $ pip install kubernetes_asyncio

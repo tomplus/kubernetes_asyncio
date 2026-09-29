@@ -2,6 +2,6 @@
 Usage
 ========
 
-To use kubernetes-python-client in a project::
+To use kubernetes_asyncio in a project::
 
-    import kubernetes
+    import kubernetes_asyncio
