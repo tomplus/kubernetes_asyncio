@@ -131,6 +131,8 @@ class PyiFile:
 
 
 def map_types(type: str) -> str:
+    if type == "string":
+        return "str"
     if "object" in type:
         type = type.replace("object", "Any")
     if type.startswith("dict("):
@@ -166,9 +168,18 @@ def params_from_method_doc(
             params[rparam.group(1)]["required"] = rparam.group(2) == "(required)"
             continue
 
-        rtype = re.search(r"^:type (\S+): (\S*)(, optional)?$", line)
+        # Match forms like:
+        #   :type foo: str
+        #   :type foo: bool, optional
+        #   :type _content_type: string, optional: force content-type...
+        rtype = re.search(r"^:type (\S+): (.+)$", line)
         if rtype:
-            params[rtype.group(1)]["type"] = map_types(rtype.group(2))
+            type_spec = rtype.group(2)
+            optional = ", optional" in type_spec
+            base_type = type_spec.split(",")[0].strip()
+            params[rtype.group(1)]["type"] = map_types(base_type)
+            if optional:
+                params[rtype.group(1)]["required"] = False
             continue
 
         rrtype = re.search(r"^:rtype: (.*)$", line)
@@ -199,6 +210,18 @@ def gen_api_typing(module: str) -> None:
     for cls_name, cls in classes:
         pyi.add_class(cls_name)
 
+        # Pre-parse docs so wrappers can inherit internal kwargs from
+        # their *_with_http_info siblings (e.g. _content_type).
+        method_docs: dict[str, tuple[dict[str, dict], str | None]] = {}
+        for method_name, method in inspect.getmembers(
+            cls, predicate=inspect.isfunction
+        ):
+            if method_name == "__init__":
+                continue
+            doc = inspect.getdoc(method)
+            if doc:
+                method_docs[method_name] = params_from_method_doc(doc)
+
         for method_name, method in inspect.getmembers(
             cls, predicate=inspect.isfunction
         ):
@@ -216,9 +239,8 @@ def gen_api_typing(module: str) -> None:
                 }
                 retval = None
             else:
-                doc = inspect.getdoc(method)
-                if doc:
-                    params, retval = params_from_method_doc(doc)
+                if method_name in method_docs:
+                    params, retval = method_docs[method_name]
                     method_params = {}
                     for param_name in sig.parameters.keys():
                         method_params[param_name] = params.get(param_name, {})
@@ -226,6 +248,26 @@ def gen_api_typing(module: str) -> None:
                     for param_name in params.keys():
                         if param_name not in method_params:
                             method_params[param_name] = params.get(param_name, {})
+
+                    # Simple wrappers forward **kwargs to *_with_http_info but
+                    # omit some internal params from their own docstrings.
+                    sibling_name = f"{method_name}_with_http_info"
+                    if (
+                        not method_name.endswith("_with_http_info")
+                        and sibling_name in method_docs
+                        and "kwargs" in sig.parameters
+                    ):
+                        sibling_params, _ = method_docs[sibling_name]
+                        for param_name in (
+                            "_content_type",
+                            "_headers",
+                            "_request_auth",
+                        ):
+                            if (
+                                param_name in sibling_params
+                                and param_name not in method_params
+                            ):
+                                method_params[param_name] = sibling_params[param_name]
 
             pyi.add_method(
                 method_name,
