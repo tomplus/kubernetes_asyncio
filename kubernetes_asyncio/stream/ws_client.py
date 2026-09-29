@@ -14,6 +14,7 @@ import json
 from urllib.parse import urlencode, urlparse, urlunparse
 
 from aiohttp.client import _WSRequestContextManager
+from aiohttp.client_ws import ClientWebSocketResponse
 from multidict import CIMultiDict, CIMultiDictProxy
 
 from kubernetes_asyncio.client import ApiClient
@@ -25,6 +26,13 @@ STDOUT_CHANNEL = 1
 STDERR_CHANNEL = 2
 ERROR_CHANNEL = 3
 RESIZE_CHANNEL = 4
+CLOSE_CHANNEL = 255
+
+V4_CHANNEL_PROTOCOL = "v4.channel.k8s.io"
+V5_CHANNEL_PROTOCOL = "v5.channel.k8s.io"
+
+# Prefer v5 (CLOSE signal) and fall back to v4 for older clusters.
+DEFAULT_CHANNEL_PROTOCOLS = f"{V5_CHANNEL_PROTOCOL},{V4_CHANNEL_PROTOCOL}"
 
 
 def get_websocket_url(url: str) -> str:
@@ -35,6 +43,21 @@ def get_websocket_url(url: str) -> str:
     elif parsed_url.scheme == "https":
         parts[0] = "wss"
     return urlunparse(parts)
+
+
+async def close_channel(
+    websocket: ClientWebSocketResponse, channel: int = STDIN_CHANNEL
+) -> None:
+    """Send a v5 CLOSE signal for ``channel`` (typically stdin / write_eof).
+
+    No-op when the negotiated subprotocol is not ``v5.channel.k8s.io``.
+    The CLOSE frame is ``bytes([255, channel])`` as defined by the Kubernetes
+    remotecommand WebSocket protocol.
+    """
+    protocol = getattr(websocket, "protocol", None)
+    if protocol != V5_CHANNEL_PROTOCOL:
+        return
+    await websocket.send_bytes(bytes([CLOSE_CHANNEL, channel]))
 
 
 class WsResponse(RESTResponse):
@@ -98,7 +121,7 @@ class WsApiClient(ApiClient):
         if headers is None:
             headers = {}
         if "sec-websocket-protocol" not in headers:
-            headers["sec-websocket-protocol"] = "v4.channel.k8s.io"
+            headers["sec-websocket-protocol"] = DEFAULT_CHANNEL_PROTOCOLS
 
         if query_params:
             url += "?" + urlencode(query_params)

@@ -9,6 +9,7 @@ from kubernetes_asyncio.stream.ws_client import (
     ERROR_CHANNEL,
     STDERR_CHANNEL,
     STDOUT_CHANNEL,
+    close_channel,
 )
 
 BUSYBOX_POD = "busybox-test"
@@ -143,6 +144,8 @@ async def main():
                         print(f"stderr: {data}")
                     elif channel == ERROR_CHANNEL:
                         error_data += data
+            # Prefer v5 CLOSE (write_eof) when negotiated; falls back to no-op on v4.
+            await close_channel(ws)
             if error_data:
                 returncode = ws_api.parse_error_data(error_data)
                 print(f"Exit code: {returncode}")

@@ -13,7 +13,7 @@
 # limitations under the License.
 
 from unittest import IsolatedAsyncioTestCase
-from unittest.mock import Mock, patch
+from unittest.mock import AsyncMock, Mock, patch
 
 from kubernetes_asyncio import client
 from kubernetes_asyncio.stream import WsApiClient
@@ -78,7 +78,7 @@ class WSClientTest(IsolatedAsyncioTestCase):
                 "wss://localhost/api/v1/namespaces/namespace/pods/pod/exec?"
                 "command=mock-command&stderr=True&stdin=False&stdout=True&tty=False",
                 headers={
-                    "sec-websocket-protocol": "v4.channel.k8s.io",
+                    "sec-websocket-protocol": "v5.channel.k8s.io,v4.channel.k8s.io",
                     "Accept": "*/*",
                     "User-Agent": api_client.user_agent,
                 },
@@ -109,12 +109,41 @@ class WSClientTest(IsolatedAsyncioTestCase):
                 "wss://localhost/api/v1/namespaces/namespace/pods/pod/exec?"
                 "command=mock-command&stderr=True&stdin=False&stdout=True&tty=False",
                 headers={
-                    "sec-websocket-protocol": "v4.channel.k8s.io",
+                    "sec-websocket-protocol": "v5.channel.k8s.io,v4.channel.k8s.io",
                     "Accept": "*/*",
                     "User-Agent": api_client.user_agent,
                 },
                 heartbeat=30,
             )
+
+    async def test_close_channel_sends_v5_frame(self) -> None:
+        from kubernetes_asyncio.stream.ws_client import (
+            CLOSE_CHANNEL,
+            STDIN_CHANNEL,
+            V5_CHANNEL_PROTOCOL,
+            close_channel,
+        )
+
+        ws = Mock()
+        ws.protocol = V5_CHANNEL_PROTOCOL
+        ws.send_bytes = AsyncMock()
+
+        await close_channel(ws, STDIN_CHANNEL)
+        ws.send_bytes.assert_awaited_once_with(bytes([CLOSE_CHANNEL, STDIN_CHANNEL]))
+
+    async def test_close_channel_noop_on_v4(self) -> None:
+        from kubernetes_asyncio.stream.ws_client import (
+            STDIN_CHANNEL,
+            V4_CHANNEL_PROTOCOL,
+            close_channel,
+        )
+
+        ws = Mock()
+        ws.protocol = V4_CHANNEL_PROTOCOL
+        ws.send_bytes = AsyncMock()
+
+        await close_channel(ws, STDIN_CHANNEL)
+        ws.send_bytes.assert_not_awaited()
 
     def test_parse_error_data_success(self) -> None:
         error_data = '{"metadata":{},"status":"Success"}'
