@@ -75,6 +75,10 @@ grep -r make_instance "${CLIENT_ROOT}/test/" | awk '{ gsub(":", ""); print $1}' 
 echo ">>> Fix API tests (https://github.com/aio-libs/aiohttp/issues/8555)"
 find "${CLIENT_ROOT}/test/" -type f -print0 | xargs -0 sed -i -e 's/unittest.TestCase/unittest.IsolatedAsyncioTestCase/g' -e 's/def setUp(self):/async def asyncSetUp(self):/g'
 
+echo ">>> Fix pod exec command typing (argv array; OpenAPI marks it as string) — #429"
+sed -i 's/:type command: str$/:type command: str|list[str]/' \
+    "${CLIENT_ROOT}/client/api/core_v1_api.py"
+
 echo ">>> add type stub files for generated files"
 PYTHONPATH="$(dirname ${SCRIPT_ROOT})" python "${SCRIPT_ROOT}/generate_typing.py"
 

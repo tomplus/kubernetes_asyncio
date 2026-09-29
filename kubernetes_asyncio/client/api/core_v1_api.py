@@ -1189,7 +1189,7 @@ class CoreV1Api(object):
         :param namespace: object name and auth scope, such as for teams and projects (required)
         :type namespace: str
         :param command: Command is the remote command to execute. argv array. Not executed within a shell.
-        :type command: str
+        :type command: str|list[str]
         :param container: Container in which to execute the command. Defaults to only container if there is only one container in the pod.
         :type container: str
         :param stderr: Redirect the standard error stream of the pod for this call.
@@ -1233,7 +1233,7 @@ class CoreV1Api(object):
         :param namespace: object name and auth scope, such as for teams and projects (required)
         :type namespace: str
         :param command: Command is the remote command to execute. argv array. Not executed within a shell.
-        :type command: str
+        :type command: str|list[str]
         :param container: Container in which to execute the command. Defaults to only container if there is only one container in the pod.
         :type container: str
         :param stderr: Redirect the standard error stream of the pod for this call.
@@ -5535,7 +5535,7 @@ class CoreV1Api(object):
         :param namespace: object name and auth scope, such as for teams and projects (required)
         :type namespace: str
         :param command: Command is the remote command to execute. argv array. Not executed within a shell.
-        :type command: str
+        :type command: str|list[str]
         :param container: Container in which to execute the command. Defaults to only container if there is only one container in the pod.
         :type container: str
         :param stderr: Redirect the standard error stream of the pod for this call.
@@ -5579,7 +5579,7 @@ class CoreV1Api(object):
         :param namespace: object name and auth scope, such as for teams and projects (required)
         :type namespace: str
         :param command: Command is the remote command to execute. argv array. Not executed within a shell.
-        :type command: str
+        :type command: str|list[str]
         :param container: Container in which to execute the command. Defaults to only container if there is only one container in the pod.
         :type container: str
         :param stderr: Redirect the standard error stream of the pod for this call.
