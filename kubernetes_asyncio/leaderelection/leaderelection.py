@@ -53,6 +53,57 @@ class LeaderElection:
         # Latest update time of the lock
         self.observed_time_milliseconds = 0
 
+        # Set when stop() / release() is called to exit acquire/renew loops.
+        self._stop_event = asyncio.Event()
+
+    def stop(self) -> None:
+        """Stop acquiring or auto-renewing the lease.
+
+        The current ``run()`` coroutine exits its acquire/renew loops on the
+        next iteration. If this candidate is the leader, ``onstopped_leading``
+        is invoked after the renew loop exits. The lock itself is left in place
+        and remains held until the lease duration expires unless ``release()``
+        is used.
+        """
+        self._stop_event.set()
+
+    async def release(self) -> bool:
+        """Stop auto-renewal and voluntarily give up the lock if held.
+
+        Useful on graceful shutdown (e.g. SIGTERM) so another candidate can
+        take over without waiting for the full lease duration.
+        """
+        self.stop()
+
+        lock_status, old_election_record = await self.election_config.lock.get(
+            self.election_config.lock.name, self.election_config.lock.namespace
+        )
+        if not lock_status or not isinstance(old_election_record, LeaderElectionRecord):
+            return False
+        if old_election_record.holder_identity != self.election_config.lock.identity:
+            return False
+
+        now = datetime.datetime.fromtimestamp(time.time())
+        # Empty holder identity marks the lock as released (client-go behaviour).
+        released_record = LeaderElectionRecord(
+            "",
+            "1",
+            str(now),
+            str(now),
+        )
+        return await self.update_lock(released_record)
+
+    async def _sleep_or_stop(self, seconds: float) -> bool:
+        """Sleep ``seconds``, or return early if stop() was called.
+
+        Returns True if stopped, False if the full sleep completed.
+        """
+        try:
+            await asyncio.wait_for(self._stop_event.wait(), timeout=seconds)
+            return True
+        except asyncio.TimeoutError:
+            return False
+
     # Point of entry to Leader election
     async def run(self) -> None:
         # Try to create/ acquire a lock
@@ -91,13 +142,16 @@ class LeaderElection:
         logger.debug("%s is a follower", self.election_config.lock.identity)
         retry_period = self.election_config.retry_period
 
-        while True:
+        while not self._stop_event.is_set():
             succeeded = await self.try_acquire_or_renew()
 
             if succeeded:
                 return True
 
-            await asyncio.sleep(retry_period)
+            if await self._sleep_or_stop(retry_period):
+                return False
+
+        return False
 
     async def renew_loop(self) -> None:
         # Leader
@@ -108,19 +162,24 @@ class LeaderElection:
         retry_period = self.election_config.retry_period
         renew_deadline = self.election_config.renew_deadline * 1000
 
-        while True:
+        while not self._stop_event.is_set():
             timeout = int(time.time() * 1000) + renew_deadline
             succeeded = False
 
-            while int(time.time() * 1000) < timeout:
+            while int(time.time() * 1000) < timeout and not self._stop_event.is_set():
                 succeeded = await self.try_acquire_or_renew()
 
                 if succeeded:
                     break
-                await asyncio.sleep(retry_period)
+                if await self._sleep_or_stop(retry_period):
+                    return
+
+            if self._stop_event.is_set():
+                return
 
             if succeeded:
-                await asyncio.sleep(retry_period)
+                if await self._sleep_or_stop(retry_period):
+                    return
                 continue
 
             # failed to renew, return

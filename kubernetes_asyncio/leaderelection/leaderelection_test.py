@@ -15,6 +15,7 @@
 
 import asyncio
 import json
+import sys
 import unittest
 from collections.abc import Callable
 from unittest import IsolatedAsyncioTestCase
@@ -272,6 +273,84 @@ class LeaderElectionTest(IsolatedAsyncioTestCase):
         self.assert_history(
             leadership_history, ["get leadership", "start leading", "stop leading"]
         )
+
+    async def test_stop_cancels_renewal(self) -> None:
+        leadership_history = []
+
+        mock_lock = MockResourceLock(
+            "mock",
+            "mock_namespace",
+            "mock",
+            asyncio.Lock(),
+            lambda: None,
+            lambda: None,
+            lambda: None,
+            None,
+        )
+        # Keep renewing until stop() is called.
+        mock_lock.renew_count_max = sys.maxsize
+
+        async def on_started_leading() -> None:
+            leadership_history.append("start leading")
+
+        async def on_stopped_leading() -> None:
+            leadership_history.append("stop leading")
+
+        config = electionconfig.Config(
+            lock=mock_lock,
+            lease_duration=10,
+            renew_deadline=8,
+            retry_period=1.5,
+            onstarted_leading=on_started_leading(),
+            onstopped_leading=on_stopped_leading(),
+        )
+
+        le = leaderelection.LeaderElection(config)
+        task = asyncio.create_task(le.run())
+        await asyncio.sleep(0.5)
+        le.stop()
+        await asyncio.wait_for(task, timeout=5)
+
+        self.assertEqual(leadership_history, ["start leading", "stop leading"])
+
+    async def test_release_gives_up_lock(self) -> None:
+        mock_lock = MockResourceLock(
+            "mock",
+            "mock_namespace",
+            "mock",
+            asyncio.Lock(),
+            lambda: None,
+            lambda: None,
+            lambda: None,
+            None,
+        )
+        mock_lock.renew_count_max = sys.maxsize
+
+        async def on_started_leading() -> None:
+            pass
+
+        async def on_stopped_leading() -> None:
+            pass
+
+        config = electionconfig.Config(
+            lock=mock_lock,
+            lease_duration=10,
+            renew_deadline=8,
+            retry_period=1.5,
+            onstarted_leading=on_started_leading(),
+            onstopped_leading=on_stopped_leading(),
+        )
+
+        le = leaderelection.LeaderElection(config)
+        task = asyncio.create_task(le.run())
+        await asyncio.sleep(0.5)
+
+        released = await le.release()
+        self.assertTrue(released)
+        await asyncio.wait_for(task, timeout=5)
+
+        self.assertEqual(mock_lock.leader_record[0].holder_identity, "")
+        self.assertEqual(mock_lock.leader_record[0].lease_duration, "1")
 
     def assert_history(self, history, expected) -> None:
         self.assertIsNotNone(expected)

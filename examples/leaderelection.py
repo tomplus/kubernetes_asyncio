@@ -70,7 +70,14 @@ async def main():
         )
 
         # Enter leader election
-        await leaderelection.LeaderElection(leader_election_config).run()
+        le = leaderelection.LeaderElection(leader_election_config)
+
+        # On SIGTERM/SIGINT, stop renewing (and optionally release) so another
+        # candidate can take over without waiting for the full lease duration:
+        #   le.stop()      # exit renew loop, keep lock until lease expires
+        #   await le.release()  # exit renew loop and give up the lock
+
+        await le.run()
         # User can choose to do another round of election or simply exit
         print("Exited leader election")
 
