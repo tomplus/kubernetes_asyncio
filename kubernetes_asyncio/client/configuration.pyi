@@ -30,6 +30,7 @@ class Configuration:
     connection_pool_maxsize: int
     proxy: str | None
     proxy_headers: dict | None
+    trust_env: bool
     safe_chars_for_path_param: str
     retries: int | None
     client_side_validation: bool
