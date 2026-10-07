@@ -39,3 +39,15 @@ class TestRESTClientObject(unittest.IsolatedAsyncioTestCase):
         rest_api = RESTClientObject(configuration=configuration)
         ssl_context = rest_api.pool_manager._connector._ssl
         self.assertEqual(ssl_context.verify_flags & ssl.VERIFY_X509_STRICT, 0)
+
+    async def test_trust_env(self):
+        configuration = Configuration()
+        self.assertTrue(configuration.trust_env)
+        rest_api = RESTClientObject(configuration=configuration)
+        self.assertTrue(rest_api.pool_manager.trust_env)
+        await rest_api.close()
+
+        configuration.trust_env = False
+        rest_api = RESTClientObject(configuration=configuration)
+        self.assertFalse(rest_api.pool_manager.trust_env)
+        await rest_api.close()
