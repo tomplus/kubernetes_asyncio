@@ -55,6 +55,7 @@ exclude = [
     "kubernetes_asyncio/client/",
     "kubernetes_asyncio/docs/",
     "kubernetes_asyncio/test/",
+    "kubernetes_asyncio/README.md",
     "scripts/"
 ]
 target-version = "py310"
