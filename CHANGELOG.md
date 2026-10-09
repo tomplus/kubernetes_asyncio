@@ -520,8 +520,8 @@ consistent with typed JSON metadata decoding, rather than dropping all labels an
   websocket = await core_v1_ws.connect_get_namespaced_pod_exec(...)
   # now context manager is returned which can be used in this way:
   async with websocket as ws:
-     ...
-     await ws.send_bytes(...)
+      ...
+      await ws.send_bytes(...)
    ```
 
 ### Changes:
