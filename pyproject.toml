@@ -53,6 +53,7 @@ exclude = [
     "venv",
     "doc",
     "kubernetes_asyncio/client/",
+    "kubernetes_asyncio/docs/",
     "kubernetes_asyncio/test/",
     "scripts/"
 ]
