@@ -51,7 +51,7 @@ async def main():
             print(i.status.pod_ip, i.metadata.namespace, i.metadata.name)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())
 ```
 
