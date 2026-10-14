@@ -13,7 +13,7 @@
 # limitations under the License.
 
 import unittest
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from kubernetes_asyncio.config.dateutil import (
     UTC,
@@ -59,6 +59,41 @@ class DateUtilTest(unittest.TestCase):
         )
         self._parse_rfc3339_test(
             "2017-07-25T04:44:21.005-03:00", 2017, 7, 25, 7, 44, 21, 5000
+        )
+
+    def test_parse_rfc3339_negative_offset_with_zero_hours(self) -> None:
+        actual = parse_rfc3339("2017-07-25T04:44:21-00:30")
+        self.assertEqual(timedelta(minutes=-30), actual.utcoffset())
+        self.assertEqual(datetime(2017, 7, 25, 5, 14, 21, 0, UTC), actual)
+
+        actual = parse_rfc3339("2017-07-25T04:44:21+00:30")
+        self.assertEqual(timedelta(minutes=30), actual.utcoffset())
+
+        actual = parse_rfc3339("2017-07-25T04:44:21-03:30")
+        self.assertEqual(timedelta(hours=-3, minutes=-30), actual.utcoffset())
+
+    def test_parse_rfc3339_fraction_is_exact(self) -> None:
+        self._parse_rfc3339_test(
+            "2017-07-25T04:44:21.520519Z", 2017, 7, 25, 4, 44, 21, 520519
+        )
+        self._parse_rfc3339_test(
+            "2017-07-25T04:44:21.999999Z", 2017, 7, 25, 4, 44, 21, 999999
+        )
+        self._parse_rfc3339_test(
+            "2017-07-25T04:44:21.000001Z", 2017, 7, 25, 4, 44, 21, 1
+        )
+        # digits beyond microseconds are dropped
+        self._parse_rfc3339_test(
+            "2017-07-25T04:44:21.1234567Z", 2017, 7, 25, 4, 44, 21, 123456
+        )
+
+    def test_timezone_info_negative_zero_hours(self) -> None:
+        self.assertEqual(timedelta(minutes=-15), TimezoneInfo(0, -15).utcoffset(None))
+        self.assertEqual(
+            timedelta(hours=-2, minutes=-30), TimezoneInfo(-2, 30).utcoffset(None)
+        )
+        self.assertEqual(
+            timedelta(hours=2, minutes=30), TimezoneInfo(2, 30).utcoffset(None)
         )
 
     def test_format_rfc3339(self) -> None:

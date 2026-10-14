@@ -13,7 +13,6 @@
 # limitations under the License.
 
 import datetime
-import math
 import re
 from typing import Any
 
@@ -22,8 +21,12 @@ class TimezoneInfo(datetime.tzinfo):
     def __init__(self, h: int, m: int) -> None:
         self._name = "UTC"
         if h != 0 and m != 0:
-            self._name += f"{h:+03d}:{m:02d}"
-        self._delta = datetime.timedelta(hours=h, minutes=math.copysign(m, h))
+            self._name += f"{h:+03d}:{abs(m):02d}"
+        # The sign of the offset is the sign of the hours, or of the minutes when the hours are zero.
+        negative = h < 0 or (h == 0 and m < 0)
+        self._delta = datetime.timedelta(
+            hours=h, minutes=-abs(m) if negative else abs(m)
+        )
 
     def utcoffset(self, dt: Any | None) -> datetime.timedelta:
         return self._delta
@@ -66,8 +69,9 @@ def parse_rfc3339(s: str | datetime.datetime) -> datetime.datetime:
         dt[x] = int(groups[x])
     us = 0
     if groups[6] is not None:
-        partial_sec = float(groups[6].replace(",", "."))
-        us = int(MICROSEC_PER_SEC * partial_sec)
+        # Read the digits directly: scaling a float can land just below the exact value
+        # and drop a microsecond (".520519" gave 520518).
+        us = int((groups[6][1:] + "000000")[:6])
     tz = UTC
     if groups[7] is not None and groups[7] != "Z" and groups[7] != "z":
         _re_timezone_s = _re_timezone.search(groups[7])
@@ -76,10 +80,11 @@ def parse_rfc3339(s: str | datetime.datetime) -> datetime.datetime:
         tz_groups = _re_timezone_s.groups()
         hour = int(tz_groups[1])
         minute = 0
-        if tz_groups[0] == "-":
-            hour *= -1
         if tz_groups[2]:
             minute = int(tz_groups[2])
+        if tz_groups[0] == "-":
+            hour *= -1
+            minute *= -1
         tz = TimezoneInfo(hour, minute)
     return datetime.datetime(
         year=dt[0],
