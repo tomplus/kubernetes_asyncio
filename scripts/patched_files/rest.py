@@ -76,7 +76,7 @@ class RESTClientObject(object):
         # https pool manager
         self.pool_manager = aiohttp.ClientSession(
             connector=connector,
-            trust_env=True,
+            trust_env=configuration.trust_env,
             # Watch events containing large resource objects can exceed
             # aiohttp's default read buffer size.
             #

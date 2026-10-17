@@ -215,6 +215,9 @@ conf = client.Configuration(
         self.proxy_headers = None
         """Proxy headers
         """
+        self.trust_env = True
+        """Trust environment settings passed to aiohttp. Defaults to True.
+        """
         self.safe_chars_for_path_param = ''
         """Safe chars for path_param
         """
