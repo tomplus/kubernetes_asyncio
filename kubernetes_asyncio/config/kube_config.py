@@ -17,6 +17,7 @@ import atexit
 import base64
 import copy
 import datetime
+import inspect
 import json
 import logging
 import os
@@ -260,7 +261,7 @@ class KubeConfigLoader:
             "expiry" in config and _is_expired(str(config["expiry"]))
         ):
             if self._get_google_credentials is not None:
-                if asyncio.iscoroutinefunction(self._get_google_credentials):
+                if inspect.iscoroutinefunction(self._get_google_credentials):
                     credentials = await self._get_google_credentials()
                 else:
                     credentials = self._get_google_credentials()
